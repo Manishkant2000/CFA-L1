@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Ethics – Master Study Guide (Readings 89–93)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+  :root {
+    --r89: #fff3cd; --r89b: #e6a817; --r89t: #7a4800;
+    --r90: #d4edda; --r90b: #28a745; --r90t: #155724;
+    --r91: #cce5ff; --r91b: #0d6efd; --r91t: #004085;
+    --r92: #f8d7da; --r92b: #dc3545; --r92t: #721c24;
+    --r93: #e2d9f3; --r93b: #6f42c1; --r93t: #3d0d6e;
+    --bg: #f7f7f5;
+    --text: #1a1a1a;
+    --tag-bg: #fff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .toc {
+    background: #1a1a2e;
+    color: #eee;
+    padding: 14px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .toc span { font-weight: 700; color: #ffd700; font-size: 13px; margin-right: 6px; }
+  .toc a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    transition: all .2s;
+  }
+  .toc a:hover { color: #1a1a2e; background: #ffd700; }
+  .toc a.r89 { background: var(--r89b); color: #fff; }
+  .toc a.r90 { background: var(--r90b); color: #fff; }
+  .toc a.r91 { background: var(--r91b); color: #fff; }
+  .toc a.r92 { background: var(--r92b); color: #fff; }
+  .toc a.r93 { background: var(--r93b); color: #fff; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 16px 12px; }
+
+  h1.main-title {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    margin: 8px 0 4px;
+    color: #1a1a2e;
+  }
+  .subtitle { text-align: center; font-size: 12px; color: #666; margin-bottom: 16px; }
+
+  /* Chapter blocks */
+  .chapter {
+    border-radius: 8px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    border: 1.5px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  }
+
+  .chapter-header {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .chapter-header h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+    flex: 1;
+  }
+  .chapter-header .badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    background: rgba(0,0,0,.15);
+    color: inherit;
+  }
+  .toggle-btn {
+    font-size: 18px;
+    line-height: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .chapter-body {
+    padding: 14px 16px;
+    background: #fff;
+  }
+
+  /* r89 */
+  .ch89 .chapter-header { background: var(--r89); color: var(--r89t); border-bottom: 2px solid var(--r89b); }
+  /* r90 */
+  .ch90 .chapter-header { background: var(--r90); color: var(--r90t); border-bottom: 2px solid var(--r90b); }
+  /* r91 */
+  .ch91 .chapter-header { background: var(--r91); color: var(--r91t); border-bottom: 2px solid var(--r91b); }
+  /* r92 */
+  .ch92 .chapter-header { background: var(--r92); color: var(--r92t); border-bottom: 2px solid var(--r92b); }
+  /* r93 */
+  .ch93 .chapter-header { background: var(--r93); color: var(--r93t); border-bottom: 2px solid var(--r93b); }
+
+  /* Grid layout for sections */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  @media(max-width:700px) { .grid2,.grid3,.grid4 { grid-template-columns: 1fr; } }
+
+  /* Cards */
+  .card {
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+  .card h3 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  .card ul { padding-left: 14px; }
+  .card li { margin-bottom: 3px; }
+
+  /* Color variants for cards */
+  .card-yellow { background: #fffde7; border-left: 3px solid #f9a825; }
+  .card-green  { background: #f1f8e9; border-left: 3px solid #558b2f; }
+  .card-blue   { background: #e3f2fd; border-left: 3px solid #1565c0; }
+  .card-red    { background: #fce4ec; border-left: 3px solid #c62828; }
+  .card-purple { background: #f3e5f5; border-left: 3px solid #6a1b9a; }
+  .card-orange { background: #fff3e0; border-left: 3px solid #e65100; }
+  .card-teal   { background: #e0f2f1; border-left: 3px solid #00695c; }
+  .card-pink   { background: #fce4ec; border-left: 3px solid #880e4f; }
+  .card-grey   { background: #f5f5f5; border-left: 3px solid #424242; }
+  .card-indigo { background: #e8eaf6; border-left: 3px solid #283593; }
+
+  /* Keywords */
+  .kw {
+    display: inline-block;
+    background: #1a1a2e;
+    color: #ffd700;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 1px 2px;
+  }
+  .kw-green { background: #155724; color: #d4edda; }
+  .kw-blue  { background: #004085; color: #cce5ff; }
+  .kw-red   { background: #721c24; color: #f8d7da; }
+  .kw-orange{ background: #7a4800; color: #fff3cd; }
+  .kw-purple{ background: #3d0d6e; color: #e2d9f3; }
+
+  /* Section label */
+  .sec-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #888;
+    margin: 12px 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: #e0e0e0; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 0; }
+  th { background: #1a1a2e; color: #ffd700; padding: 6px 8px; text-align: left; font-size: 11px; }
+  td { padding: 5px 8px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+
+  /* Standard tiles for R90/R91 */
+  .std-tile {
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .std-tile h4 { font-size: 11.5px; font-weight: 700; margin-bottom: 4px; }
+  .std-tile ul { padding-left: 13px; }
+  .std-tile li { margin-bottom: 2px; }
+
+  .s1 { background: #fffde7; border-top: 3px solid #f9a825; }
+  .s2 { background: #e8f5e9; border-top: 3px solid #2e7d32; }
+  .s3 { background: #e3f2fd; border-top: 3px solid #1565c0; }
+  .s4 { background: #fce4ec; border-top: 3px solid #c62828; }
+  .s5 { background: #f3e5f5; border-top: 3px solid #6a1b9a; }
+  .s6 { background: #fff3e0; border-top: 3px solid #e65100; }
+  .s7 { background: #e0f2f1; border-top: 3px solid #00695c; }
+
+  /* Violation vs Compliance comparison */
+  .vcol { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .vcol-v { background: #fce4ec; border-left: 4px solid #c62828; border-radius: 6px; padding: 8px 10px; }
+  .vcol-c { background: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 6px; padding: 8px 10px; }
+  .vcol-v h4 { color: #c62828; font-size: 11px; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+  .vcol-c h4 { color: #2e7d32; font-size: 11px; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+  .vcol ul { padding-left: 13px; font-size: 12px; }
+  .vcol li { margin-bottom: 2px; }
+
+  /* Framework box */
+  .fw-box {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin: 8px 0;
+  }
+  .fw-step {
+    flex: 1;
+    min-width: 120px;
+    background: linear-gradient(135deg, #1a1a2e, #2d2d5e);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+  }
+  .fw-step .num { font-size: 22px; font-weight: 700; color: #ffd700; line-height: 1; }
+  .fw-step .lbl { font-weight: 700; margin: 3px 0; color: #ffd700; }
+  .fw-step .desc { font-size: 11px; color: #ccc; }
+
+  p.note { font-size: 12px; color: #555; background: #fff9c4; border-left: 3px solid #f9a825; padding: 6px 10px; border-radius: 4px; margin: 6px 0; }
+
+  .highlight { background: #ffd700; color: #000; padding: 1px 4px; border-radius: 3px; font-weight: 700; }
+  
+  strong { color: #1a1a2e; }
+
+  .collapse-body { overflow: hidden; }
+  .collapsed { display: none; }
+</style>
+</head>
+<body>
+
+<div class="toc">
+  <span>📚 CFA Ethics</span>
+  <a href="#r89" class="r89">R89 Ethics & Trust</a>
+  <a href="#r90" class="r90">R90 Code & Standards</a>
+  <a href="#r91" class="r91">R91 Guidance I–VII</a>
+  <a href="#r92" class="r92">R92 GIPS</a>
+  <a href="#r93" class="r93">R93 Ethics Application</a>
+</div>
+
+<div class="container">
+<h1 class="main-title">CFA Level I – Ethics: Master Study Guide</h1>
+<p class="subtitle">Readings 89–93 | All Keywords · Concepts · Frameworks · Exam Tips</p>
+
+<!-- ============================================================ READING 89 -->
+<div class="chapter ch89" id="r89">
+  <div class="chapter-header" onclick="toggle('b89')">
+    <h2>Reading 89 – Ethics and Trust in the Investment Profession</h2>
+    <span class="badge">LOS 89.a–h</span>
+    <button class="toggle-btn" id="btn89">▲</button>
+  </div>
+  <div class="chapter-body collapse-body" id="b89">
+
+    <div class="sec-label">Core Definitions</div>
+    <div class="grid3">
+      <div class="card card-yellow">
+        <h3>🔑 Ethics (LOS 89.a)</h3>
+        <ul>
+          <li><span class="kw">Ethics</span>: Shared beliefs about good/bad behavior</li>
+          <li>Behavior following <strong>moral principles</strong> consistent with society's expectations</li>
+          <li>Conduct that <strong>improves outcomes for stakeholders</strong></li>
+          <li><span class="kw">Stakeholders</span>: clients, coworkers, employers, profession</li>
+          <li>Balances <strong>self-interest</strong> with impact on others</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h3>🔑 Code of Ethics (LOS 89.b)</h3>
+        <ul>
+          <li><span class="kw">Code of Ethics</span>: Written set of moral principles</li>
+          <li>Communicates values, principles, expectations</li>
+          <li>May include rules requiring <strong>minimum</strong> ethical behavior</li>
+          <li><span class="kw">Profession</span>: Group with specialized skills + code of ethics</li>
+          <li>Signals commitment to serve clients honestly</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h3>🔑 Professions (LOS 89.c)</h3>
+        <ul>
+          <li>Specialized expert knowledge</li>
+          <li>Code & standards for professional behavior</li>
+          <li>Regulatory body to enforce rules</li>
+          <li>Focus on <strong>client needs</strong> & service to society</li>
+          <li>Client interests <strong>first</strong></li>
+          <li>Continuing education requirement</li>
+          <li>Trust via: expertise, ethical standards, monitoring, mentoring</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card card-orange">
+        <h3>⚠️ Need for High Standards (LOS 89.d)</h3>
+        <ul>
+          <li>Investment management = <span class="kw">intangible product</span></li>
+          <li>Hard to evaluate quality → trust more critical</li>
+          <li>Entrusted with client <strong>wealth</strong></li>
+          <li>Unethical behavior → damages clients, firms, society</li>
+          <li>Financial services = <strong>intermediary</strong> between savers & borrowers</li>
+          <li>Misallocation of capital reduces economic growth</li>
+          <li>Perception of extra risk → reduces investment</li>
+        </ul>
+      </div>
+      <div class="card card-teal">
+        <h3>🔑 Professionalism (LOS 89.e)</h3>
+        <ul>
+          <li><span class="kw">Suitability standard</span>: Match client return/risk needs to securities</li>
+          <li><span class="kw">Fiduciary standard</span>: Act in <strong>best interests</strong> of client (higher)</li>
+          <li>Clients often lack knowledge about fee structures, securities, bias</li>
+        </ul>
+      </div>
+      <div class="card card-red">
+        <h3>🚫 Challenges to Ethics (LOS 89.f)</h3>
+        <ul>
+          <li>Overestimate own ethical quality</li>
+          <li><strong>External/situational</strong> factors more important than internal traits</li>
+          <li><span class="kw">Social pressure</span>, loyalty, peer pressure</li>
+          <li>Financial rewards / prestige</li>
+          <li>Rules-based compliance → "what <em>can</em> I do?" not "what <em>should</em> I do?"</li>
+          <li>Short-term focus over long-term</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card card-purple">
+        <h3>⚖️ Ethics vs Law (LOS 89.g)</h3>
+        <ul>
+          <li>Not all unethical = illegal; not all illegal = unethical</li>
+          <li><span class="kw">Whistleblowing</span>: may be illegal but ethical</li>
+          <li><span class="kw">Civil disobedience</span>: illegal but many consider ethical</li>
+          <li>Undisclosed recommendation of relative's firm: legal but <strong>unethical</strong></li>
+          <li>Ethical principles = <strong>higher standard</strong> than laws</li>
+          <li>Laws often follow unethical behavior (reactive)</li>
+          <li>Key laws: Securities Act 1933, Glass-Steagall, SEC Act 1934, Sarbanes-Oxley (post-Enron/Worldcom), Dodd-Frank (post-2008)</li>
+          <li>New laws → opportunities for different unethical behavior</li>
+          <li>Ethical decisions require <strong>more judgment</strong> than legal compliance</li>
+        </ul>
+      </div>
+      <div class="card card-indigo">
+        <h3>🔄 Decision-Making Framework (LOS 89.h)</h3>
+        <div class="fw-box">
+          <div class="fw-step"><div class="num">1</div><div class="lbl">IDENTIFY</div><div class="desc">Facts, stakeholders, duties, ethical principles, conflicts</div></div>
+          <div class="fw-step"><div class="num">2</div><div class="lbl">CONSIDER</div><div class="desc">Situational influences, guidance, alternative actions</div></div>
+          <div class="fw-step"><div class="num">3</div><div class="lbl">DECIDE & ACT</div><div class="desc">Short & long-term effects</div></div>
+          <div class="fw-step"><div class="num">4</div><div class="lbl">REFLECT</div><div class="desc">Was outcome as anticipated? Why/why not?</div></div>
+        </div>
+        <ul style="font-size:12px; margin-top:6px;">
+          <li>Seek guidance from mentor, colleagues, legal/compliance</li>
+          <li>Senior management support is critical</li>
+          <li>Reduces <strong>unanticipated ethical consequences</strong></li>
+          <li>Goal: <strong>balance interests of stakeholders</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-label">Quick Quiz Answers (89)</div>
+    <table>
+      <tr><th>Q</th><th>Answer</th><th>Why</th></tr>
+      <tr><td>Professional standards specify…</td><td><strong>C – minimum conduct</strong></td><td>"Best practices" = suggested, not minimum</td></tr>
+      <tr><td>Code of conduct can…</td><td><strong>A – increase public trust</strong></td><td>Not a guarantee; may not include specific standards</td></tr>
+      <tr><td>Situational factors LEAST include…</td><td><strong>C – lack of ethical principles</strong></td><td>Situational = external; personal ethics = internal</td></tr>
+      <tr><td>Ethics vs law…</td><td><strong>B – more judgment</strong></td><td>Ethics is higher standard; civil disobedience exception</td></tr>
+      <tr><td>Framework most likely to…</td><td><strong>C – balance stakeholders</strong></td><td>Profit not guaranteed; unintended consequences not fully avoidable</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ READING 90 -->
+<div class="chapter ch90" id="r90">
+  <div class="chapter-header" onclick="toggle('b90')">
+    <h2>Reading 90 – Code of Ethics & Standards of Professional Conduct</h2>
+    <span class="badge">LOS 90.a–c</span>
+    <button class="toggle-btn" id="btn90">▲</button>
+  </div>
+  <div class="chapter-body collapse-body" id="b90">
+
+    <div class="sec-label">Professional Conduct Program (LOS 90.a)</div>
+    <div class="grid2">
+      <div class="card card-yellow">
+        <h3>Program Structure</h3>
+        <ul>
+          <li>Governed by <span class="kw">CFA Institute Bylaws</span> + Rules of Procedure</li>
+          <li>Principles: <strong>fairness</strong> + <strong>confidentiality</strong></li>
+          <li><span class="kw">Board of Governors</span>: overall responsibility</li>
+          <li><span class="kw">Disciplinary Review Committee</span>: enforces Code & Standards</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h3>Triggers for Inquiry</h3>
+        <ul>
+          <li>Self-disclosure on annual <span class="kw">Professional Conduct Statement (PCS)</span></li>
+          <li>Written complaints received</li>
+          <li>Public sources (media)</li>
+          <li>CFA exam proctor report</li>
+          <li>Analysis of exam materials / social media monitoring</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card card-green">
+        <h3>Investigation Process</h3>
+        <ul>
+          <li>Request written explanation</li>
+          <li>Interview member/candidate & complainant</li>
+          <li>Collect documents & records</li>
+        </ul>
+      </div>
+      <div class="card card-red">
+        <h3>Outcomes / Sanctions</h3>
+        <ul>
+          <li>No disciplinary action</li>
+          <li>Cautionary letter</li>
+          <li>Discipline (member may accept or reject)</li>
+          <li>If rejected → Disciplinary Review Panel hearing</li>
+          <li>Sanctions: peer condemnation, CFA Program suspension</li>
+          <li><strong>NO suspension of designation during inquiry</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-label">Six Components of the Code of Ethics (LOS 90.b)</div>
+    <div class="grid2">
+      <div class="card card-teal">
+        <h3>Members & Candidates MUST:</h3>
+        <ol style="padding-left:16px; font-size:12.5px;">
+          <li>Act with <strong>integrity, competence, diligence, respect</strong></li>
+          <li>Place <strong>integrity of profession & client interests</strong> above personal interests</li>
+          <li>Use <strong>reasonable care & independent judgment</strong></li>
+          <li><strong>Practice & encourage</strong> ethical professional behavior</li>
+          <li>Promote <strong>integrity & viability</strong> of global capital markets</li>
+          <li><strong>Maintain & improve</strong> professional competence</li>
+        </ol>
+      </div>
+      <div class="card card-purple">
+        <h3>Seven Standards of Professional Conduct</h3>
+        <ul>
+          <li><span class="kw">I</span> – Professionalism</li>
+          <li><span class="kw">II</span> – Integrity of Capital Markets</li>
+          <li><span class="kw">III</span> – Duties to Clients</li>
+          <li><span class="kw">IV</span> – Duties to Employers</li>
+          <li><span class="kw">V</span> – Investment Analysis, Recommendations & Actions</li>
+          <li><span class="kw">VI</span> – Conflicts of Interest</li>
+          <li><span class="kw">VII</span> – Responsibilities as CFA Member/Candidate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-label">Standards Overview (LOS 90.c) – Subsections</div>
+    <div class="grid4">
+      <div class="std-tile s1">
+        <h4>I – PROFESSIONALISM</h4>
+        <ul>
+          <li>A. Knowledge of the Law</li>
+          <li>B. Independence & Objectivity</li>
+          <li>C. Misrepresentation</li>
+          <li>D. Misconduct</li>
+          <li>E. Competence</li>
+        </ul>
+      </div>
+      <div class="std-tile s2">
+        <h4>II – INTEGRITY OF CAPITAL MARKETS</h4>
+        <ul>
+          <li>A. Material Nonpublic Information</li>
+          <li>B. Market Manipulation</li>
+        </ul>
+        <br>
+        <h4 style="margin-top:4px">III – DUTIES TO CLIENTS</h4>
+        <ul>
+          <li>A. Loyalty, Prudence & Care</li>
+          <li>B. Fair Dealing</li>
+          <li>C. Suitability</li>
+          <li>D. Performance Presentation</li>
+          <li>E. Preservation of Confidentiality</li>
+        </ul>
+      </div>
+      <div class="std-tile s3">
+        <h4>IV – DUTIES TO EMPLOYERS</h4>
+        <ul>
+          <li>A. Loyalty</li>
+          <li>B. Additional Compensation Arrangements</li>
+          <li>C. Responsibilities of Supervisors</li>
+        </ul>
+        <br>
+        <h4 style="margin-top:4px">V – INVESTMENT ANALYSIS</h4>
+        <ul>
+          <li>A. Diligence & Reasonable Basis</li>
+          <li>B. Communication with Clients</li>
+          <li>C. Record Retention</li>
+        </ul>
+      </div>
+      <div class="std-tile s4">
+        <h4>VI – CONFLICTS OF INTEREST</h4>
+        <ul>
+          <li>A. Avoid or Disclose Conflicts</li>
+          <li>B. Priority of Transactions</li>
+          <li>C. Referral Fees</li>
+        </ul>
+        <br>
+        <h4 style="margin-top:4px">VII – CFA MEMBER/CANDIDATE</h4>
+        <ul>
+          <li>A. Conduct as Participants</li>
+          <li>B. Reference to CFA Designation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-label">Quick Quiz Answers (90)</div>
+    <table>
+      <tr><th>Q</th><th>Answer</th><th>Why</th></tr>
+      <tr><td>Conduct staff LEAST likely to…</td><td><strong>C – suspend during inquiry</strong></td><td>No suspension while investigation in progress</td></tr>
+      <tr><td>Code of Ethics component…</td><td><strong>A – maintain competence</strong></td><td>Others are Standards, not Code components</td></tr>
+      <tr><td>Additional compensation = which Standard?</td><td><strong>C – Duties to Employers (IV)</strong></td><td>Standard IV(B)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ READING 91 -->
+<div class="chapter ch91" id="r91">
+  <div class="chapter-header" onclick="toggle('b91')">
+    <h2>Reading 91 – Guidance for Standards I–VII (Detailed)</h2>
+    <span class="badge">LOS 91.a–c | 23 subsections</span>
+    <button class="toggle-btn" id="btn91">▲</button>
+  </div>
+  <div class="chapter-body collapse-body" id="b91">
+
+    <p class="note">⚠️ <strong>Exam tip:</strong> Know what VIOLATES each standard. "Reasonable," "adequate," "token" are terms open to interpretation — exam will make violations clear. Actions prohibited regardless of motive (except when INTENT is key, e.g., market manipulation).</p>
+
+    <!-- STANDARD I -->
+    <div class="sec-label">Standard I – Professionalism</div>
+    <div class="grid2">
+      <div class="card card-yellow">
+        <h3>I(A) Knowledge of the Law</h3>
+        <ul>
+          <li>Comply with <span class="kw">most strict</span> of: local law / country law / CFA Standards</li>
+          <li>Must <strong>dissociate</strong> from violations (stop participating)</li>
+          <li>Strongly encouraged (not required) to report to CFA PCP</li>
+          <li>May need to <strong>resign</strong> in extreme cases</li>
+          <li>Keep records of violations when dissociating</li>
+        </ul>
+        <div class="vcol" style="margin-top:8px">
+          <div class="vcol-v"><h4>❌ Violations</h4><ul><li>Participating in known violations</li><li>Assisting client violate laws</li></ul></div>
+          <div class="vcol-c"><h4>✅ Recommendations</h4><ul><li>Maintain law copies</li><li>Consult compliance/lawyer if unsure</li></ul></div>
+        </div>
+      </div>
+      <div class="card card-green">
+        <h3>I(B) Independence & Objectivity</h3>
+        <ul>
+          <li>No gifts/benefits that <strong>could compromise</strong> independence</li>
+          <li><span class="kw">Normal business entertainment</span> = permitted</li>
+          <li>Gifts from <strong>clients</strong> = less risky than from other parties</li>
+          <li>Client gifts must be <strong>disclosed to employer</strong> (before if possible)</li>
+          <li>Issuer-paid research OK if: flat rate, not tied to conclusions, <strong>disclosed</strong></li>
+          <li>Allocating IPO shares to personal accounts = <strong>violation</strong></li>
+          <li><span class="kw">Token gift</span>: no defined monetary amount (firm should set policy)</li>
+          <li>Business dinner = likely token; week in Aspen/Super Bowl tickets = likely NOT</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card card-blue">
+        <h3>I(C) Misrepresentation</h3>
+        <ul>
+          <li>No <strong>knowingly false</strong> statements re: analysis, recommendations</li>
+          <li><span class="kw">Plagiarism</span>: using others' work without credit</li>
+          <li>Citation NOT required for data from <strong>recognized financial/statistical reporting services</strong> (e.g., U.S. Treasury)</li>
+          <li>OK to omit names of departed firm members (as long as not claiming it as solely own work)</li>
+        </ul>
+        <div class="vcol" style="margin-top:8px">
+          <div class="vcol-v"><h4>❌ Violations</h4><ul><li>Guaranteeing specific returns</li><li>Presenting 3rd-party research as own</li><li>Misleading benchmark selection</li><li>Omitting accounts from performance data</li><li>False claims about capabilities</li></ul></div>
+          <div class="vcol-c"><h4>✅ OK</h4><ul><li>Using public data without citation</li><li>Omitting names of former colleagues</li></ul></div>
+        </div>
+      </div>
+      <div class="card card-orange">
+        <h3>I(D) Misconduct & I(E) Competence</h3>
+        <p style="font-size:12px; margin-bottom:6px"><strong>I(D) Misconduct:</strong></p>
+        <ul>
+          <li>No dishonesty, fraud, or deceit in <strong>professional activities</strong></li>
+          <li>No acts reflecting adversely on professional reputation/integrity/competence</li>
+          <li>Civil disobedience arrests ≠ necessarily misconduct</li>
+          <li>Cannot use Standard against others for personal/political disputes</li>
+          <li>Neglecting due diligence = <strong>misconduct</strong></li>
+        </ul>
+        <p style="font-size:12px; margin: 6px 0"><strong>I(E) Competence:</strong></p>
+        <ul>
+          <li>Maintain abilities, skills, knowledge for professional role</li>
+          <li>New role → develop required competence</li>
+          <li>Continuing education = <strong>recommended, not required</strong></li>
+          <li>Negative outcomes ≠ lack of competence</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STANDARD II -->
+    <div class="sec-label">Standard II – Integrity of Capital Markets</div>
+    <div class="grid2">
+      <div class="card card-red">
+        <h3>II(A) Material Nonpublic Information (MNI)</h3>
+        <ul>
+          <li><span class="kw">Material</span>: would affect price OR reasonable investor would want it before deciding</li>
+          <li>Ambiguous effect on price → may NOT be material</li>
+          <li><span class="kw">Nonpublic</span>: not yet made available to marketplace</li>
+          <li>Analyst conference call = <strong>NOT public disclosure</strong></li>
+          <li><span class="kw">Selective disclosure</span> = creates insider trading risk</li>
+          <li>Prohibition extends to: related mutual funds, swaps, options</li>
+          <li>Member must verify info is public before acting</li>
+          <li>Info for intended purpose (e.g., investment banking) = OK; other uses = NO</li>
+          <li><span class="kw">Mosaic theory</span>: public info + non-material nonpublic info = <strong>NOT a violation</strong></li>
+        </ul>
+        <p class="note" style="margin-top:6px">Firewall recommendations: compliance clearance, employee trade review, watch/restricted/rumor lists, restrict proprietary trading.</p>
+      </div>
+      <div class="card card-purple">
+        <h3>II(B) Market Manipulation</h3>
+        <ul>
+          <li>No practices distorting prices or inflating trading volume</li>
+          <li>Key element: <span class="kw">intent to mislead</span></li>
+          <li>Member actions affecting prices without intent = <strong>OK</strong></li>
+          <li>Spreading false info to affect prices = <strong>violation</strong></li>
+          <li>Trades intended to mislead = <strong>violation</strong></li>
+          <li>Wash trading / matched orders = violation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STANDARD III -->
+    <div class="sec-label">Standard III – Duties to Clients</div>
+    <div class="grid2">
+      <div class="card card-yellow">
+        <h3>III(A) Loyalty, Prudence & Care</h3>
+        <ul>
+          <li>Clients' interests <strong>above employer & self</strong></li>
+          <li>Does NOT impose new fiduciary duty, but requires acting in best interest</li>
+          <li><span class="kw">Soft dollars/commissions</span>: must benefit the <strong>client</strong></li>
+          <li>Vote proxies in informed, responsible manner (not all proxies need to be voted)</li>
+          <li>For pension/trust: duty owed to <strong>beneficiaries</strong>, not hiring firm</li>
+          <li>"Client" may be the investing public</li>
+          <li>Submit itemized statements to clients at least <strong>quarterly</strong></li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h3>III(B) Fair Dealing</h3>
+        <ul>
+          <li>"Fairly" ≠ "equally" (timing differences acceptable)</li>
+          <li>Different <strong>service levels</strong> = OK if <strong>disclosed</strong> and not disadvantaging clients</li>
+          <li>All clients get fair opportunity to act on recommendations</li>
+          <li>Inform clients of changes <em>before</em> accepting orders</li>
+          <li>No taking advantage of position (e.g., taking oversubscribed IPO shares)</li>
+          <li>Firms: limit # of people knowing rec changes; shorten time to dissemination</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card card-blue">
+        <h3>III(C) Suitability</h3>
+        <ul>
+          <li>In <strong>advisory relationship</strong>: gather <span class="kw">IPS</span> (Investment Policy Statement)</li>
+          <li>Inquire: risk/return objectives, financial constraints, investment experience</li>
+          <li>Reassess/update information regularly</li>
+          <li>Judge suitability in context of <strong>total portfolio</strong></li>
+          <li>Portfolio manager to mandate: only investments <strong>consistent with stated mandate</strong></li>
+          <li>Unsolicited unsuitable trade: discuss with client before executing</li>
+          <li>Minimal risk impact: may proceed after client acknowledges</li>
+          <li>Material risk impact: may need to update IPS; in absence, may end relationship</li>
+        </ul>
+      </div>
+      <div class="card card-orange">
+        <h3>III(D) Performance Presentation</h3>
+        <ul>
+          <li>Fair, accurate, <strong>complete</strong> presentation</li>
+          <li>No misstatement or misleading claims</li>
+          <li>Cannot imply past returns will repeat</li>
+          <li>Brief presentations: make detailed info <strong>available on request</strong></li>
+          <li>Include <strong>terminated accounts</strong> in history</li>
+          <li>Present composite performance (not just single account)</li>
+          <li>Disclose model results, gross/net of fees</li>
+          <li>Maintain supporting data/records</li>
+        </ul>
+      </div>
+      <div class="card card-teal">
+        <h3>III(E) Preservation of Confidentiality</h3>
+        <ul>
+          <li>Keep client info confidential (current, former, prospective)</li>
+          <li><strong>Exceptions:</strong>
+            <ol style="padding-left:14px; margin-top:4px">
+              <li>Client involved in illegal activities</li>
+              <li>Disclosure required by law</li>
+              <li>Client permits disclosure</li>
+            </ol>
+          </li>
+          <li>Sharing with CFA PCP = <strong>NOT a violation</strong></li>
+          <li>Confidentiality extends to <strong>former clients</strong></li>
+          <li>Must report illegal activities to proper authorities (not to investment bank, etc.)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STANDARD IV -->
+    <div class="sec-label">Standard IV – Duties to Employers</div>
+    <div class="grid3">
+      <div class="card card-red">
+        <h3>IV(A) Loyalty</h3>
+        <ul>
+          <li>Act in employer's benefit; don't deprive of skills/abilities</li>
+          <li>Client interests still above employer</li>
+          <li>Independent contractors: abide by agreement terms</li>
+          <li>No requirement to put employer interests above <strong>family</strong></li>
+          <li><strong>While employed:</strong> cannot solicit employer's clients; no misappropriation of client lists/trade secrets</li>
+          <li>Records on any medium (home computer) = <strong>firm's property</strong></li>
+          <li>After leaving: knowledge of former client names/existence = generally not confidential</li>
+          <li>Independent practice: full disclosure + written consent from employer required</li>
+          <li>Social media: follow employer's policies; separate personal/professional accounts (best practice)</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h3>IV(B) Additional Compensation Arrangements</h3>
+        <ul>
+          <li>Must get <span class="kw">written consent</span> from all parties before accepting</li>
+          <li>Written consent includes <strong>email</strong></li>
+          <li><span class="kw">Additional compensation</span>: bonus tied to <strong>future performance</strong> → written consent in advance</li>
+          <li><span class="kw">Gift</span>: bonus for <strong>past performance</strong> → disclosure to employer (Standard I(B))</li>
+          <li>Compensation = direct + indirect + third-party benefits</li>
+        </ul>
+      </div>
+      <div class="card card-yellow">
+        <h3>IV(C) Responsibilities of Supervisors</h3>
+        <ul>
+          <li>Reasonable efforts to ensure subordinates comply with laws, Code & Standards</li>
+          <li>Adequate compliance system must meet: industry standards + regulatory requirements + Code</li>
+          <li>Bring inadequate compliance to management's attention</li>
+          <li>If no/inadequate compliance: <strong>decline supervisory responsibility in writing</strong></li>
+          <li>If violation found: respond promptly + investigate + limit wrongdoer's activities</li>
+          <li>Don't commingle compliance procedures with code of ethics</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STANDARD V -->
+    <div class="sec-label">Standard V – Investment Analysis, Recommendations & Actions</div>
+    <div class="grid3">
+      <div class="card card-green">
+        <h3>V(A) Diligence & Reasonable Basis</h3>
+        <ul>
+          <li>Diligence, <strong>independence</strong>, thoroughness in analysis</li>
+          <li>Reasonable & adequate basis from appropriate research</li>
+          <li>Consider before recommendation: economic conditions, firm financials, fund fees/history, model limitations, peer group comparisons</li>
+          <li>Using 3rd-party research: must review <strong>assumptions</strong> + evaluate <strong>objectivity</strong> (required, not just recommended)</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h3>V(B) Communication with Clients</h3>
+        <ul>
+          <li>Disclose: nature of services + <strong>costs</strong></li>
+          <li>Disclose: basic format of investment process; promptly disclose changes</li>
+          <li>Disclose: significant limitations and risks</li>
+          <li>Distinguish <strong>fact from opinion</strong></li>
+          <li>Applies to ALL communication forms (emails, calls, reports)</li>
+          <li>Quantitative model: must disclose <strong>limitations & assumptions</strong></li>
+          <li><span class="kw">Liquidity</span>: ability to exit without significant extra cost</li>
+          <li><span class="kw">Capacity</span>: vehicle's ability to absorb investment without reducing returns</li>
+          <li>Communicate performance in terms of <strong>total returns</strong></li>
+          <li>If euro strategy only shows appreciation scenarios: violation (must include depreciation)</li>
+        </ul>
+      </div>
+      <div class="card card-orange">
+        <h3>V(C) Record Retention</h3>
+        <ul>
+          <li>Develop & maintain records supporting analysis, recommendations, communications</li>
+          <li>Records = <strong>firm's property</strong></li>
+          <li>All communications (emails, texts) = records to retain</li>
+          <li>Changed firms: re-create documentation from <strong>public info</strong>; cannot rely on memory or prior firm's materials</li>
+          <li>Recommended minimum: <span class="kw highlight">7 years</span> (if no regulatory guidance)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STANDARD VI -->
+    <div class="sec-label">Standard VI – Conflicts of Interest</div>
+    <div class="grid3">
+      <div class="card card-red">
+        <h3>VI(A) Avoid or Disclose Conflicts</h3>
+        <ul>
+          <li>Avoid or make <strong>full and fair disclosure</strong></li>
+          <li>Disclosures: prominent, plain language, effectively communicated</li>
+          <li>Most common: <strong>stock ownership</strong> in recommended companies</li>
+          <li>Compensation/bonus structure = common conflict</li>
+          <li>Board service = area of potential conflict</li>
+          <li>Disclose: broker-dealer market-making activities</li>
+          <li>Any compensation changes must be updated</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h3>VI(B) Priority of Transactions</h3>
+        <ul>
+          <li>Priority: <strong>Clients → Employers → Personal</strong></li>
+          <li>Personal = where member is beneficial owner</li>
+          <li>Personal trades only after clients had <strong>adequate opportunity</strong></li>
+          <li>Family accounts = treat like any client (no disadvantage, no preference)</li>
+          <li>Cannot act on pending trade info for personal gain (<span class="kw">front-running</span>)</li>
+          <li>Firms: blackout/restricted periods; duplicate trade confirmations; preclearance</li>
+        </ul>
+      </div>
+      <div class="card card-teal">
+        <h3>VI(C) Referral Fees</h3>
+        <ul>
+          <li>Disclose any compensation received/paid for referrals to: employer, clients, prospects</li>
+          <li>All types of consideration must be disclosed</li>
+          <li>Must disclose even if research quality is good</li>
+          <li>Allows clients to evaluate full cost & potential partiality</li>
+          <li>Provide employer updates at least <strong>quarterly</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STANDARD VII -->
+    <div class="sec-label">Standard VII – Responsibilities as CFA Member/Candidate</div>
+    <div class="grid2">
+      <div class="card card-yellow">
+        <h3>VII(A) Conduct as CFA Program Participants</h3>
+        <ul>
+          <li>No cheating on CFA exam</li>
+          <li>No revealing broad OR specific topics tested, questions, formulas required/not required</li>
+          <li>No giving confidential CFA info to public</li>
+          <li>No improper use of designation for personal goals</li>
+          <li>No misrepresenting info on PCS</li>
+          <li>Violating CFA exam policies (calculator, belongings, Candidate Pledge) = violation</li>
+          <li>Members CAN express opinions about CFA Institute policies/procedures</li>
+          <li>Members CANNOT reveal exam content (even what was NOT tested)</li>
+          <li>Volunteers: cannot solicit/reveal exam question info or grading info</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h3>VII(B) Reference to CFA Designation</h3>
+        <ul>
+          <li>No misrepresenting or exaggerating meaning of CFA designation</li>
+          <li>No promotional promises/guarantees tied to CFA (e.g., "will achieve better returns")</li>
+          <li>Maintain membership: sign PCS annually + pay dues annually</li>
+          <li><strong>No partial CFA designation</strong></li>
+          <li>Acceptable: "I passed in 3 years" (if true)</li>
+          <li>Unacceptable: "I passed in 3 years therefore I'm superior"</li>
+          <li>If dues unpaid: no longer active; cannot use designation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-label">Key Exam Rules / "Tricky" Points</div>
+    <table>
+      <tr><th>Scenario</th><th>Ruling</th><th>Standard</th></tr>
+      <tr><td>CFO tells analyst current quarter earnings below estimates</td><td>❌ VIOLATION – material nonpublic info</td><td>II(A)</td></tr>
+      <tr><td>Analyst uses Treasury table without citation</td><td>✅ OK – recognized statistical source</td><td>I(C)</td></tr>
+      <tr><td>Buying simultaneous stocks + options in personal account then buying for clients</td><td>❌ VIOLATION – front-running</td><td>VI(B)</td></tr>
+      <tr><td>Client gifts disclosed to employer</td><td>✅ OK – gifts from clients acceptable if disclosed</td><td>I(B)</td></tr>
+      <tr><td>Pension manager – who is the client?</td><td><strong>Beneficiaries</strong>, not hiring firm</td><td>III(A)</td></tr>
+      <tr><td>Sharing confidential info with CFA PCP</td><td>✅ NOT a violation</td><td>III(E)</td></tr>
+      <tr><td>Taking documents to new employer (without permission)</td><td>❌ VIOLATION – firm's property</td><td>IV(A)</td></tr>
+      <tr><td>Analyst says "our strategy will outperform by 2-4%"</td><td>❌ VIOLATION – guaranteeing returns</td><td>I(C)</td></tr>
+      <tr><td>Supervisor reports violation and issues warning only</td><td>❌ INSUFFICIENT – must also limit activities + investigate</td><td>IV(C)</td></tr>
+      <tr><td>Revealing exam topics NOT covered</td><td>❌ VIOLATION</td><td>VII(A)</td></tr>
+      <tr><td>Info shared in internet chat room</td><td>Still nonpublic – limited circle</td><td>II(A)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ READING 92 -->
+<div class="chapter ch92" id="r92">
+  <div class="chapter-header" onclick="toggle('b92')">
+    <h2>Reading 92 – Introduction to GIPS</h2>
+    <span class="badge">LOS 92.a–e</span>
+    <button class="toggle-btn" id="btn92">▲</button>
+  </div>
+  <div class="chapter-body collapse-body" id="b92">
+
+    <div class="grid3">
+      <div class="card card-yellow">
+        <h3>Why GIPS Were Created (LOS 92.a)</h3>
+        <ul>
+          <li><span class="kw">GIPS</span> = Global Investment Performance Standards</li>
+          <li>Problem: firms chose self-serving methodologies</li>
+          <li>Biases: top portfolio cherry-picking, excluding terminated accounts, selecting favorable time periods</li>
+          <li>GIPS → <strong>standardized, comparable</strong> performance reporting</li>
+          <li>Benefits: clients, prospects, investors, oversight bodies</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h3>Who Uses GIPS (LOS 92.a)</h3>
+        <ul>
+          <li>Applies ONLY to <strong>firms managing assets for others</strong></li>
+          <li>Compliance is <strong>voluntary</strong></li>
+          <li>Must comply <span class="kw">fully</span> and on a <span class="kw">firmwide</span> basis to claim compliance</li>
+          <li>Software developers etc.: may <em>endorse</em> GIPS but <strong>cannot claim compliance</strong></li>
+          <li>No partial compliance</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h3>8 Sections of GIPS (LOS 92.b)</h3>
+        <ol style="padding-left:15px; font-size:12px;">
+          <li>Fundamentals of Compliance</li>
+          <li>Input Data & Calculation Methodology</li>
+          <li>Composite & Pooled Fund Maintenance</li>
+          <li>Composite Time-Weighted Return Report</li>
+          <li>Composite Money-Weighted Return Report</li>
+          <li>Pooled Fund Time-Weighted Return Report</li>
+          <li>Pooled Fund Money-Weighted Return Report</li>
+          <li>GIPS Advertising Guidelines</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card card-orange">
+        <h3>Composites (LOS 92.c)</h3>
+        <ul>
+          <li><span class="kw">Composite</span>: grouping of individual <strong>discretionary</strong> portfolios with similar strategy/objective/mandate</li>
+          <li>Examples: large-cap stocks, investment-grade domestic bonds, index-matching</li>
+          <li>Must include <strong>all fee-paying discretionary</strong> portfolios (current AND past)</li>
+          <li>Must include <strong>terminated accounts</strong></li>
+          <li>Firm assigns portfolio to composite <strong>before performance is known</strong> (ex ante)</li>
+          <li>Composite returns = <span class="kw">asset-weighted average</span> (NOT simple average)</li>
+          <li>Pooled funds must be included in a composite if they fit</li>
+          <li>Every fee-paying discretionary portfolio → at least one composite</li>
+        </ul>
+      </div>
+      <div class="card card-teal">
+        <h3>Fundamentals of Compliance (LOS 92.d)</h3>
+        <ul>
+          <li>Firm = distinct business entity held out to clients</li>
+          <li>Multiple geographic locations under same name = all included</li>
+          <li><span class="kw">Discretion</span>: firm's criteria for which portfolios are included</li>
+          <li><span class="kw">Nondiscretionary</span>: client restrictions prevent manager from implementing intended strategy → may exclude from composite</li>
+          <li>Must provide GIPS-compliant reports to <strong>all</strong> clients/prospects</li>
+          <li>Info must be neither false nor misleading</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h3>Independent Verification (LOS 92.e)</h3>
+        <ul>
+          <li>Firms are <strong>encouraged</strong> (not required) to pursue verification</li>
+          <li>Applies to <strong>entire firm</strong>, not single composite</li>
+          <li>Must be performed by <strong>third party</strong> (not firm itself)</li>
+          <li>Verifier attests:
+            <ol style="padding-left:13px; margin-top:3px">
+              <li>Firm complied with GIPS composite construction firmwide</li>
+              <li>Firm's processes established per GIPS calculation, data, & format requirements</li>
+            </ol>
+          </li>
+          <li>Verified firms include standard disclosure language with name + dates + verifier</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-label">Quick Quiz Answers (92)</div>
+    <table>
+      <tr><th>Q</th><th>Answer</th><th>Why</th></tr>
+      <tr><td>GIPS apply to and serve…</td><td><strong>C – investment mgmt firms; existing & prospective clients</strong></td><td>Not consultants, not issuers</td></tr>
+      <tr><td>GIPS composite must include…</td><td><strong>C – all fee-paying discretionary portfolios, same strategy</strong></td><td>Ex ante assignment; includes terminated accounts</td></tr>
+      <tr><td>Verification…</td><td><strong>C – requires report for entire firm</strong></td><td>Optional; no single composite verification; 3rd party only</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ READING 93 -->
+<div class="chapter ch93" id="r93">
+  <div class="chapter-header" onclick="toggle('b93')">
+    <h2>Reading 93 – Ethics Application (Case Studies)</h2>
+    <span class="badge">LOS 93.a–b</span>
+    <button class="toggle-btn" id="btn93">▲</button>
+  </div>
+  <div class="chapter-body collapse-body" id="b93">
+
+    <p class="note">📝 This reading applies all Standards through practical cases. Master the principle, then apply to novel scenarios.</p>
+
+    <div class="sec-label">Standard I – Professionalism Cases</div>
+    <table>
+      <tr><th>Case</th><th>Standard</th><th>Violation?</th><th>Key Principle</th></tr>
+      <tr><td>Firm overcharges clients; member reports but fix incomplete</td><td>I(A)</td><td>✅ Member must dissociate from still-overcharged clients</td><td>Must dissociate even when partially remedied</td></tr>
+      <tr><td>Fails to investigate suspicious money-laundering transactions (long-standing client)</td><td>I(A)</td><td>❌ VIOLATION</td><td>Relationship/status does not excuse due diligence</td></tr>
+      <tr><td>Forges customer signatures</td><td>I(A)</td><td>❌ VIOLATION</td><td>Violates law AND Standards</td></tr>
+      <tr><td>Campaign contribution for preferential government contracts</td><td>I(B)</td><td>❌ VIOLATION</td><td>Compromises independence/objectivity</td></tr>
+      <tr><td>Guarantees returns from fund to justify penalty of switching</td><td>I(C)</td><td>❌ VIOLATION</td><td>No guaranteed returns without explicit guarantee</td></tr>
+      <tr><td>Personnel leaves firm after proposal submitted; not disclosed</td><td>I(C)</td><td>❌ VIOLATION</td><td>Misrepresentation by omission</td></tr>
+      <tr><td>CEO posts on social media that private financing secured (was untrue)</td><td>I(C)</td><td>❌ VIOLATION</td><td>False statement even if claimed as a joke</td></tr>
+      <tr><td>Civil disobedience arrest for protest</td><td>I(D)</td><td>✅ NOT necessarily violation</td><td>Not dishonesty/fraud; doesn't reflect on professional competence</td></tr>
+      <tr><td>Uses error-correction policy to pad client account</td><td>I(D)</td><td>❌ VIOLATION</td><td>Deceit to make management look better</td></tr>
+      <tr><td>Accepts supervisory role without gaining competence</td><td>I(E)</td><td>❌ VIOLATION</td><td>Must develop required skills for new role</td></tr>
+    </table>
+
+    <div class="sec-label">Standard II – Integrity of Capital Markets Cases</div>
+    <table>
+      <tr><th>Case</th><th>Standard</th><th>Violation?</th><th>Key Principle</th></tr>
+      <tr><td>Overhears friend's call about imminent takeover; trades on it</td><td>II(A)</td><td>❌ VIOLATION</td><td>Source of info irrelevant; material nonpublic = no trade</td></tr>
+      <tr><td>Analyst meeting where company shares positive drug trial info; shares with clients</td><td>II(A)</td><td>❌ VIOLATION</td><td>Selective disclosure = still nonpublic</td></tr>
+      <tr><td>Fraudulently adds names to shareholder list to meet exchange minimum</td><td>II(B)</td><td>❌ VIOLATION</td><td>Misleads market participants about liquidity</td></tr>
+      <tr><td>Buying stock + shorting put options simultaneously (arbitrage strategy)</td><td>II(B)</td><td>✅ NOT violation</td><td>Legitimate strategy, no intent to mislead; hedge fund clients aware</td></tr>
+      <tr><td>Info shared in private internet chat room about unreleased product</td><td>II(A)</td><td>❌ VIOLATION – still nonpublic</td><td>Limited chat room ≠ public dissemination</td></tr>
+    </table>
+
+    <div class="sec-label">Standards III–VII Cases</div>
+    <table>
+      <tr><th>Case</th><th>Standard</th><th>Violation?</th><th>Key Principle</th></tr>
+      <tr><td>Client agreement excuses advisor from acting in client's best interest</td><td>III(A)</td><td>❌ VIOLATION</td><td>Cannot "opt out" of Standards</td></tr>
+      <tr><td>Staying extra night to reduce travel costs but charging lodging to client</td><td>III(A)</td><td>✅ NOT violation</td><td>Charging client for personal activities/benefiting other clients = violation</td></tr>
+      <tr><td>Simultaneous email re: rec change; then individual follow-up calls</td><td>III(B)</td><td>✅ NOT violation</td><td>Simultaneous dissemination OK; follow-up clarifications OK</td></tr>
+      <tr><td>Recommends high-risk investments ignoring suitability (despite tax benefits)</td><td>III(C)</td><td>❌ VIOLATION</td><td>Tax advantages don't override suitability</td></tr>
+      <tr><td>Assumes brothers should have same portfolio without inquiry</td><td>III(C)</td><td>❌ VIOLATION</td><td>Cannot assume; must inquire independently for each client</td></tr>
+      <tr><td>Reports older performance composite for new fund</td><td>III(D)</td><td>❌ VIOLATION</td><td>Creates false impression of fund's history</td></tr>
+      <tr><td>Member downloads client info to home server; gets hacked</td><td>III(E)</td><td>❌ VIOLATION</td><td>Inadequate steps to protect client data</td></tr>
+      <tr><td>Shares client's IRS investigation with investment bank (not authorities)</td><td>III(E)</td><td>❌ VIOLATION</td><td>Illegal activity info → only to proper authorities</td></tr>
+      <tr><td>Makes harmful statements about current employer while still employed</td><td>IV(A)</td><td>❌ VIOLATION</td><td>Must act in employer's benefit until resignation effective</td></tr>
+      <tr><td>Takes client records to regulators to protect clients from firm's bad products</td><td>IV(A)</td><td>✅ NOT violation</td><td>Acting in client interest; not for personal gain</td></tr>
+      <tr><td>Issuer-paid research; companies offer bonus to get covered</td><td>IV(B)</td><td>Need written approval from employer</td><td>Conflict of interest with employer's interests</td></tr>
+      <tr><td>Supervisor: compliance not monitored; no written procedures; no training</td><td>IV(C)</td><td>❌ VIOLATION</td><td>Must decline supervisory responsibility if no adequate compliance</td></tr>
+      <tr><td>Chief compliance officer denied access to enforce policies</td><td>IV(C)</td><td>❌ VIOLATION</td><td>Should have declined the role knowing she couldn't perform it</td></tr>
+      <tr><td>Recommends without thorough analysis; 2nd analyst uses 1st's flawed report</td><td>V(A)</td><td>❌ BOTH in violation</td><td>Using others' inadequate research without own diligence</td></tr>
+      <tr><td>Credit rating agency changes methodology without disclosure</td><td>V(B)</td><td>❌ VIOLATION</td><td>Must promptly disclose changes in investment process</td></tr>
+      <tr><td>Keeps portfolios updated but doesn't maintain written client profiles</td><td>V(C)</td><td>❌ VIOLATION</td><td>Written records required, not just mental updates</td></tr>
+      <tr><td>Receives payments from subadvisors; clients unaware</td><td>VI(A)</td><td>❌ Must disclose</td><td>May influence choice of subadvisors</td></tr>
+      <tr><td>Buys personal shares before large client buy orders</td><td>VI(B)</td><td>❌ VIOLATION – front-running</td><td>Personal trades cannot precede client trades</td></tr>
+      <tr><td>Allocates profitable block trades to personal; losing to biggest clients</td><td>VI(B) + III(B)</td><td>❌ VIOLATION</td><td>Discriminatory allocation</td></tr>
+      <tr><td>Lavish parties + discounts for clients who referred business; not disclosed</td><td>VI(C)</td><td>❌ VIOLATION</td><td>All referral benefits must be disclosed to all clients/prospects</td></tr>
+      <tr><td>Exam-prep teacher solicits opinions on most difficult questions post-exam</td><td>VII(A)</td><td>❌ Cannot share specific question info</td><td>Can share general difficulty impressions; not specific content</td></tr>
+      <tr><td>Member who hasn't paid dues uses CFA designation</td><td>VII(B)</td><td>❌ VIOLATION</td><td>No active status without annual PCS + dues</td></tr>
+      <tr><td>Recreates model from memory at new firm (with supporting docs)</td><td>IV(A) + V(C)</td><td>✅ OK if documents recreated</td><td>Cannot bring old materials; can recreate from memory WITH documentation</td></tr>
+      <tr><td>"CFA → will achieve better results than non-CFA managers"</td><td>VII(B)</td><td>❌ VIOLATION</td><td>Implies superior performance from designation</td></tr>
+      <tr><td>Referral arrangement fully disclosed to clients before they agree</td><td>VI(C)</td><td>✅ NOT violation</td><td>Full upfront disclosure = compliant</td></tr>
+    </table>
+
+    <div class="sec-label">Decision Shortcuts for Application Qs</div>
+    <div class="grid2">
+      <div class="card card-indigo">
+        <h3>🎯 When in Doubt – Ask:</h3>
+        <ul>
+          <li><strong>Whose interests are affected?</strong> → Clients first, then employer, then self</li>
+          <li><strong>Is there disclosure?</strong> → Many issues resolved by timely disclosure</li>
+          <li><strong>Is it the strictest rule?</strong> → Follow strictest of local/country/CFA</li>
+          <li><strong>Is there intent to mislead?</strong> → Market manipulation requires intent</li>
+          <li><strong>Is it public info?</strong> → Limited audience ≠ public</li>
+          <li><strong>Is there written consent?</strong> → Additional compensation/independent work needs it</li>
+        </ul>
+      </div>
+      <div class="card card-pink">
+        <h3>⚡ High-Frequency Exam Traps</h3>
+        <ul>
+          <li>Long-standing client / board relationship → does NOT excuse due diligence</li>
+          <li>Volunteer role + any compensation (parking) → still needs disclosure + consent</li>
+          <li>Civil disobedience ≠ misconduct violation</li>
+          <li>Chat room release ≠ public disclosure</li>
+          <li>Analyst conference call ≠ public disclosure</li>
+          <li>Pension manager's duty → beneficiaries (not hiring company)</li>
+          <li>Sharing with CFA PCP → never a confidentiality violation</li>
+          <li>Family accounts → treat like any client (no preference AND no disadvantage)</li>
+          <li>Passing CFA quickly ≠ implies superior performance</li>
+          <li>Tax advantages do NOT override suitability</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; padding: 20px 0 10px; font-size:11px; color:#999;">
+  CFA Level I Ethics Study Guide · Readings 89–93 · All rights belong to respective owners
+</div>
+
+</div><!-- /container -->
+
+<script>
+function toggle(id) {
+  const body = document.getElementById(id);
+  const btn = document.getElementById('btn' + id.replace('b',''));
+  if (body.classList.contains('collapsed')) {
+    body.classList.remove('collapsed');
+    btn.textContent = '▲';
+  } else {
+    body.classList.add('collapsed');
+    btn.textContent = '▼';
+  }
+}
+// All open by default — nothing to do
+</script>
+</body>
+</html>
