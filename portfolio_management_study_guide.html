@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Portfolio Management — Master Study Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #141820;
+    --surface2: #1c2230;
+    --border: #2a3347;
+    --accent: #00d4ff;
+    --accent2: #ff6b35;
+    --accent3: #7fff6b;
+    --accent4: #ffdd57;
+    --text: #e2e8f0;
+    --muted: #8898aa;
+    --formula-bg: #0a1628;
+    --tag-bg: #1a2540;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0d1b2e 0%, #0d0f14 60%);
+    border-bottom: 2px solid var(--accent);
+    padding: 18px 24px 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  header span {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .nav {
+    display: flex;
+    gap: 4px;
+    padding: 8px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 57px;
+    z-index: 99;
+  }
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 16px 20px; }
+
+  .chapter {
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .ch-header {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ch-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .ch-title { font-weight: 700; font-size: 13px; flex: 1; }
+  .ch-toggle { font-size: 10px; color: var(--muted); }
+
+  .ch-body { padding: 0 16px 16px; }
+
+  /* Color coding by chapter */
+  .r83 .ch-header { background: linear-gradient(90deg, #0d1f35 0%, var(--surface) 100%); }
+  .r83 .ch-num { background: #0f2d4a; color: #4db8ff; border: 1px solid #1e5080; }
+  .r84 .ch-header { background: linear-gradient(90deg, #1a1225 0%, var(--surface) 100%); }
+  .r84 .ch-num { background: #2a1040; color: #b47fff; border: 1px solid #5c2d9e; }
+  .r85 .ch-header { background: linear-gradient(90deg, #0d2215 0%, var(--surface) 100%); }
+  .r85 .ch-num { background: #0d2e17; color: #4dff7c; border: 1px solid #1a6b35; }
+  .r86 .ch-header { background: linear-gradient(90deg, #1f1608 0%, var(--surface) 100%); }
+  .r86 .ch-num { background: #2e1f00; color: #ffb84d; border: 1px solid #7a4f00; }
+  .r87 .ch-header { background: linear-gradient(90deg, #1f0808 0%, var(--surface) 100%); }
+  .r87 .ch-num { background: #2e0d0d; color: #ff6b6b; border: 1px solid #7a1a1a; }
+  .r88 .ch-header { background: linear-gradient(90deg, #0d1f1f 0%, var(--surface) 100%); }
+  .r88 .ch-num { background: #0d2e2e; color: #4dffff; border: 1px solid #0d6b6b; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+
+  .card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 12px;
+  }
+  .card h3 {
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 7px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .formula-block {
+    background: var(--formula-bg);
+    border: 1px solid var(--accent);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 6px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #a8d8ea;
+  }
+  .formula-block .label {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .formula-block .f { color: #e0f0ff; font-size: 12.5px; line-height: 1.6; }
+
+  .kw { /* keyword pill */
+    display: inline-block;
+    background: var(--tag-bg);
+    border: 1px solid #2e4070;
+    color: #80a8e0;
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin: 1px 2px;
+  }
+  .kw.red { background: #2e1515; border-color: #6b2020; color: #ff8080; }
+  .kw.green { background: #152e1a; border-color: #206b30; color: #80ff9e; }
+  .kw.yellow { background: #2e2515; border-color: #6b4e20; color: #ffd080; }
+  .kw.purple { background: #1f1535; border-color: #4e2080; color: #c080ff; }
+  .kw.cyan { background: #0d2535; border-color: #106080; color: #80e0ff; }
+
+  ul.tight { padding-left: 14px; }
+  ul.tight li { margin-bottom: 2px; font-size: 12px; }
+
+  .two-col { columns: 2; column-gap: 16px; }
+  .two-col li { break-inside: avoid; }
+
+  .sect-title {
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 10px 0 5px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 3px;
+  }
+
+  table.mini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin-top: 6px;
+  }
+  table.mini th {
+    background: #1a2540;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    padding: 4px 7px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  table.mini td {
+    padding: 3px 7px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.mini tr:nth-child(even) td { background: #141a25; }
+
+  .highlight {
+    background: #1a2d1a;
+    border-left: 2px solid var(--accent3);
+    padding: 5px 10px;
+    margin: 5px 0;
+    font-size: 12px;
+  }
+  .warn {
+    background: #2d1a0d;
+    border-left: 2px solid var(--accent2);
+    padding: 5px 10px;
+    margin: 5px 0;
+    font-size: 12px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 1px 5px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .badge.cognitive { background: #1a2d50; color: #4db8ff; }
+  .badge.emotional { background: #2d1a30; color: #ff80d5; }
+  .badge.belief { background: #1a2d1a; color: #4dff7c; }
+  .badge.processing { background: #2d2a10; color: #ffdd57; }
+
+  @media print {
+    body { background: white; color: black; font-size: 10px; }
+    header, .nav { position: relative; top: auto; }
+    .chapter { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CFA — Portfolio Management Master Study Guide</h1>
+  <span>Readings 83–88 · All Formulas · All Keywords · Exam-Ready</span>
+</header>
+
+<div class="nav">
+  <a href="#r83">R83: Risk & Return I</a>
+  <a href="#r84">R84: Risk & Return II</a>
+  <a href="#r85">R85: PM Overview</a>
+  <a href="#r86">R86: Portfolio Planning</a>
+  <a href="#r87">R87: Behavioral Biases</a>
+  <a href="#r88">R88: Risk Management</a>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════ READING 83 -->
+<div class="chapter r83" id="r83">
+  <div class="ch-header">
+    <span class="ch-num">R83</span>
+    <span class="ch-title">Portfolio Risk &amp; Return: Part I — Historical Risk, Risk Aversion, Portfolio Math, Efficient Frontier</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="sect-title">LOS 83.a — Historical Risk &amp; Return of Asset Classes</div>
+    <div class="grid2">
+      <div>
+        <table class="mini">
+          <tr><th>Asset Class</th><th>Avg Return</th><th>Std Dev</th></tr>
+          <tr><td>Small-cap stocks</td><td>12.1%</td><td>31.7%</td></tr>
+          <tr><td>Large-cap stocks</td><td>10.2%</td><td>19.8%</td></tr>
+          <tr><td>LT Corporate bonds</td><td>6.1%</td><td>8.3%</td></tr>
+          <tr><td>LT Govt bonds</td><td>5.5%</td><td>9.9%</td></tr>
+          <tr><td>T-bills</td><td>3.4%</td><td>3.1%</td></tr>
+          <tr><td>Inflation</td><td>2.9%</td><td>4.0%</td></tr>
+        </table>
+        <div class="highlight" style="margin-top:6px;">T-bill real return ≈ 0.5% · Large-cap real return ≈ 7.3%</div>
+      </div>
+      <div class="card">
+        <h3>Key Concepts</h3>
+        <ul class="tight">
+          <li>Risk ↑ ⟹ Return ↑ (risk-return tradeoff)</li>
+          <li>Real return ≈ Nominal return − Inflation</li>
+          <li>Returns are <span class="kw red">negatively skewed</span> (downside tail)</li>
+          <li>Returns have <span class="kw yellow">excess kurtosis</span> (fat tails, leptokurtic)</li>
+          <li>Skewness ≠ 0 and Kurtosis ≠ 3 → non-normal</li>
+          <li><span class="kw purple">Liquidity</span> concern: emerging markets, low-quality corporate bonds, infrequently traded securities</li>
+        </ul>
+        <div class="warn" style="margin-top:6px;">Non-normal distribution → mean/variance analysis is a <em>simplification</em></div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 83.b — Risk Aversion</div>
+    <div class="grid3">
+      <div class="card">
+        <h3 style="color:#ff8080;">Risk-Averse</h3>
+        <ul class="tight">
+          <li>Prefers less risk to more</li>
+          <li>Given equal E(R), chooses lower σ</li>
+          <li>Will hold risky assets if compensated</li>
+          <li>Standard assumption in finance</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ffdd57;">Risk-Neutral</h3>
+        <ul class="tight">
+          <li>Indifferent to risk level</li>
+          <li>Cares only about E(R)</li>
+          <li>Indifferent between gamble and certainty if E(R) equal</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#4dff7c;">Risk-Seeking</h3>
+        <ul class="tight">
+          <li>Prefers more risk to less</li>
+          <li>Given equal E(R), chooses higher σ</li>
+          <li>Prefers gamble over certain equivalent</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 83.c — Optimal Portfolio, Indifference Curves &amp; Capital Allocation Line</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>Indifference Curves</h3>
+          <ul class="tight">
+            <li><span class="kw">Utility function</span>: represents risk/return preferences</li>
+            <li><span class="kw">Indifference curve</span>: combinations of (σ, E(R)) giving same utility</li>
+            <li>Slopes <strong>upward</strong> for risk-averse investors</li>
+            <li>More risk-averse → <strong>steeper</strong> curves</li>
+            <li>Less risk-averse → <strong>flatter</strong> curves → optimal portfolio has more risk</li>
+            <li>Higher indifference curve (I₁ &gt; I₂ &gt; I₃) = higher utility</li>
+            <li><span class="kw purple">Risk aversion coefficient</span>: higher = steeper curve</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Two-Fund Separation Theorem</h3>
+          <ul class="tight">
+            <li>All investors hold combination of <strong>risk-free asset</strong> + <strong>optimal risky portfolio</strong></li>
+            <li>Combining RF + risky portfolio → risk &amp; return are <strong>linear</strong></li>
+            <li>σ_portfolio = W_A × σ_A (when one asset is risk-free)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Capital Allocation Line (CAL)</h3>
+          <ul class="tight">
+            <li>Line from R_f through optimal risky portfolio</li>
+            <li>All points on CAL = combinations of R_f + risky portfolio</li>
+            <li>Optimal portfolio = tangency point of CAL with highest indifference curve</li>
+            <li>Less risk-averse → tangency point further right (more risky asset)</li>
+          </ul>
+        </div>
+        <div class="formula-block" style="margin-top:8px;">
+          <div class="label">CAL Portfolio Expected Return</div>
+          <div class="f">E(R_p) = W_A·E(R_A) + W_B·R_f</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">CAL Portfolio Std Dev (RF + Risky)</div>
+          <div class="f">σ_p = W_A · σ_A</div>
+          <div class="f">(since σ_RF=0, ρ(RF,risky)=0)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 83.d — Mean, Variance, Covariance, Correlation (Historical Data)</div>
+    <div class="grid2">
+      <div>
+        <div class="formula-block">
+          <div class="label">Population Variance</div>
+          <div class="f">σ² = Σ(Rₜ − μ)² / T</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Sample Variance</div>
+          <div class="f">s² = Σ(Rₜ − R̄)² / (T−1)</div>
+          <div class="f">s = √s² (sample standard deviation)</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Sample Covariance</div>
+          <div class="f">Cov₁,₂ = Σ[(R_{t,1}−R̄₁)(R_{t,2}−R̄₂)] / (n−1)</div>
+        </div>
+      </div>
+      <div>
+        <div class="formula-block">
+          <div class="label">Correlation Coefficient</div>
+          <div class="f">ρ₁,₂ = Cov₁,₂ / (σ₁ · σ₂)</div>
+          <div class="f">Range: −1 ≤ ρ ≤ +1</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Covariance from Correlation</div>
+          <div class="f">Cov₁,₂ = ρ₁,₂ · σ₁ · σ₂</div>
+        </div>
+        <div class="card" style="margin-top:6px;">
+          <h3>Correlation Interpretation</h3>
+          <ul class="tight">
+            <li>ρ = +1: <span class="kw green">perfectly positively correlated</span></li>
+            <li>ρ = −1: <span class="kw red">perfectly negatively correlated</span></li>
+            <li>ρ = 0: <span class="kw">uncorrelated</span> — knowing one tells nothing about other</li>
+            <li>Covariance = 0 → correlation = 0 → no linear relationship</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 83.e — Portfolio Standard Deviation (2 Risky Assets)</div>
+    <div class="grid2">
+      <div>
+        <div class="formula-block">
+          <div class="label">Portfolio Variance (2 assets)</div>
+          <div class="f">Var_p = w₁²σ₁² + w₂²σ₂² + 2w₁w₂Cov₁,₂</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Portfolio Variance (with correlation)</div>
+          <div class="f">Var_p = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρ₁₂σ₁σ₂</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Portfolio Std Dev</div>
+          <div class="f">σ_p = √(w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρ₁₂σ₁σ₂)</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Special Case: ρ = +1</div>
+          <div class="f">σ_p = w₁σ₁ + w₂σ₂  (weighted average)</div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Effect of Correlation on Portfolio Risk</h3>
+          <ul class="tight">
+            <li>ρ = +1 → <strong>maximum</strong> portfolio risk (no diversification benefit)</li>
+            <li>ρ &lt; +1 → portfolio risk &lt; weighted average of individual risks</li>
+            <li>ρ = 0 → third term = 0; significant diversification benefit</li>
+            <li>ρ = −1 → maximum diversification; can eliminate risk entirely at specific weights</li>
+            <li><strong>Lower ρ → greater diversification benefit</strong></li>
+          </ul>
+        </div>
+        <div class="warn" style="margin-top:6px;">ρ = −1: zero-variance portfolio <em>only</em> at specific weights, not all weights</div>
+        <div class="highlight" style="margin-top:4px;">Portfolio risk &lt; weighted avg risk whenever ρ &lt; +1</div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 83.f &amp; 83.g — Efficient Frontier &amp; Minimum-Variance Portfolios</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Minimum-Variance Frontier</h3>
+        <ul class="tight">
+          <li><span class="kw">Minimum-variance portfolio</span>: lowest σ for given E(R)</li>
+          <li><span class="kw">Minimum-variance frontier</span>: set of all minimum-variance portfolios</li>
+          <li><span class="kw cyan">Global minimum-variance portfolio (GMVP)</span>: the single portfolio with the lowest possible risk on the frontier (leftmost point)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Efficient Frontier</h3>
+        <ul class="tight">
+          <li><span class="kw">Efficient frontier</span>: portfolios with highest E(R) for each level of σ</li>
+          <li>Efficient frontier = <strong>top portion</strong> of minimum-variance frontier</li>
+          <li>Risk-averse investors choose <strong>only</strong> portfolios on the efficient frontier</li>
+          <li>Portfolios <em>below</em> efficient frontier are <strong>dominated</strong> (inefficient)</li>
+          <li>Optimal portfolio = tangency of investor's indifference curve with efficient frontier</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ READING 84 -->
+<div class="chapter r84" id="r84">
+  <div class="ch-header">
+    <span class="ch-num">R84</span>
+    <span class="ch-title">Portfolio Risk &amp; Return: Part II — CAL, CML, CAPM, SML, Beta, Performance Measures</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="sect-title">LOS 84.a &amp; 84.b — CAL, CML, Capital Market Line</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>Capital Allocation Line (CAL)</h3>
+          <ul class="tight">
+            <li>Line of possible risk/return combinations: RF + any risky portfolio</li>
+            <li>Best CAL = most preferred set of portfolios for investor</li>
+            <li>Optimal risky portfolio = CAL tangent to efficient frontier</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Homogeneous Expectations Assumption</h3>
+          <ul class="tight">
+            <li>All investors have same estimates of E(R), σ, and ρ for all assets</li>
+            <li>→ All investors face same efficient frontier</li>
+            <li>→ All investors have same optimal risky portfolio</li>
+            <li>→ That portfolio must be the <span class="kw cyan">market portfolio</span></li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Active vs Passive</h3>
+          <ul class="tight">
+            <li><span class="kw">Passive</span>: invest in index (proxy for market portfolio) + RF asset</li>
+            <li><span class="kw">Active</span>: overweight undervalued, underweight overvalued securities</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="formula-block">
+          <div class="label">Capital Market Line (CML) Equation</div>
+          <div class="f">E(R_p) = R_f + [(E(R_M) − R_f) / σ_M] × σ_p</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">CML Slope = Sharpe Ratio of Market</div>
+          <div class="f">Slope = [E(R_M) − R_f] / σ_M</div>
+          <div class="f">Market risk premium = E(R_M) − R_f</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>CML Key Points</h3>
+          <ul class="tight">
+            <li>X-axis: <strong>total risk</strong> (σ_p)</li>
+            <li>Only <strong>efficient portfolios</strong> plot on CML</li>
+            <li>Y-intercept = R_f (zero risk)</li>
+            <li>Tangency point = market portfolio M</li>
+            <li>Left of M: lending portfolios (long RF + long M)</li>
+            <li>Right of M: borrowing portfolios (borrow at RF, invest &gt;100% in M)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 84.c — Systematic vs Unsystematic Risk</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Risk Decomposition</h3>
+        <div class="formula-block">
+          <div class="label">Total Risk</div>
+          <div class="f">Total Risk = Systematic Risk + Unsystematic Risk</div>
+        </div>
+        <ul class="tight">
+          <li><span class="kw cyan">Systematic risk</span> = market risk = nondiversifiable risk</li>
+          <li>Caused by: GDP, interest rates, inflation, market-wide factors</li>
+          <li><span class="kw red">Unsystematic risk</span> = unique risk = diversifiable risk = firm-specific risk</li>
+          <li>Caused by: firm events, industry factors</li>
+          <li>~12–30 stocks needed for 90% of diversification benefit</li>
+          <li>Beyond ~30 stocks: only systematic risk remains</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Key Principle: What Gets Compensated</h3>
+        <ul class="tight">
+          <li>Investors are compensated <strong>only for systematic risk</strong></li>
+          <li>Unsystematic risk can be eliminated free via diversification</li>
+          <li>→ No compensation for bearing unsystematic risk in equilibrium</li>
+          <li>Expected equilibrium return depends <strong>only on systematic risk</strong></li>
+          <li>High total risk stock (e.g., biotech) may have low systematic risk → low equilibrium return</li>
+        </ul>
+        <div class="warn" style="margin-top:6px;">Riskiest stock (by σ) ≠ highest expected return. Systematic risk is what matters.</div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 84.d — Return Generating Models</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>Types of Factors</h3>
+          <ul class="tight">
+            <li><span class="kw">Macroeconomic factors</span>: GDP growth, inflation, consumer confidence</li>
+            <li><span class="kw">Fundamental factors</span>: earnings, earnings growth, firm size, R&amp;D</li>
+            <li><span class="kw red">Statistical factors</span>: no theoretical basis; risk of data mining</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Notable Multi-Factor Models</h3>
+          <ul class="tight">
+            <li><span class="kw purple">Fama-French (3-factor)</span>: market excess return + firm size + book-to-market ratio</li>
+            <li><span class="kw purple">Carhart (4-factor)</span>: Fama-French + price momentum (prior period returns)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="formula-block">
+          <div class="label">General Multi-Factor Model</div>
+          <div class="f">E(Rᵢ) − Rf = βᵢ₁·E(F₁) + βᵢ₂·E(F₂) + … + βᵢₖ·E(Fₖ)</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Market Model (Single-Index)</div>
+          <div class="f">Rᵢ = αᵢ + βᵢ·Rₘ + eᵢ</div>
+          <div class="f">αᵢ = intercept · βᵢ = slope (beta)</div>
+          <div class="f">eᵢ = abnormal return = Rᵢ − (αᵢ + βᵢRₘ)</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Single-Factor (Excess Returns Form)</div>
+          <div class="f">E(Rᵢ) − Rf = βᵢ × [E(Rₘ) − Rf]</div>
+        </div>
+        <div class="highlight" style="margin-top:4px;">Security characteristic line = regression of asset excess returns on market excess returns. Slope = Beta.</div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 84.e — Beta</div>
+    <div class="grid2">
+      <div>
+        <div class="formula-block">
+          <div class="label">Beta (Primary Formula)</div>
+          <div class="f">βᵢ = Cov(Rᵢ, Rₘ) / σ²ₘ</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Beta (Using Correlation)</div>
+          <div class="f">βᵢ = ρᵢₘ × (σᵢ / σₘ)</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Beta (Using Covariance Definition)</div>
+          <div class="f">Cov(Rᵢ,Rₘ) = ρᵢₘ·σᵢ·σₘ</div>
+          <div class="f">∴ βᵢ = ρᵢₘ·σᵢ·σₘ / σ²ₘ = ρᵢₘ·(σᵢ/σₘ)</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Beta Interpretation</h3>
+        <ul class="tight">
+          <li><span class="kw yellow">β = 1</span>: moves with market; same systematic risk as market</li>
+          <li><span class="kw green">β &gt; 1</span>: more volatile than market (e.g., luxury goods)</li>
+          <li><span class="kw cyan">β &lt; 1</span>: less volatile than market (e.g., utilities)</li>
+          <li><span class="kw red">β = 0</span>: uncorrelated with market returns</li>
+          <li>Theoretical average β of all stocks = 1 (market beta = 1)</li>
+          <li>Estimated by regressing asset returns on market index returns</li>
+          <li>Slope of security characteristic line = beta</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 84.f &amp; 84.g — CAPM &amp; Security Market Line (SML)</div>
+    <div class="grid2">
+      <div>
+        <div class="formula-block">
+          <div class="label">CAPM Equation</div>
+          <div class="f">E(Rᵢ) = Rf + βᵢ[E(Rₘ) − Rf]</div>
+          <div class="f">Market risk premium = E(Rₘ) − Rf</div>
+          <div class="f">Risk premium for asset = βᵢ × market risk premium</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>CAPM Assumptions</h3>
+          <ul class="tight">
+            <li>Risk aversion — investors require higher E(R) for more risk</li>
+            <li>Utility maximizing investors</li>
+            <li>Frictionless markets — no taxes, no transaction costs</li>
+            <li>One-period horizon — all investors plan same time horizon</li>
+            <li>Homogeneous expectations — all have same estimates</li>
+            <li>Divisible assets — infinitely divisible</li>
+            <li>Competitive markets — price takers</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>SML Key Points</h3>
+          <ul class="tight">
+            <li>X-axis: <strong>beta</strong> (systematic risk)</li>
+            <li>ALL securities and portfolios plot on SML in equilibrium</li>
+            <li>(Including inefficient portfolios — unlike CML)</li>
+            <li>Y-intercept = R_f</li>
+            <li>Passes through market portfolio M (β=1, E(R)=E(Rₘ))</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>CML vs SML Comparison</h3>
+          <table class="mini">
+            <tr><th></th><th>CML</th><th>SML</th></tr>
+            <tr><td>X-axis</td><td>σ_p (total risk)</td><td>β (systematic risk)</td></tr>
+            <tr><td>What plots on it</td><td>Efficient portfolios only</td><td>All securities &amp; portfolios</td></tr>
+            <tr><td>Individual stocks</td><td>Do NOT plot on CML</td><td>Plot on SML</td></tr>
+            <tr><td>Used for</td><td>Portfolio construction</td><td>Asset pricing / valuation</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 84.h — CAPM Applications: Identifying Mispriced Securities</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Security Valuation vs SML</h3>
+        <ul class="tight">
+          <li><span class="kw green">Above SML</span>: Forecast return &gt; Required return → <strong>Undervalued</strong> → BUY</li>
+          <li><span class="kw red">Below SML</span>: Forecast return &lt; Required return → <strong>Overvalued</strong> → SHORT SELL</li>
+          <li><span class="kw">On SML</span>: Forecast return = Required return → Properly valued</li>
+        </ul>
+        <div class="highlight" style="margin-top:6px;">If estimated return plots OVER SML → security is UNDER-valued<br>If estimated return plots UNDER SML → security is OVER-valued</div>
+      </div>
+      <div class="card">
+        <h3>Required Return Calculation (CAPM)</h3>
+        <div class="formula-block">
+          <div class="f">Required R = Rf + β × (Rₘ − Rf)</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Forecast / Expected Return</div>
+          <div class="f">Forecast R = (P₁ − P₀ + Div) / P₀</div>
+        </div>
+        <ul class="tight" style="margin-top:6px;">
+          <li>If Forecast R &gt; Required R → underpriced (buy)</li>
+          <li>If Forecast R &lt; Required R → overpriced (short)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 84.i — Performance Measures: Sharpe, Treynor, M², Jensen's Alpha</div>
+    <div class="grid2">
+      <div>
+        <div class="formula-block">
+          <div class="label">Sharpe Ratio</div>
+          <div class="f">Sharpe = (R_p − R_f) / σ_p</div>
+          <div class="f">= Excess return per unit of TOTAL risk</div>
+          <div class="f">= Slope of CAL for that portfolio</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Treynor Measure</div>
+          <div class="f">Treynor = (R_p − R_f) / β_p</div>
+          <div class="f">= Excess return per unit of SYSTEMATIC risk</div>
+          <div class="f">= Slope of line from RF through portfolio on SML graph</div>
+        </div>
+      </div>
+      <div>
+        <div class="formula-block">
+          <div class="label">M² (M-Squared / Modigliani-Modigliani)</div>
+          <div class="f">M² = R_f + (σ_M / σ_p) × (R_p − R_f)</div>
+          <div class="f">= SR_p × σ_M + R_f</div>
+          <div class="f">M² alpha = M² − R_M</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Jensen's Alpha</div>
+          <div class="f">α_p = R_p − [R_f + β_p(R_M − R_f)]</div>
+          <div class="f">= Actual return − CAPM required return</div>
+          <div class="f">Positive α → portfolio above SML</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:8px;">
+      <div class="card">
+        <h3>When to Use Which Measure</h3>
+        <ul class="tight">
+          <li><span class="kw">Single manager / concentrated portfolio</span>: Use <strong>Sharpe</strong> &amp; <strong>M²</strong> (total risk)</li>
+          <li><span class="kw">Multiple managers / well-diversified fund</span>: Use <strong>Treynor</strong> &amp; <strong>Jensen's α</strong> (systematic risk)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Relationships</h3>
+        <ul class="tight">
+          <li>Sharpe &amp; M² produce same rankings (M² is in % terms)</li>
+          <li>Treynor &amp; Jensen's α produce same rankings</li>
+          <li>Portfolio above CML → Sharpe &gt; market Sharpe → M² &gt; Rₘ → M² alpha &gt; 0</li>
+          <li>Portfolio above SML → Treynor &gt; market Treynor → Jensen's α &gt; 0</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ READING 85 -->
+<div class="chapter r85" id="r85">
+  <div class="ch-header">
+    <span class="ch-num">R85</span>
+    <span class="ch-title">Portfolio Management: An Overview — Portfolio Process, Investor Types, Pension Plans, Pooled Investments</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="sect-title">LOS 85.a — Portfolio Approach to Investing</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Portfolio Perspective</h3>
+        <ul class="tight">
+          <li>Evaluate investments by <strong>contribution to portfolio</strong> risk/return (not in isolation)</li>
+          <li>Modern portfolio theory: extra risk from single security NOT rewarded</li>
+          <li>Diversification: reduces risk without reducing expected return</li>
+          <li><span class="kw">Markowitz (1950s)</span>: framework for diversification; unless ρ = +1, diversification reduces risk</li>
+          <li><span class="kw purple">MPT (1960s)</span>: Treynor, Sharpe, Mossin, Lintner; equilibrium returns linear function of market risk</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Diversification Ratio</h3>
+        <div class="formula-block">
+          <div class="f">Diversification Ratio = σ(equal-weighted portfolio) / σ(avg single security)</div>
+        </div>
+        <ul class="tight" style="margin-top:6px;">
+          <li>Lower ratio → greater risk reduction benefit</li>
+          <li>Ratio = 1 → no diversification benefit</li>
+          <li>Equal-weighted ≠ minimum-variance portfolio</li>
+          <li><span class="kw red">Crisis periods</span>: correlations ↑ → diversification benefits ↓</li>
+          <li>Computer optimization finds weights for lowest σ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 85.b — Three Steps of Portfolio Management Process</div>
+    <div class="grid3">
+      <div class="card">
+        <h3 style="color:#4db8ff;">Step 1: Planning</h3>
+        <ul class="tight">
+          <li>Analyze risk tolerance, return objectives</li>
+          <li>Time horizon, tax exposure</li>
+          <li>Liquidity needs, income needs</li>
+          <li>Unique circumstances/preferences</li>
+          <li>Output: <span class="kw cyan">IPS (Investment Policy Statement)</span></li>
+          <li>IPS includes objective benchmark</li>
+          <li>Update IPS every few years or when circumstances change significantly</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ffb84d;">Step 2: Execution</h3>
+        <ul class="tight">
+          <li>Analyze risk/return of asset classes</li>
+          <li>Determine asset allocation</li>
+          <li><span class="kw yellow">Top-down analysis</span>: macro conditions (GDP, inflation, rates) → identify attractive asset classes</li>
+          <li><span class="kw yellow">Bottom-up analysis</span>: security analysis → identify undervalued securities</li>
+          <li>Diversify across: cash, fixed income, equities, hedge funds, PE, real estate, commodities</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#80ff9e;">Step 3: Feedback</h3>
+        <ul class="tight">
+          <li>Monitor changes in investor circumstances</li>
+          <li>Monitor risk/return characteristics of asset classes</li>
+          <li>Rebalance portfolio to target allocations</li>
+          <li>Measure portfolio performance vs benchmark</li>
+          <li>Adjust allocations as needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 85.c — Types of Investors</div>
+    <table class="mini" style="margin-top:8px;">
+      <tr><th>Investor</th><th>Risk Tolerance</th><th>Time Horizon</th><th>Liquidity Needs</th><th>Income Needs</th></tr>
+      <tr><td>Individuals</td><td>Depends</td><td>Depends</td><td>Depends</td><td>Depends</td></tr>
+      <tr><td>Banks</td><td>Low</td><td>Short</td><td>High</td><td>Pay interest</td></tr>
+      <tr><td>Endowments</td><td>High</td><td>Long</td><td>Low</td><td>Spending level</td></tr>
+      <tr><td>Insurance</td><td>Low</td><td>Long (life) / Short (P&amp;C)</td><td>High</td><td>Low</td></tr>
+      <tr><td>Mutual funds</td><td>Depends on fund</td><td>Depends on fund</td><td>High</td><td>Depends on fund</td></tr>
+      <tr><td>Defined benefit pensions</td><td>High</td><td>Long</td><td>Low</td><td>Depends on age</td></tr>
+    </table>
+    <div class="grid2" style="margin-top:8px;">
+      <div class="card">
+        <h3>Institutional Investor Types</h3>
+        <ul class="tight">
+          <li><span class="kw">Endowment</span>: ongoing financial support; long horizon, high risk tolerance, low liquidity needs</li>
+          <li><span class="kw">Foundation</span>: charitable; fund activity without decreasing real portfolio value</li>
+          <li><span class="kw">Bank</span>: earn more than cost of deposits; low risk, high liquidity</li>
+          <li><span class="kw">Insurance</span>: fund future claims; life = long horizon; P&amp;C = short horizon</li>
+          <li><span class="kw">Investment companies</span>: manage pooled funds; mutual funds</li>
+          <li><span class="kw">Sovereign wealth funds</span>: government-owned asset pools</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>LOS 85.d — Pension Plans</h3>
+        <ul class="tight">
+          <li><span class="kw yellow">Defined Contribution (DC)</span>: firm contributes fixed sum each period; <strong>employee bears investment risk</strong>; no guaranteed benefit</li>
+          <li><span class="kw cyan">Defined Benefit (DB)</span>: firm promises specific retirement payment; <strong>employer bears investment risk</strong>; poor performance → higher employer contributions</li>
+          <li>DB benefit formula: Final salary × 2% × Years of service</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 85.e — Asset Management Industry</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Firm Types</h3>
+        <ul class="tight">
+          <li><span class="kw">Buy-side firms</span>: asset managers (manage investments)</li>
+          <li><span class="kw">Sell-side firms</span>: broker-dealers, investment banks</li>
+          <li><span class="kw">Full-service asset managers</span>: variety of styles &amp; asset classes</li>
+          <li><span class="kw">Specialist asset managers</span>: focus on specific style or class</li>
+          <li><span class="kw">Multi-boutique firm</span>: holding company of specialist managers</li>
+          <li><span class="kw">Traditional managers</span>: equities + fixed income</li>
+          <li><span class="kw">Alternative managers</span>: PE, hedge funds, real estate, commodities</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Industry Trends</h3>
+        <ul class="tight">
+          <li><span class="kw green">Active management</span>: outperform benchmark via skill; higher fees</li>
+          <li><span class="kw">Passive management</span>: replicate benchmark index; ≈ 1/5 of AUM; growing market share</li>
+          <li><span class="kw">Smart beta</span>: passive with specific risk factor exposure</li>
+          <li><span class="kw">Robo-advisors</span>: algorithm-based advice; appeal to younger investors</li>
+          <li>Passive fees lower; data explosion driving investment in IT</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 85.f — Pooled Investment Vehicles</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>Mutual Funds</h3>
+          <ul class="tight">
+            <li><span class="kw">NAV</span> = (Total net assets) / (shares issued)</li>
+            <li><span class="kw green">Open-end fund</span>: buy/sell at NAV; no brokerage cost; daily redemption</li>
+            <li><span class="kw">Closed-end fund</span>: fixed shares trade on exchange; price can differ from NAV; often actively managed</li>
+            <li><span class="kw">No-load funds</span>: no purchase/redemption fees</li>
+            <li><span class="kw">Load funds</span>: up-front or redemption fees</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Fund Types</h3>
+          <ul class="tight">
+            <li><span class="kw">Money market funds</span>: short-term debt; NAV typically $1; low risk</li>
+            <li><span class="kw">Bond mutual funds</span>: fixed income; differentiated by maturity, credit, issuer</li>
+            <li><span class="kw">Index funds</span>: passively managed; match index (e.g., S&amp;P 500)</li>
+            <li><span class="kw">Actively managed funds</span>: higher fees; higher turnover; greater tax liability</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>ETFs vs Open-End Funds</h3>
+          <table class="mini">
+            <tr><th>Feature</th><th>ETF</th><th>Open-End Fund</th></tr>
+            <tr><td>Trading</td><td>Exchange (intraday)</td><td>Daily at NAV</td></tr>
+            <tr><td>Price vs NAV</td><td>Close to NAV</td><td>= NAV</td></tr>
+            <tr><td>Brokerage cost</td><td>Yes</td><td>No</td></tr>
+            <tr><td>Management</td><td>Usually passive</td><td>Active or passive</td></tr>
+            <tr><td>Short selling</td><td>Yes</td><td>Usually not</td></tr>
+            <tr><td>Margin buying</td><td>Yes</td><td>Usually not</td></tr>
+            <tr><td>Capital gains</td><td>Less (no fund redemptions)</td><td>More</td></tr>
+            <tr><td>Dividends</td><td>Cash</td><td>Cash or reinvest</td></tr>
+          </table>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Other Vehicles</h3>
+          <ul class="tight">
+            <li><span class="kw">Separately managed account</span>: single investor owns entire portfolio; personalized</li>
+            <li><span class="kw red">Hedge funds</span>: limited investors; qualified (accredited) investors only; min $250K–$1M; typical fees: 2% AUM + 20% of excess performance; less regulated</li>
+            <li><span class="kw purple">Private equity &amp; venture capital</span>: invest in companies; active management roles; sell via public offerings</li>
+            <li><span class="kw">Buyout funds</span>: take company private; restructure; exit in 3–5 years</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ READING 86 -->
+<div class="chapter r86" id="r86">
+  <div class="ch-header">
+    <span class="ch-num">R86</span>
+    <span class="ch-title">Basics of Portfolio Planning &amp; Construction — IPS, Objectives, Constraints, Asset Allocation, ESG</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="sect-title">LOS 86.a &amp; 86.b — IPS Purpose &amp; Components</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Why IPS?</h3>
+        <ul class="tight">
+          <li>IPS = starting point of portfolio management process</li>
+          <li>Forces investment discipline; ensures goals are realistic</li>
+          <li>Requires investor to articulate circumstances, objectives, constraints</li>
+          <li>Mnemonic: <span class="kw yellow">R-R-T-T-L-L-U</span> (Risk, Return, Time horizon, Tax, Liquidity, Legal, Unique)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>IPS Major Components</h3>
+        <ul class="tight two-col">
+          <li>Description of client</li>
+          <li>Purpose of IPS</li>
+          <li>Duties &amp; responsibilities (manager, custodian, client)</li>
+          <li>Procedures to update IPS</li>
+          <li>Investment objectives</li>
+          <li>Investment constraints</li>
+          <li>Investment guidelines (asset types, leverage)</li>
+          <li>Performance evaluation / benchmark</li>
+          <li>Appendices (strategic allocation, rebalancing policy)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 86.c — Risk &amp; Return Objectives</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Risk Objectives</h3>
+        <ul class="tight">
+          <li><span class="kw">Absolute risk objective</span>: e.g., "no loss &gt;10% in any 12-month period"</li>
+          <li>Can be stated as probability: "no &gt;5% probability of return &lt;−5%"</li>
+          <li><span class="kw">Relative risk objective</span>: relative to benchmark, e.g., "within 2% of MSCI return"</li>
+          <li>High returns + low risk are often mutually exclusive</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Return Objectives</h3>
+        <ul class="tight">
+          <li><span class="kw">Absolute return</span>: "overall return of at least 6% per annum" (nominal or real)</li>
+          <li><span class="kw">Relative return</span>: "exceed S&amp;P 500 by 2% per year"</li>
+          <li>Peer benchmarks are not investable → problematic</li>
+          <li>Risk and return objectives must be <strong>compatible</strong></li>
+          <li>Return objective = NOT a constraint (it's an objective)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 86.d — Ability vs Willingness to Take Risk</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Two Components of Risk Tolerance</h3>
+        <ul class="tight">
+          <li><span class="kw cyan">Ability (Capacity)</span>: financial circumstances (wealth, liabilities, income stability, time horizon, insurance). Objective.</li>
+          <li><span class="kw purple">Willingness</span>: attitudes and beliefs about investments. Subjective; assessed via questionnaire.</li>
+        </ul>
+        <div class="highlight" style="margin-top:6px;"><strong>Overall risk tolerance = lower of ability and willingness</strong></div>
+      </div>
+      <div class="card">
+        <h3>Resolution of Conflicts</h3>
+        <ul class="tight">
+          <li>Ability &amp; willingness compatible → no problem</li>
+          <li>Willingness &gt; Ability → use ability (low); educate investor</li>
+          <li>Ability &gt; Willingness → conform to willingness; educate investor (but don't change personality)</li>
+          <li>Adviser should NOT construct portfolio with risk level client is clearly uncomfortable with</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 86.e — Investment Constraints (R-R-T-T-L-L-U)</div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Liquidity</h3>
+        <ul class="tight">
+          <li>Ability to convert to cash quickly without price concession</li>
+          <li>Tuition, medical, living expenses → need liquid assets</li>
+          <li>P&amp;C insurers need high liquidity (unpredictable claims)</li>
+          <li>Hedge funds, PE → illiquid; not suitable for near-term needs</li>
+          <li>High liquidity needs → high allocation to bonds/cash</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Time Horizon</h3>
+        <ul class="tight">
+          <li>Longer horizon → more risk &amp; less liquidity acceptable</li>
+          <li>Short horizon → government securities, bank CDs (low risk, high liquidity)</li>
+          <li>20-year horizon → equities acceptable</li>
+          <li>Near-term large purchase → conservative investment only</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Tax Situation</h3>
+        <ul class="tight">
+          <li>Higher tax rate → prefer tax-free bonds or capital gains</li>
+          <li>Capital gains often taxed at lower rate than income</li>
+          <li>Tax-exempt/deferred accounts: put taxable-income securities there</li>
+          <li>Personal accounts: seek capital gains &amp; tax-exempt income</li>
+          <li>Focus on after-tax returns</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Legal &amp; Regulatory</h3>
+        <ul class="tight">
+          <li>Trust, corporate, qualified accounts: restrictions on security types</li>
+          <li>Restrictions on percentage allocations</li>
+          <li>Corporate officers: legal restrictions on trading own firm's securities</li>
+          <li>Fiduciary rules may apply</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Unique Circumstances</h3>
+        <ul class="tight">
+          <li><span class="kw purple">Responsible investing</span>: ethical preferences (no tobacco, no firearms)</li>
+          <li>Human rights restrictions</li>
+          <li>Religious preferences (no interest-bearing)</li>
+          <li>Diversification needs: don't invest in competitor of founder's firm</li>
+          <li>Concentrated position constraints</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Key IPS Reminders</h3>
+        <ul class="tight">
+          <li>Return objective = NOT a constraint</li>
+          <li>Permitted asset types &amp; leverage = Investment <strong>guidelines</strong> (not objectives)</li>
+          <li>Update IPS: regular intervals + when client objectives/constraints change</li>
+          <li>Do NOT update based on recent portfolio performance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 86.f — Asset Class Specification</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Rules for Asset Classes</h3>
+        <ul class="tight">
+          <li>Correlations <strong>within</strong> asset class: <strong>relatively HIGH</strong> (assets similar)</li>
+          <li>Correlations <strong>between</strong> asset classes: <strong>relatively LOW</strong> (diversification benefit)</li>
+          <li>Traditional: equities, bonds, cash, real estate</li>
+          <li>Alternative investments: hedge funds, PE, commodities, artwork, IP rights</li>
+          <li>Equities subdivided: domestic/foreign, large/small, emerging/developed</li>
+          <li>Bonds subdivided: maturity, domestic/foreign, govt/corporate, IG/HY</li>
+          <li>Asset classes should match IPS permissible investments</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>LOS 86.g — Portfolio Construction Principles</h3>
+        <ul class="tight">
+          <li>Use efficient frontier of asset classes to identify optimal allocation</li>
+          <li>IPS risk/return objectives + efficient frontier → strategic asset allocation</li>
+          <li><span class="kw cyan">Strategic asset allocation</span>: baseline percentage allocations</li>
+          <li><span class="kw yellow">Tactical asset allocation</span>: deviations from strategic to exploit short-term opportunities</li>
+          <li><span class="kw">Security selection</span>: deviations from index weights within asset class</li>
+          <li><span class="kw red">Risk budgeting</span>: set overall risk limit; allocate portions to strategic allocation risk, tactical allocation risk, security selection risk</li>
+          <li><span class="kw">Core-satellite approach</span>: majority in passive index (core) + small active portion (satellite)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 86.h — ESG Integration</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>ESG Approaches</h3>
+        <ul class="tight">
+          <li><span class="kw red">Negative screening</span>: exclude companies/industries based on ESG</li>
+          <li><span class="kw green">Positive screening</span>: invest in companies with good ESG practices</li>
+          <li><span class="kw yellow">Thematic investing</span>: select sectors to promote ESG goals</li>
+          <li><span class="kw purple">Impact investing</span>: return + promote positive ESG practices</li>
+          <li><span class="kw cyan">Engagement/active ownership</span>: use share ownership to improve ESG</li>
+          <li><span class="kw">ESG integration</span>: consider ESG factors throughout asset allocation &amp; security selection</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>ESG Performance Considerations</h3>
+        <ul class="tight">
+          <li>ESG constraints → affect portfolio performance (uncertain direction)</li>
+          <li>Negative screening → use ESG-appropriate benchmark, not broad index</li>
+          <li>Good corporate governance → may increase returns</li>
+          <li>Limiting universe → may decrease returns</li>
+          <li>Active ownership: clarify whether investors vote or direct manager to vote</li>
+          <li>Positive/thematic/impact: customized portfolios &amp; benchmarks required</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ READING 87 -->
+<div class="chapter r87" id="r87">
+  <div class="ch-header">
+    <span class="ch-num">R87</span>
+    <span class="ch-title">Behavioral Biases of Individuals — Cognitive Errors, Emotional Biases, Market Implications</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="sect-title">LOS 87.a — Cognitive Errors vs Emotional Biases</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Cognitive Errors <span class="badge cognitive">cognitive</span></h3>
+        <ul class="tight">
+          <li>Due to faulty reasoning, irrationality, information processing errors, memory errors</li>
+          <li>Can arise from: statistical misunderstanding, illogical reasoning</li>
+          <li>Can be <strong>reduced</strong> by: increased awareness, better training, more information</li>
+          <li>2 subtypes: Belief Perseverance + Information Processing</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Emotional Biases <span class="badge emotional">emotional</span></h3>
+        <ul class="tight">
+          <li>Stem from feelings, impulses, intuition — not conscious thought</li>
+          <li>Difficult to overcome; may need to be <strong>accommodated</strong></li>
+          <li>Spontaneous reactions; harder to correct</li>
+          <li>If bias has both elements: focus on cognitive aspects for success</li>
+          <li>Overconfidence: more emotional than cognitive</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 87.b — Cognitive Errors: Belief Perseverance <span class="badge belief">belief perseverance</span></div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>1. Conservatism Bias</h3>
+          <ul class="tight">
+            <li>Rationally forms initial view but <strong>fails to update</strong> as new information arrives</li>
+            <li>Overweights prior probabilities; slow to react to new data</li>
+            <li>May ignore complex-to-process information</li>
+            <li><strong>Result</strong>: hold investments too long; avoid mental effort of updating</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>2. Confirmation Bias</h3>
+          <ul class="tight">
+            <li>Seek information that <strong>supports</strong> prior beliefs</li>
+            <li>Avoid/diminish conflicting information</li>
+            <li>Distort new information to remain consistent with prior beliefs</li>
+            <li><strong>Results</strong>: ignore negative info; overconfident; incorrect data screens</li>
+            <li><strong>Remedy</strong>: actively seek contrary views</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>3. Representativeness Bias</h3>
+          <ul class="tight">
+            <li>Classify investment by superficial characteristics and assume it shares all properties of that category</li>
+            <li><span class="kw yellow">Base-rate neglect</span>: ignore population probabilities; focus on surface characteristics</li>
+            <li><span class="kw yellow">Sample-size neglect</span>: classify based on small, unrepresentative sample</li>
+            <li><strong>Result</strong>: attach too much importance to few characteristics</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>4. Illusion of Control Bias</h3>
+          <ul class="tight">
+            <li>Believe they can control outcomes when they cannot</li>
+            <li>Associated with: <span class="kw">illusion of knowledge</span>, <span class="kw">self-attribution</span>, <span class="kw red">overconfidence</span></li>
+            <li><strong>Result</strong>: overweight securities they feel they control → poor diversification</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>5. Hindsight Bias</h3>
+          <ul class="tight">
+            <li>Selective memory: remember correct predictions; forget incorrect ones</li>
+            <li>"I-knew-it-all-along" phenomenon</li>
+            <li>View past events as more predictable than they were</li>
+            <li>View outcomes that occurred as inevitable</li>
+            <li><strong>Result</strong>: overconfidence in ability to predict; discard valid techniques that didn't work by chance</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Cognitive Dissonance</h3>
+          <ul class="tight">
+            <li>Holding conflicting beliefs or receiving belief-challenging information</li>
+            <li>Causes stress → discount conflicting info (easier than updating)</li>
+            <li>Root of many belief perseverance biases</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 87.b — Cognitive Errors: Information Processing <span class="badge processing">processing errors</span></div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>6. Anchoring &amp; Adjustment Bias</h3>
+          <ul class="tight">
+            <li>Base expectations on an <strong>initial number</strong> (anchor) and insufficiently adjust for new information</li>
+            <li>Examples: security value relative to current price; EPS relative to prior estimate</li>
+            <li><strong>Result</strong>: underestimate implications of new information</li>
+            <li><strong>Remedy</strong>: consider new data without regard to anchor</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>7. Mental Accounting Bias</h3>
+          <ul class="tight">
+            <li>View money from different accounts/sources differently</li>
+            <li>Conflicts with: decisions should be made based on <strong>total portfolio</strong> context</li>
+            <li>E.g., "found money" bonus → risky speculation; inheritance → safe bonds</li>
+            <li>Common form: treat income differently from capital appreciation</li>
+            <li><strong>Result</strong>: suboptimal portfolio; offsetting positions; wrong income mix</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>8. Framing Bias</h3>
+          <ul class="tight">
+            <li>Decisions affected by <strong>how question/data is presented</strong></li>
+            <li>Same problem framed as gain vs loss → different choices</li>
+            <li><span class="kw red">Loss aversion</span>: fear losses more than value gains</li>
+            <li>Gain frame → risk-averse choice; Loss frame → risk-seeking choice</li>
+            <li><strong>Result</strong>: overly conservative portfolios (overestimate short-term volatility)</li>
+            <li>Investment managers must avoid framing bias in risk tolerance questionnaires</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>9. Availability Bias</h3>
+          <ul class="tight">
+            <li>Undue emphasis on <strong>easily recalled or available</strong> information</li>
+            <li>Recent events easier to recall → overweight recent, underweight historical</li>
+            <li>Assume easily remembered = more probable</li>
+            <li><strong>Results</strong>: choose manager/investment based on advertising; limit to familiar firms; overreact to recent market conditions; too much weight on media-covered events</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 87.b — Emotional Biases <span class="badge emotional">emotional</span></div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>1. Loss-Aversion Bias (Kahneman &amp; Tversky)</h3>
+          <ul class="tight">
+            <li>Feel more pain from loss than pleasure from equal gain</li>
+            <li>Decisions made relative to a <span class="kw yellow">reference rate</span></li>
+            <li>Below reference = loss; above = gain</li>
+            <li>When facing gains: prefer certainty (risk-averse)</li>
+            <li>When facing losses: prefer risk (risk-seeking) to avoid loss</li>
+            <li>Asymmetrical response to gains and losses</li>
+            <li><strong>Results</strong>: sell winners too soon (small gains); hold losers too long; take excessive risk hoping to recover from losses</li>
+            <li><strong>Distinction</strong>: Risk aversion = prefer lower σ given equal E(R). Loss aversion = more pain from losses than gains.</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>2. Overconfidence Bias</h3>
+          <ul class="tight">
+            <li>Overestimate own intuitive ability or reasoning</li>
+            <li><span class="kw">Illusion of knowledge</span>: think they predict better than they do</li>
+            <li><span class="kw">Self-attribution bias</span>: credit self for success (<em>self-enhancing</em>); blame others for failure (<em>self-protecting</em>)</li>
+            <li><span class="kw yellow">Prediction overconfidence</span>: underestimate uncertainty (too narrow confidence intervals)</li>
+            <li><span class="kw yellow">Certainty overconfidence</span>: overstate probability of being right</li>
+            <li>Fueled by: good results + self-attribution + hindsight bias</li>
+            <li><strong>More emotional than cognitive</strong> (difficult to correct)</li>
+            <li><strong>Results</strong>: underestimate risk; overestimate return; poor diversification; overtrading</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>3. Self-Control Bias</h3>
+          <ul class="tight">
+            <li>Lack self-discipline; favor short-term over long-term goals</li>
+            <li><span class="kw purple">Hyperbolic discounting</span>: small payoffs now vs larger payoffs later</li>
+            <li><strong>Results</strong>: insufficient retirement savings → excessive risk to compensate; overemphasis on income-producing assets</li>
+            <li><strong>Mitigation</strong>: establish investment plan (asset allocation) + budget; review regularly</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>4. Status Quo Bias</h3>
+          <ul class="tight">
+            <li>Comfort with existing situation → resistant to change</li>
+            <li>Default choices (opt-out) → status quo bias increases participation</li>
+            <li>Similar to regret-aversion</li>
+            <li><strong>Results</strong>: hold portfolios with inappropriate risk; fail to consider better alternatives</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>5. Endowment Bias</h3>
+          <ul class="tight">
+            <li>Value owned assets more than if not owned</li>
+            <li>Assets feel "special" simply because they are owned</li>
+            <li>Common with inherited assets</li>
+            <li><strong>Detection question</strong>: "Would you buy this today with new money?"</li>
+            <li>WTA (sell price) &gt; WTP (buy price) for same asset → endowment effect</li>
+            <li><strong>Results</strong>: hold inappropriate assets; don't sell when no longer suitable</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>6. Regret-Aversion Bias</h3>
+          <ul class="tight">
+            <li>Do nothing out of excessive fear of being wrong</li>
+            <li>Overweight <span class="kw red">errors of commission</span> (did something wrong)</li>
+            <li>Underweight <span class="kw">errors of omission</span> (didn't do something that would have worked)</li>
+            <li><span class="kw purple">Herding behavior</span>: follow consensus/popular opinion (not my fault if everyone was wrong)</li>
+            <li><strong>Results</strong>: excess conservatism; avoid riskier assets to escape regret if they decline</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 87.c — Behavioral Biases &amp; Market Anomalies</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Market Anomalies &amp; Explanations</h3>
+        <ul class="tight">
+          <li><span class="kw">Anomalies</span>: results that don't fit prevailing risk/return models</li>
+          <li>Many explained by: small sample size, time period bias, model misspecification</li>
+          <li><span class="kw yellow">Value/growth anomaly</span>: value stocks (low P/B, low P/E, high div yield) outperform growth stocks</li>
+          <li>Fama-French (1992): adding size &amp; book-to-market factors eliminated value outperformance → not an anomaly</li>
+          <li><span class="kw cyan">Halo effect</span>: version of representativeness — company's growth/price rise → assumed to be good stock → overvaluation of growth stocks</li>
+          <li><span class="kw">Home bias</span>: overweight domestic or regional firms; less-than-rational diversification; due to information belief or emotional preference</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Bubbles &amp; Crashes — Behavioral Explanations</h3>
+        <ul class="tight">
+          <li>Behavioral finance does NOT provide complete explanation for bubbles</li>
+          <li><span class="kw red">Overconfidence</span> → overtrading, underestimate risk, poor diversification</li>
+          <li><span class="kw">Self-attribution + hindsight bias</span> → fuels overconfidence in bull markets</li>
+          <li><span class="kw">Confirmation bias</span> → ignore negative signals; misread initial declines as buying opportunity</li>
+          <li><span class="kw yellow">Anchoring</span> → believe recent highs are rational even after decline begins</li>
+          <li><span class="kw">Fear of regret</span> → keep skeptical investors in market too long</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ READING 88 -->
+<div class="chapter r88" id="r88">
+  <div class="ch-header">
+    <span class="ch-num">R88</span>
+    <span class="ch-title">Introduction to Risk Management — Framework, Governance, Risk Types, Measurement, Modification</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="sect-title">LOS 88.a — Definition of Risk Management</div>
+    <div class="card">
+      <h3>Risk Management Process</h3>
+      <div class="grid3">
+        <div>
+          <ul class="tight">
+            <li>Identify organization's <span class="kw cyan">risk tolerance</span></li>
+            <li>Identify and measure risks faced</li>
+            <li>Modify and monitor these risks</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="tight">
+            <li>NOT about minimizing/eliminating all risk</li>
+            <li>May <strong>increase</strong> exposure to risks firm can manage well</li>
+            <li>Aligns risk exposures with risk tolerances</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="tight">
+            <li>Returns above RF earned by taking risk</li>
+            <li>Returns not controllable; <strong>risk levels are</strong></li>
+            <li>Goal: optimal bundle of risks for organization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 88.b — Risk Management Framework</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Seven Elements of Framework</h3>
+        <ol class="tight" style="padding-left:16px;">
+          <li>Establishing processes and policies for risk governance</li>
+          <li>Determining the organization's risk tolerance</li>
+          <li>Identifying and measuring existing risks</li>
+          <li>Managing and mitigating risks to achieve optimal bundle</li>
+          <li>Monitoring risk exposures over time</li>
+          <li>Communicating across the organization</li>
+          <li>Performing strategic risk analysis</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>LOS 88.c &amp; 88.d — Risk Governance &amp; Tolerance</h3>
+        <ul class="tight">
+          <li><span class="kw cyan">Risk governance</span>: senior management's determination of risk tolerance, optimal risk exposure strategy, and oversight framework</li>
+          <li>Should be at <strong>enterprise level</strong> (not business unit or individual)</li>
+          <li><span class="kw">Risk management committee</span>: bring up risk measurement issues, integration, mitigation of undesirable risks</li>
+          <li>Factors determining risk tolerance: expertise in business lines, ability to respond to negative events, regulatory environment, financial strength</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 88.e — Risk Budgeting</div>
+    <div class="card">
+      <h3>Risk Budgeting</h3>
+      <div class="grid2">
+        <ul class="tight">
+          <li>Allocating firm resources to assets/investments by risk characteristics</li>
+          <li>Goal: allocate acceptable risk to mix with greatest expected returns</li>
+          <li>Single metric: portfolio beta, VaR, portfolio duration, returns variance</li>
+        </ul>
+        <ul class="tight">
+          <li>By investment categories: domestic equities, domestic debt, international equities, international debt</li>
+          <li>By risk factors: interest rate risk, equity market risk, FX rate risk</li>
+          <li>Risk budget set via risk governance; specific allocations = risk budgeting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 88.f — Financial &amp; Non-Financial Sources of Risk</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Financial Risks <span class="kw cyan">from financial markets</span></h3>
+        <ul class="tight">
+          <li><span class="kw">Credit risk</span>: counterparty may not fulfill contractual obligations</li>
+          <li><span class="kw">Liquidity risk</span>: forced sale at price below fair value</li>
+          <li><span class="kw">Market risk</span>: uncertainty about asset prices (stocks, commodities, currencies) and interest rates</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Non-Financial Risks <span class="kw yellow">from operations / external</span></h3>
+        <ul class="tight">
+          <li><span class="kw">Operational risk</span>: human error, faulty processes, inadequate security, business interruptions; includes <span class="kw red">cyber risk</span></li>
+          <li><span class="kw">Solvency risk</span>: run out of cash; unable to continue operations</li>
+          <li><span class="kw">Regulatory risk</span>: regulatory environment changes, imposing costs</li>
+          <li><span class="kw">Governmental/political risk</span>: tax increases, political actions</li>
+          <li><span class="kw">Legal risk</span>: exposure to future legal action</li>
+          <li><span class="kw">Model risk</span>: asset valuations based on incorrect analytical models</li>
+          <li><span class="kw">Tail risk</span>: extreme events more likely than analysis indicates; fat tails</li>
+          <li><span class="kw">Accounting risk</span>: accounting policies/estimates judged incorrect</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:8px;">
+      <div class="card">
+        <h3>Individual Risk Types</h3>
+        <ul class="tight">
+          <li><span class="kw red">Mortality risk</span>: dying before providing for family → addressed with life insurance</li>
+          <li><span class="kw red">Longevity risk</span>: living longer than assets last → addressed with lifetime annuity</li>
+          <li>Health care expense risk → health insurance</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Risk Interactions</h3>
+        <ul class="tight">
+          <li>Risks are NOT independent; they interact frequently</li>
+          <li>Example: market risk → credit risk → legal risk → liquidity risk → solvency risk (cascade)</li>
+          <li>Especially important during periods of financial market stress</li>
+          <li>Must consider interactions, not each risk in isolation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sect-title">LOS 88.g — Measuring &amp; Modifying Risk Exposures</div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <h3>Risk Measurement Tools</h3>
+          <ul class="tight">
+            <li><span class="kw">Standard deviation (σ)</span>: volatility of prices and rates; not ideal for non-normal distributions (negative skew, fat tails)</li>
+            <li><span class="kw cyan">Beta</span>: market risk of equities; considers diversification; use for securities in well-diversified portfolio</li>
+            <li><span class="kw">Duration</span>: price sensitivity of debt securities to interest rate changes</li>
+          </ul>
+          <div class="card" style="margin-top:8px;">
+            <h3>Derivatives Risk ("The Greeks")</h3>
+            <ul class="tight">
+              <li><span class="kw">Delta (Δ)</span>: sensitivity of derivative value to <strong>price of underlying</strong></li>
+              <li><span class="kw">Gamma (Γ)</span>: sensitivity of delta to changes in <strong>price of underlying</strong></li>
+              <li><span class="kw">Vega (ν)</span>: sensitivity of derivative value to <strong>volatility of underlying price</strong></li>
+              <li><span class="kw">Rho (ρ)</span>: sensitivity of derivative value to <strong>risk-free rate</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="formula-block">
+          <div class="label">Value at Risk (VaR)</div>
+          <div class="f">VaR = minimum loss over a period that will occur with a specific probability</div>
+          <div class="f">Example: 1-month VaR of $1M at 5% → loss of at least $1M expected 5% of months</div>
+          <div class="f">VaR does NOT give maximum loss</div>
+          <div class="f">Used for bank minimum capital requirements</div>
+        </div>
+        <div class="formula-block">
+          <div class="label">Conditional VaR (CVaR)</div>
+          <div class="f">CVaR = E[Loss | Loss ≥ VaR]</div>
+          <div class="f">= Probability-weighted average of all losses ≥ VaR</div>
+          <div class="f">Analogous to "loss given default" in credit</div>
+        </div>
+        <div class="card" style="margin-top:8px;">
+          <h3>Supplementary Risk Assessment Methods</h3>
+          <ul class="tight">
+            <li><span class="kw yellow">Stress testing</span>: effect of a specific (usually extreme) change in ONE key variable (interest rate, FX rate)</li>
+            <li><span class="kw yellow">Scenario analysis</span>: what-if analysis with <strong>multiple</strong> simultaneous input changes (e.g., rate change + oil price change)</li>
+            <li>Rare event risk: subjective estimate (not data-driven)</li>
+            <li>Market-based estimates: use cost of hedging (insurance, derivatives) as proxy for market's estimate of risk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sect-title">Risk Modification Methods</div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Avoid / Prevent</h3>
+        <ul class="tight">
+          <li>Not engage in activity with uncertain outcome</li>
+          <li>E.g., avoid political risk → don't invest in that country</li>
+          <li>Prevent: improve data security to prevent breach</li>
+          <li>Comes from top management risk tolerance decisions</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Accept / Self-Insure / Diversify</h3>
+        <ul class="tight">
+          <li><span class="kw">Self-insurance</span>: organization decides to bear the risk</li>
+          <li>May establish reserve account to cover losses</li>
+          <li><span class="kw">Diversification</span>: more efficient way to bear specific risk</li>
+          <li>Note: self-insurance = may be inaction, not strategic</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Transfer / Shift</h3>
+        <ul class="tight">
+          <li><span class="kw cyan">Risk transfer</span>: another party takes on risk → insurance is risk transfer</li>
+          <li><span class="kw">Surety bond</span>: insurer pays if third party fails to perform under contract</li>
+          <li><span class="kw">Fidelity bond</span>: covers losses from employee theft/misconduct</li>
+          <li><span class="kw yellow">Risk shifting</span>: change distribution of possible outcomes → primarily via <strong>derivative contracts</strong></li>
+          <li>E.g., buy put options → floor on stock value</li>
+          <li>Sell call options → give up upside; reduce downside by premium received</li>
+          <li>FX forward/futures/swaps → eliminate currency risk</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight" style="margin-top:10px;"><strong>Criterion for choosing method:</strong> always compare costs and benefits of risk modification. Use multiple methods if appropriate. Goal: risk profile matching organization's risk tolerance.</div>
+
+  </div>
+</div>
+
+<!-- Quick Reference Summary -->
+<div class="chapter" id="qr" style="border-color: var(--accent4);">
+  <div class="ch-header" style="background: linear-gradient(90deg, #1f1a00 0%, var(--surface) 100%);">
+    <span class="ch-num" style="background:#2e2500;color:#ffdd57;border-color:#6b5000;">★</span>
+    <span class="ch-title">Quick Formula Reference — All Formulas at a Glance</span>
+  </div>
+  <div class="ch-body">
+    <div class="grid3">
+      <div>
+        <div class="formula-block"><div class="label">Portfolio E(R) — 2 Assets</div><div class="f">E(R_p) = w₁E(R₁) + w₂E(R₂)</div></div>
+        <div class="formula-block"><div class="label">Portfolio Variance</div><div class="f">σ²_p = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρ₁₂σ₁σ₂</div></div>
+        <div class="formula-block"><div class="label">Portfolio σ with RF Asset</div><div class="f">σ_p = W_risky × σ_risky</div></div>
+        <div class="formula-block"><div class="label">Correlation</div><div class="f">ρ₁₂ = Cov₁₂ / (σ₁σ₂)</div></div>
+        <div class="formula-block"><div class="label">Sample Variance</div><div class="f">s² = Σ(Rₜ−R̄)² / (T−1)</div></div>
+        <div class="formula-block"><div class="label">Sample Covariance</div><div class="f">Cov = Σ(R₁ₜ−R̄₁)(R₂ₜ−R̄₂) / (n−1)</div></div>
+      </div>
+      <div>
+        <div class="formula-block"><div class="label">CML</div><div class="f">E(R_p) = Rf + [(E(Rₘ)−Rf)/σₘ]·σ_p</div></div>
+        <div class="formula-block"><div class="label">CAPM / SML</div><div class="f">E(Rᵢ) = Rf + βᵢ[E(Rₘ)−Rf]</div></div>
+        <div class="formula-block"><div class="label">Beta</div><div class="f">β = Cov(Rᵢ,Rₘ)/σ²ₘ = ρᵢₘ·(σᵢ/σₘ)</div></div>
+        <div class="formula-block"><div class="label">Market Model</div><div class="f">Rᵢ = αᵢ + βᵢ·Rₘ + eᵢ</div></div>
+        <div class="formula-block"><div class="label">Abnormal Return</div><div class="f">eᵢ = Rᵢ − (αᵢ + βᵢ·Rₘ)</div></div>
+        <div class="formula-block"><div class="label">Market Risk Premium</div><div class="f">MRP = E(Rₘ) − Rf</div></div>
+      </div>
+      <div>
+        <div class="formula-block"><div class="label">Sharpe Ratio</div><div class="f">Sharpe = (R_p − Rf) / σ_p</div></div>
+        <div class="formula-block"><div class="label">Treynor Measure</div><div class="f">Treynor = (R_p − Rf) / β_p</div></div>
+        <div class="formula-block"><div class="label">Jensen's Alpha</div><div class="f">α_p = R_p − [Rf + β_p(Rₘ−Rf)]</div></div>
+        <div class="formula-block"><div class="label">M-Squared</div><div class="f">M² = Rf + (σₘ/σ_p)·(R_p−Rf)</div><div class="f">M² alpha = M² − Rₘ</div></div>
+        <div class="formula-block"><div class="label">Diversification Ratio</div><div class="f">= σ(equal-wt portfolio) / σ(avg single security)</div></div>
+        <div class="formula-block"><div class="label">Forecast Return (for CAPM)</div><div class="f">= (P₁ − P₀ + Div) / P₀</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+  // Toggle chapters
+  document.querySelectorAll('.ch-header').forEach(h => {
+    h.addEventListener('click', () => {
+      const body = h.nextElementSibling;
+      if (body && body.classList.contains('ch-body')) {
+        body.style.display = body.style.display === 'none' ? 'block' : 'block';
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Equity – Complete Study Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700&family=Fira+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --m1: #1a3a5c;   /* dark navy */
+    --m2: #e8f4fd;   /* light blue tint */
+    --a1: #e63946;   /* red accent */
+    --a2: #2a9d8f;   /* teal */
+    --a3: #f4a261;   /* amber */
+    --a4: #6a4c93;   /* purple */
+    --a5: #3d7a3d;   /* green */
+    --a6: #c77dff;   /* lavender */
+    --text: #1a1a2e;
+    --muted: #5a5a7a;
+    --border: #dde3ee;
+    --formula-bg: #fffbf0;
+    --formula-border: #f4a261;
+    --kw-bg: #e8f4fd;
+    --kw-border: #2a9d8f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #16213e 60%, #0f3460 100%);
+    color: #fff;
+    padding: 28px 40px 22px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+
+  header .badge {
+    background: var(--a1);
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: 0.3px;
+  }
+
+  header p {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: #ffffff;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0 20px;
+    position: sticky;
+    top: 76px;
+    z-index: 90;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 14px;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover { color: var(--m1); border-bottom-color: var(--a2); }
+
+  /* ── MAIN ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* ── MODULE CARD ── */
+  .module {
+    background: var(--card);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .module-header {
+    padding: 14px 20px 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .mod-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    opacity: 0.18;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 36px;
+  }
+
+  .mod-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .mod-sub { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+  .toggle-icon {
+    margin-left: auto;
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .module.collapsed .toggle-icon { transform: rotate(-90deg); }
+  .module.collapsed .module-body { display: none; }
+
+  /* Module color headers */
+  .m1 .module-header { background: linear-gradient(135deg, #1a3a5c, #2d6a9f); }
+  .m2 .module-header { background: linear-gradient(135deg, #2a9d8f, #1a6b63); }
+  .m3 .module-header { background: linear-gradient(135deg, #6a4c93, #4a2d7a); }
+  .m4 .module-header { background: linear-gradient(135deg, #e63946, #c1121f); }
+  .m5 .module-header { background: linear-gradient(135deg, #f4a261, #e07b3a); }
+  .m6 .module-header { background: linear-gradient(135deg, #3d7a3d, #2d5e2d); }
+  .m7 .module-header { background: linear-gradient(135deg, #0f3460, #1a6b9a); }
+  .m8 .module-header { background: linear-gradient(135deg, #c77dff, #9b59b6); }
+
+  .module-body { padding: 18px 22px 20px; }
+
+  /* ── SECTIONS ── */
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  @media (max-width: 700px) { .section-grid { grid-template-columns: 1fr; } }
+
+  .section-full { grid-column: 1 / -1; }
+
+  /* ── CARDS ── */
+  .card {
+    background: #f8f9ff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+  }
+
+  .card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--m1);
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  /* ── FORMULA BOX ── */
+  .formula-box {
+    background: var(--formula-bg);
+    border: 1.5px solid var(--formula-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 10px 0;
+  }
+
+  .formula-box .label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--formula-border);
+    margin-bottom: 5px;
+  }
+
+  .formula-box code {
+    font-family: 'Fira Mono', monospace;
+    font-size: 13px;
+    color: #2d1b00;
+    display: block;
+    line-height: 1.8;
+  }
+
+  .formula-box .desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ── KEYWORD TAGS ── */
+  .kw-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+
+  .kw {
+    background: var(--kw-bg);
+    border: 1px solid var(--kw-border);
+    color: #1a3a5c;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .kw.red { background: #fef0f0; border-color: var(--a1); }
+  .kw.amber { background: #fff8ee; border-color: var(--a3); }
+  .kw.purple { background: #f5f0ff; border-color: var(--a4); }
+  .kw.green { background: #f0fff4; border-color: var(--a5); }
+
+  /* ── BULLET LIST ── */
+  ul.pts { list-style: none; padding: 0; }
+  ul.pts li { padding: 3px 0 3px 18px; position: relative; font-size: 12.5px; }
+  ul.pts li::before { content: "▸"; position: absolute; left: 0; color: var(--a2); font-size: 11px; top: 4px; }
+
+  ul.pts.red li::before { color: var(--a1); }
+  ul.pts.amber li::before { color: var(--a3); }
+  ul.pts.purple li::before { color: var(--a4); }
+
+  /* ── TABLE ── */
+  table.cfa {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  table.cfa th {
+    background: #1a3a5c;
+    color: #fff;
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  table.cfa td {
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    vertical-align: top;
+  }
+
+  table.cfa tr:nth-child(even) td { background: #f8fafc; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    background: #e8f4fd;
+    border-left: 4px solid var(--m1);
+    padding: 9px 13px;
+    border-radius: 0 6px 6px 0;
+    font-size: 12.5px;
+    margin: 8px 0;
+  }
+
+  .highlight.warn {
+    background: #fff8ee;
+    border-left-color: var(--a3);
+  }
+
+  .highlight.caution {
+    background: #fef0f0;
+    border-left-color: var(--a1);
+  }
+
+  .highlight.tip {
+    background: #f0fff4;
+    border-left-color: var(--a5);
+  }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 12px 0; }
+
+  strong.t { color: var(--m1); font-weight: 700; }
+  strong.r { color: var(--a1); font-weight: 700; }
+  strong.g { color: var(--a5); font-weight: 700; }
+  strong.o { color: #e07b3a; font-weight: 700; }
+  strong.p { color: var(--a4); font-weight: 700; }
+
+  .two-col { column-count: 2; column-gap: 20px; }
+  @media (max-width: 600px) { .two-col { column-count: 1; } }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="badge">CFA Level I</div>
+    <h1>Equity Investments – Complete Study Guide</h1>
+    <p>All 8 Modules · Every Keyword · Every Formula · Exam-Ready</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#m1">M1: Market Structure</a>
+  <a href="#m2">M2: Indexes</a>
+  <a href="#m3">M3: Market Efficiency</a>
+  <a href="#m4">M4: Equity Securities</a>
+  <a href="#m5">M5: Company Analysis</a>
+  <a href="#m6">M6: Industry Analysis</a>
+  <a href="#m7">M7: Forecasting</a>
+  <a href="#m8">M8: Valuation</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 1 ═══ -->
+<div class="module m1" id="m1">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">1</div>
+    <div>
+      <div class="mod-title">Market Organization and Structure</div>
+      <div class="mod-sub">Functions · Assets · Contracts · Positions · Orders · Primary & Secondary Markets</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Functions of Financial System -->
+      <div class="card">
+        <h4>6 Functions of the Financial System</h4>
+        <ul class="pts">
+          <li><strong>Saving</strong> – vehicles for saving/investing surplus funds</li>
+          <li><strong>Borrowing</strong> – access to capital; credit markets</li>
+          <li><strong>Raising Equity Capital</strong> – primary market issuance</li>
+          <li><strong>Managing Risks</strong> – derivatives, insurance</li>
+          <li><strong>Exchanging Assets</strong> – spot market trading</li>
+          <li><strong>Information-Motivated Trading</strong> – price discovery</li>
+        </ul>
+        <div class="divider"></div>
+        <ul class="pts">
+          <li><strong>Capital Allocation Efficiency</strong> – directing funds to highest-value uses</li>
+          <li><strong>Determining Rates of Return</strong> – risk-return equilibration</li>
+        </ul>
+      </div>
+
+      <!-- Asset Classifications -->
+      <div class="card">
+        <h4>Asset &amp; Contract Classifications</h4>
+        <table class="cfa">
+          <tr><th>Category</th><th>Examples</th></tr>
+          <tr><td><strong>Securities</strong></td><td>Equity, bonds, notes, ETFs</td></tr>
+          <tr><td><strong>Currencies</strong></td><td>Spot FX, crypto</td></tr>
+          <tr><td><strong>Commodities</strong></td><td>Gold, oil, wheat</td></tr>
+          <tr><td><strong>Real Assets</strong></td><td>Real estate, infrastructure</td></tr>
+          <tr><td><strong>Contracts</strong></td><td>Forwards, futures, options, swaps</td></tr>
+        </table>
+        <div class="divider"></div>
+        <div class="kw-cloud">
+          <span class="kw">Fixed Income</span><span class="kw">Common Shares</span><span class="kw">Warrants</span>
+          <span class="kw">Convertible Bonds</span><span class="kw">Asset-Backed Securities</span>
+          <span class="kw">Mutual Funds</span><span class="kw">ETFs</span>
+        </div>
+      </div>
+
+      <!-- Positions -->
+      <div class="card">
+        <h4>Positions</h4>
+        <ul class="pts">
+          <li><strong>Long Position</strong> – benefits from price increases; direct investment</li>
+          <li><strong>Short Position</strong> – benefits from price declines; borrows asset, sells, repurchases later</li>
+        </ul>
+        <div class="highlight caution">Short selling risk: theoretically unlimited losses (price can rise indefinitely)</div>
+        <div class="formula-box">
+          <div class="label">Profit from Short Sale</div>
+          <code>Profit = Short sale price − Purchase price − Carrying costs</code>
+        </div>
+      </div>
+
+      <!-- Leveraged Positions -->
+      <div class="card">
+        <h4>Leveraged Positions</h4>
+        <div class="formula-box">
+          <div class="label">Leverage Ratio</div>
+          <code>Leverage Ratio = Value of Asset / Equity
+= 1 / Margin %</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Return on Levered Position</div>
+          <code>Return on Equity = (Return on Asset × LR) − (Interest Rate × (LR − 1))</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Margin Call Price</div>
+          <code>P* = P₀ × (1 − Initial Margin%) / (1 − Maintenance Margin%)</code>
+        </div>
+        <div class="kw-cloud">
+          <span class="kw red">Initial Margin</span><span class="kw red">Maintenance Margin</span>
+          <span class="kw red">Margin Call</span><span class="kw">Buying on Margin</span>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="card">
+        <h4>Order Types</h4>
+        <table class="cfa">
+          <tr><th>Type</th><th>Description</th></tr>
+          <tr><td><strong>Market Order</strong></td><td>Execute immediately at best available price</td></tr>
+          <tr><td><strong>Limit Order</strong></td><td>Execute only at limit price or better</td></tr>
+          <tr><td><strong>Stop Order</strong></td><td>Becomes market order when stop price reached</td></tr>
+          <tr><td><strong>Stop-Limit Order</strong></td><td>Becomes limit order when stop price reached</td></tr>
+          <tr><td><strong>Marketable Limit</strong></td><td>Limit set at/beyond current market price</td></tr>
+          <tr><td><strong>Making Market</strong></td><td>Bid/ask quotes provided; earns spread</td></tr>
+          <tr><td><strong>Day Order</strong></td><td>Expires end of trading day</td></tr>
+          <tr><td><strong>GTC Order</strong></td><td>Good Till Cancelled</td></tr>
+          <tr><td><strong>FOK</strong></td><td>Fill or Kill – all or nothing immediately</td></tr>
+          <tr><td><strong>AON</strong></td><td>All or None</td></tr>
+        </table>
+      </div>
+
+      <!-- Execution Mechanisms -->
+      <div class="card">
+        <h4>Execution Mechanisms &amp; Market Structures</h4>
+        <table class="cfa">
+          <tr><th>Mechanism</th><th>Feature</th></tr>
+          <tr><td><strong>Quote-Driven (Dealer)</strong></td><td>Dealers provide bid/ask; earn spread</td></tr>
+          <tr><td><strong>Order-Driven</strong></td><td>Orders matched by rules (price priority, time priority)</td></tr>
+          <tr><td><strong>Brokered Market</strong></td><td>Broker searches for counterparty (unique assets)</td></tr>
+          <tr><td><strong>Hybrid Market</strong></td><td>Mix of dealer and order-driven</td></tr>
+        </table>
+        <div class="divider"></div>
+        <ul class="pts">
+          <li><strong>Call Market</strong> – orders accumulated, executed at single price periodically</li>
+          <li><strong>Continuous Market</strong> – orders executed as they arrive</li>
+          <li><strong>Electronic Limit Order Book (LOB)</strong> – automated matching</li>
+        </ul>
+      </div>
+
+      <!-- Financial Intermediaries -->
+      <div class="card section-full">
+        <h4>Financial Intermediaries</h4>
+        <table class="cfa">
+          <tr><th>Intermediary</th><th>Role</th></tr>
+          <tr><td><strong>Brokers / Dealers</strong></td><td>Execute orders; dealers trade own account, earn bid-ask spread</td></tr>
+          <tr><td><strong>Investment Banks</strong></td><td>Underwrite securities; advise on M&amp;A; IPO management</td></tr>
+          <tr><td><strong>Securitizers</strong></td><td>Pool assets (mortgages, loans), issue ABS/MBS</td></tr>
+          <tr><td><strong>Depository Institutions</strong></td><td>Banks, credit unions – accept deposits, make loans</td></tr>
+          <tr><td><strong>Insurance Companies</strong></td><td>Risk pooling; invest premiums</td></tr>
+          <tr><td><strong>Mutual Funds / ETFs</strong></td><td>Pooled investment vehicles</td></tr>
+          <tr><td><strong>Custodians</strong></td><td>Safeguard assets; settlement services</td></tr>
+          <tr><td><strong>Clearing Houses</strong></td><td>Central counterparty (CCP); reduce counterparty risk</td></tr>
+          <tr><td><strong>Arbitrageurs</strong></td><td>Exploit price discrepancies; enhance market efficiency</td></tr>
+        </table>
+      </div>
+
+      <!-- Primary Markets -->
+      <div class="card">
+        <h4>Primary Markets</h4>
+        <ul class="pts">
+          <li><strong>IPO</strong> – Initial Public Offering; first sale to public</li>
+          <li><strong>Seasoned Offering / SEO</strong> – additional shares by existing public company</li>
+          <li><strong>Private Placement</strong> – sold directly to qualified investors</li>
+          <li><strong>Rights Offering</strong> – existing shareholders offered new shares pro-rata</li>
+          <li><strong>Shelf Registration</strong> – pre-registered securities sold over time</li>
+          <li><strong>Underwritten Offering</strong> – investment bank guarantees proceeds</li>
+          <li><strong>Best-Effort</strong> – underwriter sells what it can, no guarantee</li>
+          <li><strong>Dutch Auction</strong> – bidders submit quantity/price; clearing price set</li>
+        </ul>
+      </div>
+
+      <!-- Secondary Markets -->
+      <div class="card">
+        <h4>Secondary Markets &amp; Market Quality</h4>
+        <ul class="pts">
+          <li><strong>Liquidity</strong> – ease of buying/selling without significant price impact</li>
+          <li><strong>Transparency</strong> – pre-trade and post-trade information availability</li>
+          <li><strong>Assurity of Completion</strong> – certainty of settlement</li>
+        </ul>
+        <div class="divider"></div>
+        <div class="kw-cloud">
+          <span class="kw">Price Priority</span><span class="kw">Time Priority</span>
+          <span class="kw">Bid-Ask Spread</span><span class="kw">Depth</span>
+          <span class="kw">Breadth</span><span class="kw">Resiliency</span>
+        </div>
+        <div class="highlight tip">Well-functioning markets: operationally efficient + informationally efficient + allocatively efficient</div>
+      </div>
+
+      <!-- Market Regulation -->
+      <div class="card">
+        <h4>Market Regulation Objectives</h4>
+        <ul class="pts">
+          <li>Protect investors from fraud and manipulation</li>
+          <li>Ensure equal access to information (Regulation FD – USA)</li>
+          <li>Prohibit illegal insider trading (material, non-public info)</li>
+          <li>Ensure financial stability of markets</li>
+          <li>Prevent financial crime (AML, KYC rules)</li>
+        </ul>
+        <div class="kw-cloud">
+          <span class="kw red">Insider Trading</span><span class="kw red">Manipulation</span>
+          <span class="kw">Regulation FD</span><span class="kw">SEC</span><span class="kw">ESMA</span>
+        </div>
+      </div>
+
+    </div><!-- /section-grid -->
+
+    <!-- Key Keywords Module 1 -->
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 1</h4>
+      <div class="kw-cloud">
+        <span class="kw">Financial System</span><span class="kw">Spot Market</span><span class="kw">Forward Market</span>
+        <span class="kw">Money Market</span><span class="kw">Capital Market</span><span class="kw">Derivative Market</span>
+        <span class="kw">Information-Motivated Trading</span><span class="kw">Informed Traders</span>
+        <span class="kw">Uninformed Traders (Noise Traders)</span><span class="kw">Value-Motivated Traders</span>
+        <span class="kw">Liquidity Suppliers</span><span class="kw">Blended Market</span>
+        <span class="kw amber">Securitization</span><span class="kw amber">ABS</span><span class="kw amber">MBS</span>
+        <span class="kw">Long Position</span><span class="kw red">Short Position</span>
+        <span class="kw red">Short Squeeze</span><span class="kw">Rehypothecation</span>
+        <span class="kw">Equity Call Option</span><span class="kw">Put Option</span>
+        <span class="kw">Futures</span><span class="kw">Forward</span><span class="kw">Swap</span>
+        <span class="kw">CDS (Credit Default Swap)</span><span class="kw">Market Maker</span>
+        <span class="kw">Price Discovery</span><span class="kw">Ex-Dividend Date</span>
+        <span class="kw purple">Multilateral Trading Facility (MTF)</span>
+        <span class="kw purple">Dark Pools</span><span class="kw purple">ATS (Alt Trading Systems)</span>
+        <span class="kw">T+2 Settlement</span><span class="kw">DvP (Delivery vs Payment)</span>
+        <span class="kw">Custodian</span><span class="kw">Central Counterparty (CCP)</span>
+        <span class="kw green">Capital Allocation Efficiency</span><span class="kw green">Operational Efficiency</span>
+        <span class="kw green">Informational Efficiency</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 2 ═══ -->
+<div class="module m2" id="m2">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">2</div>
+    <div>
+      <div class="mod-title">Security Market Indexes</div>
+      <div class="mod-sub">Index Math · Weighting · Construction · Types · Uses</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Index Formulas -->
+      <div class="card section-full">
+        <h4>Core Index Formulas</h4>
+        <div class="section-grid">
+          <div>
+            <div class="formula-box">
+              <div class="label">Price Return Index Value</div>
+              <code>V_PRI = (Σ nᵢ × Pᵢ) / Divisor</code>
+              <div class="desc">nᵢ = units held; Pᵢ = price; Divisor adjusted for splits, composition changes</div>
+            </div>
+            <div class="formula-box">
+              <div class="label">Price Return (Single Period)</div>
+              <code>PR_I = (V_PRI₁ − V_PRI₀) / V_PRI₀
+     = Σ wᵢ × PR_i</code>
+              <div class="desc">wᵢ = weight of security i; PR_i = (P₁ᵢ − P₀ᵢ)/P₀ᵢ</div>
+            </div>
+          </div>
+          <div>
+            <div class="formula-box">
+              <div class="label">Total Return (Single Period)</div>
+              <code>TR_I = (V_PRI₁ − V_PRI₀ + Inc_I) / V_PRI₀
+     = Σ wᵢ × TR_i</code>
+              <div class="desc">Inc_I = total dividends/income from all constituents; TR includes reinvestment of all income</div>
+            </div>
+            <div class="formula-box">
+              <div class="label">Multi-Period Index Return</div>
+              <code>TR (n periods) = [(1+TR₁)×(1+TR₂)×...×(1+TRn)] − 1</code>
+            </div>
+          </div>
+        </div>
+        <div class="highlight">Total Return Index ≥ Price Return Index always (due to reinvested income). They start equal at inception.</div>
+      </div>
+
+      <!-- Weighting Methods -->
+      <div class="card">
+        <h4>Index Weighting Methods</h4>
+        <table class="cfa">
+          <tr><th>Method</th><th>Formula / Basis</th><th>Example</th></tr>
+          <tr><td><strong>Price-Weighted</strong></td><td>wᵢ = Pᵢ / ΣP; higher-priced stocks dominate</td><td>DJIA, Nikkei 225</td></tr>
+          <tr><td><strong>Market-Cap Weighted</strong></td><td>wᵢ = Mᵢ / ΣM; float-adjusted version common</td><td>S&amp;P 500, MSCI</td></tr>
+          <tr><td><strong>Float-Adjusted Mkt-Cap</strong></td><td>Excludes non-trading shares (govt, insider)</td><td>Most modern indexes</td></tr>
+          <tr><td><strong>Equal-Weighted</strong></td><td>wᵢ = 1/N; requires frequent rebalancing</td><td>Value Line</td></tr>
+          <tr><td><strong>Fundamental-Weighted</strong></td><td>wᵢ based on earnings, dividends, sales, BV</td><td>RAFI indexes</td></tr>
+        </table>
+        <div class="highlight warn">Price-weighted: stock splits distort weights (require divisor adjustment). Market-cap: momentum bias (overweight overvalued, underweight undervalued).</div>
+      </div>
+
+      <!-- Index Construction -->
+      <div class="card">
+        <h4>Index Construction Issues</h4>
+        <ul class="pts">
+          <li><strong>Target Market</strong> – geographic, asset class, sector, strategy</li>
+          <li><strong>Security Selection</strong> – objective or subjective criteria</li>
+          <li><strong>Weighting</strong> – method chosen (above)</li>
+          <li><strong>Rebalancing</strong> – restoring target weights; equal-weight needs frequent rebalancing; mkt-cap minimal</li>
+          <li><strong>Reconstitution</strong> – adding/removing securities</li>
+        </ul>
+        <div class="divider"></div>
+        <div class="highlight tip">Reconstitution causes: <strong>reconstitution effect</strong> – prices of added securities rise, removed fall, just before change date.</div>
+      </div>
+
+      <!-- Uses of Indexes -->
+      <div class="card">
+        <h4>Uses of Security Market Indexes</h4>
+        <ul class="pts">
+          <li>Gauge market sentiment and performance</li>
+          <li>Benchmark for active portfolio managers</li>
+          <li>Proxy for systematic risk (market portfolio in CAPM)</li>
+          <li>Basis for index funds and ETFs (passive management)</li>
+          <li>Measure of market return for asset allocation</li>
+          <li>Basis for derivative instruments (index futures, options)</li>
+        </ul>
+      </div>
+
+      <!-- Equity Indexes -->
+      <div class="card">
+        <h4>Types of Equity Indexes</h4>
+        <table class="cfa">
+          <tr><th>Type</th><th>Description</th></tr>
+          <tr><td><strong>Broad Market</strong></td><td>All or most tradable equities in a market</td></tr>
+          <tr><td><strong>Multi-market</strong></td><td>Cross-country; often float-adjusted mkt-cap</td></tr>
+          <tr><td><strong>Sector</strong></td><td>Specific industry (e.g., tech, energy)</td></tr>
+          <tr><td><strong>Style</strong></td><td>Value vs growth; large/mid/small cap</td></tr>
+          <tr><td><strong>Factor/Smart Beta</strong></td><td>Momentum, quality, low-vol, dividend</td></tr>
+        </table>
+      </div>
+
+      <!-- Alt Indexes -->
+      <div class="card">
+        <h4>Fixed-Income &amp; Alternative Indexes</h4>
+        <ul class="pts red">
+          <li><strong>Fixed-Income Challenges</strong>: thousands of issues; bonds mature; infrequent pricing; dealers make market</li>
+          <li><strong>Bloomberg Barclays Indexes</strong> – most widely followed bond indexes</li>
+          <li><strong>Commodity Indexes</strong> – track futures contracts; different weighting</li>
+          <li><strong>Real Estate Indexes</strong>: NCREIF (appraisal-based), NAREIT (public REIT prices)</li>
+          <li><strong>Hedge Fund Indexes</strong>: survivorship bias; backfill bias; voluntary reporting</li>
+        </ul>
+        <div class="highlight caution">Hedge fund indexes suffer <strong>survivorship bias</strong> (failed funds removed) and <strong>backfill bias</strong> (historical performance added when fund starts reporting) → overstate returns</div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 2</h4>
+      <div class="kw-cloud">
+        <span class="kw">Constituent Securities</span><span class="kw">Divisor</span>
+        <span class="kw">Price Return Index</span><span class="kw">Total Return Index</span>
+        <span class="kw amber">Price-Weighted Index</span><span class="kw amber">Market-Cap Weighted</span>
+        <span class="kw amber">Float-Adjusted</span><span class="kw amber">Equal-Weighted</span>
+        <span class="kw amber">Fundamental-Weighted</span>
+        <span class="kw">Rebalancing</span><span class="kw">Reconstitution</span><span class="kw">Reconstitution Effect</span>
+        <span class="kw red">Survivorship Bias</span><span class="kw red">Backfill Bias</span>
+        <span class="kw">Benchmark</span><span class="kw">Tracking Error</span>
+        <span class="kw green">Value Stocks</span><span class="kw green">Growth Stocks</span>
+        <span class="kw green">Style Index</span><span class="kw green">Factor Index</span><span class="kw green">Smart Beta</span>
+        <span class="kw purple">NCREIF</span><span class="kw purple">NAREIT</span>
+        <span class="kw">Commodity Index</span><span class="kw">Hedge Fund Index</span>
+        <span class="kw">Net Asset Value (NAV)</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 3 ═══ -->
+<div class="module m3" id="m3">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">3</div>
+    <div>
+      <div class="mod-title">Market Efficiency</div>
+      <div class="mod-sub">EMH · Three Forms · Anomalies · Behavioral Finance</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- EMH Core Concepts -->
+      <div class="card">
+        <h4>Efficient Market Hypothesis (EMH) – Core</h4>
+        <ul class="pts">
+          <li><strong>Market Value</strong> – current trading price</li>
+          <li><strong>Intrinsic Value (Fundamental Value)</strong> – true value based on all investment characteristics; discrepancy between market and intrinsic = profit opportunity</li>
+          <li><strong>Informationally Efficient Market</strong> – prices reflect all available information quickly and rationally</li>
+          <li>Prices react only to <strong>unexpected/surprise</strong> information (not anticipated)</li>
+          <li><strong>Consistent superior risk-adjusted returns</strong> impossible in efficient market</li>
+        </ul>
+        <div class="formula-box">
+          <div class="label">Abnormal Return</div>
+          <code>Abnormal Return = Actual Return − Expected Return</code>
+          <div class="desc">Expected return from CAPM or market model. Consistent abnormal returns = evidence against efficiency.</div>
+        </div>
+      </div>
+
+      <!-- Three Forms -->
+      <div class="card">
+        <h4>Three Forms of Market Efficiency (Fama)</h4>
+        <table class="cfa">
+          <tr><th>Form</th><th>Reflects</th><th>Implication</th></tr>
+          <tr><td><strong>Weak Form</strong></td><td>All past market data (prices &amp; volume)</td><td>Technical analysis cannot earn abnormal returns</td></tr>
+          <tr><td><strong>Semi-Strong Form</strong></td><td>All public information</td><td>Fundamental analysis cannot earn abnormal returns (net of costs)</td></tr>
+          <tr><td><strong>Strong Form</strong></td><td>All public AND private information</td><td>Even insiders cannot earn abnormal returns; NOT supported empirically</td></tr>
+        </table>
+        <div class="highlight tip">Semi-Strong ⊃ Weak form. Strong form ⊃ Semi-Strong ⊃ Weak form. Each form implies all weaker forms also hold.</div>
+        <div class="highlight caution">Evidence: Developed markets ≈ Semi-strong efficient. Markets NOT strong-form efficient (insider trading laws exist because abnormal profits possible with private info).</div>
+      </div>
+
+      <!-- Factors Affecting Efficiency -->
+      <div class="card">
+        <h4>Factors Affecting Market Efficiency</h4>
+        <ul class="pts">
+          <li><strong>Number of Market Participants</strong> – more = more efficient</li>
+          <li><strong>Information Availability &amp; Disclosure</strong> – better info = more efficient</li>
+          <li><strong>Limits to Arbitrage</strong> – trading costs, short-selling restrictions reduce efficiency</li>
+          <li><strong>Transaction Costs</strong> – market efficient "within bounds of arbitrage"</li>
+          <li><strong>Information-Acquisition Costs</strong> – Grossman-Stiglitz: return must cover research costs</li>
+          <li><strong>Regulation FD (USA)</strong> – requires public disclosure of material non-public info given to professionals</li>
+        </ul>
+        <div class="highlight">Arbitrage: simultaneous buy/sell of identical assets in different markets at different prices → risk-free profit → drives prices together → enhances efficiency</div>
+      </div>
+
+      <!-- Market Anomalies -->
+      <div class="card">
+        <h4>Market Pricing Anomalies</h4>
+        <table class="cfa">
+          <tr><th>Category</th><th>Anomaly</th><th>Description</th></tr>
+          <tr><td rowspan="6"><strong>Time-Series</strong></td><td>January Effect / Turn-of-Year</td><td>Higher returns in January (esp. small caps); tax-loss selling explanation</td></tr>
+          <tr><td>Day-of-Week Effect</td><td>Monday returns negative on average</td></tr>
+          <tr><td>Weekend Effect</td><td>Lower returns on weekends</td></tr>
+          <tr><td>Turn-of-Month Effect</td><td>Higher returns last day + first 3 days of month</td></tr>
+          <tr><td>Momentum</td><td>Short-term winners continue to win</td></tr>
+          <tr><td>Overreaction</td><td>Long-term losers outperform; DeBondt &amp; Thaler</td></tr>
+          <tr><td rowspan="4"><strong>Cross-Sectional</strong></td><td>Size Effect</td><td>Small-cap outperforms large-cap risk-adjusted; disappeared in later studies</td></tr>
+          <tr><td>Value Effect</td><td>Low P/E, low M/B outperform; Fama-French 3-factor explains much</td></tr>
+          <tr><td>P/E Effect</td><td>Low P/E stocks outperform</td></tr>
+          <tr><td>Book-to-Market</td><td>High B/M stocks outperform</td></tr>
+          <tr><td rowspan="3"><strong>Other</strong></td><td>Earnings Surprise</td><td>Post-announcement drift; stocks slow to react to earnings surprises</td></tr>
+          <tr><td>IPO Underpricing</td><td>IPO average first-day return positive; long-run underperforms</td></tr>
+          <tr><td>Closed-End Fund Discount</td><td>Trades at discount to NAV; not fully explainable</td></tr>
+        </table>
+        <div class="highlight warn"><strong>Data Mining (Snooping)</strong> – Searching historical data to find profitable rules; risk of spurious patterns; anomalies must be persistent and not due to methodology</div>
+      </div>
+
+      <!-- Behavioral Finance -->
+      <div class="card">
+        <h4>Behavioral Finance &amp; Biases</h4>
+        <table class="cfa">
+          <tr><th>Bias</th><th>Description</th><th>Market Impact</th></tr>
+          <tr><td><strong>Loss Aversion</strong></td><td>Pain of loss > pleasure of equal gain; Prospect Theory</td><td>Overreaction</td></tr>
+          <tr><td><strong>Overconfidence</strong></td><td>Overestimate ability to process info</td><td>Mispricing; excessive trading</td></tr>
+          <tr><td><strong>Herding</strong></td><td>Follow other investors; ignore private info</td><td>Under/overreaction; bubbles</td></tr>
+          <tr><td><strong>Information Cascade</strong></td><td>Follow earlier actors; ignore own analysis</td><td>Serial correlation</td></tr>
+          <tr><td><strong>Representativeness</strong></td><td>Judge by similarity, ignore base rates</td><td>Momentum/reversal patterns</td></tr>
+          <tr><td><strong>Mental Accounting</strong></td><td>Treat money differently based on source/use</td><td>Irrational portfolio decisions</td></tr>
+          <tr><td><strong>Conservatism</strong></td><td>Slow to update beliefs with new info</td><td>Underreaction → momentum</td></tr>
+          <tr><td><strong>Narrow Framing</strong></td><td>Evaluate issues in isolation</td><td>Suboptimal diversification</td></tr>
+        </table>
+      </div>
+
+      <!-- Implications -->
+      <div class="card">
+        <h4>Implications for Analysis &amp; Portfolio Management</h4>
+        <ul class="pts">
+          <li><strong>Fundamental Analysis</strong> – useful to help price discovery (facilitates semi-strong efficiency); can earn returns if comparative info advantage exists</li>
+          <li><strong>Technical Analysis</strong> – cannot earn consistent abnormal profits in weak-form efficient market; however helps maintain weak-form efficiency by exploiting then eliminating patterns</li>
+          <li><strong>Active Management</strong> – cannot consistently beat market; passive preferred (lower costs)</li>
+          <li><strong>Event Study</strong> – test of semi-strong efficiency; measures abnormal returns around announcement dates</li>
+          <li>Role of portfolio manager: appropriate diversification, risk/return, tax considerations; NOT beating market</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 3</h4>
+      <div class="kw-cloud">
+        <span class="kw">Market Efficiency Continuum</span><span class="kw">Intrinsic Value</span>
+        <span class="kw">Market Value</span><span class="kw">Fundamental Analysis</span><span class="kw">Technical Analysis</span>
+        <span class="kw red">Weak Form</span><span class="kw red">Semi-Strong Form</span><span class="kw red">Strong Form</span>
+        <span class="kw">Event Study</span><span class="kw">Abnormal Returns</span><span class="kw">Arbitrage</span>
+        <span class="kw">Arbitrageurs</span><span class="kw">Limits to Arbitrage</span>
+        <span class="kw amber">January Effect</span><span class="kw amber">Size Effect</span><span class="kw amber">Value Effect</span>
+        <span class="kw amber">Momentum Effect</span><span class="kw amber">Overreaction Effect</span>
+        <span class="kw amber">Earnings Surprise (PEAD)</span><span class="kw amber">IPO Underpricing</span>
+        <span class="kw amber">Closed-End Fund Discount</span>
+        <span class="kw purple">Data Mining / Snooping</span><span class="kw purple">Behavioral Finance</span>
+        <span class="kw purple">Loss Aversion</span><span class="kw purple">Prospect Theory</span>
+        <span class="kw purple">Overconfidence</span><span class="kw purple">Herding</span>
+        <span class="kw purple">Information Cascade</span><span class="kw purple">Representativeness</span>
+        <span class="kw purple">Mental Accounting</span><span class="kw purple">Conservatism Bias</span><span class="kw purple">Narrow Framing</span>
+        <span class="kw green">Grossman-Stiglitz Paradox</span><span class="kw green">Regulation FD</span>
+        <span class="kw green">Fama-French Three-Factor Model</span><span class="kw green">CAPM</span>
+        <span class="kw green">Window Dressing</span><span class="kw green">Tax-Loss Selling</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 4 ═══ -->
+<div class="module m4" id="m4">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">4</div>
+    <div>
+      <div class="mod-title">Overview of Equity Securities</div>
+      <div class="mod-sub">Common &amp; Preference Shares · Private Equity · DRs · ROE · Cost of Equity</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Common Shares -->
+      <div class="card">
+        <h4>Common Shares (Ordinary Shares)</h4>
+        <ul class="pts">
+          <li>Ownership interest; residual claimant after debt and preferred</li>
+          <li><strong>Voting Rights</strong> – elect board, approve major decisions</li>
+          <li><strong>Statutory Voting</strong> – 1 share = 1 vote per director seat</li>
+          <li><strong>Cumulative Voting</strong> – concentrate all votes on one candidate; better for minority shareholders</li>
+          <li><strong>Proxy Voting</strong> – vote via designated party</li>
+          <li><strong>Callable Common</strong> – issuer can repurchase at preset price</li>
+          <li><strong>Putable Common</strong> – shareholder can sell back at preset price (less risky)</li>
+          <li><strong>Dual-Class Shares</strong> – different voting rights (e.g., Class A voting, Class B non-voting)</li>
+        </ul>
+        <div class="highlight tip">Putable shares: lower risk → lower expected return. Callable shares: higher risk (capped upside) → higher dividend to compensate.</div>
+      </div>
+
+      <!-- Preference Shares -->
+      <div class="card">
+        <h4>Preference Shares (Preferred Stock)</h4>
+        <ul class="pts">
+          <li>Priority over common shares in dividends AND liquidation</li>
+          <li>Generally NO voting rights</li>
+          <li>Fixed dividend (not contractually obligated but priority)</li>
+          <li>Hybrid: characteristics of both debt (fixed payments) and equity (no maturity, perpetual)</li>
+        </ul>
+        <table class="cfa">
+          <tr><th>Type</th><th>Feature</th></tr>
+          <tr><td><strong>Cumulative</strong></td><td>Unpaid dividends accumulate (must pay all before common dividends)</td></tr>
+          <tr><td><strong>Non-Cumulative</strong></td><td>Unpaid dividends forfeited; still priority over common in current period</td></tr>
+          <tr><td><strong>Participating</strong></td><td>Can share in profits above stated dividend; extra distributions on liquidation</td></tr>
+          <tr><td><strong>Non-Participating</strong></td><td>Fixed dividend only; par value on liquidation</td></tr>
+          <tr><td><strong>Convertible</strong></td><td>Can convert to common at set ratio; common for VC/PE deals</td></tr>
+          <tr><td><strong>Callable</strong></td><td>Issuer can redeem; reduces investor value</td></tr>
+          <tr><td><strong>Putable</strong></td><td>Investor can sell back; increases investor value</td></tr>
+          <tr><td><strong>Perpetual</strong></td><td>No maturity date</td></tr>
+        </table>
+        <div class="highlight caution">Risk order: Debt &lt; Preferred &lt; Common (higher risk = higher expected return)</div>
+      </div>
+
+      <!-- Private Equity -->
+      <div class="card">
+        <h4>Private Equity</h4>
+        <table class="cfa">
+          <tr><th>Type</th><th>Description</th></tr>
+          <tr><td><strong>Venture Capital</strong></td><td>Seed/early-stage capital; illiquid; exit via IPO or sale; 3–10 year horizon</td></tr>
+          <tr><td><strong>Leveraged Buyout (LBO)</strong></td><td>Acquire public company using large debt; take private; restructure; re-IPO</td></tr>
+          <tr><td><strong>Management Buyout (MBO)</strong></td><td>LBO where acquirers are existing management</td></tr>
+          <tr><td><strong>PIPE</strong></td><td>Private Investment in Public Equity; quick capital to public co. at discount</td></tr>
+        </table>
+        <div class="highlight">Private equity: no quoted market price, illiquid, no regulatory disclosure requirements, negotiated transactions. Longer holding periods (now ~10 years) vs historical 3–5 years.</div>
+      </div>
+
+      <!-- Non-Domestic Equity -->
+      <div class="card">
+        <h4>Depository Receipts (DRs)</h4>
+        <table class="cfa">
+          <tr><th>Type</th><th>Key Features</th></tr>
+          <tr><td><strong>ADR (American DR)</strong></td><td>US dollar-denominated; oldest (since 1927); most common; trades on US exchanges</td></tr>
+          <tr><td><strong>ADR Level I</strong></td><td>OTC only; limited SEC reporting; no capital raising</td></tr>
+          <tr><td><strong>ADR Level II</strong></td><td>NYSE/NASDAQ listed; full SEC reporting; no new capital</td></tr>
+          <tr><td><strong>ADR Level III</strong></td><td>NYSE/NASDAQ; full SEC; CAN raise new capital via public offering</td></tr>
+          <tr><td><strong>Rule 144A</strong></td><td>Private placement to Qualified Institutional Buyers (QIBs); no SEC registration</td></tr>
+          <tr><td><strong>GDR (Global DR)</strong></td><td>Outside home country AND outside USA; often London/Luxembourg; USD denominated</td></tr>
+          <tr><td><strong>GRS (Global Registered Share)</strong></td><td>Same share traded on multiple exchanges in different currencies; no conversion needed</td></tr>
+          <tr><td><strong>BLDR</strong></td><td>Basket of Listed DRs; ETF of DRs tracking DR index</td></tr>
+          <tr><td><strong>Sponsored DR</strong></td><td>Foreign company involved; investors have voting rights</td></tr>
+          <tr><td><strong>Unsponsored DR</strong></td><td>No company involvement; depository bank retains voting rights</td></tr>
+        </table>
+      </div>
+
+      <!-- Return Formulas -->
+      <div class="card">
+        <h4>Return &amp; Value Formulas</h4>
+        <div class="formula-box">
+          <div class="label">Total Return on Equity</div>
+          <code>Rt = (Pt − Pt−1 + Dt) / Pt−1</code>
+          <div class="desc">Pt = sale price; Pt−1 = purchase price; Dt = dividends received</div>
+        </div>
+        <div class="formula-box">
+          <div class="label">Return on Equity (ROE)</div>
+          <code>ROE = Net Income / Average Book Value of Equity
+or
+ROE = Net Income / Beginning Book Value of Equity</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Sustainable Growth Rate</div>
+          <code>g = b × ROE
+b = Retention Rate = (1 − Dividend Payout Ratio)</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Market-to-Book (Price-to-Book) Ratio</div>
+          <code>P/B = Market Price per Share / Book Value per Share</code>
+          <div class="desc">BV per share = Total Shareholders' Equity / Shares Outstanding</div>
+        </div>
+        <div class="formula-box">
+          <div class="label">Market Value of Equity (Market Cap)</div>
+          <code>Market Cap = Share Price × Shares Outstanding</code>
+        </div>
+      </div>
+
+      <!-- Cost of Equity -->
+      <div class="card">
+        <h4>Equity Value &amp; Cost of Equity</h4>
+        <ul class="pts">
+          <li><strong>Book Value of Equity</strong> = Total Assets − Total Liabilities; reflects historical decisions</li>
+          <li><strong>Market Value of Equity</strong> = Market Cap; reflects future expectations</li>
+          <li><strong>Intrinsic Value</strong> = PV of future cash flows; differs from both BV and MV</li>
+          <li><strong>Cost of Equity</strong> = minimum return required by shareholders; estimated via DDM or CAPM</li>
+        </ul>
+        <div class="formula-box">
+          <div class="label">CAPM – Cost of Equity</div>
+          <code>r = Rf + β × (Rm − Rf)
+Rf = risk-free rate; β = beta; Rm = market return
+(Rm − Rf) = equity risk premium (ERP)</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">WACC</div>
+          <code>WACC = wd × rd × (1−t) + we × re
+wd = debt weight; rd = cost of debt; t = tax rate
+we = equity weight; re = cost of equity</code>
+        </div>
+        <div class="highlight">If ROE &gt; required return on equity → management creating value. If ROE &lt; required return → destroying value. P/B &gt; 1 implies growth expectations.</div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 4</h4>
+      <div class="kw-cloud">
+        <span class="kw">Common Shares (Ordinary Shares)</span><span class="kw">Preference Shares</span>
+        <span class="kw">Statutory Voting</span><span class="kw">Cumulative Voting</span><span class="kw">Proxy Voting</span>
+        <span class="kw">Dual-Class Structure</span><span class="kw">Callable Shares</span><span class="kw">Putable Shares</span>
+        <span class="kw amber">Cumulative Preferred</span><span class="kw amber">Non-Cumulative Preferred</span>
+        <span class="kw amber">Participating Preferred</span><span class="kw amber">Non-Participating Preferred</span>
+        <span class="kw amber">Convertible Preferred</span><span class="kw amber">Perpetual Preferred</span>
+        <span class="kw red">Venture Capital</span><span class="kw red">LBO</span><span class="kw red">MBO</span><span class="kw red">PIPE</span>
+        <span class="kw purple">ADR</span><span class="kw purple">GDR</span><span class="kw purple">GRS</span><span class="kw purple">BLDR</span>
+        <span class="kw purple">Sponsored DR</span><span class="kw purple">Unsponsored DR</span><span class="kw purple">QIB</span>
+        <span class="kw">Return on Equity (ROE)</span><span class="kw">Book Value of Equity</span>
+        <span class="kw">Market Value of Equity</span><span class="kw">Intrinsic Value</span>
+        <span class="kw green">Price-to-Book Ratio (P/B)</span><span class="kw green">Cost of Equity</span>
+        <span class="kw green">WACC</span><span class="kw green">DuPont Formula</span>
+        <span class="kw green">Capital Budgeting</span><span class="kw green">Equity Risk Premium</span>
+        <span class="kw">Beta</span><span class="kw">Dividend Payout Ratio</span><span class="kw">Retention Rate</span>
+        <span class="kw">Sustainable Growth Rate</span><span class="kw">Total Return</span>
+        <span class="kw">Blue Chip Stocks</span><span class="kw">Market Capitalization</span>
+        <span class="kw">Foreign Ownership Restrictions</span><span class="kw">Dual Listing</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 5 ═══ -->
+<div class="module m5" id="m5">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">5</div>
+    <div>
+      <div class="mod-title">Company Analysis: Past &amp; Present</div>
+      <div class="mod-sub">Business Model · Revenue Analysis · Profitability · Capital Structure · DOL · DFL</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Research Report Structure -->
+      <div class="card">
+        <h4>Company Research Report Structure</h4>
+        <ul class="pts">
+          <li><strong>Front Matter</strong> – issuer name, symbol, recommendation, target price, disclosures</li>
+          <li><strong>Recommendation</strong> – Buy/Hold/Sell + key reasons</li>
+          <li><strong>Company Description</strong> – business model, revenue/profit disaggregation by product/geography</li>
+          <li><strong>Industry Overview &amp; Competitive Positioning</strong> – Porter's Five Forces, PESTLE, market shares</li>
+          <li><strong>Financial Analysis &amp; Model</strong> – historical + forecasted financials; key drivers</li>
+          <li><strong>Valuation</strong> – target price; relative and PV approaches; scenario/sensitivity analysis</li>
+          <li><strong>ESG Considerations</strong> – ownership structure, compensation, governance</li>
+          <li><strong>Risks</strong> – material downside and upside risks</li>
+        </ul>
+        <div class="highlight">Initiation reports (new coverage) are comprehensive. Subsequent reports focus on updates after earnings releases or new information.</div>
+      </div>
+
+      <!-- Business Model -->
+      <div class="card">
+        <h4>Business Model – Key Questions</h4>
+        <table class="cfa">
+          <tr><th>Element</th><th>Question</th></tr>
+          <tr><td><strong>Product/Service</strong></td><td>What is the firm selling?</td></tr>
+          <tr><td><strong>Customers</strong></td><td>To whom does the firm sell?</td></tr>
+          <tr><td><strong>Sales Channels</strong></td><td>How does it reach customers &amp; deliver product?</td></tr>
+          <tr><td><strong>Pricing</strong></td><td>How much does it charge &amp; how are prices structured?</td></tr>
+          <tr><td><strong>Resources &amp; Suppliers</strong></td><td>What does the company buy and rely on?</td></tr>
+        </table>
+        <div class="highlight tip">Information sources: Regulatory filings (annual/quarterly reports), earnings calls, investor presentations, press releases, third-party consultancy reports, proprietary research</div>
+      </div>
+
+      <!-- Revenue Analysis -->
+      <div class="card">
+        <h4>Revenue Analysis</h4>
+        <ul class="pts">
+          <li><strong>Bottom-Up Approach</strong> – decompose revenue into price × volume by product/segment/geography</li>
+          <li><strong>Top-Down Approach</strong> – revenue = market size × market share; link to GDP growth</li>
+          <li>Combine both approaches; cross-check assumptions</li>
+        </ul>
+        <div class="formula-box">
+          <div class="label">Revenue Decomposition (Bottom-Up)</div>
+          <code>Revenue = Volume × Average Selling Price (ASP)
+Or: Revenue = # Stores × Revenue per Store
+Or: Revenue = # Users × Revenue per User</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Revenue Decomposition (Top-Down)</div>
+          <code>Revenue = Market Size × Market Share</code>
+        </div>
+        <div class="highlight warn"><strong>Pricing Power</strong> – ability to raise prices without losing volume. Driven by market structure and competitive positioning. Key signal: <em>rising margins over time</em>.</div>
+      </div>
+
+      <!-- Cost Analysis -->
+      <div class="card">
+        <h4>Operating Cost Classification &amp; Profitability</h4>
+        <table class="cfa">
+          <tr><th>Measure</th><th>Formula</th></tr>
+          <tr><td><strong>Gross Profit</strong></td><td>Revenue − Cost of Sales (CoGS)</td></tr>
+          <tr><td><strong>Gross Margin</strong></td><td>Gross Profit / Revenue</td></tr>
+          <tr><td><strong>EBITDA</strong></td><td>Operating Profit + D&amp;A</td></tr>
+          <tr><td><strong>EBIT / Operating Profit</strong></td><td>Revenue − All Operating Expenses</td></tr>
+          <tr><td><strong>Operating Margin</strong></td><td>EBIT / Revenue</td></tr>
+          <tr><td><strong>Net Income</strong></td><td>EBIT − Interest − Taxes</td></tr>
+          <tr><td><strong>Net Margin</strong></td><td>Net Income / Revenue</td></tr>
+        </table>
+        <div class="formula-box">
+          <div class="label">Operating Profit (Fixed/Variable Framework)</div>
+          <code>Operating Profit = [Q × (P − VC)] − FC
+Contribution Margin = P − VC (per unit)
+(P − VC) > 0 required for profitability</code>
+        </div>
+      </div>
+
+      <!-- DOL and DFL -->
+      <div class="card section-full">
+        <h4>Degree of Operating Leverage (DOL) &amp; Degree of Financial Leverage (DFL)</h4>
+        <div class="section-grid">
+          <div>
+            <div class="formula-box">
+              <div class="label">Degree of Operating Leverage (DOL)</div>
+              <code>DOL = % Δ Operating Profit / % Δ Revenue (Sales)
+   = (ΔOP/OP) / (ΔSales/Sales)
+
+Also: DOL = Q(P−VC) / [Q(P−VC) − FC]
+         = Contribution Margin / Operating Profit</code>
+              <div class="desc">Higher fixed costs → higher DOL → more volatile operating profit for same % change in sales. DOL > 1 always (when FC > 0).</div>
+            </div>
+          </div>
+          <div>
+            <div class="formula-box">
+              <div class="label">Degree of Financial Leverage (DFL)</div>
+              <code>DFL = % Δ Net Income / % Δ Operating Income
+   = EBIT / (EBIT − Interest Expense)
+   = Operating Income / (Operating Income − Int. Exp.)</code>
+              <div class="desc">Higher fixed financing costs (interest) → higher DFL. DFL close to 1 means low financial leverage. DFL × DOL = Degree of Total Leverage (DTL).</div>
+            </div>
+            <div class="formula-box">
+              <div class="label">Degree of Total Leverage (DTL)</div>
+              <code>DTL = DOL × DFL
+    = % Δ Net Income / % Δ Revenue</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Working Capital -->
+      <div class="card">
+        <h4>Working Capital Analysis</h4>
+        <div class="formula-box">
+          <div class="label">Cash Conversion Cycle (CCC)</div>
+          <code>CCC = DSO + DOH − DPO
+DSO = Days Sales Outstanding = AR / (Revenue/365)
+DOH = Days of Inventory on Hand = Inv / (CoGS/365)
+DPO = Days Payable Outstanding = AP / (CoGS/365)</code>
+          <div class="desc">Shorter CCC = less financing needed. Negative NWC = suppliers finance operations.</div>
+        </div>
+        <div class="formula-box">
+          <div class="label">Net Working Capital (NWC)</div>
+          <code>NWC = Current Assets − Current Liabilities
+NWC/Sales ratio = capital intensity of working capital</code>
+        </div>
+      </div>
+
+      <!-- Capital Investments -->
+      <div class="card">
+        <h4>Capital Investments &amp; Capital Structure</h4>
+        <div class="formula-box">
+          <div class="label">ROIC (Return on Invested Capital)</div>
+          <code>ROIC = NOPAT / Invested Capital
+NOPAT = Net Operating Profit After Tax = EBIT × (1−t)
+Invested Capital = Total Assets − Non-interest-bearing Current Liabilities
+(or: Debt + Equity − Cash)</code>
+          <div class="desc">ROIC > WACC → economic value created (positive EVA)</div>
+        </div>
+        <div class="formula-box">
+          <div class="label">DuPont ROE Decomposition</div>
+          <code>ROE = Net Margin × Asset Turnover × Equity Multiplier
+    = (NI/Rev) × (Rev/Assets) × (Assets/Equity)
+Equity Multiplier = 1 / (1 − Debt/Assets) = 1 + D/E</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Net Debt &amp; Coverage</div>
+          <code>Net Debt = Total Debt − Cash &amp; Investments
+Net Debt/EBITDA = leverage ratio
+Interest Coverage = EBIT / Interest Expense</code>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 5</h4>
+      <div class="kw-cloud">
+        <span class="kw">Research Report</span><span class="kw">Buy/Hold/Sell Recommendation</span>
+        <span class="kw">Target Price</span><span class="kw">Initiation of Coverage</span>
+        <span class="kw">Business Model</span><span class="kw">Revenue Drivers</span>
+        <span class="kw">Bottom-Up Revenue Analysis</span><span class="kw">Top-Down Revenue Analysis</span>
+        <span class="kw amber">Pricing Power</span><span class="kw amber">Price Takers</span>
+        <span class="kw amber">Commoditization</span><span class="kw amber">Switching Costs</span>
+        <span class="kw amber">Cannibalization</span><span class="kw amber">Market Share</span>
+        <span class="kw">Fixed Costs</span><span class="kw">Variable Costs</span><span class="kw">Contribution Margin</span>
+        <span class="kw red">DOL (Degree of Operating Leverage)</span>
+        <span class="kw red">DFL (Degree of Financial Leverage)</span>
+        <span class="kw red">DTL (Degree of Total Leverage)</span>
+        <span class="kw">Gross Profit / Gross Margin</span><span class="kw">EBITDA</span>
+        <span class="kw">EBIT / Operating Margin</span><span class="kw">Net Margin</span>
+        <span class="kw">Economies of Scale</span><span class="kw">Economies of Scope</span>
+        <span class="kw purple">DSO</span><span class="kw purple">DOH</span><span class="kw purple">DPO</span>
+        <span class="kw purple">Cash Conversion Cycle</span><span class="kw purple">Net Working Capital</span>
+        <span class="kw green">ROIC</span><span class="kw green">NOPAT</span><span class="kw green">Invested Capital</span>
+        <span class="kw green">WACC</span><span class="kw green">EVA (Economic Value Added)</span>
+        <span class="kw green">DuPont ROE</span><span class="kw green">Net Debt/EBITDA</span>
+        <span class="kw green">Interest Coverage Ratio</span>
+        <span class="kw">Sources of Capital</span><span class="kw">Uses of Capital</span>
+        <span class="kw">Financial Leverage</span><span class="kw">Capital Expenditures (Capex)</span>
+        <span class="kw">Maintenance Capex</span><span class="kw">Growth Capex</span>
+        <span class="kw">ESG</span><span class="kw">PESTLE</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 6 ═══ -->
+<div class="module m6" id="m6">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">6</div>
+    <div>
+      <div class="mod-title">Industry &amp; Competitive Analysis</div>
+      <div class="mod-sub">Classification · HHI · Porter's Five Forces · PESTLE · Competitive Strategy</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Industry Classification -->
+      <div class="card">
+        <h4>Industry Classification Systems</h4>
+        <table class="cfa">
+          <tr><th>System</th><th>Provider</th><th>Notes</th></tr>
+          <tr><td><strong>GICS</strong></td><td>MSCI &amp; S&amp;P DJ</td><td>11 Sectors → Industry Groups → Industries → Sub-Industries; global; demand-based</td></tr>
+          <tr><td><strong>ICB</strong></td><td>FTSE Russell</td><td>Similar to GICS; global</td></tr>
+          <tr><td><strong>TRBC</strong></td><td>Refinitiv</td><td>Covers public + private + non-profits</td></tr>
+          <tr><td><strong>SIC / NACE / ISIC</strong></td><td>Government</td><td>Legacy; supply-based; infrequently updated; country-specific</td></tr>
+        </table>
+        <div class="highlight warn"><strong>Limitations of Classification Schemes</strong>: Multi-product companies forced into one bucket; groupings can be too broad or narrow; survivorship bias in historical returns; changes over time affect comparability.</div>
+        <div class="divider"></div>
+        <ul class="pts">
+          <li><strong>Cyclical Sectors</strong> – Financials, Basic Materials, Consumer Discretionary, Energy, Industrials</li>
+          <li><strong>Defensive Sectors</strong> – Consumer Staples, Healthcare, Utilities, Real Estate (sometimes)</li>
+        </ul>
+      </div>
+
+      <!-- HHI -->
+      <div class="card">
+        <h4>Industry Concentration &amp; Growth</h4>
+        <div class="formula-box">
+          <div class="label">Herfindahl-Hirschman Index (HHI)</div>
+          <code>HHI = Σ sᵢ²
+where sᵢ = market share of firm i (as whole number, e.g., 30 not 0.30)
+
+Monopoly max = 100² = 10,000
+HHI < 1,500 = unconcentrated
+1,500–2,500 = moderately concentrated
+> 2,500 = highly concentrated
+Increase >200 in highly concentrated = antitrust risk</code>
+        </div>
+        <div class="divider"></div>
+        <table class="cfa">
+          <tr><th>Industry Type</th><th>Growth Rate</th><th>Cycle Sensitivity</th></tr>
+          <tr><td><strong>Growth</strong></td><td>Above GDP; not saturated</td><td>Lower (idiosyncratic drivers)</td></tr>
+          <tr><td><strong>Mature</strong></td><td>≈ GDP or declining</td><td>Moderate (varies)</td></tr>
+          <tr><td><strong>Cyclical</strong></td><td>Amplifies GDP swings</td><td>High</td></tr>
+          <tr><td><strong>Defensive</strong></td><td>Below GDP swings</td><td>Low</td></tr>
+        </table>
+      </div>
+
+      <!-- Porter's Five Forces -->
+      <div class="card section-full">
+        <h4>Porter's Five Forces Framework (Determinants of Industry Profitability)</h4>
+        <table class="cfa">
+          <tr><th>Force</th><th>Key Factors (Increases Threat)</th><th>Reduces Profitability When...</th></tr>
+          <tr>
+            <td><strong>1. Threat of New Entrants</strong></td>
+            <td>Low capital requirements, no economies of scale, no network effects, few regulatory barriers, low switching costs, no brand loyalty</td>
+            <td>Easy entry → price competition → margins squeezed</td>
+          </tr>
+          <tr>
+            <td><strong>2. Threat of Substitutes</strong></td>
+            <td>Lower-priced substitutes, improving substitute performance, low switching costs to substitute</td>
+            <td>Caps pricing power for incumbents</td>
+          </tr>
+          <tr>
+            <td><strong>3. Bargaining Power of Customers</strong></td>
+            <td>Few large customers, standardized/undifferentiated product, product not critical, large share of customer budget, ability to backward integrate</td>
+            <td>Forces price concessions</td>
+          </tr>
+          <tr>
+            <td><strong>4. Bargaining Power of Suppliers</strong></td>
+            <td>Few concentrated suppliers, high switching costs, specialized/differentiated inputs, no substitutes, ability to forward integrate</td>
+            <td>Raises input costs</td>
+          </tr>
+          <tr>
+            <td><strong>5. Rivalry Among Existing Competitors</strong></td>
+            <td>Many equal-sized competitors, undifferentiated products, slow growth, high exit barriers, history of price wars</td>
+            <td>Directly depresses margins</td>
+          </tr>
+        </table>
+        <div class="highlight tip">All forces intense → no company earns attractive returns. Benign forces → highly profitable industry. Five Forces → assess <em>long-run industry profitability</em> (not just short-term).</div>
+      </div>
+
+      <!-- PESTLE -->
+      <div class="card">
+        <h4>PESTLE Analysis (External Influences)</h4>
+        <table class="cfa">
+          <tr><th>Factor</th><th>Examples</th></tr>
+          <tr><td><strong>Political</strong></td><td>Fiscal/monetary policy, OPEC, government purchasing, geopolitical tensions, tariffs</td></tr>
+          <tr><td><strong>Economic</strong></td><td>GDP/income growth, inflation, interest rates, exchange rates, business cycle</td></tr>
+          <tr><td><strong>Social</strong></td><td>Demographics, cultural trends, consumer preferences, lifestyle changes, social media</td></tr>
+          <tr><td><strong>Technological</strong></td><td>Sustaining vs. disruptive innovation; digitization; automation</td></tr>
+          <tr><td><strong>Legal</strong></td><td>Regulation changes, patent laws, antitrust, trade agreements</td></tr>
+          <tr><td><strong>Environmental</strong></td><td>Climate transition risks, ESG regulations, waste/land use laws, carbon pricing</td></tr>
+        </table>
+        <div class="highlight"><strong>Sustaining Innovation</strong> = improvement to existing product (led by incumbents). <strong>Disruptive Innovation</strong> = new market/value proposition initially for non-customers (usually by entrants). Innovator's Dilemma: incumbents slow to disrupt own profitable business.</div>
+      </div>
+
+      <!-- Competitive Strategy -->
+      <div class="card">
+        <h4>Generic Competitive Strategies (Porter)</h4>
+        <table class="cfa">
+          <tr><th>Strategy</th><th>Mechanism</th><th>Industry Fit</th><th>Key Risk</th></tr>
+          <tr>
+            <td><strong>Cost Leadership</strong></td>
+            <td>Economies of scale, favorable input access, strict cost control, aggressive pricing for volume</td>
+            <td>Commodity products, price-conscious customers, high capital intensity</td>
+            <td>Cost inflation; technology shift; imitation</td>
+          </tr>
+          <tr>
+            <td><strong>Differentiation</strong></td>
+            <td>Branding, unique features, premium quality, proprietary distribution, patents</td>
+            <td>Customers value distinctiveness; innovation-driven industry</td>
+            <td>Imitation; customers no longer value premium; price too high</td>
+          </tr>
+          <tr>
+            <td><strong>Focus</strong></td>
+            <td>Narrow customer group, geography, or product; may combine cost leadership or differentiation within segment</td>
+            <td>Segment difficult to serve for others; demand differences within industry</td>
+            <td>Larger companies outcompete; segment differences narrow; stuck in middle</td>
+          </tr>
+        </table>
+        <div class="highlight caution"><strong>"Stuck in the Middle"</strong> – not a cost leader, not differentiated, not focused → worst outcome; consistently underperforms.</div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 6</h4>
+      <div class="kw-cloud">
+        <span class="kw">Industry Analysis</span><span class="kw">GICS</span><span class="kw">ICB</span><span class="kw">TRBC</span><span class="kw">SIC</span>
+        <span class="kw">Cyclical</span><span class="kw">Defensive</span><span class="kw">Growth Industry</span><span class="kw">Mature Industry</span>
+        <span class="kw red">HHI (Herfindahl-Hirschman Index)</span><span class="kw red">Industry Concentration</span>
+        <span class="kw red">Consolidation</span><span class="kw red">Antitrust</span>
+        <span class="kw amber">Porter's Five Forces</span>
+        <span class="kw amber">Threat of New Entrants</span><span class="kw amber">Barriers to Entry</span>
+        <span class="kw amber">Economies of Scale</span><span class="kw amber">Network Effects</span>
+        <span class="kw amber">Threat of Substitutes</span>
+        <span class="kw amber">Bargaining Power of Customers</span>
+        <span class="kw amber">Backward Integration</span><span class="kw amber">Forward Integration</span>
+        <span class="kw amber">Bargaining Power of Suppliers</span>
+        <span class="kw amber">Rivalry Among Competitors</span>
+        <span class="kw amber">Exit Barriers</span><span class="kw amber">Price War</span>
+        <span class="kw purple">PESTLE</span><span class="kw purple">Political Influence</span>
+        <span class="kw purple">Economic Influence</span><span class="kw purple">Social Influence</span>
+        <span class="kw purple">Technological Influence</span><span class="kw purple">Legal Influence</span>
+        <span class="kw purple">Environmental Influence</span>
+        <span class="kw purple">Sustaining Innovation</span><span class="kw purple">Disruptive Innovation</span>
+        <span class="kw purple">Innovator's Dilemma</span><span class="kw purple">Clayton Christensen</span>
+        <span class="kw green">Cost Leadership</span><span class="kw green">Differentiation Strategy</span>
+        <span class="kw green">Focus Strategy</span><span class="kw green">Stuck in the Middle</span>
+        <span class="kw green">Competitive Positioning</span><span class="kw green">Economic Profits (ROIC > WACC)</span>
+        <span class="kw">Market Share</span><span class="kw">Organic Growth</span>
+        <span class="kw">Industry Profitability</span><span class="kw">ROIC Base Rate</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 7 ═══ -->
+<div class="module m7" id="m7">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">7</div>
+    <div>
+      <div class="mod-title">Company Analysis: Forecasting</div>
+      <div class="mod-sub">Forecast Objects · Approaches · Revenue · OpEx · Capex · Capital Structure · Scenarios</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Forecast Objects -->
+      <div class="card">
+        <h4>Forecast Objects (What to Forecast)</h4>
+        <table class="cfa">
+          <tr><th>Type</th><th>Description</th><th>Benefit</th></tr>
+          <tr><td><strong>Drivers</strong></td><td>Causative factors (volumes, prices, store count)</td><td>Most transparent; explanatory value</td></tr>
+          <tr><td><strong>Financial Statement Lines</strong></td><td>Revenue, gross profit, EBIT, net income</td><td>Direct; clear</td></tr>
+          <tr><td><strong>Summary Measures</strong></td><td>Margins (gross %, EBITDA %), turnover ratios</td><td>Efficient; easy to compare/benchmark</td></tr>
+          <tr><td><strong>Ad Hoc Objects</strong></td><td>Custom metrics (store count, subscribers, GMV)</td><td>Industry-specific insight</td></tr>
+        </table>
+        <div class="highlight">Analyst choice depends on: available information, efficiency (time cost), accuracy, explanatory value, verifiability.</div>
+      </div>
+
+      <!-- Forecast Approaches -->
+      <div class="card">
+        <h4>Forecast Approaches</h4>
+        <table class="cfa">
+          <tr><th>Approach</th><th>Best Used When</th></tr>
+          <tr><td><strong>Historical Results</strong></td><td>Stable business, predictable drivers, long history</td></tr>
+          <tr><td><strong>Historical Base Rates &amp; Convergence</strong></td><td>Company expected to converge toward industry averages over time; mean reversion</td></tr>
+          <tr><td><strong>Management Guidance</strong></td><td>Management credibility high; targets achievable; near-term forecasts</td></tr>
+          <tr><td><strong>Analyst Discretionary</strong></td><td>Novel situation; management guidance unavailable or unreliable; cyclical industry</td></tr>
+        </table>
+        <div class="highlight warn">For cyclical industries: historical results misleading (peak/trough distort); use normalized earnings or analyst discretionary approach.</div>
+      </div>
+
+      <!-- Revenue Forecasting -->
+      <div class="card">
+        <h4>Revenue Forecasting</h4>
+        <ul class="pts">
+          <li><strong>Top-Down Drivers</strong>: GDP growth rate (relative), market size × market share</li>
+          <li><strong>Bottom-Up Drivers</strong>: Volume × ASP; revenue by segment/product/geography; capacity-based; return-based</li>
+          <li><strong>Recurring vs. Non-Recurring</strong>: Separate analysis; non-recurring excluded from base</li>
+          <li><strong>Commodity Prices</strong>: Affect both revenue AND cost of sales simultaneously</li>
+        </ul>
+        <div class="formula-box">
+          <div class="label">Market Share Approach</div>
+          <code>Revenue = Market Size (addressable) × Market Share %
+Growth check: compare company growth vs market growth
+→ gaining or losing share?</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Capacity-Based</div>
+          <code>Revenue = Capacity × Utilization Rate × Price per Unit
+(common for airlines, hotels, utilities)</code>
+        </div>
+      </div>
+
+      <!-- OpEx Forecasting -->
+      <div class="card">
+        <h4>Operating Expense Forecasting</h4>
+        <ul class="pts">
+          <li><strong>Short Horizon</strong>: Use drivers (variable costs % of revenue; fixed costs in $ terms)</li>
+          <li><strong>Medium/Long Horizon</strong>: Use summary measures (margins) with industry mean reversion</li>
+          <li><strong>CoGS</strong>: Forecast as % of revenue; commodity sensitivity analysis</li>
+          <li><strong>SG&amp;A</strong>: Largely fixed; may scale slightly with revenue</li>
+          <li><strong>D&amp;A</strong>: Based on prior gross fixed assets and useful lives</li>
+          <li><strong>R&amp;D</strong>: % of revenue or absolute; critical for pharma/tech</li>
+        </ul>
+        <div class="highlight tip">OpEx forecasts must be internally coherent with revenue forecast (e.g., if forecasting higher sales volume, variable costs must also rise).</div>
+      </div>
+
+      <!-- Working Capital Forecasting -->
+      <div class="card">
+        <h4>Working Capital Forecasting</h4>
+        <div class="formula-box">
+          <div class="label">Standard Approach</div>
+          <code>AR (forecast) = DSO × (Revenue / 365)
+Inventory (forecast) = DOH × (CoGS / 365)
+AP (forecast) = DPO × (CoGS / 365)
+
+Use historical or industry DSO/DOH/DPO
+Adjust if business model changing</code>
+        </div>
+        <ul class="pts">
+          <li>Mature company with unique model → use own historical ratios</li>
+          <li>New/changing company → use historical base rates / industry comps</li>
+          <li>Change in NWC = use of cash when NWC increases (current assets rise faster than liabilities)</li>
+        </ul>
+      </div>
+
+      <!-- Capex and Capital Structure -->
+      <div class="card">
+        <h4>Capex &amp; Capital Structure Forecasting</h4>
+        <ul class="pts">
+          <li><strong>Maintenance Capex</strong> – sustain current capacity; often ≈ D&amp;A</li>
+          <li><strong>Growth Capex</strong> – expand capacity; tied to expansion strategy and revenue growth targets</li>
+        </ul>
+        <div class="formula-box">
+          <div class="label">Capex Relationship</div>
+          <code>Total Capex = Maintenance Capex + Growth Capex
+Maintenance Capex ≈ Depreciation &amp; Amortization (proxy)
+Growth Capex → linked to new store openings, capacity plans</code>
+        </div>
+        <ul class="pts amber">
+          <li><strong>Capital Structure Forecast</strong> – use target leverage ratios; management guidance; industry norms</li>
+          <li><strong>Debt Issuance/Repayment</strong> – based on capex needs and FCF after dividends</li>
+          <li><strong>Share Repurchases/Dividends</strong> – based on payout policy and excess FCF</li>
+        </ul>
+      </div>
+
+      <!-- Scenario Analysis -->
+      <div class="card section-full">
+        <h4>Scenario Analysis &amp; Risk Factors</h4>
+        <div class="section-grid">
+          <div>
+            <ul class="pts">
+              <li><strong>Base Case</strong> – most likely outcome; single set of assumptions</li>
+              <li><strong>Bull Case (Upside)</strong> – favorable outcomes realized</li>
+              <li><strong>Bear Case (Downside)</strong> – adverse risks materialize</li>
+              <li>Analyst assigns probability to each scenario</li>
+              <li>Weighted average of scenario values → blended intrinsic value estimate</li>
+            </ul>
+          </div>
+          <div>
+            <table class="cfa">
+              <tr><th>Risk Factor</th><th>Sectors Most Affected</th></tr>
+              <tr><td>Business Cycle / GDP</td><td>Cyclicals, Financials</td></tr>
+              <tr><td>Inflation / Deflation</td><td>Consumer Staples, Utilities</td></tr>
+              <tr><td>Interest Rates</td><td>Financials, Real Estate, Utilities</td></tr>
+              <tr><td>FX / Exchange Rates</td><td>Multinationals, Exporters</td></tr>
+              <tr><td>Technology Disruption</td><td>Tech, Media, Retail</td></tr>
+              <tr><td>Regulation Changes</td><td>Healthcare, Energy, Financials</td></tr>
+              <tr><td>Commodity Prices</td><td>Energy, Materials, Agriculture</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="highlight">Sensitivity Analysis: change one variable at a time, observe impact on valuation. Scenario Analysis: change multiple variables simultaneously to represent coherent economic scenarios.</div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 7</h4>
+      <div class="kw-cloud">
+        <span class="kw">Forecast Objects</span><span class="kw">Revenue Drivers</span>
+        <span class="kw">Bottom-Up Forecast</span><span class="kw">Top-Down Forecast</span>
+        <span class="kw">Historical Base Rate</span><span class="kw">Mean Reversion</span>
+        <span class="kw">Management Guidance</span><span class="kw">Analyst Discretionary</span>
+        <span class="kw">Recurring Revenue</span><span class="kw">Non-Recurring Revenue</span>
+        <span class="kw red">Maintenance Capex</span><span class="kw red">Growth Capex</span>
+        <span class="kw red">Free Cash Flow (FCF)</span><span class="kw red">FCFF</span><span class="kw red">FCFE</span>
+        <span class="kw amber">Scenario Analysis</span><span class="kw amber">Sensitivity Analysis</span>
+        <span class="kw amber">Base Case</span><span class="kw amber">Bull Case</span><span class="kw amber">Bear Case</span>
+        <span class="kw">Commodity Price Risk</span><span class="kw">FX Risk</span>
+        <span class="kw purple">Normalized Earnings</span><span class="kw purple">Mid-Cycle Analysis</span>
+        <span class="kw green">Financial Statement Model</span><span class="kw green">Pro Forma Financial Statements</span>
+        <span class="kw green">Payout Policy</span><span class="kw green">Capital Allocation</span>
+        <span class="kw">Forecast Horizon</span><span class="kw">Terminal Value</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MODULE 8 ═══ -->
+<div class="module m8" id="m8">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="mod-num">8</div>
+    <div>
+      <div class="mod-title">Equity Valuation: Concepts &amp; Basic Tools</div>
+      <div class="mod-sub">DDM · Gordon Growth Model · FCFE · P/E · P/B · P/S · P/CF · EV/EBITDA · Asset-Based</div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="module-body">
+
+    <div class="section-grid">
+
+      <!-- Valuation Categories -->
+      <div class="card">
+        <h4>Three Categories of Equity Valuation Models</h4>
+        <table class="cfa">
+          <tr><th>Category</th><th>Basis</th><th>Models</th></tr>
+          <tr><td><strong>Present Value (DCF)</strong></td><td>PV of expected future cash flows</td><td>DDM, FCFE, FCFF models</td></tr>
+          <tr><td><strong>Multiplier (Multiples)</strong></td><td>Price relative to fundamental variable; comparables</td><td>P/E, P/B, P/S, P/CF, EV/EBITDA</td></tr>
+          <tr><td><strong>Asset-Based</strong></td><td>MV of assets minus MV of liabilities</td><td>Adjusted book value; liquidation value</td></tr>
+        </table>
+        <div class="highlight">Undervalued: Estimated Value > Market Price. Overvalued: Estimated Value &lt; Market Price. Fairly Valued: Estimated Value ≈ Market Price. Analysts often use multiple models to triangulate value.</div>
+      </div>
+
+      <!-- Dividends Background -->
+      <div class="card">
+        <h4>Dividend Types &amp; Chronology</h4>
+        <ul class="pts">
+          <li><strong>Regular Cash Dividend</strong> – paid periodically (quarterly US/Canada; semi-annual Europe/Japan)</li>
+          <li><strong>Extra (Special) Dividend</strong> – one-off; cyclical companies or restructuring</li>
+          <li><strong>Stock Dividend (Bonus Issue)</strong> – additional shares (2–10%); no economic effect; not cash</li>
+          <li><strong>Stock Split</strong> – more shares, proportional price reduction; no economic effect</li>
+          <li><strong>Reverse Stock Split</strong> – fewer shares, higher price; no economic effect</li>
+          <li><strong>Share Repurchase (Buyback)</strong> – alternative to cash dividend; same wealth effect</li>
+        </ul>
+        <div class="formula-box">
+          <div class="label">Dividend Payment Timeline</div>
+          <code>Declaration Date → Ex-Dividend Date → Holder-of-Record Date → Payment Date
+(Buy BEFORE ex-date to receive dividend)
+Share price drops by ≈ dividend amount on ex-date</code>
+        </div>
+        <div class="highlight tip">Reasons for Buybacks: (1) Signal shares undervalued (2) Flexibility (3) Tax efficiency if cap gains rate &lt; dividend rate (4) Offset dilution from employee stock options</div>
+      </div>
+
+      <!-- DDM -->
+      <div class="card section-full">
+        <h4>Dividend Discount Model (DDM) – All Formulas</h4>
+        <div class="section-grid">
+          <div>
+            <div class="formula-box">
+              <div class="label">General DDM</div>
+              <code>V₀ = Σ [Dt / (1+r)ᵗ]  (t=1 to ∞)
+Dt = expected dividend at end of year t
+r = required rate of return</code>
+            </div>
+            <div class="formula-box">
+              <div class="label">One-Period DDM</div>
+              <code>V₀ = (D₁ + P₁) / (1 + r)</code>
+              <div class="desc">P₁ = expected price at end of year 1</div>
+            </div>
+            <div class="formula-box">
+              <div class="label">Gordon (Constant) Growth Model</div>
+              <code>V₀ = D₁ / (r − g)    [if g constant forever]
+D₁ = D₀ × (1 + g)
+r > g required (else undefined)
+
+Where:
+D₁ = next period dividend
+r = required return on equity
+g = constant perpetual growth rate</code>
+              <div class="desc">⚠️ Use D₁ (NEXT year's dividend), NOT D₀</div>
+            </div>
+          </div>
+          <div>
+            <div class="formula-box">
+              <div class="label">Sustainable Growth Rate (g)</div>
+              <code>g = b × ROE
+b = 1 − Dividend Payout Ratio = Retention Rate
+ROE = Net Income / Average Book Value of Equity</code>
+            </div>
+            <div class="formula-box">
+              <div class="label">Two-Stage DDM</div>
+              <code>V₀ = Σ [Dt/(1+r)ᵗ] (t=1 to n) + Vn/(1+r)ⁿ
+
+Terminal Value: Vn = Dn+1 / (r − gL)
+Dn+1 = Dn × (1 + gL)
+
+Stage 1: Dividends grow at gS for n years
+Stage 2: Dividends grow at gL forever (gL &lt; r)</code>
+            </div>
+            <div class="formula-box">
+              <div class="label">Justified P/E (from Gordon Growth Model)</div>
+              <code>P/E = (D₁/E₁) / (r − g)  = Payout Ratio / (r − g)
+P/E ↑ when: payout ↑, g ↑, r ↓
+P/E ↓ when: r ↑, g ↓</code>
+            </div>
+          </div>
+        </div>
+        <div class="highlight caution">Gordon model best for: mature, dividend-paying, relatively stable growth companies insensitive to business cycle (e.g., utilities, staples). NOT suitable for: non-dividend paying, high-growth, volatile.</div>
+      </div>
+
+      <!-- FCFE -->
+      <div class="card">
+        <h4>Free Cash Flow to Equity (FCFE) Model</h4>
+        <div class="formula-box">
+          <div class="label">FCFE Formula</div>
+          <code>FCFE = CFO − FCInv + Net Borrowing
+CFO = Cash Flow from Operations
+FCInv = Fixed Capital Investment (≈ Capex net of disposals)
+Net Borrowing = New Debt − Debt Repayments</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">FCFE Valuation</div>
+          <code>V₀ = Σ [FCFEt / (1+r)ᵗ]</code>
+          <div class="desc">Preferred when: (1) Dividends differ significantly from dividend-paying capacity (2) Non-dividend-paying stock (3) Analyst takes control perspective</div>
+        </div>
+        <div class="highlight tip">DDM vs. FCFE: DDM uses actual dividends. FCFE uses dividend-paying capacity. FCFE better captures true value when payout ≠ capacity.</div>
+      </div>
+
+      <!-- CAPM -->
+      <div class="card">
+        <h4>Required Rate of Return – CAPM</h4>
+        <div class="formula-box">
+          <div class="label">Capital Asset Pricing Model (CAPM)</div>
+          <code>r = Rf + β × (Rm − Rf)
+Rf = Risk-free rate (e.g., 10-yr government bond yield)
+β = Beta (measure of systematic/non-diversifiable risk)
+Rm = Expected market return
+(Rm − Rf) = Equity Risk Premium (ERP)
+
+Required Return = Risk-Free Rate + β × ERP</code>
+        </div>
+        <div class="highlight">Alternative methods: (1) Build-up: Rf + risk premium based on judgment (2) Bond yield + equity risk premium</div>
+      </div>
+
+      <!-- Preferred Stock -->
+      <div class="card">
+        <h4>Preferred Stock Valuation</h4>
+        <div class="formula-box">
+          <div class="label">Perpetual Non-Callable Preferred</div>
+          <code>V = D / r
+D = annual dividend; r = required rate of return
+Example: $5.50 dividend; r=6% → V = $5.50/0.06 = $91.67</code>
+        </div>
+        <div class="formula-box">
+          <div class="label">Preferred Stock with Finite Maturity</div>
+          <code>V = Σ [D/(1+r)ᵗ] + F/(1+r)ⁿ  (t=1 to n)
+F = par (face) value at maturity
+(Use periodic r and D matching payment frequency)</code>
+        </div>
+        <ul class="pts">
+          <li>Callable preferred: lower value to investor (issuer calls when beneficial to issuer)</li>
+          <li>Putable (retractable) preferred: higher value (investor puts when beneficial)</li>
+        </ul>
+      </div>
+
+      <!-- Price Multiples -->
+      <div class="card section-full">
+        <h4>Price Multiples – All Formulas &amp; Comparisons</h4>
+        <table class="cfa">
+          <tr><th>Multiple</th><th>Formula</th><th>Notes / Use</th></tr>
+          <tr><td><strong>P/E (Price-to-Earnings)</strong></td><td>Share Price / EPS<br>Trailing: TTM EPS<br>Forward: Next 12M EPS</td><td>Most widely cited; affected by leverage; can be negative; use consistently (trailing or forward)</td></tr>
+          <tr><td><strong>P/B (Price-to-Book)</strong></td><td>Share Price / (Equity BV / Shares)<br>= Market Cap / Book Value of Equity</td><td>Useful for financial firms; fama-french factor; intangibles distort</td></tr>
+          <tr><td><strong>P/S (Price-to-Sales)</strong></td><td>Share Price / (Revenue / Shares)<br>= Market Cap / Revenue</td><td>Useful when earnings negative; less volatile than P/E; doesn't reflect profitability</td></tr>
+          <tr><td><strong>P/CF (Price-to-Cash Flow)</strong></td><td>Share Price / (OCF / Shares)<br>or Price / FCF per share</td><td>Less subject to accounting manipulation than P/E</td></tr>
+          <tr><td><strong>Dividend Yield</strong></td><td>DPS / Share Price</td><td>Income-focused investors</td></tr>
+        </table>
+
+        <div class="section-grid" style="margin-top:12px">
+          <div>
+            <div class="formula-box">
+              <div class="label">Enterprise Value (EV)</div>
+              <code>EV = Market Cap + MV of Preferred Stock
+   + MV of Debt − Cash &amp; Short-Term Investments
+(= "Cost of takeover")
+Useful when capital structures differ across comparables</code>
+            </div>
+            <div class="formula-box">
+              <div class="label">EV/EBITDA</div>
+              <code>EV/EBITDA = Enterprise Value / EBITDA
+Most common EV multiple (esp. in Europe)
+Useful when: earnings negative; comparing different capital structures; cross-border comparisons</code>
+            </div>
+          </div>
+          <div>
+            <div class="formula-box">
+              <div class="label">EV/Operating Income (EV/EBIT)</div>
+              <code>EV/EBIT = Enterprise Value / Operating Income</code>
+            </div>
+            <div class="formula-box">
+              <div class="label">EV/Revenue</div>
+              <code>EV/Revenue = Enterprise Value / Revenue</code>
+            </div>
+            <div class="highlight">Method of Comparables: Based on Law of One Price. Choose benchmark from: (1) closely matched individual stock (2) industry average/median (3) company's own historical multiple</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Asset-Based Valuation -->
+      <div class="card">
+        <h4>Asset-Based Valuation</h4>
+        <div class="formula-box">
+          <div class="label">Asset-Based Equity Value</div>
+          <code>Equity Value = MV of Assets − MV of Liabilities − MV of Preferred
+Start with balance sheet; adjust book values to market values</code>
+        </div>
+        <ul class="pts">
+          <li>Best suited: Companies with mainly tangible, marketable assets; financial companies; real estate; natural resources; liquidating companies</li>
+          <li><strong>Limitation</strong>: Ignores intangibles (brand, goodwill, human capital, patents off-book) → provides "floor" value</li>
+          <li>Useful supplement to DCF/multiples; not primary method for most companies</li>
+          <li>Combination: Use asset-based + DDM + multiples for comprehensive view</li>
+        </ul>
+      </div>
+
+      <!-- Advantages/Disadvantages Summary -->
+      <div class="card">
+        <h4>Advantages &amp; Disadvantages of Each Model Category</h4>
+        <table class="cfa">
+          <tr><th>Model</th><th>Advantages</th><th>Disadvantages</th></tr>
+          <tr><td><strong>Present Value (DDM/FCFE)</strong></td><td>Theoretically sound; captures all future value; flexible</td><td>Sensitive to inputs; can't apply to non-dividend payers (DDM); requires many forecasts</td></tr>
+          <tr><td><strong>Multiplier</strong></td><td>Simple; widely used; easy comparisons; benchmark readily available</td><td>Doesn't consider future explicitly; accounting differences distort; cyclical volatility; no unique answer</td></tr>
+          <tr><td><strong>Asset-Based</strong></td><td>Objective; useful in liquidation; floor value; minimal forecasting</td><td>Ignores intangibles; book ≠ market value; not forward-looking; difficult for large public co.</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h4>🔑 All Keywords – Module 8</h4>
+      <div class="kw-cloud">
+        <span class="kw">Intrinsic Value (Fundamental Value)</span><span class="kw">Market Price</span>
+        <span class="kw">Undervalued</span><span class="kw">Overvalued</span><span class="kw">Fairly Valued</span>
+        <span class="kw">Top-Down Valuation</span><span class="kw">Bottom-Up Valuation</span>
+        <span class="kw red">Present Value Model (DCF)</span>
+        <span class="kw red">Dividend Discount Model (DDM)</span>
+        <span class="kw red">Gordon (Constant) Growth Model</span>
+        <span class="kw red">Two-Stage DDM</span><span class="kw red">Three-Stage DDM</span>
+        <span class="kw red">Terminal Value</span><span class="kw red">FCFE</span>
+        <span class="kw amber">Multiplier Model</span><span class="kw amber">P/E Ratio</span>
+        <span class="kw amber">Trailing P/E</span><span class="kw amber">Forward P/E</span>
+        <span class="kw amber">P/B Ratio</span><span class="kw amber">P/S Ratio</span>
+        <span class="kw amber">P/CF Ratio</span><span class="kw amber">Dividend Yield</span>
+        <span class="kw amber">Enterprise Value (EV)</span><span class="kw amber">EV/EBITDA</span>
+        <span class="kw amber">EV/EBIT</span><span class="kw amber">EV/Revenue</span>
+        <span class="kw purple">Asset-Based Valuation</span><span class="kw purple">Adjusted Book Value</span>
+        <span class="kw purple">Liquidation Value</span><span class="kw purple">Replacement Cost</span>
+        <span class="kw">Method of Comparables</span><span class="kw">Law of One Price</span>
+        <span class="kw">Benchmark Multiple</span><span class="kw">Justified Multiple</span>
+        <span class="kw">Regular Cash Dividend</span><span class="kw">Special Dividend</span>
+        <span class="kw">Stock Dividend</span><span class="kw">Stock Split</span><span class="kw">Reverse Stock Split</span>
+        <span class="kw">Share Repurchase (Buyback)</span>
+        <span class="kw green">Declaration Date</span><span class="kw green">Ex-Dividend Date</span>
+        <span class="kw green">Holder-of-Record Date</span><span class="kw green">Payment Date</span>
+        <span class="kw">Required Rate of Return (r)</span><span class="kw">CAPM</span>
+        <span class="kw">Beta (β)</span><span class="kw">Equity Risk Premium</span>
+        <span class="kw">Risk-Free Rate</span><span class="kw">Perpetuity</span>
+        <span class="kw">Sustainable Growth Rate (g)</span><span class="kw">Retention Rate (b)</span>
+        <span class="kw">Payout Ratio</span><span class="kw">ROE</span>
+        <span class="kw">Dividend Displacement of Earnings</span>
+        <span class="kw">Perpetual Preferred Stock</span><span class="kw">Retractable Preferred</span>
+        <span class="kw">CFO</span><span class="kw">Fixed Capital Investment</span>
+        <span class="kw">Net Borrowing</span><span class="kw">EBITDA</span>
+        <span class="kw">Sensitivity Analysis</span><span class="kw">Law of Parsimony</span>
+      </div>
+    </div>
+
+    <!-- MEGA FORMULA TABLE -->
+    <div class="card" style="margin-top:14px">
+      <h4>📐 All Formulas – Quick Reference Card (Module 8)</h4>
+      <table class="cfa">
+        <tr><th>Formula Name</th><th>Formula</th></tr>
+        <tr><td>General DDM</td><td>V₀ = Σ Dt/(1+r)ᵗ</td></tr>
+        <tr><td>Gordon Growth Model</td><td>V₀ = D₁/(r−g) = D₀(1+g)/(r−g)</td></tr>
+        <tr><td>Sustainable Growth Rate</td><td>g = b × ROE; b = 1 − Dividend Payout Ratio</td></tr>
+        <tr><td>Two-Stage DDM Terminal Value</td><td>Vₙ = Dₙ₊₁/(r−gL); Dₙ₊₁ = Dₙ(1+gL)</td></tr>
+        <tr><td>Justified P/E</td><td>P₀/E₁ = (D₁/E₁)/(r−g) = Payout/(r−g)</td></tr>
+        <tr><td>FCFE</td><td>FCFE = CFO − FCInv + Net Borrowing</td></tr>
+        <tr><td>Perpetual Preferred Stock</td><td>V = D/r</td></tr>
+        <tr><td>Preferred with Maturity</td><td>V = Σ D/(1+r)ᵗ + F/(1+r)ⁿ</td></tr>
+        <tr><td>CAPM</td><td>r = Rf + β(Rm−Rf)</td></tr>
+        <tr><td>P/E</td><td>Share Price / EPS</td></tr>
+        <tr><td>P/B</td><td>Share Price / (BV Equity / Shares)</td></tr>
+        <tr><td>P/S</td><td>Share Price / (Revenue / Shares)</td></tr>
+        <tr><td>P/CF</td><td>Share Price / (CFO / Shares)</td></tr>
+        <tr><td>Enterprise Value</td><td>EV = MktCap + MV Debt + MV Preferred − Cash</td></tr>
+        <tr><td>EV/EBITDA</td><td>EV / EBITDA</td></tr>
+        <tr><td>Asset-Based Equity</td><td>Equity Value = MV Assets − MV Liabilities − MV Preferred</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═════════════════════════════════ MASTER FORMULA SUMMARY ═══════════ -->
+<div class="card" style="margin: 20px 0; border: 2px solid #1a3a5c;">
+  <h4 style="color:#1a3a5c; font-size:14px; text-transform:uppercase; letter-spacing:1px;">📐 MASTER FORMULA REFERENCE – All Modules</h4>
+  <div class="section-grid">
+    <div>
+      <div class="formula-box"><div class="label">Price Return Index</div><code>PRI = (V_PRI₁ − V_PRI₀) / V_PRI₀ = Σ wᵢ·PRᵢ</code></div>
+      <div class="formula-box"><div class="label">Total Return Index</div><code>TRI = (V_PRI₁ − V_PRI₀ + IncI) / V_PRI₀ = Σ wᵢ·TRᵢ</code></div>
+      <div class="formula-box"><div class="label">Margin Call Price</div><code>P* = P₀ × (1 − IM%) / (1 − MM%)</code></div>
+      <div class="formula-box"><div class="label">HHI</div><code>HHI = Σ sᵢ² (s in whole numbers)</code></div>
+      <div class="formula-box"><div class="label">Total Return (Equity)</div><code>Rt = (Pt − Pt−1 + Dt) / Pt−1</code></div>
+      <div class="formula-box"><div class="label">ROE</div><code>ROE = Net Income / Avg Book Value of Equity</code></div>
+      <div class="formula-box"><div class="label">DuPont ROE</div><code>ROE = Net Margin × Asset Turnover × Equity Multiplier</code></div>
+      <div class="formula-box"><div class="label">Price-to-Book</div><code>P/B = Market Price per Share / Book Value per Share</code></div>
+    </div>
+    <div>
+      <div class="formula-box"><div class="label">Sustainable Growth Rate</div><code>g = b × ROE = Retention Rate × ROE</code></div>
+      <div class="formula-box"><div class="label">CAPM</div><code>r = Rf + β × (Rm − Rf)</code></div>
+      <div class="formula-box"><div class="label">WACC</div><code>WACC = wd·rd(1−t) + we·re</code></div>
+      <div class="formula-box"><div class="label">DOL</div><code>DOL = % Δ OpProfit / % Δ Sales = CM / Op.Profit</code></div>
+      <div class="formula-box"><div class="label">DFL</div><code>DFL = % Δ Net Income / % Δ Op.Income = EBIT/(EBIT−Int)</code></div>
+      <div class="formula-box"><div class="label">Cash Conversion Cycle</div><code>CCC = DSO + DOH − DPO</code></div>
+      <div class="formula-box"><div class="label">ROIC</div><code>ROIC = NOPAT / Invested Capital</code></div>
+      <div class="formula-box"><div class="label">Gordon Growth Model</div><code>V₀ = D₁ / (r − g)   [r > g required]</code></div>
+      <div class="formula-box"><div class="label">Enterprise Value</div><code>EV = MktCap + Debt + Preferred − Cash</code></div>
+      <div class="formula-box"><div class="label">FCFE</div><code>FCFE = CFO − FCInv + Net Borrowing</code></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+function toggle(header) {
+  const module = header.parentElement;
+  module.classList.toggle('collapsed');
+}
+// All modules expanded by default
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Arial', sans-serif;
+    font-size: 8.2pt;
+    line-height: 1.35;
+    color: #1a1a1a;
+    background: #fff;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; height: 100vh; text-align: center;
+    background: linear-gradient(135deg, #0d1b6e 0%, #1a3a8f 60%, #1565c0 100%);
+    color: white; page-break-after: always;
+  }
+  .cover h1 { font-size: 32pt; font-weight: 900; letter-spacing: 2px; margin-bottom: 8px; }
+  .cover h2 { font-size: 18pt; font-weight: 300; margin-bottom: 24px; opacity: 0.9; }
+  .cover hr { width: 60%; border: 1.5px solid rgba(255,255,255,0.5); margin: 16px auto; }
+  .cover .subtitle { font-size: 11pt; opacity: 0.85; margin-bottom: 24px; }
+  .cover .toc-box {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px; padding: 16px 28px; display: inline-block; text-align: left;
+  }
+  .cover .toc-box div { font-size: 8.5pt; padding: 2px 0; }
+  .cover .toc-box .toc-head { font-size: 9pt; font-weight: 700; margin-bottom: 6px; letter-spacing: 1px; opacity: 0.8; }
+
+  /* ── LAYOUT ── */
+  .reading {
+    page-break-before: always;
+  }
+  .reading:first-of-type { page-break-before: avoid; }
+
+  /* ── READING HEADER ── */
+  .r-header {
+    background: linear-gradient(90deg, #0d1b6e, #1565c0);
+    color: white; padding: 6px 10px; margin-bottom: 6px;
+    border-radius: 3px;
+  }
+  .r-header .r-num { font-size: 7pt; opacity: 0.8; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .r-header .r-title { font-size: 11pt; font-weight: 700; }
+
+  /* ── SECTION ── */
+  .section-title {
+    font-size: 8.5pt; font-weight: 700; color: #0d3b8e;
+    border-left: 3px solid #1565c0; padding-left: 5px;
+    margin: 6px 0 3px 0; text-transform: uppercase; letter-spacing: 0.4px;
+  }
+
+  /* ── LOS ── */
+  .los {
+    background: #e8f0fe; border-left: 3px solid #3367d6;
+    padding: 3px 7px; margin: 4px 0 3px 0;
+    font-size: 7.5pt; color: #1a237e; font-style: italic;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ── FORMULA BOX ── */
+  .formula-box {
+    background: #f8f9ff; border: 1px solid #c5cae9;
+    border-left: 3px solid #3f51b5;
+    padding: 4px 8px; margin: 3px 0;
+    font-family: 'Courier New', monospace; font-size: 7.8pt;
+    color: #1a237e; border-radius: 0 3px 3px 0;
+    white-space: pre-wrap;
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 3px 0; font-size: 7.5pt;
+  }
+  th {
+    background: #1a3a8f; color: white;
+    padding: 3px 5px; font-size: 7.3pt;
+    font-weight: 600; text-align: left;
+  }
+  td { padding: 2.5px 5px; vertical-align: top; border: 0.5px solid #c5cae9; }
+  tr:nth-child(even) td { background: #f0f4ff; }
+  tr:nth-child(odd) td { background: #fff; }
+  td:first-child { font-weight: 600; color: #1a3a8f; }
+
+  /* ── TIPS / NOTES ── */
+  .tip {
+    background: #e8f5e9; border-left: 3px solid #43a047;
+    padding: 3px 7px; margin: 3px 0; font-size: 7.5pt;
+    color: #1b5e20; border-radius: 0 2px 2px 0;
+  }
+  .tip::before { content: "★ EXAM TIP: "; font-weight: 700; }
+
+  .note {
+    background: #fff8e1; border-left: 3px solid #ffa000;
+    padding: 3px 7px; margin: 3px 0; font-size: 7.5pt;
+    color: #5d4037; border-radius: 0 2px 2px 0;
+  }
+  .note::before { content: "⚑ NOTE: "; font-weight: 700; }
+
+  /* ── BULLETS ── */
+  ul { margin: 2px 0 2px 12px; padding: 0; }
+  li { margin: 1px 0; font-size: 7.8pt; }
+  li b { color: #0d3b8e; }
+
+  /* ── TWO-COLUMN LAYOUT ── */
+  .two-col { display: flex; gap: 8px; }
+  .two-col > div { flex: 1; }
+
+  /* ── FORMULA SHEET ── */
+  .formula-sheet-header {
+    background: #b71c1c; color: white;
+    padding: 5px 10px; margin: 6px 0 4px 0;
+    font-size: 10pt; font-weight: 700; text-align: center;
+    border-radius: 3px; letter-spacing: 1px;
+  }
+  .fs-block {
+    border: 0.5px solid #c5cae9; border-radius: 3px;
+    padding: 4px 6px; margin: 3px 0; background: #fafafa;
+  }
+  .fs-block h4 {
+    font-size: 7.5pt; color: #b71c1c; font-weight: 700;
+    border-bottom: 0.5px solid #e0e0e0; margin-bottom: 2px; padding-bottom: 1px;
+  }
+  .fs-block .f { font-family: 'Courier New', monospace; font-size: 7.5pt; color: #1a237e; }
+  .three-col { display: flex; gap: 6px; }
+  .three-col > div { flex: 1; }
+
+  /* ── KEYWORD LABEL ── */
+  .kw {
+    display: inline-block; font-size: 7.3pt; font-weight: 700;
+    color: #b71c1c; text-transform: uppercase; letter-spacing: 0.3px;
+    margin: 3px 0 1px 0;
+  }
+
+  p { font-size: 7.8pt; margin: 2px 0; }
+
+  /* ── PAGE BREAKS ── */
+  @media print {
+    .reading { page-break-before: always; }
+    .reading:first-of-type { page-break-before: avoid; }
+    .no-break { page-break-inside: avoid; }
+  }
+</style>
+<!-- MathJax for formula rendering (loaded locally as inline SVG via wkhtmltopdf compatible approach) -->
+</head>
+<body>
+
+<!-- ═══════════════════════════════ COVER ═══════════════════════════════ -->
+<div class="cover">
+  <div class="r-num" style="font-size:13pt;letter-spacing:3px;margin-bottom:6px;">CFA LEVEL I</div>
+  <h1>Quantitative Methods</h1>
+  <h2>Comprehensive Exam Study Guide</h2>
+  <hr>
+  <div class="subtitle">All Key Points · Formulas · Keywords · Concepts · Exam Tips</div>
+  <div class="toc-box">
+    <div class="toc-head">READINGS COVERED</div>
+    <div>Reading 1 &nbsp;·&nbsp; Rates and Returns</div>
+    <div>Reading 2 &nbsp;·&nbsp; The Time Value of Money in Finance</div>
+    <div>Reading 3 &nbsp;·&nbsp; Statistical Measures of Asset Returns</div>
+    <div>Reading 4 &nbsp;·&nbsp; Probability Trees and Conditional Expectations</div>
+    <div>Reading 5 &nbsp;·&nbsp; Portfolio Mathematics</div>
+    <div>Reading 6 &nbsp;·&nbsp; Simulation Methods</div>
+    <div>Reading 7 &nbsp;·&nbsp; Estimation and Inference</div>
+    <div>Reading 8 &nbsp;·&nbsp; Hypothesis Testing</div>
+    <div>Reading 9 &nbsp;·&nbsp; Parametric and Nonparametric Tests of Independence</div>
+    <div>Reading 10 &nbsp;·&nbsp; Simple Linear Regression</div>
+    <div>Reading 11 &nbsp;·&nbsp; Introduction to Big Data Techniques</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ READING 1 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 1</div><div class="r-title">Rates and Returns</div></div>
+
+<div class="los">LOS 1.a: Interpret interest rates as required rates of return, discount rates, or opportunity costs; explain as sum of real risk-free rate + risk premiums.</div>
+
+<div class="two-col">
+<div>
+<span class="kw">Three Interpretations of Interest Rates</span>
+<ul>
+  <li><b>Required rate of return:</b> Minimum return investors need to willingly lend funds.</li>
+  <li><b>Discount rate:</b> Used to find PV of future cash flows.</li>
+  <li><b>Opportunity cost:</b> Return forgone by consuming now instead of saving.</li>
+</ul>
+<span class="kw">Key Formulas</span>
+<div class="formula-box">Nominal risk-free rate ≈ Real risk-free rate + Expected inflation
+Required return = Real risk-free rate + Inflation premium
+                 + Default risk premium + Liquidity premium
+                 + Maturity premium</div>
+</div>
+<div>
+<span class="kw">Risk Premiums (each raises required return)</span>
+<table>
+<tr><th>Premium</th><th>Compensates for…</th></tr>
+<tr><td>Default risk</td><td>Borrower may not repay on time</td></tr>
+<tr><td>Liquidity risk</td><td>Selling below fair value if sold quickly</td></tr>
+<tr><td>Maturity risk</td><td>Greater price volatility of longer-term bonds</td></tr>
+</table>
+<div class="note">Real risk-free rate reflects <i>time preference</i>: degree to which current consumption is preferred to equal future consumption.</div>
+</div>
+</div>
+
+<div class="los">LOS 1.b: Calculate and interpret different approaches to return measurement.</div>
+<div class="two-col">
+<div>
+<span class="kw">Return Formulas</span>
+<div class="formula-box">HPR = (P₁ − P₀ + D) / P₀
+
+Arithmetic Mean = (R₁ + R₂ + … + Rn) / n
+
+Geometric Mean = [(1+R₁)(1+R₂)…(1+Rn)]^(1/n) − 1
+
+Harmonic Mean = N / [Σ(1/Xᵢ)]   (i = 1 to N)</div>
+<div class="note">Harmonic mean &lt; Geometric mean &lt; Arithmetic mean (when values are not all equal). Gap increases with dispersion.</div>
+</div>
+<div>
+<span class="kw">When to Use Each Return Measure</span>
+<table>
+<tr><th>Measure</th><th>Use Case</th></tr>
+<tr><td>Arithmetic mean</td><td>Best estimate of NEXT period's return; includes all values</td></tr>
+<tr><td>Geometric mean</td><td>Compound returns over MULTIPLE periods</td></tr>
+<tr><td>Harmonic mean</td><td>Average cost per share with equal periodic $ investments (cost averaging)</td></tr>
+<tr><td>Trimmed mean</td><td>Remove top/bottom x% — reduces outlier effect</td></tr>
+<tr><td>Winsorized mean</td><td>Replace extremes with percentile values — reduces outlier effect</td></tr>
+</table>
+</div>
+</div>
+
+<div class="los">LOS 1.c: Compare money-weighted and time-weighted rates of return; evaluate portfolio performance.</div>
+<div class="two-col">
+<div>
+<span class="kw">Money-Weighted Return (MWR)</span>
+<ul>
+  <li>= IRR of portfolio cash flows.</li>
+  <li>Solve: CF₀ + CF₁/(1+r) + … + CFn/(1+r)ⁿ = 0</li>
+  <li>Beginning value &amp; deposits = inflows; withdrawals &amp; ending value = outflows.</li>
+  <li>Sensitive to TIMING of cash flows.</li>
+</ul>
+<span class="kw">Time-Weighted Return (TWR)</span>
+<div class="formula-box">Step 1: Calculate HPR for each sub-period
+Step 2: TWR = [(1+HPR₁)(1+HPR₂)…(1+HPRn)]^(1/n) − 1</div>
+</div>
+<div>
+<span class="kw">MWR vs. TWR Comparison</span>
+<table>
+<tr><th>Feature</th><th>MWR</th><th>TWR</th></tr>
+<tr><td>Affected by timing?</td><td>YES</td><td>NO</td></tr>
+<tr><td>MWR &gt; TWR when…</td><td colspan="2">Funds added just BEFORE high-return period</td></tr>
+<tr><td>MWR &lt; TWR when…</td><td colspan="2">Funds added just BEFORE low-return period</td></tr>
+<tr><td>Preferred use</td><td>Manager controls cash flows</td><td>Evaluating manager skill (INDUSTRY STANDARD)</td></tr>
+</table>
+</div>
+</div>
+
+<div class="los">LOS 1.d: Calculate and interpret annualized returns and continuously compounded returns.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Annualized HPR = (1 + HPR)^(365/days) − 1
+
+Continuously compounded return (r_cc):
+  r_cc = ln(1 + HPR) = ln(P_end / P_begin)
+
+PV with m compoundings/year:
+  PV = FV / (1 + r/m)^(m×n)
+
+PV with continuous compounding:
+  PV = FV × e^(−r×n)</div>
+</div>
+<div>
+<div class="note">Continuously compounded returns are <b>additive</b> across periods: r(0,T) = r(0,1) + r(1,2) + … This is a key advantage for multi-period analysis.</div>
+<div class="tip">Greater compounding frequency → higher effective rate → higher FV and lower PV for the same stated rate.</div>
+</div>
+</div>
+
+<div class="los">LOS 1.e: Calculate and interpret major return measures.</div>
+<table>
+<tr><th>Return Type</th><th>Definition</th></tr>
+<tr><td>Gross Return</td><td>Total return BEFORE management/admin fees (commissions already deducted)</td></tr>
+<tr><td>Net Return</td><td>Return AFTER management and administration fees</td></tr>
+<tr><td>Pretax Nominal</td><td>Numerical % return before taxes or inflation adjustment</td></tr>
+<tr><td>After-tax Nominal</td><td>Return after tax liability; before inflation adjustment</td></tr>
+<tr><td>Real Return</td><td>Approx = Nominal − Inflation; Exact: (1+nominal)/(1+inflation) − 1. Measures purchasing power increase.</td></tr>
+<tr><td>Leveraged Return</td><td>r_L = r + (r − r_B)(V_B/V₀)&nbsp;&nbsp; where r_B = borrowing rate, V_B = borrowed amount, V₀ = equity. Amplifies gains AND losses.</td></tr>
+</table>
+</div><!-- end reading 1 -->
+
+
+<!-- ═══════════════════════════ READING 2 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 2</div><div class="r-title">The Time Value of Money in Finance</div></div>
+
+<div class="los">LOS 2.a: Calculate and interpret PV of fixed-income and equity instruments.</div>
+<div class="two-col">
+<div>
+<span class="kw">Core TVM Formulas</span>
+<div class="formula-box">PV = FV / (1 + r)^n          [discrete]
+PV = FV × e^(−r×n)          [continuous]
+Perpetuity:  PV = CF / r
+Annuity PMT: PMT = PV × [r / (1 − (1+r)^(−n))]</div>
+
+<span class="kw">Fixed-Income Securities</span>
+<ul>
+  <li><b>Zero-coupon bond:</b> PV = FV/(1+r)ⁿ. One cash flow at maturity.</li>
+  <li><b>Coupon bond:</b> N=periods, I/Y=YTM, PMT=coupon, FV=par → CPT PV.</li>
+  <li><b>Perpetual bond:</b> PV = Coupon / YTM</li>
+  <li><b>Amortizing bond:</b> Each payment = principal + interest (level payments).</li>
+  <li><b>YTM &gt; coupon rate</b> → Bond at DISCOUNT (PV &lt; par)</li>
+  <li><b>YTM &lt; coupon rate</b> → Bond at PREMIUM (PV &gt; par)</li>
+</ul>
+</div>
+<div>
+<span class="kw">Equity — Dividend Discount Models (DDMs)</span>
+<div class="formula-box">Preferred Stock (perpetuity):
+  P₀ = D / k_p
+
+Gordon Growth Model (constant growth):
+  P₀ = D₁ / (k_e − g_c)     where k_e > g_c
+
+Multistage DDM:
+  Step 1: Discount dividends during high-growth
+          period individually (as single CFs)
+  Step 2: Apply constant growth DDM at end of
+          high-growth period → get terminal P
+  Step 3: Discount terminal P back to today</div>
+<div class="note">D₁ = next period's dividend = D₀ × (1+g). k_e = required return on equity. g_c = constant perpetual growth rate.</div>
+</div>
+</div>
+
+<div class="los">LOS 2.b: Calculate implied return and implied growth of equity instruments.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Implied required return (equity, constant growth):
+  k_e = D₁/P₀ + g_c   =  Dividend yield + Growth rate
+
+Implied growth rate:
+  g_c = k_e − D₁/P₀   =  Required return − Dividend yield
+
+Implied YTM (bond): Given PV, FV, PMT, N → CPT I/Y</div>
+</div>
+<div>
+<div class="tip">Price and yield are INVERSELY related — always. When yield rises, price falls; when yield falls, price rises. This is fundamental for all fixed-income analysis.</div>
+</div>
+</div>
+
+<div class="los">LOS 2.c: Explain cash flow additivity principle; implied forward rates, forward FX, option pricing.</div>
+<div class="two-col">
+<div>
+<span class="kw">Cash Flow Additivity / No-Arbitrage</span>
+<p>PV of any stream = sum of PVs of individual cash flows. Identical future cash flows MUST have identical PVs (Law of One Price).</p>
+
+<span class="kw">Forward Interest Rates</span>
+<div class="formula-box">No-arbitrage: (1+S₂)² = (1+S₁)(1 + 1y1y)
+
+Solve for 1-year forward rate, 1 year from now:
+  1y1y = (1+S₂)² / (1+S₁) − 1
+
+Notation: 1y1y = 1-yr loan, 1 yr from now
+          2y1y = 1-yr loan, 2 yrs from now</div>
+</div>
+<div>
+<span class="kw">Forward Exchange Rates</span>
+<div class="formula-box">F(price/base) = S(price/base) × (1 + r_price)/(1 + r_base)
+
+Higher interest rate currency trades at forward PREMIUM
+(in that currency's terms) to prevent arbitrage.</div>
+
+<span class="kw">Binomial Option Pricing</span>
+<div class="formula-box">Hedge ratio: h = (C_u − C_d) / (S_u − S_d)
+
+Portfolio value after 1 period is risk-free:
+  V₀ = V₁ / (1 + r_f)
+  c₀ = h×S₀ − V₀</div>
+</div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 3 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 3</div><div class="r-title">Statistical Measures of Asset Returns</div></div>
+
+<div class="los">LOS 3.a: Calculate, interpret, and evaluate measures of central tendency and location.</div>
+<div class="two-col">
+<div>
+<span class="kw">Central Tendency Formulas</span>
+<div class="formula-box">Sample Mean:  X̄ = ΣXᵢ / n
+
+Median: Middle value (sorted); average of 2 middle
+        values if n is even.
+
+Mode: Most frequent value; can be multimodal.</div>
+
+<span class="kw">Outlier-Resistant Means</span>
+<ul>
+  <li><b>Trimmed mean:</b> Remove top/bottom x% → compute mean. Fewer observations.</li>
+  <li><b>Winsorized mean:</b> Replace extremes with boundary percentile values → compute mean. Same n.</li>
+</ul>
+</div>
+<div>
+<span class="kw">Quantiles (Measures of Location)</span>
+<table>
+<tr><th>Quantile</th><th>Divides Into</th><th>Key Example</th></tr>
+<tr><td>Quartile</td><td>4 parts</td><td>Q1=25th, Q2=50th (median), Q3=75th percentile</td></tr>
+<tr><td>Quintile</td><td>5 parts</td><td>Each = 20th percentile</td></tr>
+<tr><td>Decile</td><td>10 parts</td><td>Each = 10th percentile</td></tr>
+<tr><td>Percentile</td><td>100 parts</td><td>pth percentile = value below which p% of data falls</td></tr>
+</table>
+<p style="margin-top:3px;font-size:7.3pt;"><b>Interquartile Range (IQR) = Q3 − Q1</b> (middle 50% of data). Box-and-whisker plot: box = IQR; line in box = median.</p>
+</div>
+</div>
+
+<div class="los">LOS 3.b: Calculate, interpret, and evaluate measures of dispersion.</div>
+<div class="two-col">
+<div>
+<span class="kw">Dispersion Formulas</span>
+<div class="formula-box">Range = Max − Min
+
+MAD = Σ|Xᵢ − X̄| / n
+
+Sample Variance:  s² = Σ(Xᵢ − X̄)² / (n−1)
+                       [n−1 corrects bias vs population]
+
+Sample Std Dev:   s = √[Σ(Xᵢ − X̄)² / (n−1)]
+
+CV (Coeff. of Variation) = s / X̄
+  [risk per unit of return; LOWER is better]
+
+Target Downside Deviation:
+  = √[Σ(Xᵢ − R_T)² / (n−1)]  for Xᵢ < R_T only
+  [denominator still n−1, not count of below-target obs]</div>
+</div>
+<div>
+<span class="kw">Interpreting Dispersion Measures</span>
+<table>
+<tr><th>Measure</th><th>Key Point</th></tr>
+<tr><td>Range</td><td>Simple; uses only 2 obs; very sensitive to outliers</td></tr>
+<tr><td>MAD</td><td>Avg absolute deviation; more intuitive than variance</td></tr>
+<tr><td>Variance / Std Dev</td><td>Most common risk measures; std dev in same units as data</td></tr>
+<tr><td>CV</td><td>Compare risk across assets with different mean returns</td></tr>
+<tr><td>Target Downside Dev</td><td>Downside risk only; useful when investors care about losses below a specific target</td></tr>
+</table>
+<div class="tip">Use sample variance (÷ n−1) when estimating population variance from a sample. Population variance uses ÷ n.</div>
+</div>
+</div>
+
+<div class="los">LOS 3.c: Interpret and evaluate measures of skewness and kurtosis.</div>
+<div class="two-col">
+<div>
+<span class="kw">Skewness</span>
+<table>
+<tr><th>Type</th><th>Skewness</th><th>Mean vs Median vs Mode</th></tr>
+<tr><td>Symmetric</td><td>= 0</td><td>Mean = Median = Mode</td></tr>
+<tr><td>Positively skewed (right tail)</td><td>&gt; 0</td><td>Mode &lt; Median &lt; Mean</td></tr>
+<tr><td>Negatively skewed (left tail)</td><td>&lt; 0</td><td>Mean &lt; Median &lt; Mode</td></tr>
+</table>
+<div class="formula-box">Sample Skewness ≈ [Σ(Xᵢ−X̄)³/n] / s³
+|skewness| > 0.5 → considered significant</div>
+<div class="note">Mean is most affected by skew — it is "pulled" toward the tail. Median always lies between mean and mode for skewed distributions.</div>
+</div>
+<div>
+<span class="kw">Kurtosis</span>
+<table>
+<tr><th>Type</th><th>Excess Kurtosis</th><th>Shape / Implication</th></tr>
+<tr><td>Mesokurtic (normal)</td><td>= 0 (total = 3)</td><td>Baseline bell curve</td></tr>
+<tr><td>Leptokurtic</td><td>&gt; 0</td><td>More peaked; <b>fatter tails</b> → higher probability of extreme returns → MORE RISK</td></tr>
+<tr><td>Platykurtic</td><td>&lt; 0</td><td>Less peaked; thinner tails → fewer extreme outcomes</td></tr>
+</table>
+<div class="formula-box">Excess Kurtosis = Kurtosis − 3
+Sample Kurtosis ≈ [Σ(Xᵢ−X̄)⁴/n] / s⁴</div>
+<div class="tip">Most real securities are <b>leptokurtic</b> (fat tails) and <b>negatively skewed</b>. Std dev underestimates extreme loss risk — key for risk management.</div>
+</div>
+</div>
+
+<div class="los">LOS 3.d: Interpret correlation between two variables.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Sample Covariance:
+  Cov(X,Y) = Σ[(Xᵢ−X̄)(Yᵢ−Ȳ)] / (n−1)
+
+Correlation (Pearson):
+  ρ_XY = Cov(X,Y) / (s_X × s_Y)   Range: −1 ≤ ρ ≤ +1</div>
+<table>
+<tr><th>ρ value</th><th>Meaning</th></tr>
+<tr><td>+1.0</td><td>Perfect positive linear relationship</td></tr>
+<tr><td>−1.0</td><td>Perfect negative linear relationship</td></tr>
+<tr><td>0</td><td>No LINEAR relationship (nonlinear may still exist)</td></tr>
+</table>
+</div>
+<div>
+<ul>
+  <li>Correlation has <b>no units</b>.</li>
+  <li>Correlation ≠ causation.</li>
+  <li><b>Spurious correlation:</b> May arise by chance or from a third variable affecting both.</li>
+  <li>Outliers can inflate/deflate correlation — investigate if removing them significantly changes ρ.</li>
+  <li>Scatter plots reveal nonlinear relationships that ρ misses.</li>
+</ul>
+<div class="tip">Scatter plots are the best way to detect nonlinear relationships where ρ ≈ 0 but a clear pattern exists.</div>
+</div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 4 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 4</div><div class="r-title">Probability Trees and Conditional Expectations</div></div>
+
+<div class="los">LOS 4.a: Calculate expected values, variances, and standard deviations from probability models.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Expected Value:  E(X) = Σ [P(xᵢ) × xᵢ]
+
+Variance:  σ² = Σ [P(xᵢ) × (xᵢ − E(X))²]
+
+Std Dev:   σ = √σ²</div>
+<div class="note">Unlike sample variance (÷ n−1), probability model variance uses probability weights — no n needed because the model defines the full population distribution.</div>
+</div>
+<div>
+<span class="kw">Probability Tree Structure</span>
+<ul>
+  <li>Each branch shows a conditional probability.</li>
+  <li>Joint probability of a path = product of branch probabilities along that path.</li>
+  <li>All joint probabilities at terminal nodes must sum to 1.</li>
+  <li>E(X) = Σ (joint probability × outcome) across all terminal nodes.</li>
+</ul>
+</div>
+</div>
+
+<div class="los">LOS 4.b: Formulate an investment problem as a probability tree; explain conditional expectations.</div>
+<ul>
+  <li><b>Conditional expected value E(X|Y):</b> Expected value of X given event Y has occurred. Used to revise expectations when new information arrives.</li>
+  <li><b>Conditional probability P(A|B) = P(AB)/P(B):</b> Probability of A given B has occurred.</li>
+  <li>Probability trees make conditional expected values explicit and easy to compute.</li>
+</ul>
+
+<div class="los">LOS 4.c: Calculate and interpret an updated probability using Bayes' formula.</div>
+<div class="two-col">
+<div>
+<span class="kw">Bayes' Formula</span>
+<div class="formula-box">P(A|B) = P(B|A) × P(A) / P(B)
+
+Total probability rule:
+  P(B) = P(B|A)×P(A) + P(B|Aᶜ)×P(Aᶜ)
+
+Combined:
+  P(A|B) = P(B|A)×P(A) / [P(B|A)×P(A) + P(B|Aᶜ)×P(Aᶜ)]</div>
+</div>
+<div>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>P(A)</td><td>Prior probability (before new information)</td></tr>
+<tr><td>P(B|A)</td><td>Likelihood — P of observing B if A is true</td></tr>
+<tr><td>P(A|B)</td><td>Posterior probability — updated P of A given B observed</td></tr>
+</table>
+<div class="tip">Bayes process: (1) Draw probability tree, (2) Compute all joint probabilities, (3) Sum joints for the observed event B, (4) Divide P(B∩A) by P(B) = posterior P(A|B).</div>
+</div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 5 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 5</div><div class="r-title">Portfolio Mathematics</div></div>
+
+<div class="los">LOS 5.a: Calculate expected value, variance, std dev, covariances, and correlations of portfolio returns.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Portfolio Expected Return:
+  E(R_p) = Σ wᵢ × E(Rᵢ)   where wᵢ = MV_i / Total MV
+
+2-Asset Portfolio Variance:
+  σ²_p = w²_A σ²_A + w²_B σ²_B + 2 w_A w_B Cov(R_A, R_B)
+
+Equivalent using correlation:
+  σ²_p = w²_A σ²_A + w²_B σ²_B + 2 w_A w_B ρ_AB σ_A σ_B
+
+3-Asset Portfolio Variance:
+  σ²_p = w²_A σ²_A + w²_B σ²_B + w²_C σ²_C
+        + 2w_A w_B Cov_AB + 2w_A w_C Cov_AC + 2w_B w_C Cov_BC</div>
+</div>
+<div>
+<span class="kw">Covariance Matrix Facts</span>
+<ul>
+  <li>Diagonal elements = variances: Cov(Rᵢ, Rᵢ) = Var(Rᵢ)</li>
+  <li>For n assets: n variances + n(n−1)/2 unique covariances.</li>
+  <li>Cov(R_A, R_B) = Cov(R_B, R_A) — symmetric.</li>
+  <li>Lower covariance / correlation → lower portfolio variance → diversification benefit.</li>
+</ul>
+<div class="note">Correlation in a correlation matrix: diagonal values are always 1 (each asset perfectly correlated with itself).</div>
+</div>
+</div>
+
+<div class="los">LOS 5.b: Calculate covariance and correlation from a joint probability function.</div>
+<div class="formula-box">Cov(R_A, R_B) = Σ P(sᵢ) × [R_A,i − E(R_A)] × [R_B,i − E(R_B)]
+Correlation:   ρ_AB = Cov(R_A, R_B) / (σ_A × σ_B)</div>
+
+<div class="los">LOS 5.c: Define shortfall risk; calculate safety-first ratio; identify optimal portfolio using Roy's criterion.</div>
+<div class="two-col">
+<div>
+<span class="kw">Roy's Safety-First Criterion</span>
+<div class="formula-box">Safety-First Ratio (SFR) = [E(R_p) − R_L] / σ_p
+
+  where R_L = threshold (minimum acceptable) return
+
+Steps:
+  1. Calculate R_L = (Target ending value − Beginning
+                      value) / Beginning value
+  2. Compute SFR for each portfolio
+  3. Select portfolio with LARGEST SFR
+     → Smallest probability of return &lt; R_L</div>
+</div>
+<div>
+<ul>
+  <li><b>Shortfall risk:</b> Probability that portfolio return falls below threshold R_L.</li>
+  <li>SFR = number of standard deviations the expected return is above the threshold.</li>
+  <li>Larger SFR → threshold farther from mean → smaller left-tail area → lower shortfall probability.</li>
+  <li>Shortfall probability = N(−SFR) from standard normal table.</li>
+</ul>
+<div class="tip">SFR looks like Sharpe ratio with R_L replacing the risk-free rate. Maximize SFR to minimize shortfall probability.</div>
+</div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 6 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 6</div><div class="r-title">Simulation Methods</div></div>
+
+<div class="los">LOS 6.a: Explain the relationship between normal and lognormal distributions; why lognormal is used for asset prices.</div>
+<div class="two-col">
+<div>
+<span class="kw">Normal vs. Lognormal</span>
+<table>
+<tr><th>Feature</th><th>Normal</th><th>Lognormal</th></tr>
+<tr><td>Range</td><td>−∞ to +∞</td><td>0 to +∞ (NEVER negative)</td></tr>
+<tr><td>Shape</td><td>Symmetric</td><td>Right-skewed</td></tr>
+<tr><td>Finance use</td><td>Continuously compounded returns</td><td>Asset prices, price relatives</td></tr>
+<tr><td>Key property</td><td>Sum of normals is normal</td><td>Product of lognormals is lognormal</td></tr>
+</table>
+<div class="formula-box">If X ~ Normal, then e^X ~ Lognormal
+Asset price model: P_T = P₀ × e^(r_{0,T})
+  where r_{0,T} ~ Normal (continuously compounded)</div>
+</div>
+<div>
+<ul>
+  <li>Continuously compounded returns are additive → sum ≈ normal (by CLT) → P_T is lognormal.</li>
+  <li><b>Independently distributed returns:</b> Past returns don't predict future returns.</li>
+  <li><b>Identically distributed returns:</b> Mean and variance don't change over time (stationarity).</li>
+</ul>
+</div>
+</div>
+
+<div class="los">LOS 6.b: Describe Monte Carlo simulation and its investment uses.</div>
+<div class="two-col">
+<div>
+<span class="kw">Monte Carlo Simulation — Steps</span>
+<ol style="margin-left:12px;font-size:7.8pt;">
+  <li>Specify distributions and parameters for each risk factor.</li>
+  <li>Randomly generate values for each risk factor.</li>
+  <li>Value the security with a pricing model.</li>
+  <li>Repeat many times (hundreds to tens of thousands).</li>
+  <li>Use distribution of simulated values to estimate mean value and variance.</li>
+</ol>
+<span class="kw">Applications</span>
+<ul>
+  <li>Value complex/path-dependent securities</li>
+  <li>Simulate trading strategy profits/losses</li>
+  <li>Calculate Value at Risk (VaR)</li>
+  <li>Pension fund asset/liability modeling</li>
+  <li>Value portfolios with non-normal returns</li>
+</ul>
+</div>
+<div>
+<table>
+<tr><th>Advantages</th><th>Limitations</th></tr>
+<tr><td>Can test scenarios beyond historical data range</td><td>Complex to implement</td></tr>
+<tr><td>Handles many risk factors</td><td>Only as good as assumptions (GIGO)</td></tr>
+<tr><td>Can model any distribution shape</td><td>Statistical, not analytic — no closed-form insights</td></tr>
+</table>
+</div>
+</div>
+
+<div class="los">LOS 6.c: Describe bootstrap resampling in simulation.</div>
+<table>
+<tr><th>Method</th><th>Process</th><th>Strengths</th><th>Limitation</th></tr>
+<tr><td>Bootstrap</td><td>Draw many samples of size n WITH replacement from full dataset; compute statistic for each; use std dev of results as SE estimate.</td><td>Works for any statistic (mean, median, etc.); more accurate than single-sample SE; can build confidence intervals</td><td>Computationally intensive; inputs limited by actual data distribution</td></tr>
+<tr><td>Jackknife</td><td>Calculate n statistics, each with one observation REMOVED; use std dev of results.</td><td>Simpler; can remove bias; good for small n</td><td>Less flexible than bootstrap; same data limitation</td></tr>
+</table>
+</div>
+
+
+<!-- ═══════════════════════════ READING 7 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 7</div><div class="r-title">Estimation and Inference</div></div>
+
+<div class="los">LOS 7.a: Compare simple random, stratified random, cluster, convenience, and judgmental sampling.</div>
+<table>
+<tr><th>Method</th><th>Type</th><th>Description</th><th>Sampling Error</th></tr>
+<tr><td>Simple Random</td><td>Probability</td><td>Each item has equal probability of selection</td><td>Baseline</td></tr>
+<tr><td>Systematic</td><td>Probability</td><td>Every nth member selected</td><td>≈ Simple random</td></tr>
+<tr><td>Stratified Random</td><td>Probability</td><td>Divide population into strata based on characteristics; draw proportional random samples from EACH stratum. Guarantees representation.</td><td>Lower than simple random</td></tr>
+<tr><td>Cluster</td><td>Probability</td><td>Divide into clusters (assumed representative). One-stage: sample all of selected clusters. Two-stage: subsample from selected clusters.</td><td>Higher than simple random (if clusters ≠ population)</td></tr>
+<tr><td>Convenience</td><td>Non-probability</td><td>Easily accessible data; not random</td><td>High</td></tr>
+<tr><td>Judgmental</td><td>Non-probability</td><td>Researcher selects based on experience/judgment</td><td>High if biased; may be lower with good expertise</td></tr>
+</table>
+<div class="tip">Bond indexing uses STRATIFIED random sampling — bonds categorized by duration, maturity, coupon rate; samples drawn proportionally from each category to replicate index characteristics.</div>
+
+<div class="los">LOS 7.b: Explain the central limit theorem and its importance.</div>
+<div class="two-col">
+<div>
+<span class="kw">Central Limit Theorem (CLT)</span>
+<ul>
+  <li>For any population with mean μ and finite variance σ², the <b>sampling distribution</b> of the sample mean approaches <b>normal</b> as n increases.</li>
+  <li>Requires n ≥ 30 for the approximation to be reliable.</li>
+  <li>Mean of sampling distribution = μ (population mean).</li>
+  <li>Variance of sampling distribution = σ²/n.</li>
+</ul>
+</div>
+<div>
+<span class="kw">Standard Error of Sample Mean</span>
+<div class="formula-box">When σ is KNOWN:    σ_x̄ = σ / √n
+
+When σ is UNKNOWN:  s_x̄ = s / √n
+                    [use sample std dev s]</div>
+<div class="note">As n increases, SE decreases → sample mean converges to true mean. Doubling n reduces SE by factor √2 ≈ 1.41.</div>
+</div>
+</div>
+
+<div class="los">LOS 7.c: Describe the use of resampling (bootstrap, jackknife) to estimate the sampling distribution.</div>
+<p>See Reading 6 LOS 6.c for detailed bootstrap/jackknife comparison. The CLT enables us to use z-tests and t-tests for inference regardless of population distribution when n ≥ 30. Resampling provides alternative SE estimates when analytical methods are difficult.</p>
+</div>
+
+
+<!-- ═══════════════════════════ READING 8 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 8</div><div class="r-title">Hypothesis Testing</div></div>
+
+<div class="los">LOS 8.a: Explain hypothesis testing and its components.</div>
+<div class="two-col">
+<div>
+<span class="kw">Framework</span>
+<table>
+<tr><th>Component</th><th>Description</th></tr>
+<tr><td>H₀ (Null)</td><td>Statement to TEST and REJECT. Always includes "=" sign. Researcher wants to REJECT H₀.</td></tr>
+<tr><td>Hₐ (Alternative)</td><td>What researcher wants to SUPPORT. Accepted when H₀ is rejected.</td></tr>
+<tr><td>Test Statistic</td><td>(Sample stat − Hypothesized value) / Standard error</td></tr>
+<tr><td>Significance level (α)</td><td>P(Type I error). Common: 1%, 5%, 10%. Sets critical values.</td></tr>
+<tr><td>p-value</td><td>Smallest α at which H₀ can be rejected. Reject H₀ if p-value &lt; α.</td></tr>
+<tr><td>Power</td><td>= 1 − P(Type II error). Probability of correctly rejecting false H₀.</td></tr>
+</table>
+</div>
+<div>
+<span class="kw">Type I and Type II Errors</span>
+<table>
+<tr><th>Decision</th><th>H₀ TRUE</th><th>H₀ FALSE</th></tr>
+<tr><td><b>Reject H₀</b></td><td>TYPE I ERROR (α)</td><td>Correct ✓ (Power)</td></tr>
+<tr><td><b>Fail to reject</b></td><td>Correct ✓ (1−α)</td><td>TYPE II ERROR (β)</td></tr>
+</table>
+<div class="formula-box">Power = 1 − β
+
+Increasing α → decreases β → increases power
+  (but increases false rejection risk)
+Increasing n → decreases β → increases power
+  (without increasing α)</div>
+<span class="kw">Critical z-values to memorize</span>
+<table>
+<tr><th>α</th><th>Two-tailed</th><th>One-tailed</th></tr>
+<tr><td>10%</td><td>±1.645</td><td>1.28</td></tr>
+<tr><td>5%</td><td>±1.96</td><td>1.645</td></tr>
+<tr><td>1%</td><td>±2.576</td><td>2.33</td></tr>
+</table>
+</div>
+</div>
+
+<div class="los">LOS 8.b: Construct hypothesis tests and determine statistical significance.</div>
+<span class="kw">Which Test to Use — Master Reference</span>
+<table>
+<tr><th>Hypothesis</th><th>Test Statistic Formula</th><th>Distribution</th><th>df</th></tr>
+<tr><td>Single population mean (σ known)</td><td>z = (X̄ − μ₀) / (σ/√n)</td><td>z (Normal)</td><td>—</td></tr>
+<tr><td>Single population mean (σ unknown)</td><td>t = (X̄ − μ₀) / (s/√n)</td><td>t</td><td>n−1</td></tr>
+<tr><td>Difference of 2 independent means (equal variances assumed)</td><td>t = (X̄₁−X̄₂) / SE_pooled &nbsp;&nbsp; (pooled variance)</td><td>t</td><td>n₁+n₂−2</td></tr>
+<tr><td>Paired comparisons (dependent samples)</td><td>t = d̄ / (s_d/√n) &nbsp; d̄ = mean of (X₁ᵢ−X₂ᵢ) differences</td><td>t</td><td>n−1</td></tr>
+<tr><td>Single population variance</td><td>χ² = (n−1)s² / σ₀²</td><td>Chi-square (asymmetric, right-skewed)</td><td>n−1</td></tr>
+<tr><td>Equality of two variances</td><td>F = s₁²/s₂² &nbsp;(LARGER variance in numerator)</td><td>F (right-skewed)</td><td>n₁−1, n₂−1</td></tr>
+</table>
+
+<div class="two-col">
+<div>
+<span class="kw">Key Rules for Each Test</span>
+<ul>
+  <li><b>t-test (mean):</b> Use when σ unknown. Large n → t ≈ z.</li>
+  <li><b>Diff in means:</b> Requires independent samples from normal populations. Pooled variance when equal variances assumed; separate variances otherwise.</li>
+  <li><b>Paired comparisons:</b> Use when samples are DEPENDENT (e.g., same firms before/after event). Tests mean of differences ≠ 0.</li>
+  <li><b>Chi-square:</b> Bounded at zero; two critical values for two-tailed test (upper and lower).</li>
+  <li><b>F-test:</b> Always put LARGER variance in numerator → only need upper critical value. Reject H₀ if F &gt; F_c.</li>
+</ul>
+</div>
+<div>
+<div class="los" style="margin-top:4px;">LOS 8.c: Compare parametric and nonparametric tests.</div>
+<table>
+<tr><th>Feature</th><th>Parametric</th><th>Nonparametric</th></tr>
+<tr><td>Assumptions</td><td>Specific distribution (usually normal); about parameters</td><td>Few distribution assumptions</td></tr>
+<tr><td>Data</td><td>Continuous, interval/ratio scale</td><td>Can use ranks (ordinal) or non-normal</td></tr>
+<tr><td>Use when</td><td>Normal populations; testing means/variances</td><td>Small non-normal sample; ranked data; testing independence or randomness</td></tr>
+<tr><td>Examples</td><td>t-test, z-test, F-test, χ²</td><td>Spearman rank, runs test, contingency χ²</td></tr>
+</table>
+<div class="tip">Nonparametric when: (1) small sample from non-normal pop, (2) data are ranks, (3) testing if data are random (runs test).</div>
+</div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 9 ════════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 9</div><div class="r-title">Parametric and Nonparametric Tests of Independence</div></div>
+
+<div class="los">LOS 9.a: Parametric and nonparametric tests of the hypothesis that population correlation = 0.</div>
+<div class="two-col">
+<div>
+<span class="kw">Parametric — Pearson Correlation Test</span>
+<div class="formula-box">H₀: ρ = 0   vs.   Hₐ: ρ ≠ 0
+
+t = r × √(n−2) / √(1−r²)     df = n−2
+
+Reject H₀ if |t| > t_critical (at α/2, df = n−2).</div>
+<ul>
+  <li>Test statistic increases with both higher |r| AND larger n.</li>
+  <li>Assumes both variables are <b>normally distributed</b>.</li>
+</ul>
+</div>
+<div>
+<span class="kw">Nonparametric — Spearman Rank Correlation</span>
+<div class="formula-box">r_s = 1 − [6 × Σdᵢ²] / [n(n²−1)]
+  where dᵢ = difference in ranks for obs i
+  (tied ranks: assign average rank)
+
+Test statistic (n > 30):
+  t = r_s × √(n−2) / √(1−r_s²)   ~ t(n−2)</div>
+<div class="note">Use Spearman when data are ranks (ordinal), or when the normality assumption of Pearson is not met.</div>
+</div>
+</div>
+
+<div class="los">LOS 9.b: Explain tests of independence based on contingency table data.</div>
+<div class="two-col">
+<div>
+<span class="kw">Chi-Square Contingency Table Test</span>
+<div class="formula-box">H₀: Two characteristics are INDEPENDENT
+Hₐ: Two characteristics are NOT independent
+
+Test statistic:  χ² = Σ (Oᵢⱼ − Eᵢⱼ)² / Eᵢⱼ
+  for all cells (i,j)
+
+Expected frequency:
+  Eᵢⱼ = (Row i total × Column j total) / Grand total
+
+Degrees of freedom: (r−1)(c−1)
+  where r = number of rows, c = number of columns
+
+Reject H₀ if χ² > χ²_critical (at chosen α)</div>
+</div>
+<div>
+<ul>
+  <li>A contingency (two-way) table shows the number of observations with combinations of two characteristics.</li>
+  <li>Tests whether the two categorical characteristics are independent of each other.</li>
+  <li>Uses the chi-square distribution — same distribution as the variance test, but different purpose.</li>
+</ul>
+<div class="tip">Don't confuse: Reading 8 chi-square tests a <i>single variance</i>. Reading 9 chi-square tests <i>independence</i> between two categorical variables from a contingency table.</div>
+</div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 10 ═══════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 10</div><div class="r-title">Simple Linear Regression</div></div>
+
+<div class="los">LOS 10.a: Describe simple linear regression; least squares criterion; interpret coefficients.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Population model:  Yᵢ = b₀ + b₁Xᵢ + εᵢ
+
+OLS estimated line: Ŷᵢ = b̂₀ + b̂₁Xᵢ
+
+Slope:     b̂₁ = Cov(X,Y) / Var(X)
+
+Intercept: b̂₀ = Ȳ − b̂₁X̄
+           [line passes through (X̄, Ȳ)]
+
+OLS minimizes SSE = Σ(Yᵢ − Ŷᵢ)²</div>
+<ul>
+  <li><b>Dependent variable (Y):</b> Explained / endogenous / predicted variable.</li>
+  <li><b>Independent variable (X):</b> Explanatory / exogenous / predicting variable.</li>
+  <li><b>b̂₁:</b> Expected change in Y per 1-unit change in X.</li>
+  <li><b>b̂₀:</b> Expected value of Y when X = 0.</li>
+  <li><b>Beta:</b> Slope of regressing security excess returns on market excess returns = systematic risk.</li>
+</ul>
+</div>
+<div>
+<div class="los" style="margin-bottom:4px;">LOS 10.b: Explain assumptions; how residual plots indicate violations.</div>
+<table>
+<tr><th>Assumption</th><th>Violation Name</th><th>Residual Plot Sign</th></tr>
+<tr><td>1. Linear relationship exists</td><td>Nonlinearity</td><td>Curved U or S pattern vs. X</td></tr>
+<tr><td>2. Constant residual variance (homoskedasticity)</td><td>Heteroskedasticity</td><td>Fan/funnel shape vs. X</td></tr>
+<tr><td>3. Independent residuals</td><td>Serial correlation (autocorrelation)</td><td>Pattern in residuals vs. time</td></tr>
+<tr><td>4. Normally distributed residuals</td><td>Non-normality</td><td>Heavy-tailed QQ-plot</td></tr>
+</table>
+<div class="note">Outliers (extreme X or Y values) disproportionately influence OLS estimates. Large n reduces impact of non-normality (CLT applies to parameter estimates).</div>
+</div>
+</div>
+
+<div class="los">LOS 10.c & 10.d: ANOVA table, measures of fit, standard error of estimate, F-test.</div>
+<div class="two-col">
+<div>
+<span class="kw">ANOVA Decomposition</span>
+<div class="formula-box">SST = SSR + SSE
+
+SST = Σ(Yᵢ − Ȳ)²    [Total variation in Y]
+SSR = Σ(Ŷᵢ − Ȳ)²    [Explained by X]
+SSE = Σ(Yᵢ − Ŷᵢ)²   [Unexplained / residuals]
+
+MSR = SSR / k            (k = # independent variables)
+MSE = SSE / (n−k−1) = SSE/(n−2) for simple regression</div>
+<table>
+<tr><th>Source</th><th>SS</th><th>df</th><th>MS</th></tr>
+<tr><td>Regression</td><td>SSR</td><td>k = 1</td><td>MSR = SSR/1</td></tr>
+<tr><td>Error</td><td>SSE</td><td>n−2</td><td>MSE = SSE/(n−2)</td></tr>
+<tr><td>Total</td><td>SST</td><td>n−1</td><td>—</td></tr>
+</table>
+</div>
+<div>
+<span class="kw">Key Goodness-of-Fit Measures</span>
+<div class="formula-box">R² = SSR/SST = 1 − SSE/SST
+   = r²  (for simple regression only)
+   = % of variation in Y explained by X (0 to 1)
+
+SEE = √(MSE) = √(SSE/(n−2))
+    = std dev of residuals; LOWER = better fit
+
+F-stat = MSR/MSE    df₁=1, df₂=n−2
+  Tests H₀: b₁ = 0
+  For simple regression: F = t²
+
+t-stat (slope) = (b̂₁ − b₁₀) / SE(b̂₁)    df = n−2
+  For significance test: H₀: b₁ = 0, Hₐ: b₁ ≠ 0</div>
+<div class="tip">For simple regression: F-test on slope ↔ t-test on slope (F = t²). Both test H₀: b₁ = 0.</div>
+</div>
+</div>
+
+<div class="los">LOS 10.e: Calculate predicted value and prediction interval.</div>
+<div class="two-col">
+<div>
+<div class="formula-box">Predicted value: Ŷ_p = b̂₀ + b̂₁ × X_p
+
+Prediction interval:
+  Ŷ_p ± t_c × s_f     where df = n−2
+
+s_f = standard error of the forecast (given on exam)</div>
+</div>
+<div>
+<div class="note">Prediction interval for a SPECIFIC value of Y is WIDER than a confidence interval for the mean of Y at a given X, because it includes individual (idiosyncratic) variation around the regression line.</div>
+</div>
+</div>
+
+<div class="los">LOS 10.f: Describe different functional forms of simple linear regressions.</div>
+<table>
+<tr><th>Model</th><th>Transformation</th><th>Equation</th><th>Slope Interpretation</th><th>Use When</th></tr>
+<tr><td>Lin-Lin (OLS)</td><td>None</td><td>Y = b₀ + b₁X</td><td>Δ Y per 1-unit Δ X (absolute/absolute)</td><td>Linear relationship</td></tr>
+<tr><td>Log-Lin</td><td>ln(Y)</td><td>ln(Y) = b₀ + b₁X</td><td>% Δ Y per 1-unit Δ X (relative/absolute)</td><td>Y grows exponentially with X (e.g., EPS over time)</td></tr>
+<tr><td>Lin-Log</td><td>ln(X)</td><td>Y = b₀ + b₁ln(X)</td><td>Δ Y per 1% Δ X (absolute/relative)</td><td>Diminishing returns to X</td></tr>
+<tr><td>Log-Log</td><td>ln(Y) and ln(X)</td><td>ln(Y) = b₀ + b₁ln(X)</td><td>% Δ Y per 1% Δ X (elasticity)</td><td>Power-law / constant elasticity relationship</td></tr>
+</table>
+<div class="tip">Choose functional form based on: (1) economic theory, (2) scatter plot shape, (3) comparing R² and SEE across models. Log-log gives constant elasticity — common in economics.</div>
+</div>
+
+
+<!-- ═══════════════════════════ READING 11 ═══════════════════════════════ -->
+<div class="reading">
+<div class="r-header"><div class="r-num">Reading 11</div><div class="r-title">Introduction to Big Data Techniques</div></div>
+
+<div class="los">LOS 11.a: Describe aspects of fintech relevant for financial data.</div>
+<p><b>Fintech</b> = developments in technology applied to the financial services industry. Key areas: handling large datasets from multiple sources, and AI/ML tools for analysis.</p>
+
+<div class="los">LOS 11.b: Describe Big Data, artificial intelligence, and machine learning.</div>
+<div class="two-col">
+<div>
+<span class="kw">Big Data — The 3 V's</span>
+<table>
+<tr><th>V</th><th>Description</th></tr>
+<tr><td>Volume</td><td>Massive scale: terabytes (1,000 GB) to petabytes (1,000 TB) and growing</td></tr>
+<tr><td>Velocity</td><td>Speed of communication. <b>Low latency</b> = real-time (stock prices). <b>High latency</b> = periodic/delayed.</td></tr>
+<tr><td>Variety</td><td>Structured (spreadsheets/DBs) → Semi-structured (photos/web code) → Unstructured (video, voice)</td></tr>
+</table>
+<span class="kw">Big Data Sources</span>
+<ul>
+  <li><b>Individuals:</b> Social media, online reviews, email, website visits.</li>
+  <li><b>Corporate exhaust:</b> Bank records, retail scanner data generated as business byproduct.</li>
+  <li><b>IoT (Internet of Things):</b> Sensors/RFID chips in smartphones, buildings, devices.</li>
+</ul>
+</div>
+<div>
+<span class="kw">AI &amp; Machine Learning</span>
+<table>
+<tr><th>Concept</th><th>Definition</th></tr>
+<tr><td>Artificial Intelligence</td><td>Computer systems simulating human cognition. Neural networks are a key example.</td></tr>
+<tr><td>Machine Learning</td><td>Algorithms that learn from data without explicit programming. Requires vast data. Process: training → validation → test datasets.</td></tr>
+<tr><td>Supervised learning</td><td>Input AND output data labeled; machine learns to map inputs to outputs, then applies model to new data.</td></tr>
+<tr><td>Unsupervised learning</td><td>Only input data (unlabeled); machine discovers structure and patterns.</td></tr>
+<tr><td>Deep learning</td><td>Multi-layer neural networks; identifies patterns from simple to complex. Used in image/speech recognition.</td></tr>
+<tr><td>Overfitting</td><td>Model too complex; learns noise as signal; poor out-of-sample performance.</td></tr>
+<tr><td>Underfitting</td><td>Model too simple; misses real patterns; poor in-sample fit.</td></tr>
+</table>
+</div>
+</div>
+
+<div class="los">LOS 11.c: Describe applications of Big Data and Data Science to investment management.</div>
+<table>
+<tr><th>Application</th><th>Description</th><th>Finance Examples</th></tr>
+<tr><td>Text Analytics</td><td>Analysis of unstructured text/voice data. Examines word/phrase frequency.</td><td>Evaluating SEC filings; earnings call transcripts; news sentiment</td></tr>
+<tr><td>Natural Language Processing (NLP)</td><td>Computers interpret human language (speech recognition, translation).</td><td>Compliance checking employee comms; evaluating research reports for subtle sentiment shifts</td></tr>
+<tr><td>Risk Governance</td><td>Machine learning for real-time risk monitoring, stress testing, scenario analysis.</td><td>Large-scale quantitative + qualitative risk modeling; real-time exposure monitoring</td></tr>
+<tr><td>Algorithmic Trading</td><td>Computerized trading based on predetermined rules.</td><td>Optimal trade execution; splitting large orders across exchanges; high-frequency trading to exploit intraday mispricings</td></tr>
+</table>
+</div>
+
+
+<!-- ═══════════════════════ MASTER FORMULA SHEET ═══════════════════════════ -->
+<div class="reading">
+<div class="formula-sheet-header">MASTER FORMULA &amp; CONCEPT REFERENCE SHEET</div>
+
+<div class="three-col">
+<div>
+<div class="fs-block">
+<h4>Reading 1 — Returns</h4>
+<div class="f">HPR = (P₁−P₀+D)/P₀
+Arith Mean = ΣRᵢ/n
+Geo Mean = [(1+R₁)…(1+Rₙ)]^(1/n)−1
+Harm Mean = N/Σ(1/Xᵢ)
+Ann HPR = (1+HPR)^(365/d)−1
+r_cc = ln(1+HPR) = ln(P₁/P₀)
+Real ≈ Nominal − Inflation
+Nom RF ≈ Real RF + Inflation
+r_L = r+(r−r_B)(V_B/V₀)
+Harm &lt; Geo &lt; Arith mean</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 2 — TVM</h4>
+<div class="f">PV = FV/(1+r)ⁿ
+Perpetuity: PV = CF/r
+Gordon: P₀ = D₁/(k_e−g)
+k_e = D₁/P₀ + g
+g = k_e − D₁/P₀
+Fwd rate: 1y1y =
+  (1+S₂)²/(1+S₁)−1
+Fwd FX: F = S×(1+r_p)/(1+r_b)
+Hedge ratio: h =
+  (C_u−C_d)/(S_u−S_d)</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 3 — Statistics</h4>
+<div class="f">X̄ = ΣXᵢ/n
+MAD = Σ|Xᵢ−X̄|/n
+s² = Σ(Xᵢ−X̄)²/(n−1)
+CV = s/X̄
+Target DD =
+  √[Σ(Xᵢ−R_T)²/(n−1)] (Xᵢ&lt;R_T)
+Cov = Σ[(Xᵢ−X̄)(Yᵢ−Ȳ)]/(n−1)
+ρ = Cov/(s_X × s_Y)
+Skew ≈ Σ(Xᵢ−X̄)³/n / s³
+Kurtosis ≈ Σ(Xᵢ−X̄)⁴/n / s⁴
+Excess Kurt = Kurt − 3</div>
+</div>
+</div>
+
+<div>
+<div class="fs-block">
+<h4>Reading 4 — Probability</h4>
+<div class="f">E(X) = Σ P(xᵢ)×xᵢ
+σ² = Σ P(xᵢ)×(xᵢ−E(X))²
+Bayes:
+  P(A|B) = P(B|A)×P(A)/P(B)
+  P(B) = P(B|A)P(A)+P(B|Aᶜ)P(Aᶜ)</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 5 — Portfolio</h4>
+<div class="f">E(R_p) = Σwᵢ×E(Rᵢ)
+σ²_p = w²_Aσ²_A + w²_Bσ²_B
+      + 2w_Aw_BρABσ_Aσ_B
+Cov(RA,RB) from joint prob:
+  Σ P(s)×[RA−E(RA)]×[RB−E(RB)]
+SFR = [E(Rp)−R_L]/σp
+Shortfall P = N(−SFR)</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 6 — Simulation</h4>
+<div class="f">Lognormal: P_T = P₀×e^(r_{0,T})
+  (r_{0,T} ~ Normal)
+If X~Normal → e^X ~ Lognormal</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 7 — Estimation</h4>
+<div class="f">SE (σ known):   σ_x̄ = σ/√n
+SE (σ unknown): s_x̄ = s/√n
+CLT: n≥30 → x̄~Normal(μ, σ²/n)</div>
+</div>
+</div>
+
+<div>
+<div class="fs-block">
+<h4>Reading 8 — Hypothesis Tests</h4>
+<div class="f">Test stat = (stat−hyp)/SE
+z (mean, σ known): (X̄−μ₀)/(σ/√n)
+t (mean, σ unknown): (X̄−μ₀)/(s/√n) df=n−1
+t (diff means): (X̄₁−X̄₂)/SE_pool df=n₁+n₂−2
+t (paired): d̄/(s_d/√n) df=n−1
+χ² (variance): (n−1)s²/σ₀² df=n−1
+F (2 variances): s₁²/s₂² (large num) df=n₁−1,n₂−1
+Power = 1−β
+Critical z: 5%=±1.96, 1%=±2.576, 10%=±1.645</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 9 — Independence Tests</h4>
+<div class="f">Pearson corr test:
+  t = r√(n−2)/√(1−r²) df=n−2
+Spearman rank corr:
+  r_s = 1−6Σdᵢ²/[n(n²−1)]
+  t = r_s√(n−2)/√(1−r_s²) df=n−2
+Contingency χ²:
+  χ² = Σ(O−E)²/E
+  E_ij = (row_i×col_j)/grand total
+  df = (r−1)(c−1)</div>
+</div>
+
+<div class="fs-block">
+<h4>Reading 10 — Regression</h4>
+<div class="f">Ŷ = b̂₀ + b̂₁X
+b̂₁ = Cov(X,Y)/Var(X)
+b̂₀ = Ȳ−b̂₁X̄
+SST=SSR+SSE
+R² = SSR/SST = r² (simple)
+SEE = √(SSE/(n−2))
+F = MSR/MSE df=1,n−2
+t(slope) = b̂₁/SE(b̂₁) df=n−2
+F = t² (simple regression)
+Ŷ_p ± t_c×s_f (pred interval)
+Log-log: b̂₁ = elasticity</div>
+</div>
+</div>
+</div>
+
+<!-- KEY TERMS TABLE -->
+<div style="margin-top:8px;">
+<div class="section-title">Quick-Reference: Key Terms &amp; Keywords</div>
+<table>
+<tr><th>Term</th><th>Definition</th><th>Term</th><th>Definition</th></tr>
+<tr><td>YTM</td><td>Yield to maturity; discount rate equating bond PV to price</td><td>OLS</td><td>Ordinary Least Squares; minimizes SSE</td></tr>
+<tr><td>IRR</td><td>Internal Rate of Return; NPV = 0</td><td>SEE</td><td>Standard Error of Estimate; std dev of residuals</td></tr>
+<tr><td>DDM</td><td>Dividend Discount Model</td><td>Homoskedasticity</td><td>Constant residual variance assumption in regression</td></tr>
+<tr><td>MWR</td><td>Money-Weighted Return = IRR of portfolio</td><td>Heteroskedasticity</td><td>Non-constant residual variance; regression violation</td></tr>
+<tr><td>TWR</td><td>Time-Weighted Return; removes cash flow timing effects</td><td>Leptokurtic</td><td>Fat-tailed distribution; excess kurtosis &gt; 0</td></tr>
+<tr><td>HPR</td><td>Holding Period Return; single-period return</td><td>Platykurtic</td><td>Thin-tailed distribution; excess kurtosis &lt; 0</td></tr>
+<tr><td>CV</td><td>Coefficient of Variation = s/X̄; risk per unit return</td><td>Spurious Correlation</td><td>Correlation without causation; may be due to third variable</td></tr>
+<tr><td>SFR</td><td>Safety-First Ratio = [E(Rp)−R_L]/σp</td><td>Overfitting (ML)</td><td>Model learns noise; poor out-of-sample performance</td></tr>
+<tr><td>CLT</td><td>Central Limit Theorem; sample means → normal for n≥30</td><td>NLP</td><td>Natural Language Processing; computers interpret human language</td></tr>
+<tr><td>MAD</td><td>Mean Absolute Deviation</td><td>IoT</td><td>Internet of Things; network of sensor-equipped devices</td></tr>
+</table>
+</div>
+</div>
+
+</body>
+</html>

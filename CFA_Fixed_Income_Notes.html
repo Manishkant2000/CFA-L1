@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Level I — Fixed Income Study Notes (R47–R65)</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f172a;
+    --blue: #1e40af;
+    --blue-light: #3b82f6;
+    --red: #dc2626;
+    --green: #15803d;
+    --amber: #b45309;
+    --teal: #0f766e;
+    --purple: #7c3aed;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --muted: #64748b;
+    --formula-bg: #fffbeb;
+    --formula-border: #f59e0b;
+    --kw-bg: #f0fdf4;
+    --kw-border: #16a34a;
+    --warn-bg: #fef2f2;
+    --warn-border: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Sora', sans-serif; background: var(--bg); color: var(--text); font-size: 12.5px; line-height: 1.55; }
+
+  /* HEADER */
+  .site-header { background: var(--navy); color: white; padding: 14px 20px; border-bottom: 3px solid var(--blue-light); position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .site-header h1 { font-size: 15px; font-weight: 700; }
+  .site-header p { font-size: 11px; color: #93c5fd; margin-top: 2px; }
+  .toc-btn { background: var(--red); border: none; color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600; }
+
+  /* TOC */
+  #toc { background: var(--navy); color: white; padding: 12px 20px; display: none; border-bottom: 2px solid var(--blue-light); }
+  #toc.open { display: block; }
+  #toc .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 20px; }
+  #toc a { color: #93c5fd; text-decoration: none; font-size: 11px; display: block; padding: 2px 0; }
+  #toc a:hover { color: #fbbf24; }
+
+  /* NOTE BANNER */
+  .note-banner { background: #1d4ed8; color: white; padding: 8px 20px; font-size: 11.5px; text-align: center; font-weight: 600; }
+
+  /* CONTAINER */
+  .container { max-width: 1300px; margin: 0 auto; padding: 16px 14px; }
+
+  /* READING */
+  .reading { background: var(--card); border-radius: 7px; margin-bottom: 20px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+  .reading-header { background: var(--blue); color: white; padding: 9px 16px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .rnum { background: var(--red); padding: 2px 8px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .reading-body { padding: 14px 16px; }
+
+  /* MODULES */
+  .module { margin-bottom: 14px; }
+  .mod-title { font-size: 12px; font-weight: 700; color: var(--blue); border-left: 3px solid var(--blue); padding-left: 8px; margin: 12px 0 7px; }
+  .sec-title { font-size: 11px; font-weight: 700; color: var(--red); margin: 9px 0 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* GRID */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .four-col { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  @media(max-width:750px) { .two-col,.three-col,.four-col { grid-template-columns: 1fr; } }
+
+  /* CARD */
+  .card { background: #f8fafc; border: 1px solid var(--border); border-radius: 5px; padding: 9px 11px; }
+  .card-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 5px; }
+
+  /* FORMULA */
+  .formula { background: var(--formula-bg); border-left: 3px solid var(--formula-border); padding: 6px 11px; margin: 5px 0; border-radius: 0 4px 4px 0; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #78350f; }
+
+  /* KEYWORD */
+  .kw { background: var(--kw-bg); border-left: 3px solid var(--kw-border); padding: 5px 11px; margin: 4px 0; border-radius: 0 4px 4px 0; font-size: 12px; }
+  .kw b { color: var(--green); }
+
+  /* WARNING/IMPORTANT */
+  .warn { background: var(--warn-bg); border-left: 3px solid var(--warn-border); padding: 5px 11px; margin: 4px 0; border-radius: 0 4px 4px 0; font-size: 12px; }
+
+  /* BULLETS */
+  ul.notes { list-style: none; padding: 0; margin: 3px 0; }
+  ul.notes li { padding: 2px 0 2px 14px; position: relative; font-size: 12px; border-bottom: 1px dotted #f1f5f9; }
+  ul.notes li:last-child { border-bottom: none; }
+  ul.notes li::before { content: "▸"; position: absolute; left: 0; color: var(--red); font-size: 9px; top: 4px; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; margin: 7px 0 11px; }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { background: var(--blue); color: white; padding: 6px 8px; text-align: left; font-weight: 700; font-size: 11px; }
+  td { padding: 5px 8px; border: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .tick { color: var(--green); font-weight: 700; }
+  .cross { color: var(--red); font-weight: 700; }
+
+  /* PRIORITY LIST */
+  .priority-list { list-style: none; counter-reset: priority; }
+  .priority-list li { counter-increment: priority; padding: 3px 0 3px 28px; position: relative; font-size: 12px; }
+  .priority-list li::before { content: counter(priority); position: absolute; left: 0; background: var(--blue); color: white; width: 18px; height: 18px; border-radius: 50%; text-align: center; line-height: 18px; font-size: 10px; font-weight: 700; top: 3px; }
+
+  /* BADGE */
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin: 0 2px; }
+  .badge-ig { background: #d1fae5; color: #065f46; }
+  .badge-hy { background: #fee2e2; color: #991b1b; }
+  .badge-note { background: #fef3c7; color: #92400e; }
+
+  /* FORMULA GRID */
+  .fg { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 7px; margin: 8px 0; }
+  .fg-item { background: var(--formula-bg); border: 1px solid var(--formula-border); border-radius: 5px; padding: 7px 10px; }
+  .fg-label { font-size: 10px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+  .fg-f { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #78350f; }
+
+  /* SENIORITY */
+  .seniority { list-style: none; }
+  .seniority li { padding: 4px 10px; margin: 2px 0; border-radius: 4px; font-size: 11.5px; font-weight: 600; }
+  .s1 { background: #1d4ed8; color: white; }
+  .s2 { background: #2563eb; color: white; }
+  .s3 { background: #3b82f6; color: white; }
+  .s4 { background: #93c5fd; color: var(--navy); }
+  .s5 { background: #fca5a5; color: var(--navy); }
+  .s6 { background: #f87171; color: white; }
+  .s7 { background: #dc2626; color: white; }
+
+  /* CREDIT RATING TABLE */
+  .rating-ig td { background: #d1fae5 !important; }
+  .rating-hy td { background: #fee2e2 !important; }
+
+  .footer-bar { background: var(--navy); color: #93c5fd; text-align: center; padding: 12px; font-size: 12px; border-radius: 0 0 7px 7px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <h1>CFA Level I — Fixed Income: Complete Study Notes</h1>
+    <p>Readings 47–65 &nbsp;|&nbsp; All Keywords, Concepts & Formulas &nbsp;|&nbsp; Exam-Ready Reference</p>
+  </div>
+  <button class="toc-btn" onclick="document.getElementById('toc').classList.toggle('open')">☰ Contents</button>
+</header>
+
+<nav id="toc">
+  <div class="toc-grid">
+    <a href="#r47">R47: FI Instrument Features</a>
+    <a href="#r48">R48: Cash Flows & Types</a>
+    <a href="#r49">R49: Issuance & Trading</a>
+    <a href="#r50">R50: Corporate FI Markets</a>
+    <a href="#r51">R51: Government FI Markets</a>
+    <a href="#r52">R52: Bond Valuation</a>
+    <a href="#r53">R53: Yield Measures (Fixed-Rate)</a>
+    <a href="#r54">R54: Yield Measures (FRN & MM)</a>
+    <a href="#r55">R55: Term Structure (Spot/Par/Fwd)</a>
+    <a href="#r56">R56: Interest Rate Risk & Return</a>
+    <a href="#r57">R57: Duration Measures</a>
+    <a href="#r58">R58: Convexity</a>
+    <a href="#r59">R59: Curve-Based & Empirical Risk</a>
+    <a href="#r60">R60: Credit Risk</a>
+    <a href="#r61">R61: Credit Analysis — Govt</a>
+    <a href="#r62">R62: Credit Analysis — Corporate</a>
+    <a href="#r63">R63: Securitization</a>
+    <a href="#r64">R64: ABS Features</a>
+    <a href="#r65">R65: MBS Features</a>
+    <a href="#formulas">⚡ Formula Sheet</a>
+  </div>
+</nav>
+
+<div class="note-banner">📌 Note: File uploaded as "Derivatives_CFA.pdf" — actual content covers Fixed Income (Readings 47–65). All chapters fully covered below.</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════ R47 ══════════════════════════════ -->
+<div class="reading" id="r47">
+  <div class="reading-header"><span class="rnum">R47</span> FIXED-INCOME INSTRUMENT FEATURES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 47.a: Features of a Fixed-Income Security</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Core Features (Memorize All)</div>
+        <ul class="notes">
+          <li><b>Issuer:</b> Sovereign govts, corporations, local govts, supranational entities (IMF), quasi-govt, special purpose entities (SPEs → ABS)</li>
+          <li><b>Maturity date:</b> Date of final cash flow | <b>Tenor:</b> Remaining time to maturity</li>
+          <li><b>Money market securities:</b> Original maturity ≤1 year</li>
+          <li><b>Capital market securities:</b> Original maturity >1 year</li>
+          <li><b>Perpetual bonds:</b> No stated maturity date</li>
+          <li><b>Par / Face / Principal value:</b> Amount repaid (usually at maturity)</li>
+          <li><b>Coupon rate:</b> Annual % of par paid as interest; can be annual/semi/quarterly/monthly</li>
+          <li><b>Floating-rate notes (FRNs/floaters):</b> Coupon = MRR + fixed margin (in basis points)</li>
+          <li><b>MRR (Market Reference Rate):</b> e.g., SOFR</li>
+          <li><b>Zero-coupon / Pure discount bonds:</b> No coupon; sold at discount to par</li>
+          <li><b>Seniority:</b> Senior debt ranks above junior (subordinated) debt</li>
+          <li><b>Contingency provisions:</b> Embedded options (call, put, convertible)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Yield & Yield Curve</div>
+        <ul class="notes">
+          <li><b>Yield:</b> Expected return from investing in bond; inversely related to price</li>
+          <li><b>Inverse price-yield relationship:</b> ↑ price → ↓ yield; ↓ price → ↑ yield (for fixed-coupon bonds)</li>
+          <li><b>Yield curve:</b> Plot of yields vs. maturity for same issuer/class</li>
+          <li><b>Normal (upward-sloping):</b> Higher yields for longer maturities — most common</li>
+          <li><b>Inverted (downward-sloping):</b> Less common; may signal recession expectations</li>
+          <li><b>Spread:</b> Extra yield over benchmark (e.g., govt bond); measures credit risk of riskier issuers</li>
+          <li><b>Basis points (bps):</b> 1/100th of 1% (0.01%)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mod-title">LOS 47.b: Bond Indenture & Covenants</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Bond Indenture</div>
+        <ul class="notes">
+          <li><b>Bond indenture (trust deed):</b> Legal contract between issuer and bondholders defining obligations, restrictions, sources of repayment</li>
+          <li><b>Secured bond:</b> Backed by collateral (lien/pledge on specific assets)</li>
+          <li><b>Unsecured bond:</b> General claim on issuer's cash flows only</li>
+          <li><b>ABS:</b> Repaid from cash flows of assets held by SPE</li>
+          <li><b>Sovereign bonds:</b> Repaid from taxation powers</li>
+          <li><b>Local govt bonds:</b> From local taxes or infrastructure revenue</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Covenants</div>
+        <ul class="notes">
+          <li><b>Affirmative covenants:</b> Actions issuer MUST take (reports, use of proceeds, right to redeem at premium if merger)</li>
+          <li><b>Cross-default clause:</b> Default on ANY debt → default on THIS bond</li>
+          <li><b>Pari passu clause:</b> Same priority claims as other senior debt</li>
+          <li><b>Negative covenants:</b> Actions issuer is RESTRICTED from (asset sales, additional pledges, senior debt issuance, extra borrowing/buybacks/dividends)</li>
+          <li><b>Negative pledge clause:</b> Cannot issue debt more senior than existing</li>
+          <li><b>Incurrence test:</b> Actions only if financial ratios meet threshold (e.g., debt/EBITDA below X)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R48 ══════════════════════════════ -->
+<div class="reading" id="r48">
+  <div class="reading-header"><span class="rnum">R48</span> FIXED-INCOME CASH FLOWS AND TYPES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 48.a: Cash Flow Structures & Contingency Provisions</div>
+    <div class="three-col">
+      <div class="card">
+        <div class="card-title">Principal Repayment Structures</div>
+        <ul class="notes">
+          <li><b>Bullet structure:</b> Coupon payments + full principal at maturity</li>
+          <li><b>Fully amortizing:</b> Equal periodic payments of interest + principal; principal fully repaid by final payment. Calculator: N, I/Y, PV, FV=0, CPT PMT</li>
+          <li><b>Partially amortizing:</b> Some principal repaid periodically + <b>balloon payment</b> at maturity (remaining principal)</li>
+          <li><b>Sinking fund provision:</b> Trustee redeems portions of principal at intervals; reduces credit risk but creates reinvestment risk for bondholders</li>
+          <li><b>Waterfall structure:</b> ABS/MBS; junior tranches don't receive principal until senior paid in full</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Coupon Structures</div>
+        <ul class="notes">
+          <li><b>Fixed coupon:</b> Set % of par</li>
+          <li><b>FRN (Floater):</b> Coupon = MRR + quoted margin; coupon set at start of period, paid in arrears</li>
+          <li><b>Step-up coupon:</b> Increases on predetermined schedule</li>
+          <li><b>Credit-linked note:</b> Coupon rises if issuer credit rating falls (and vice versa); same for leveraged loans with debt/EBITDA threshold</li>
+          <li><b>Payment-in-kind (PIK):</b> Coupon paid by increasing principal (more bonds); high-leverage issuers</li>
+          <li><b>Green bond:</b> Coupon rises if environmental goals not met</li>
+          <li><b>Index-linked / Inflation-linked (linkers):</b> Cash flows tied to inflation index</li>
+          <li><b>Zero-coupon bond:</b> Single payment at maturity; sold at discount; minimizes reinvestment risk</li>
+          <li><b>Deferred coupon bond:</b> No coupons for a period, then regular coupons begin</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Inflation-Indexed Bond Types</div>
+        <ul class="notes">
+          <li><b>Interest-indexed:</b> Coupon rate adjusted for inflation; principal unchanged (principal NOT protected)</li>
+          <li><b>Capital-indexed (TIPS):</b> Coupon rate fixed; principal adjusted for inflation → coupon payment = real rate × adjusted principal. In deflation: TIPS pay max(inflation-adjusted or original par)</li>
+          <li><b>Capital-indexed coupon rate</b> = real rate of interest</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Embedded Options</div>
+        <ul class="notes">
+          <li><b>Straight / option-free bond:</b> No embedded options</li>
+          <li><b>Callable bond:</b> Issuer can redeem before maturity at call price; creates call risk for bondholder. Call price limits bond upside → callable bond &lt; straight bond price</li>
+          <li><b>Call protection period:</b> No call before this date</li>
+          <li><b>Putable bond:</b> Bondholder can sell back at put price; valuable to investor → putable bond &gt; straight bond price</li>
+          <li><b>Convertible bond:</b> Bondholder can convert to shares; lower yield; conversion price, conversion ratio, conversion value</li>
+          <li><b>Conversion ratio</b> = Par / Conversion price</li>
+          <li><b>Conversion value</b> = Conversion ratio × Share price</li>
+          <li><b>Warrants:</b> Right to buy shares at fixed price; detachable and tradable</li>
+          <li><b>CoCos (Contingent Convertibles):</b> Auto-convert to equity if bank capital falls below required level</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mod-title">LOS 48.b: Legal, Regulatory & Tax Considerations</div>
+    <div class="three-col">
+      <div class="card">
+        <div class="card-title">Bond Classification by Market</div>
+        <ul class="notes">
+          <li><b>Domestic bonds:</b> Issuer's home country and currency</li>
+          <li><b>Foreign bonds:</b> Foreign issuer, trades in different domestic market</li>
+          <li><b>Eurobonds:</b> Issued outside any single country's jurisdiction; any currency; less regulated; initially bearer bonds, now mostly registered</li>
+          <li><b>Eurodollar bonds:</b> Eurobonds denominated in USD</li>
+          <li><b>Euroyen bonds:</b> Eurobonds denominated in JPY</li>
+          <li><b>Global bonds:</b> Trade in Eurobond market AND ≥1 domestic market</li>
+          <li><b>International bonds:</b> Collective term for foreign, global, Eurobonds</li>
+          <li><b>Sukuk:</b> Sharia-compliant bonds; payments = rent on underlying assets</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Taxation</div>
+        <ul class="notes">
+          <li><b>Coupon interest:</b> Taxed as ordinary income</li>
+          <li><b>Capital gains:</b> From selling bond above purchase price; often taxed at lower rate; long-term gains taxed at lowest rate</li>
+          <li><b>OID bonds (Original Issue Discount):</b> Sold at significant discount to par; discount treated as taxable interest income each year, even without cash payment</li>
+          <li><b>Municipal bonds (US):</b> Interest usually exempt from national income tax (and state tax in issuer's state)</li>
+          <li><b>Premium bonds:</b> Some jurisdictions allow portion of premium to offset taxable coupon</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">FRN Example Calculation</div>
+        <div class="formula">FRN coupon per period = (MRR + QM) / periodicity × par<br><br>Example: MRR = 2.3% annually, QM = 0.75%, quarterly pay:<br>Quarterly coupon = (2.3% + 0.75%) / 4 = 0.7625% × par</div>
+        <div class="card-title" style="margin-top:8px">Amortizing Loan (Calculator)</div>
+        <div class="formula">Fully amortizing: N, I/Y, PV=loan, FV=0 → CPT PMT<br>Partially amortizing: N, I/Y, PV=loan, FV=balloon → CPT PMT</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R49 ══════════════════════════════ -->
+<div class="reading" id="r49">
+  <div class="reading-header"><span class="rnum">R49</span> FIXED-INCOME ISSUANCE AND TRADING</div>
+  <div class="reading-body">
+    <div class="three-col">
+      <div class="card">
+        <div class="card-title">Market Classification</div>
+        <ul class="notes">
+          <li><b>By issuer:</b> Sovereign govt, corporate, SPE (ABS)</li>
+          <li><b>By credit quality:</b> <span class="badge badge-ig">Investment Grade</span> Baa3/BBB− and above | <span class="badge badge-hy">High Yield</span> Ba1/BB+ and below ("junk")</li>
+          <li><b>By maturity:</b> Short-term/money market ≤1yr | Intermediate 1–10yr | Long-term &gt;10yr</li>
+          <li><b>Fallen angels:</b> Previously IG bonds downgraded to HY</li>
+          <li><b>Aggregate indexes:</b> Broad selection across all sectors (e.g., Bloomberg Barclays Aggregate)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Investor Positioning</div>
+        <ul class="notes">
+          <li><b>Pension funds / insurance:</b> Long-term IG (to match long-term liabilities); prohibited from HY by regulation</li>
+          <li><b>Corporations:</b> Short-term IG (commercial paper, repos, ABCP)</li>
+          <li><b>Central banks:</b> Intermediate-term Treasury notes (monetary policy)</li>
+          <li><b>Bond funds / ETFs:</b> Intermediate IG (excluding Treasuries)</li>
+          <li><b>Asset managers (higher return):</b> High-yield intermediate; distressed debt funds</li>
+          <li><b>Banks / financial intermediaries:</b> Treasuries across all maturities</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Primary & Secondary Markets</div>
+        <ul class="notes">
+          <li><b>Primary market:</b> New bonds issued; issuer receives capital</li>
+          <li><b>Public offering:</b> Registered with regulators; sold to public</li>
+          <li><b>Private placement:</b> Sold to select investors only</li>
+          <li><b>Underwritten offering:</b> Price guaranteed by investment bank</li>
+          <li><b>Best-efforts offering:</b> No price guarantee; bank earns commission</li>
+          <li><b>Shelf registration:</b> Register total value upfront; issue over time as needed</li>
+          <li><b>Debut issuer:</b> First-time bond issuer; requires roadshows</li>
+          <li><b>Secondary market:</b> Trading of existing bonds; primarily OTC dealer market</li>
+          <li><b>Bid/ask spread:</b> Narrower for liquid bonds; wider for less liquid / older / smaller issues</li>
+          <li><b>On-the-run bonds:</b> Most recently issued; most actively traded</li>
+          <li><b>Distressed debt:</b> Bonds of issuers in or near bankruptcy</li>
+          <li><b>Fixed-income indexes vs equity:</b> More constituents, higher turnover, larger govt weights</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R50 ══════════════════════════════ -->
+<div class="reading" id="r50">
+  <div class="reading-header"><span class="rnum">R50</span> FIXED-INCOME MARKETS FOR CORPORATE ISSUERS</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 50.a: Short-Term Funding Alternatives</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Non-Financial Corporations — Lines of Credit</div>
+        <ul class="notes">
+          <li><b>Uncommitted line:</b> Bank can refuse; no commitment fee; least reliable</li>
+          <li><b>Committed (regular) line:</b> Bank commits for specific period; ~50 bps commitment fee on full or unused amount; renewable; renewal risk</li>
+          <li><b>Revolving (operating) line:</b> Most reliable; longer term; restrictive covenants; similar fees to committed</li>
+          <li><b>Secured loans:</b> Backed by collateral (fixed assets, receivables, inventory); weaker credit issuers</li>
+          <li><b>Factoring:</b> Transfer/sale of receivables to lender ("factor") at a discount; factor assumes collection risk</li>
+          <li><b>Commercial paper (CP):</b> Short-term unsecured debt for large IG firms; lower cost than bank loan; typically &lt;3 months; bridge financing</li>
+          <li><b>Rollover risk:</b> Risk cannot sell new CP to replace maturing CP; managed with backup liquidity lines</li>
+          <li><b>Eurocommercial paper (ECP):</b> International CP market</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Financial Institutions — Short-Term Funding</div>
+        <ul class="notes">
+          <li><b>Demand deposits (checking):</b> No interest; immediate availability</li>
+          <li><b>Operational deposits:</b> Cash management/custody/clearing services</li>
+          <li><b>Savings deposits / CDs:</b> Stated term and interest; nonnegotiable (penalty for early withdrawal) or negotiable (sellable)</li>
+          <li><b>Interbank funds:</b> Bank-to-bank loans, 1 day to 1 year, secured or unsecured; rate based on MRR</li>
+          <li><b>SOFR:</b> Secured Overnight Funding Rate (US MRR)</li>
+          <li><b>Central bank funds market:</b> Banks with excess reserves lend to banks that need funds at central bank funds rate; lender of last resort = "discount window"</li>
+          <li><b>ABCP (Asset-Backed Commercial Paper):</b> SPE buys bank loans → SPE sells ABCP to investors; bank provides backup credit line</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 50.b: Repurchase Agreements (Repos)</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Repo Structure & Key Terms</div>
+        <ul class="notes">
+          <li><b>Repo:</b> Sell security today + commit to repurchase at higher price later; security seller = BORROWER of cash; security buyer = LENDER of cash</li>
+          <li><b>Repo rate:</b> Annualized interest implied by price difference</li>
+          <li><b>Overnight repo:</b> 1-day term | <b>Term repo:</b> Longer period</li>
+          <li><b>Initial margin:</b> Collateral value required as % of loan (e.g., 103%)</li>
+          <li><b>Haircut:</b> Discount from collateral market value to get loan amount = 1 − (1/initial margin)</li>
+          <li><b>Variation margin:</b> Extra collateral if collateral value falls below required threshold</li>
+          <li><b>General collateral repo:</b> Any qualifying securities as collateral</li>
+          <li><b>Special trade:</b> Specific security specified (e.g., short selling)</li>
+          <li><b>Reverse repo:</b> From perspective of party wanting to borrow the security (buyer in the repo)</li>
+          <li><b>Bilateral repo:</b> Directly between 2 parties</li>
+          <li><b>Tri-party repo:</b> Third-party custodian manages; reduces operational risk (not credit risk)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Repo Formulas & Uses</div>
+        <div class="formula">Purchase price (loan amount) = Market value of collateral / Initial margin<br><br>Repurchase price = Purchase price × [1 + Repo rate × (days/360)]<br><br>Haircut = 1 − (1 / Initial margin)<br><br>Variation margin = Loan value × Initial margin − Current collateral value</div>
+        <div class="card-title" style="margin-top:8px">Repo Uses</div>
+        <ul class="notes">
+          <li>Banks: Finance securities trading positions</li>
+          <li>Institutional investors: Earn repo rate on excess short-term funds</li>
+          <li>Central banks: Monetary policy (buy = expand money supply; sell = contract)</li>
+          <li>Short sellers (hedge funds): Borrow specific securities to short sell</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Repo Rate Higher When:</div>
+        <ul class="notes">
+          <li>Alternative money market rates are higher | Longer term | Lower quality collateral | Undercollateralized | Specific security hard to source → rate may be negative</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Repo Risks</div>
+        <ul class="notes">
+          <li>Default risk | Collateral risk | Margining risk | Legal risk | Netting and settlement risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 50.c: Investment Grade vs. High-Yield Long-Term Funding</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Feature</th><th>Investment Grade (IG)</th><th>High Yield (HY)</th></tr>
+        <tr><td>Primary concern</td><td>Ratings downgrade probability</td><td>Default risk and loss given default</td></tr>
+        <tr><td>Credit spread proportion</td><td>Smaller (yield mainly benchmark-driven)</td><td>Larger proportion of yield</td></tr>
+        <tr><td>Covenants</td><td>Few restrictive (mainly asset/leaseback limits)</td><td>Many restrictive (debt ratios, dividends, additional debt limits)</td></tr>
+        <tr><td>Collateral</td><td>Usually unsecured</td><td>Usually secured (pledged collateral)</td></tr>
+        <tr><td>Standardization</td><td>Standardized; issued across maturities</td><td>Less standardized; specific covenants/liens</td></tr>
+        <tr><td>Maturity</td><td>Flexible — any maturity</td><td>Typically ≤10 years</td></tr>
+        <tr><td>Call/prepayment</td><td>Less common</td><td>Common (callable debt or leveraged loans with prepayment)</td></tr>
+        <tr><td>Returns</td><td>Bond-like</td><td>More equity-like</td></tr>
+        <tr><td>Rollover risk</td><td>Less (multiple maturities)</td><td>More (shorter maturity, less flexibility)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R51 ══════════════════════════════ -->
+<div class="reading" id="r51">
+  <div class="reading-header"><span class="rnum">R51</span> FIXED-INCOME MARKETS FOR GOVERNMENT ISSUERS</div>
+  <div class="reading-body">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Sovereign Debt</div>
+        <ul class="notes">
+          <li>Backed by <b>taxing power</b>; highest credit quality in domestic market</li>
+          <li><b>Developed market:</b> Stable diversified economies; transparent fiscal policy; debt in reserve currency (USD, CNY, EUR, etc.)</li>
+          <li><b>Emerging market:</b> Faster growing, less stable; concentrated economies; tied to commodity/industry</li>
+          <li><b>Domestic debt:</b> In home currency; held by domestic investors; may not be freely convertible</li>
+          <li><b>External debt:</b> Owed to foreign creditors; may be in reserve currency → foreign investor avoids direct currency risk but faces indirect risk (EM govt must earn reserve currency to repay)</li>
+          <li><b>Ricardian equivalence:</b> Under idealized assumptions, govt should be indifferent among debt maturities. In practice: must manage short-term vs. long-term split to avoid excess rollover risk</li>
+          <li>Benefits of liquid govt yield curve: benchmark for spreads, interest rate risk hedging, collateral for repos, central bank monetary policy</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Non-Sovereign Government Debt</div>
+        <ul class="notes">
+          <li><b>Agency / quasi-government bonds:</b> Issued by govt-created entities (e.g., Ginnie Mae US); often govt-backed → similar credit ratings to sovereign</li>
+          <li><b>General obligation (GO) bonds:</b> Backed by full taxing power of issuing entity</li>
+          <li><b>Revenue bonds:</b> Backed by fees/revenues from specific project (toll road, airport); higher credit risk than GO bonds</li>
+          <li><b>Supranational bonds:</b> World Bank, IMF, Asian Development Bank; high credit quality; supports by member govts</li>
+          <li>Unlike sovereigns, regional govts cannot use <b>monetary policy</b> to repay debt</li>
+          <li><b>Debt-service coverage ratio:</b> Revenue after operating costs / Interest + principal payments (for revenue bonds)</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Government Debt Auctions</div>
+        <ul class="notes">
+          <li><b>Competitive bids:</b> Used to set price; not guaranteed allocation</li>
+          <li><b>Noncompetitive bids:</b> Guaranteed allocation at auction price</li>
+          <li><b>Single-price auction:</b> All pay at cut-off yield (lowest price accepted); reduces yield volatility; broader distribution</li>
+          <li><b>Multiple-price auction:</b> Each successful bidder pays their own bid price</li>
+          <li><b>Cut-off yield:</b> Yield of last accepted competitive bid</li>
+          <li><b>Primary dealers:</b> Required to make competitive bids, submit on behalf of others, serve as central bank counterparty</li>
+          <li><b>On-the-run bonds:</b> Most recently issued; most actively traded; yield used as benchmark</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R52 ══════════════════════════════ -->
+<div class="reading" id="r52">
+  <div class="reading-header"><span class="rnum">R52</span> FIXED-INCOME BOND VALUATION: PRICES AND YIELDS</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 52.a: Bond Pricing & YTM</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Bond Pricing Formulas</div>
+        <div class="formula">Annual coupon bond:<br>PV = PMT/(1+YTM) + PMT/(1+YTM)² + ... + (PMT+FV)/(1+YTM)^N<br><br>Calculator: N=years, I/Y=YTM, PMT=annual coupon, FV=100, CPT→PV<br><br>Semiannual coupon bond:<br>N=2×years, I/Y=YTM/2, PMT=coupon/2, FV=100, CPT→PV<br><br>Stated YTM (semiannual) = periodic return × 2</div>
+        <div class="card-title" style="margin-top:8px">Price-YTM Relationships</div>
+        <ul class="notes">
+          <li><b>Coupon = YTM → Price = Par</b></li>
+          <li><b>Coupon &gt; YTM → Price &gt; Par (premium)</b></li>
+          <li><b>Coupon &lt; YTM → Price &lt; Par (discount)</b></li>
+          <li>Price-yield relationship is <b>convex</b>: price increase (from ↓yield) &gt; price decrease (from ↑yield) of same magnitude</li>
+          <li><b>Pull to par:</b> Bond price converges to par as maturity approaches (regardless of yield)</li>
+          <li><b>Constant-yield price trajectory:</b> Path of bond price over time if YTM unchanged</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Accrued Interest, Flat & Full Price</div>
+        <div class="formula">Accrued Interest = Coupon × (Days since last coupon / Days in coupon period)<br><br>Full price (dirty/invoice price) = PV on last coupon date × (1 + periodic yield)^(t/T)<br>where t = days since last coupon, T = days in coupon period<br><br>Flat price (clean/quoted price) = Full price − Accrued interest</div>
+        <ul class="notes">
+          <li><b>Actual/actual convention:</b> Govt bonds; actual days in numerator and denominator</li>
+          <li><b>30/360 convention:</b> Corporate bonds; assumes 30-day months, 360-day year</li>
+          <li>Bonds are quoted as <b>flat price</b>; transaction settles at <b>full price</b></li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">To Earn YTM, Investor Must:</div>
+        <ul class="notes">
+          <li>Hold bond to maturity AND issuer makes all payments AND reinvest coupons at same YTM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mod-title">LOS 52.b & 52.c: Price Sensitivity & Matrix Pricing</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Price Sensitivity Rules</div>
+        <ul class="notes">
+          <li>↑ YTM → ↓ price (inverse relationship)</li>
+          <li>Lower coupon rate → higher price sensitivity to yield changes</li>
+          <li>Longer maturity → higher price sensitivity</li>
+          <li>Price increase (from ↓yield) &gt; price decrease (from ↑yield) — CONVEXITY</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Matrix Pricing</div>
+        <ul class="notes">
+          <li>Method to estimate YTM for infrequently traded bonds using traded bonds of same credit quality</li>
+          <li>Use <b>linear interpolation</b> if maturities differ: YTM_target = YTM_short + [(target−short)/(long−short)] × (YTM_long−YTM_short)</li>
+          <li>For new issues: estimate required yield spread above benchmark by observing spreads on existing similar bonds</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R53 ══════════════════════════════ -->
+<div class="reading" id="r53">
+  <div class="reading-header"><span class="rnum">R53</span> YIELD AND YIELD SPREAD MEASURES FOR FIXED-RATE BONDS</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 53.a: Yield Measures</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Effective Annual Yield (EAY)</div><div class="fg-f">EAY = (1 + YTM/n)^n − 1<br>where n = periodicity (compounding periods/year)</div></div>
+      <div class="fg-item"><div class="fg-label">YTM for Semiannual Bond</div><div class="fg-f">Stated YTM = 2 × (semiannual periodic rate)<br>N=2×yrs, I/Y=?, PMT=coupon/2, FV=100, PV=−price → I/Y×2</div></div>
+      <div class="fg-item"><div class="fg-label">Current Yield (Income / Running Yield)</div><div class="fg-f">Current Yield = Annual coupon / Flat price<br>(ignores capital gain/loss and reinvestment income)</div></div>
+      <div class="fg-item"><div class="fg-label">Simple Yield</div><div class="fg-f">Simple Yield = [Annual coupon ± (discount or premium)/N] / Flat price<br>(straight-line amortization of discount/premium)</div></div>
+      <div class="fg-item"><div class="fg-label">Yield to Call (YTC)</div><div class="fg-f">Calculator: N=periods to call, FV=call price, PMT=coupon, PV=−price → I/Y×2</div></div>
+      <div class="fg-item"><div class="fg-label">Yield to Worst (YTW)</div><div class="fg-f">YTW = min(YTM, all YTCs)</div></div>
+      <div class="fg-item"><div class="fg-label">Option-Adjusted Yield</div><div class="fg-f">Yield callable bond would offer if it were option-free<br>= YTM of callable bond − extra yield for option</div></div>
+    </div>
+    <div class="kw"><b>Street convention:</b> Yield using stated coupon dates | <b>True yield:</b> Using actual payment dates (accounts for weekends/holidays); slightly lower</div>
+    <div class="kw"><b>Periodicity relationship:</b> For same EAY, higher periodicity → lower stated YTM</div>
+
+    <div class="mod-title">LOS 53.b: Yield Spread Measures</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Spread Types</div>
+        <ul class="notes">
+          <li><b>Benchmark spread / Yield spread:</b> Bond YTM − Benchmark YTM</li>
+          <li><b>G-spread (Government spread):</b> Spread over govt bond yield (same or interpolated maturity)</li>
+          <li><b>I-spread (Interpolated spread):</b> Spread over swap rate (MRR-based); common for EUR bonds</li>
+          <li><b>Z-spread (Zero-volatility spread):</b> Constant spread added to each spot rate on benchmark curve such that PV of cash flows = market price; accounts for curve shape; more precise than G-spread</li>
+          <li><b>OAS (Option-Adjusted Spread):</b> Z-spread with option removed; represents spread for credit, liquidity, and taxation risks only; allows comparison across bonds with/without options</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Spread Relationships</div>
+        <div class="formula">Z-spread = OAS + Option value (in bps)<br>OAS = Z-spread − Option value<br><br>For callable bond: Z-spread &gt; OAS (call option increases yield required)<br>Option value = Z-spread − OAS</div>
+        <ul class="notes">
+          <li>↑ yield spread with unchanged benchmark → microeconomic (credit/liquidity risk) factors</li>
+          <li>↑ yield spread with same spread increase → macroeconomic factors (benchmark moved)</li>
+          <li><b>Macro factors:</b> Affect benchmark (real risk-free rate + inflation premium)</li>
+          <li><b>Micro factors:</b> Affect credit and liquidity premiums (spread component)</li>
+          <li><b>"Option-adjusted"</b> = option REMOVED; compare option-free equivalent</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R54 ══════════════════════════════ -->
+<div class="reading" id="r54">
+  <div class="reading-header"><span class="rnum">R54</span> YIELD MEASURES FOR FLOATING-RATE & MONEY MARKET INSTRUMENTS</div>
+  <div class="reading-body">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">LOS 54.a: Floating-Rate Note (FRN) Yields</div>
+        <ul class="notes">
+          <li><b>Quoted margin (QM):</b> Fixed margin actually paid in coupon</li>
+          <li><b>Discount margin (DM) / Required margin:</b> Margin required by market to price FRN at par</li>
+          <li>At issuance: QM = DM → FRN trades at par</li>
+          <li>If issuer credit deteriorates → DM &gt; QM → FRN trades at <b>discount</b></li>
+          <li>If issuer credit improves → DM &lt; QM → FRN trades at <b>premium</b></li>
+          <li><b>Interest paid in arrears:</b> Coupon set at start, paid at end of period</li>
+        </ul>
+        <div class="formula">FRN Valuation:<br>N = periods remaining, I/Y = (MRR + DM)/periodicity<br>PMT = (MRR + QM)/periodicity × par<br>FV = par, CPT → PV</div>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 54.b: Money Market Yields</div>
+        <ul class="notes">
+          <li><b>Discount yield:</b> Annualized discount from face value (T-bills, US CP); based on 360-day year</li>
+          <li><b>Add-on yield:</b> Interest earned on amount invested (CDs, repos, MRRs); can be 360 or 365-day</li>
+          <li><b>Bond Equivalent Yield (BEY):</b> Add-on yield on a 365-day basis (allows comparison with bonds)</li>
+        </ul>
+        <div class="formula">Discount yield: Quoted = actual discount × 360/days<br><br>Add-on yield (365): Quoted = HPY × 365/days<br><br>T-bill price = Face × (1 − quoted discount × days/360)<br>HPY(T-bill) = (Face − Price)/Price<br><br>BEY of discount instrument:<br>1. Find price from discount yield<br>2. HPY = (Face − Price)/Price<br>3. BEY = HPY × 365/days<br><br>Semiannual bond equivalent: 2 × [(1+HPY)^(183/days) − 1]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R55 ══════════════════════════════ -->
+<div class="reading" id="r55">
+  <div class="reading-header"><span class="rnum">R55</span> THE TERM STRUCTURE: SPOT, PAR, AND FORWARD CURVES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 55.a: Spot Rates & Bond Pricing</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Spot Rates</div>
+        <ul class="notes">
+          <li><b>Spot rate:</b> Market discount rate for a single future payment (= zero-coupon rate = zero rate)</li>
+          <li><b>Spot curve / Zero curve / Strip curve:</b> Spot rates vs. maturity</li>
+          <li>Normal: upward sloping | Inverted: downward sloping</li>
+          <li><b>No-arbitrage price:</b> Bond priced using spot rates; if different, arbitrage opportunity exists</li>
+        </ul>
+        <div class="formula">Bond price using spot rates:<br>PV = C₁/(1+S₁) + C₂/(1+S₂)² + ... + (Cₙ+FV)/(1+Sₙ)^N<br><br>YTM = single discount rate ≈ weighted average of spot rates</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Par Rates</div>
+        <ul class="notes">
+          <li><b>Par yield:</b> Coupon rate for a hypothetical bond to trade at par, given spot curve; interpreted as weighted average of spot rates</li>
+          <li><b>Par curve:</b> Par yields vs. maturity; constructed from spot curves to avoid illiquidity/taxation distortions</li>
+        </ul>
+        <div class="formula">Par bond: Solve for PMT (coupon) such that:<br>PMT/(1+S₁) + PMT/(1+S₂)² + (PMT+100)/(1+S₃)³ = 100</div>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 55.b: Forward Rates</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Forward Rate Notation & Formulas</div>
+        <ul class="notes">
+          <li><b>Forward rate notation:</b> "ayb" = rate for b-year loan starting a years from now (e.g., 2y1y = 1-yr rate 2 yrs from now)</li>
+        </ul>
+        <div class="formula">Key No-Arbitrage Relations:<br>(1+S₂)² = (1+S₁)(1+1y1y)<br>(1+S₃)³ = (1+S₁)(1+1y1y)(1+2y1y)<br><br>Solve for forward rate:<br>1y1y = [(1+S₂)²/(1+S₁)] − 1<br>2y1y = [(1+S₃)³/(1+S₂)²] − 1<br><br>Multi-period forward:<br>2y2y: (1+S₄)⁴ = (1+S₂)²×(1+2y2y)²<br>→ 2y2y = [(1+S₄)⁴/(1+S₂)²]^(1/2) − 1<br><br>Spot from forwards:<br>S₃ = [(1+S₁)(1+1y1y)(1+2y1y)]^(1/3) − 1<br><br>Approximation: Sₙ ≈ simple average of forward rates<br><br>Bond pricing using forwards:<br>PV = C₁/(1+S₁) + C₂/[(1+S₁)(1+1y1y)] + C₃/[(1+S₁)(1+1y1y)(1+2y1y)]</div>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 55.c: Comparing Yield Curves</div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Curve</th><th>What It Shows</th><th>Key Property</th></tr>
+            <tr><td><b>Spot curve</b></td><td>Spot rates vs. maturity; derived from zero-coupon bonds</td><td>Foundation for pricing</td></tr>
+            <tr><td><b>Par curve</b></td><td>Coupon rates for par bonds; constructed from spots</td><td>Hypothetical; avoids illiquidity distortions</td></tr>
+            <tr><td><b>Forward curve</b></td><td>Forward rates for future periods (e.g., 1-yr rates each year)</td><td>Drives spot and par curves</td></tr>
+          </table>
+        </div>
+        <div class="kw"><b>Upward-sloping forward curve:</b> forward rates &gt; spot rates &gt; par yields</div>
+        <div class="kw"><b>Downward-sloping forward curve:</b> forward rates &lt; spot rates &lt; par yields</div>
+        <div class="kw"><b>Flat yield curve:</b> forward rates = spot rates = par yields for all maturities</div>
+        <div class="kw"><b>Forward rates DRIVE spot rates, which DRIVE par yields</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R56 ══════════════════════════════ -->
+<div class="reading" id="r56">
+  <div class="reading-header"><span class="rnum">R56</span> INTEREST RATE RISK AND RETURN</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 56.a: Sources of Return</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">3 Sources of Return</div>
+        <ul class="notes">
+          <li>Coupon and principal payments</li>
+          <li>Interest earned on reinvested coupons</li>
+          <li>Capital gain or loss if sold before maturity</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Key Results</div>
+        <ul class="notes">
+          <li>Hold to maturity, YTM unchanged → return = YTM at purchase</li>
+          <li>Sell before maturity, YTM unchanged → return = YTM at purchase</li>
+          <li>Hold to maturity, YTM ↑ after purchase → return &gt; original YTM (more reinvestment income)</li>
+          <li>Hold to maturity, YTM ↓ after purchase → return &lt; original YTM (less reinvestment income)</li>
+          <li>Short horizon, YTM ↑ → return &lt; YTM (price drops more than reinvestment helps)</li>
+          <li>Short horizon, YTM ↓ → return &gt; YTM (price rises more than reinvestment hurts)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Price Risk vs. Reinvestment Risk</div>
+        <ul class="notes">
+          <li><b>Price risk:</b> Uncertainty about bond's sale price due to yield changes</li>
+          <li><b>Reinvestment risk:</b> Uncertainty about income from reinvesting coupons</li>
+          <li>↑ YTM → ↑ reinvestment income, ↓ bond price</li>
+          <li>↓ YTM → ↓ reinvestment income, ↑ bond price</li>
+          <li><b>Short horizon:</b> Price risk &gt; reinvestment risk</li>
+          <li><b>Long horizon:</b> Reinvestment risk &gt; price risk</li>
+          <li><b>Investment horizon:</b> Point where price risk and reinvestment risk exactly offset = <b>Macaulay duration</b></li>
+        </ul>
+        <div class="formula">Horizon yield = [(End value / Purchase price)^(1/n)] − 1<br>End value = coupons + reinvestment income + sale price (or par)</div>
+        <div class="card-title" style="margin-top:8px">Carrying Value</div>
+        <ul class="notes">
+          <li>Value of bond at same YTM as purchase; reflects amortization of discount/premium; capital gain/loss measured vs. carrying value</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 56.b & 56.c: Macaulay Duration</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Macaulay Duration Definition</div>
+        <ul class="notes">
+          <li>Weighted average number of years until cash flows received, weighted by PV of each cash flow as % of bond's full price</li>
+          <li>Investment horizon where price risk = reinvestment risk (bond earns original YTM regardless of yield change)</li>
+          <li>For semiannual bond: divide result by 2 to annualize</li>
+        </ul>
+        <div class="formula">MacDur = Σ[t × (PV of CF_t / Full price)]<br><br>where t = time in years until each cash flow</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Duration Gap</div>
+        <div class="formula">Duration gap = Macaulay duration − Investment horizon</div>
+        <ul class="notes">
+          <li><b>Positive duration gap</b> (MacDur &gt; horizon): exposed to price risk from ↑ rates</li>
+          <li><b>Negative duration gap</b> (MacDur &lt; horizon): exposed to reinvestment risk from ↓ rates</li>
+          <li><b>Zero duration gap:</b> price risk and reinvestment risk exactly offset → earn original YTM</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R57 ══════════════════════════════ -->
+<div class="reading" id="r57">
+  <div class="reading-header"><span class="rnum">R57</span> YIELD-BASED BOND DURATION MEASURES AND PROPERTIES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 57.a: Modified Duration, Money Duration, PVBP</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Modified Duration (ModDur)</div><div class="fg-f">ModDur = MacDur / (1 + YTM/periodicity)<br>Annual: ModDur = MacDur / (1 + YTM)<br>Semiannual: ModDurSEMI = MacDurSEMI / (1 + YTM/2)</div></div>
+      <div class="fg-item"><div class="fg-label">Price Change Estimate</div><div class="fg-f">%ΔP ≈ −ModDur × ΔYTM<br>(ΔYTM in decimal form, e.g., 0.01 for 1%)</div></div>
+      <div class="fg-item"><div class="fg-label">Approximate ModDur</div><div class="fg-f">ApproxModDur = (V− − V+) / (2 × V₀ × ΔYTM)<br>V− = price if YTM decreases by ΔYTM<br>V+ = price if YTM increases by ΔYTM<br>ΔYTM in decimal</div></div>
+      <div class="fg-item"><div class="fg-label">Money Duration (Dollar Duration)</div><div class="fg-f">Money Dur = Annual ModDur × Full price of position<br>ΔValue = Money Dur × ΔYTM (decimal)</div></div>
+      <div class="fg-item"><div class="fg-label">Price Value of a Basis Point (PVBP)</div><div class="fg-f">PVBP = (V− − V+) / 2 × par × 0.01<br>Also: PVBP = Money Duration × 0.0001<br>(change in bond value per 1 bp YTM change)</div></div>
+    </div>
+    <div class="warn">ModDur is a LINEAR approximation; actual price-yield relationship is CONVEX → duration alone overestimates price decrease and underestimates price increase for large yield moves</div>
+
+    <div class="mod-title">LOS 57.b: Factors Affecting Duration</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Factor Change</th><th>Effect on Duration</th><th>Reason</th></tr>
+        <tr><td>↑ Maturity</td><td>Usually ↑ duration (exception: deep discount bonds)</td><td>More cash flows further in future = more sensitive</td></tr>
+        <tr><td>↑ Coupon rate</td><td>↓ duration</td><td>More value shifted to nearer payments</td></tr>
+        <tr><td>↑ YTM</td><td>↓ duration</td><td>Price-yield curve flatter at higher yields</td></tr>
+        <tr><td>Passage of time</td><td>Decreases smoothly between coupon dates; slight ↑ on coupon dates</td><td>Resets to full coupon period on payment dates</td></tr>
+        <tr><td>FRN coupon reset</td><td>Duration ≈ time to next reset date</td><td>Price resets to par at each reset; limits price risk</td></tr>
+        <tr><td>Zero-coupon bond</td><td>MacDur = maturity (greatest duration for given maturity)</td><td>Single payment at maturity</td></tr>
+        <tr><td>Perpetuity</td><td>MacDur = (1 + YTM) / YTM</td><td>Infinite stream of equal payments</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R58 ══════════════════════════════ -->
+<div class="reading" id="r58">
+  <div class="reading-header"><span class="rnum">R58</span> YIELD-BASED BOND CONVEXITY AND PORTFOLIO PROPERTIES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 58.a: Convexity</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Convexity Calculation</div>
+        <div class="formula">Convexity of single cash flow at period t:<br>Conv_t = t(t+1) / (1+r)²<br>where r = periodic yield<br><br>Bond convexity = weighted average of individual CF convexities<br>(same weights as Macaulay duration)<br><br>Annualize for non-annual bonds: divide by periodicity²<br><br>Approximate Convexity:<br>ApproxConvex = (V+ + V− − 2V₀) / (V₀ × ΔYTM²)<br>ΔYTM in decimal</div>
+        <ul class="notes">
+          <li>Convexity increases with: longer maturity, lower coupon, lower YTM</li>
+          <li>For same duration, bond with more dispersed cash flows has more convexity</li>
+          <li>All option-free bonds have positive convexity</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 58.b: Price Change with Duration + Convexity</div>
+        <div class="formula">%ΔPrice ≈ −ModDur × ΔYTM + ½ × Convexity × (ΔYTM)²<br><br>(Duration effect) + (Convexity adjustment)<br>Convexity adjustment always POSITIVE (for positive convexity)</div>
+        <div class="formula">Money Convexity = Annual Convexity × Full price of position<br><br>ΔValue ≈ −(MoneyDur × ΔYTM) + ½ × MoneyCon × (ΔYTM)²</div>
+        <div class="card-title" style="margin-top:8px">LOS 58.c: Portfolio Duration & Convexity</div>
+        <ul class="notes">
+          <li><b>Method 1 (theoretically correct):</b> Single duration/convexity from aggregate portfolio cash flows</li>
+          <li><b>Method 2 (used in practice):</b> Weighted average of individual bond durations/convexities</li>
+          <li><b>Limitation:</b> Method 2 assumes <b>parallel shift</b> in yield curve (all maturities change by same amount) — rarely happens in practice</li>
+          <li>Non-parallel shifts (steepening, twisting) require key rate durations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R59 ══════════════════════════════ -->
+<div class="reading" id="r59">
+  <div class="reading-header"><span class="rnum">R59</span> CURVE-BASED AND EMPIRICAL FIXED-INCOME RISK MEASURES</div>
+  <div class="reading-body">
+    <div class="three-col">
+      <div class="card">
+        <div class="card-title">LOS 59.a & 59.b: Effective Duration & Convexity</div>
+        <ul class="notes">
+          <li>For bonds with embedded options: cash flows uncertain → cannot use YTM-based measures</li>
+          <li><b>Effective duration:</b> Based on shifts in BENCHMARK CURVE (not bond's own YTM)</li>
+        </ul>
+        <div class="formula">EffDur = (V− − V+) / (2 × V₀ × ΔCurve)<br><br>EffCon = (V+ + V− − 2V₀) / (V₀ × ΔCurve²)<br><br>%ΔPrice ≈ −EffDur × ΔCurve + ½ × EffCon × (ΔCurve)²</div>
+        <ul class="notes">
+          <li><b>Callable bond:</b> At low yields, call limits price appreciation → <b>negative convexity</b>; EffDur &lt; straight bond equivalent at low yields</li>
+          <li><b>Putable bond:</b> Always positive convexity; EffDur &lt; straight bond at high yields (put limits price decline)</li>
+          <li>ModDur vs. EffDur: slightly different even for option-free bonds (nonparallel spot rate shifts when par curve shifts)</li>
+          <li>EffDur isolates benchmark yield sensitivity; holds spread constant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 59.c: Key Rate Duration</div>
+        <ul class="notes">
+          <li><b>Key rate duration (partial duration):</b> Price sensitivity to change in yield at ONE specific maturity while other yields unchanged</li>
+          <li>Useful for measuring <b>shaping risk</b> = impact of nonparallel yield curve shifts</li>
+          <li>Sum of all key rate durations = effective duration of the bond/portfolio</li>
+        </ul>
+        <div class="formula">Key rate duration_t = ModDur × weight_t<br><br>Portfolio impact = −Σ(key rate dur_t × Δyield_t)</div>
+        <div class="card-title" style="margin-top:8px">LOS 59.d: Empirical vs. Analytical Duration</div>
+        <ul class="notes">
+          <li><b>Analytical duration:</b> Mathematically derived (Macaulay, modified, effective)</li>
+          <li><b>Empirical duration:</b> Estimated from historical relationship between benchmark yield changes and bond price changes</li>
+          <li>Analytical assumes spreads and benchmark yields are uncorrelated</li>
+          <li><b>Flight to quality:</b> Govt yields ↓, credit spreads ↑ simultaneously → corporate bond prices don't rise as much as analytical duration suggests → empirical duration &lt; analytical duration for corporate bonds</li>
+          <li>Empirical duration more appropriate for credit-risky portfolios; analytical appropriate for govt portfolios</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Summary: Duration Measures</div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Measure</th><th>Based On</th><th>Best For</th></tr>
+            <tr><td>Macaulay</td><td>YTM, cash flows</td><td>Investment horizon matching</td></tr>
+            <tr><td>Modified</td><td>YTM change</td><td>Option-free bonds; yield-based</td></tr>
+            <tr><td>Effective</td><td>Benchmark curve shift</td><td>Bonds with embedded options</td></tr>
+            <tr><td>Key Rate</td><td>Single maturity yield shift</td><td>Nonparallel curve shifts</td></tr>
+            <tr><td>Empirical</td><td>Historical data</td><td>Credit-risky portfolios</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R60 ══════════════════════════════ -->
+<div class="reading" id="r60">
+  <div class="reading-header"><span class="rnum">R60</span> CREDIT RISK</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 60.a: Credit Risk Components</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">The Cs of Credit Analysis</div>
+        <div class="two-col">
+          <div>
+            <div class="card-title">Bottom-Up (Issuer-Specific)</div>
+            <ul class="notes">
+              <li><b>Capacity:</b> Ability to make debt payments</li>
+              <li><b>Capital:</b> Other resources reducing reliance on debt</li>
+              <li><b>Collateral:</b> Pledged assets securing lender</li>
+              <li><b>Covenants:</b> Legal terms in bond indenture</li>
+              <li><b>Character:</b> Management integrity and commitment</li>
+            </ul>
+          </div>
+          <div>
+            <div class="card-title">Top-Down (Economic)</div>
+            <ul class="notes">
+              <li><b>Conditions:</b> General economic environment</li>
+              <li><b>Country:</b> Geopolitical/legal/political system</li>
+              <li><b>Currency:</b> FX impact on ability to service foreign debt</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-title" style="margin-top:8px">Key Distinctions</div>
+        <ul class="notes">
+          <li><b>Illiquid:</b> Cannot raise cash to service debt (may still be solvent)</li>
+          <li><b>Insolvent:</b> Assets &lt; value of debts</li>
+          <li><b>Cross-default clause:</b> Default on any obligation = default on all</li>
+          <li><b>Pari passu clause:</b> All bonds of same type rank equally</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Measuring Credit Risk — Formulas</div>
+        <div class="formula">Expected Loss = Probability of Default (POD) × Loss Given Default (LGD)<br><br>LGD% = Expected Exposure × (1 − Recovery Rate)<br><br>Credit spread ≈ POD × LGD%<br><br>Loss severity = 1 − Recovery rate<br><br>Price change from spread change:<br>%ΔP ≈ −ModDur × ΔSpread + ½ × Convexity × (ΔSpread)²</div>
+        <div class="card-title" style="margin-top:8px">Credit Quality Indicators</div>
+        <ul class="notes">
+          <li>High credit quality: High EBIT margin, high EBIT/interest (interest coverage), low debt/EBITDA, high CFO/net debt</li>
+          <li>IG debt: Primary concern = probability of default increasing; not imminent default</li>
+          <li>HY debt: Primary concern = probability of default AND loss given default (often has secured collateral)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 60.b: Credit Ratings</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Category</th><th>S&P / Fitch</th><th>Moody's</th><th>Description</th></tr>
+        <tr class="rating-ig"><td><b>Investment Grade</b></td><td>AAA, AA, A, BBB (down to BBB−)</td><td>Aaa, Aa, A, Baa (down to Baa3)</td><td>Higher credit quality; lower expected loss</td></tr>
+        <tr class="rating-hy"><td><b>High Yield / Junk</b></td><td>BB+ and below</td><td>Ba1 and below</td><td>Speculative grade; higher default risk</td></tr>
+        <tr><td><b>Default</b></td><td>D</td><td>C (lowest category)</td><td>In default</td></tr>
+      </table>
+    </div>
+    <div class="warn"><b>Rating Limitations:</b> (1) Lag market pricing — spreads react faster | (2) Cannot capture all risks (litigation, natural disasters, fraud) | (3) Not always accurate (e.g., subprime crisis 2008) | (4) Split ratings possible from different agencies</div>
+
+    <div class="mod-title">LOS 60.c: Factors Affecting Yield Spreads</div>
+    <div class="three-col">
+      <div class="card">
+        <div class="card-title">Macroeconomic Factors</div>
+        <ul class="notes">
+          <li>Expansion → ↓ spreads (lower default probability) | Recession → ↑ spreads</li>
+          <li>HY spreads more volatile than IG spreads over cycle</li>
+          <li>Credit curves usually upward sloping (↑ spread with longer maturity)</li>
+          <li>Recession: credit curves flatten/invert (near-term default risk ↑)</li>
+          <li>Expansion: credit curves steepen/fall</li>
+          <li>Flight to quality: investors sell HY, buy govt → HY spreads widen dramatically; bid-offer spreads for HY widen more</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Issuer-Specific &amp; Market Factors</div>
+        <ul class="notes">
+          <li>Financial performance vs. industry average spread</li>
+          <li><b>Market liquidity risk:</b> Assessed via bid-offer spread; wider = less liquid = higher liquidity risk</li>
+          <li>More debt outstanding + higher rating → narrower bid-offer → lower liquidity risk</li>
+          <li>Other factors: ↑ broker-dealer regulations, funding stresses, heavy new issuance</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Yield Spread Decomposition</div>
+        <ul class="notes">
+          <li>Total yield spread = credit spread + liquidity spread</li>
+          <li>Liquidity spread ≈ (yield at bid) − (yield at offer)</li>
+          <li>Credit spread = total spread − liquidity spread</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">High-Yield Investment Incentives</div>
+        <ul class="notes">
+          <li><b>Diversification:</b> Low/negative correlation with IG bonds</li>
+          <li><b>Capital appreciation:</b> Larger spread changes → bigger price gains during recovery</li>
+          <li><b>Equity-like returns:</b> Higher yield, lower volatility than equity (empirically)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R61 ══════════════════════════════ -->
+<div class="reading" id="r61">
+  <div class="reading-header"><span class="rnum">R61</span> CREDIT ANALYSIS FOR GOVERNMENT ISSUERS</div>
+  <div class="reading-body">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Sovereign Creditworthiness — 5 Qualitative Factors</div>
+        <ul class="notes">
+          <li><b>1. Institutions and policy:</b> Political stability, legal property rights, data transparency, willingness to repay (sovereign immunity = no legal recourse if refuses)</li>
+          <li><b>2. Fiscal flexibility:</b> Ability to ↑ taxes or ↓ spending to ensure debt service</li>
+          <li><b>3. Monetary effectiveness:</b> Independent central bank; ability to manage money supply/rates credibly</li>
+          <li><b>4. Economic flexibility:</b> GDP growth trends, income per capita, economic diversification</li>
+          <li><b>5. External status:</b> Currency reserve status; ability to issue debt to foreign investors; geopolitical stability</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Sovereign Creditworthiness — 3 Quantitative Factors</div>
+        <ul class="notes">
+          <li><b>1. Fiscal strength:</b> Low debt/GDP, low debt/revenue, low interest/GDP (debt affordability)</li>
+          <li><b>2. Economic growth &amp; stability:</b> High real GDP growth, large economy size, high per-capita GDP, low GDP growth volatility</li>
+          <li><b>3. External stability:</b> High FX reserves/GDP, high FX reserves/external debt, low LT external debt/GDP, low near-term external debt/GDP</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Non-Sovereign Government Debt Types</div>
+        <ul class="notes">
+          <li><b>Agencies:</b> Govt-created; implied govt support → similar ratings to sovereign</li>
+          <li><b>Govt sector banks:</b> Specific mission (e.g., green bonds); similar to agencies</li>
+          <li><b>Supranational:</b> World Bank, IMF, etc.; backed by member govts</li>
+          <li><b>GO bonds:</b> Backed by full taxing power; lower credit risk</li>
+          <li><b>Revenue bonds:</b> Backed by project cash flows only; higher credit risk</li>
+          <li>Key: Sovereigns CAN print money; regional govts CANNOT</li>
+          <li>Revenue bonds analyzed like corporate bonds: debt-service coverage ratio (DSC) = (net revenue) / (interest + principal)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R62 ══════════════════════════════ -->
+<div class="reading" id="r62">
+  <div class="reading-header"><span class="rnum">R62</span> CREDIT ANALYSIS FOR CORPORATE ISSUERS</div>
+  <div class="reading-body">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">LOS 62.a: Qualitative & Quantitative Factors</div>
+        <div class="card-title">Qualitative Factors</div>
+        <ul class="notes">
+          <li><b>Business model:</b> Stable, predictable cash flows = high quality</li>
+          <li><b>Industry competition:</b> Less competition = higher quality</li>
+          <li><b>Business risk:</b> Low unexpected deviation from expected revenues</li>
+          <li><b>Corporate governance:</b> Fair treatment of debtholders; debt covenants; accounting policies</li>
+          <li>Warning signs: aggressive revenue recognition, off-balance-sheet financing, frequent auditor/CFO changes, capitalizing vs. expensing</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">Quantitative Factors — Key Definitions</div>
+        <ul class="notes">
+          <li><b>EBITDA:</b> Operating income + D&A (doesn't adjust for capex or working capital changes)</li>
+          <li><b>CFO (Cash Flow from Operations):</b> Net income + non-cash charges − Δworking capital</li>
+          <li><b>FFO (Funds from Operations):</b> Net income from cont. ops + D&A + deferred taxes + non-cash; excludes Δworking capital</li>
+          <li><b>FCF (Free Cash Flow):</b> CFO − capex + net interest expense</li>
+          <li><b>RCF (Retained Cash Flow):</b> Operating cash flow − dividends</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 62.b: Credit Analysis Ratios</div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Ratio Type</th><th>Ratio</th><th>Higher = Better Credit?</th></tr>
+            <tr><td>Profitability</td><td>EBIT margin = EBIT / Revenue</td><td class="tick">✓ Yes</td></tr>
+            <tr><td>Coverage</td><td>EBIT / Interest expense</td><td class="tick">✓ Yes</td></tr>
+            <tr><td>Coverage</td><td>EBITDA / Interest expense</td><td class="tick">✓ Yes</td></tr>
+            <tr><td>Leverage</td><td>Debt / EBITDA</td><td class="cross">✗ No (lower = better)</td></tr>
+            <tr><td>Leverage</td><td>Debt / Capital</td><td class="cross">✗ No</td></tr>
+            <tr><td>Cash flow</td><td>RCF / Net debt</td><td class="tick">✓ Yes</td></tr>
+            <tr><td>Cash flow</td><td>CFO / Debt</td><td class="tick">✓ Yes</td></tr>
+          </table>
+        </div>
+        <div class="card-title" style="margin-top:8px">LOS 62.c: Seniority Rankings & Notching</div>
+        <ol class="priority-list">
+          <li>First lien / Mortgage</li>
+          <li>Senior secured (second lien)</li>
+          <li>Junior secured</li>
+          <li>Senior unsecured ← Corporate Family Rating (CFR) typically based on this</li>
+          <li>Senior subordinated</li>
+          <li>Subordinated</li>
+          <li>Junior subordinated</li>
+        </ol>
+        <ul class="notes" style="margin-top:6px">
+          <li>All debt in same category = <b>pari passu</b> (equal priority)</li>
+          <li><b>Notching:</b> Difference between issuer rating (CFR) and specific issue rating (CCR); more common for lower-rated issuers</li>
+          <li><b>Structural subordination:</b> Parent co. bonds effectively subordinated to subsidiary bonds (subsidiary debt has priority claim on subsidiary cash flows)</li>
+          <li>Bankruptcy priority not always strictly followed; negotiated settlements common (avoids prolonged proceedings)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R63 ══════════════════════════════ -->
+<div class="reading" id="r63">
+  <div class="reading-header"><span class="rnum">R63</span> FIXED-INCOME SECURITIZATION</div>
+  <div class="reading-body">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Securitization Process</div>
+        <ul class="notes">
+          <li><b>Step 1:</b> Originator (bank/corporation) creates pool of debt-based assets (collateral)</li>
+          <li><b>Step 2:</b> Pool sold to <b>SPE (Special Purpose Entity)</b> / SPV / Trust</li>
+          <li><b>Step 3:</b> SPE issues <b>ABS (Asset-Backed Securities)</b> to investors; cash flows from underlying assets fund payments</li>
+          <li><b>Seller/depositor:</b> Original originator who sells assets to SPE</li>
+          <li><b>Issuer/trust:</b> The SPE that buys assets and issues ABS</li>
+          <li><b>Servicer:</b> Collects payments, handles delinquencies, repossessions; often same as seller</li>
+          <li><b>Trustee:</b> Oversees safekeeping of collateral and cash flows (disinterested)</li>
+          <li><b>Bankruptcy remote:</b> SPE's assets protected from originator's financial problems; ABS investors have no claim on originator's other assets</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Benefits & Risks</div>
+        <div class="card-title">Benefits to Originator (Issuer)</div>
+        <ul class="notes">
+          <li>↑ Business activity (re-lend proceeds)</li>
+          <li>↑ Profitability (origination and arrangement fees)</li>
+          <li>↓ Required capital reserves (credit risk off balance sheet)</li>
+          <li>↑ Liquidity (illiquid loans → liquid ABS proceeds)</li>
+        </ul>
+        <div class="card-title" style="margin-top:6px">Benefits to Investors</div>
+        <ul class="notes">
+          <li>Tailored risk/return profiles</li>
+          <li>Access to collateral without origination expertise</li>
+          <li>Greater liquidity than underlying collateral</li>
+        </ul>
+        <div class="card-title" style="margin-top:6px">Benefits to Economy</div>
+        <ul class="notes">
+          <li>↓ Liquidity risk (ABS more liquid than collateral)</li>
+          <li>↑ Market efficiency (equilibrium pricing)</li>
+          <li>↓ Financing costs for originators; ↓ leverage</li>
+        </ul>
+        <div class="card-title" style="margin-top:6px">Risks to ABS Investors</div>
+        <ul class="notes">
+          <li>Uncertain timing/size of cash flows (e.g., prepayments)</li>
+          <li>Credit risk of underlying collateral (systemic risk in 2007–2009)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R64 ══════════════════════════════ -->
+<div class="reading" id="r64">
+  <div class="reading-header"><span class="rnum">R64</span> ABS INSTRUMENT AND MARKET FEATURES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 64.a: Covered Bonds vs. ABS</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Covered Bonds</div>
+        <ul class="notes">
+          <li>Senior debt of financial institutions; <b>cover pool remains ON balance sheet</b> (no SPE)</li>
+          <li>Issued primarily by European, Asian, Australian banks</li>
+          <li><b>Dual recourse:</b> Claims on cover pool AND issuer's unencumbered assets</li>
+          <li><b>Overcollateralization:</b> Cover pool value &gt; face value of covered bonds; LTV limits on underlying mortgages</li>
+          <li>Third-party monitoring ensures adherence</li>
+          <li>Dynamic cover pool: issuer must replace prepaid/defaulted assets</li>
+          <li>No credit tranching typically</li>
+          <li>Lower yield than comparable ABS (due to dual recourse + credit enhancements)</li>
+          <li>No capital reserve reduction (assets stay on balance sheet)</li>
+          <li><b>Hard-bullet:</b> Default if payment missed → acceleration | <b>Soft-bullet:</b> Can postpone maturity up to 1 year | <b>Conditional pass-through:</b> Converts to pass-through on maturity date</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 64.b: Internal Credit Enhancements of ABS</div>
+        <ul class="notes">
+          <li><b>Overcollateralization:</b> Collateral value &gt; ABS face value; absorbs losses up to over-collateral amount</li>
+          <li><b>Excess spread:</b> Income earned on collateral &gt; coupon paid to ABS investors; builds reserves to absorb losses</li>
+          <li><b>Credit tranching / Subordination:</b> Multiple bond classes with different priority claims</li>
+          <li>Junior (equity) tranche absorbs losses first → protects senior tranches</li>
+          <li>More subordinated bonds → more protection for senior tranche → higher senior rating</li>
+          <li><b>Waterfall structure:</b> Losses flow from junior to senior (overflow analogy)</li>
+          <li>All tranches receive coupon (interest); losses reduce face value of junior tranches first</li>
+        </ul>
+        <div class="card-title" style="margin-top:8px">LOS 64.c: Non-Mortgage ABS Types</div>
+        <div class="two-col">
+          <div>
+            <div class="card-title">Credit Card ABS</div>
+            <ul class="notes">
+              <li>Backed by non-amortizing credit card receivables</li>
+              <li><b>Lockout/revolving period:</b> Investors receive only interest/fees; principal payments used to buy new receivables (no prepayment risk during this period)</li>
+              <li>After lockout: amortization period; principal passed through</li>
+              <li><b>Early amortization provision:</b> Faster principal repayment if credit quality deteriorates</li>
+            </ul>
+          </div>
+          <div>
+            <div class="card-title">Solar ABS</div>
+            <ul class="notes">
+              <li>Backed by loans for residential solar panel installation</li>
+              <li>Secured on solar system or junior mortgage on property</li>
+              <li>Attractive to ESG investors</li>
+              <li><b>Pre-funding period:</b> Trust can make investments for fixed period after ABS issuance → larger, more diversified pool</li>
+              <li>Relatively new; not yet tested through full credit cycle</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 64.d: Collateralized Debt Obligations (CDOs)</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">CDO Structure</div>
+        <ul class="notes">
+          <li><b>CDO:</b> Structured security; collateral = pool of debt obligations; has a <b>collateral manager</b> who actively buys/sells (unlike static ABS pools)</li>
+          <li><b>CBO (Collateralized Bond Obligations):</b> Collateral = corporate and emerging market bonds</li>
+          <li><b>CLO (Collateralized Loan Obligations):</b> Collateral = leveraged bank loans (most common post-2008)</li>
+          <li>CDOs have subordinated tranches similar to ABS</li>
+          <li>Equity tranche must offer attractive return after accounting for required yields on senior tranches</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">CLO Types & Controls</div>
+        <ul class="notes">
+          <li><b>Cash flow CLOs:</b> Payments from underlying collateral cash flows</li>
+          <li><b>Market value CLOs:</b> Payments from trading/market value of collateral</li>
+          <li><b>Synthetic CLOs:</b> Collateral exposure via credit derivatives (trust doesn't own collateral)</li>
+        </ul>
+        <div class="card-title" style="margin-top:6px">CLO Collateral Tests</div>
+        <ul class="notes">
+          <li>Coverage of payment obligations by collateral cash flows</li>
+          <li>Overcollateralization levels per tranche</li>
+          <li>Diversification requirements</li>
+          <li>Limits on CCC-rated debt in pool</li>
+          <li>Breach → redirect cash flows to purchase collateral or repay senior tranches</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ R65 ══════════════════════════════ -->
+<div class="reading" id="r65">
+  <div class="reading-header"><span class="rnum">R65</span> MORTGAGE-BACKED SECURITY (MBS) INSTRUMENT AND MARKET FEATURES</div>
+  <div class="reading-body">
+    <div class="mod-title">LOS 65.a: Prepayment Risk & Time Tranching</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Prepayment Risk Definitions</div>
+        <ul class="notes">
+          <li><b>Prepayment:</b> Principal repaid faster than scheduled on amortizing loans</li>
+          <li><b>Prepayment risk:</b> Uncertainty about timing of principal cash flows</li>
+          <li><b>Contraction risk:</b> Prepayments faster than expected (↑ when rates ↓) → cash flows sooner; reinvestment at lower rates; MBS price doesn't rise as much as option-free bonds (negative convexity like callable bonds)</li>
+          <li><b>Extension risk:</b> Prepayments slower than expected (↑ when rates ↑) → cash flows later; discounted at higher rates</li>
+          <li>Both are bad for MBS investors</li>
+          <li><b>Time tranching:</b> Multiple CMO tranches with different maturities redistributing prepayment risk; first tranche = most protection from extension risk; last tranche = most protection from contraction risk</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LOS 65.b: Residential Mortgage Features</div>
+        <ul class="notes">
+          <li>Lender has <b>first lien</b> on property; can foreclose if default</li>
+          <li><b>LTV (Loan-to-Value):</b> Loan / Property value; lower LTV = less default risk</li>
+          <li><b>DTI (Debt-to-Income):</b> Monthly debt payments / Monthly pretax gross income; lower = less default risk</li>
+          <li><b>Prime loans:</b> Good credit, low LTV, low DTI</li>
+          <li><b>Subprime loans:</b> Lower credit quality, higher DTI, higher LTV, or junior lien</li>
+          <li><b>Prepayment penalties:</b> Fee for early principal repayment; common in Europe, rare in US</li>
+          <li><b>Recourse loans:</b> Lender can claim borrower's other assets (Europe: mostly recourse)</li>
+          <li><b>Nonrecourse loans:</b> Only property as collateral → strategic default more likely when underwater (US: mostly nonrecourse varies by state)</li>
+          <li><b>Agency RMBS:</b> Govt or GSE guaranteed; min underwriting standards required</li>
+          <li><b>Non-agency RMBS:</b> Private entities; no govt guarantee; credit enhancements used; catalyst for 2007–2009 crisis</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 65.c: RMBS Types</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Mortgage Pass-Through Securities</div>
+        <ul class="notes">
+          <li>Pro-rata claim on pool of mortgages; investors receive monthly cash flows net of fees</li>
+          <li><b>WAC (Weighted Average Coupon):</b> Weighted average of mortgage interest rates (by outstanding principal balance)</li>
+          <li><b>WAM (Weighted Average Maturity):</b> Weighted average of final maturities</li>
+          <li><b>Pass-through rate (net coupon):</b> Coupon paid to MBS investors = WAC − servicing/guarantee fees</li>
+        </ul>
+        <div class="formula">WAM = Σ(maturity_i × balance_i) / Σbalances<br>WAC = Σ(coupon_i × balance_i) / Σbalances</div>
+      </div>
+      <div class="card">
+        <div class="card-title">CMO (Collateralized Mortgage Obligations) Tranches</div>
+        <ul class="notes">
+          <li><b>Sequential pay CMO:</b> Principal (scheduled + prepayments) flows to Tranche 1 first until paid off, then Tranche 2, etc. First tranche: most contraction risk protection; last tranche: most extension risk protection</li>
+          <li><b>Z-tranche (accrual/accretion bond):</b> No interest payments during accrual period; interest accrues as extra principal; lowest ranking; payments begin after accrual period ends</li>
+          <li><b>PO (Principal-Only) securities:</b> Only principal; ↓ rates + ↑ prepayments = higher return (repaid sooner) → effectively zero-coupon</li>
+          <li><b>IO (Interest-Only) securities:</b> Only interest; ↓ rates + ↑ prepayments = lower return (fewer coupon payments)</li>
+          <li><b>Floating-rate tranches:</b> Coupon linked to MRR; may include cap and floor; inverse floaters also possible</li>
+          <li><b>Residual tranches:</b> Junior to all; equity-like</li>
+          <li><b>PAC (Planned Amortization Class) tranches:</b> Predictable principal payments as long as prepayment speeds within predetermined range (PAC band)</li>
+          <li><b>Support tranches:</b> Absorb excess prepayments (contraction risk) or defer principal (extension risk) to protect PAC tranches; most prepayment risk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mod-title">LOS 65.d: Commercial MBS (CMBS)</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">CMBS Features</div>
+        <ul class="notes">
+          <li>Backed by income-producing commercial real estate (apartments, industrial, offices, retail, hotels, healthcare)</li>
+          <li>Fewer mortgages than RMBS → less diversification</li>
+          <li>Analysis focuses on <b>property credit risk</b>, not borrower credit risk</li>
+          <li>US: fixed coupons | Europe: floating coupons (and growing)</li>
+          <li><b>WAMP (Weighted Average Mortgage Proceeds):</b> Regular income from collateral; plays role of WAC for RMBS</li>
+          <li>Commercial mortgages usually <b>nonrecourse</b> (only property as collateral)</li>
+          <li><b>Balloon risk:</b> Commercial mortgages often not fully amortized → balloon payment at maturity; if borrower cannot refinance → default → <b>extension risk</b> for CMBS investors</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">CMBS Analysis Ratios & Call Protection</div>
+        <div class="formula">DSCR (Debt Service Coverage Ratio) = Net Operating Income / Debt service cost<br>Higher DSCR = lower credit risk<br><br>LTV = Loan amount / Current property value<br>Lower LTV = lower credit risk<br><br>Net Operating Income = Rental income − Operating expenses − Noncash replacement reserve</div>
+        <div class="card-title" style="margin-top:8px">Loan-Level Call Protection Methods</div>
+        <ul class="notes">
+          <li><b>Prepayment lockout:</b> Prohibited from prepaying for specific period (2–5 years)</li>
+          <li><b>Prepayment penalty points:</b> % fee on prepaid principal (1 point = 1%)</li>
+          <li><b>Defeasance:</b> Borrower purchases govt securities portfolio sufficient to make remaining loan payments; removes lender's lien → allows property sale without prepayment</li>
+          <li>CMBS-level call protection: sequential pay tranching (same as CMO)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ FORMULA SHEET ══════════════════════════════ -->
+<div class="reading" id="formulas">
+  <div class="reading-header" style="background: var(--red)"><span class="rnum" style="background: var(--navy)">⚡</span> COMPLETE FORMULA REFERENCE SHEET</div>
+  <div class="reading-body">
+    <div class="sec-title">Bond Valuation & YTM</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Annual Coupon Bond Price</div><div class="fg-f">PV = Σ[Ct/(1+YTM)^t] + FV/(1+YTM)^N<br>N, I/Y=YTM, PMT=coupon, FV=100 → CPT PV</div></div>
+      <div class="fg-item"><div class="fg-label">Semiannual Bond</div><div class="fg-f">N=2×years, I/Y=YTM/2, PMT=coupon/2<br>Stated YTM = semiannual rate × 2</div></div>
+      <div class="fg-item"><div class="fg-label">Fully Amortizing Loan Payment</div><div class="fg-f">N, I/Y, PV=loan amount, FV=0 → CPT PMT</div></div>
+      <div class="fg-item"><div class="fg-label">Partial Amortization</div><div class="fg-f">N, I/Y, PV=loan, FV=balloon → CPT PMT</div></div>
+      <div class="fg-item"><div class="fg-label">Accrued Interest</div><div class="fg-f">AI = Coupon × (t/T)<br>t = days since last coupon, T = days in coupon period</div></div>
+      <div class="fg-item"><div class="fg-label">Full Price → Flat Price</div><div class="fg-f">Full price = PV on last coupon × (1+r)^(t/T)<br>Flat price = Full price − Accrued interest</div></div>
+      <div class="fg-item"><div class="fg-label">Matrix Pricing Interpolation</div><div class="fg-f">YTM_x = YTM_short + [(x−short)/(long−short)] × (YTM_long − YTM_short)</div></div>
+      <div class="fg-item"><div class="fg-label">Repo Purchase Price</div><div class="fg-f">Purchase price = MV of collateral / Initial margin</div></div>
+      <div class="fg-item"><div class="fg-label">Repo Repurchase Price</div><div class="fg-f">Repurchase = Purchase price × [1 + repo rate × (days/360)]</div></div>
+      <div class="fg-item"><div class="fg-label">Repo Haircut</div><div class="fg-f">Haircut = 1 − (1/Initial margin)</div></div>
+    </div>
+
+    <div class="sec-title">Yield Measures</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Effective Annual Yield</div><div class="fg-f">EAY = (1 + YTM/n)^n − 1<br>n = periodicity</div></div>
+      <div class="fg-item"><div class="fg-label">Current Yield</div><div class="fg-f">CY = Annual coupon / Flat price</div></div>
+      <div class="fg-item"><div class="fg-label">Simple Yield</div><div class="fg-f">SY = [Coupon ± (discount or premium)/N] / Price<br>(straight-line amortization)</div></div>
+      <div class="fg-item"><div class="fg-label">Yield to Worst</div><div class="fg-f">YTW = min(YTM, YTC₁, YTC₂, ...)</div></div>
+      <div class="fg-item"><div class="fg-label">OAS Relationship</div><div class="fg-f">Z-spread = OAS + Option value<br>OAS = Z-spread − Option value</div></div>
+      <div class="fg-item"><div class="fg-label">FRN Valuation</div><div class="fg-f">N, I/Y=(MRR+DM)/p, FV=100, PMT=(MRR+QM)/p × 100 → CPT PV<br>QM>DM → premium; QM&lt;DM → discount</div></div>
+      <div class="fg-item"><div class="fg-label">Money Market — BEY</div><div class="fg-f">BEY = HPY × 365/days<br>where HPY = (Face − Price)/Price</div></div>
+      <div class="fg-item"><div class="fg-label">Discount Yield → Price</div><div class="fg-f">Price = Face × (1 − disc_yield × days/360)</div></div>
+      <div class="fg-item"><div class="fg-label">Add-on Yield (360-day) → BEY</div><div class="fg-f">BEY = add-on yield × 365/360</div></div>
+    </div>
+
+    <div class="sec-title">Term Structure — Spot, Par, Forward Rates</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Bond Value Using Spot Rates</div><div class="fg-f">PV = C₁/(1+S₁) + C₂/(1+S₂)² + (Cₙ+FV)/(1+Sₙ)^N</div></div>
+      <div class="fg-item"><div class="fg-label">Forward Rate from Spots (1y1y)</div><div class="fg-f">1y1y = [(1+S₂)²/(1+S₁)] − 1</div></div>
+      <div class="fg-item"><div class="fg-label">Forward Rate (2y1y)</div><div class="fg-f">2y1y = [(1+S₃)³/(1+S₂)²] − 1</div></div>
+      <div class="fg-item"><div class="fg-label">Multi-Period Forward (2y2y)</div><div class="fg-f">2y2y = [(1+S₄)⁴/(1+S₂)²]^(1/2) − 1</div></div>
+      <div class="fg-item"><div class="fg-label">Spot from Forwards</div><div class="fg-f">S₃ = [(1+S₁)(1+1y1y)(1+2y1y)]^(1/3) − 1</div></div>
+      <div class="fg-item"><div class="fg-label">Bond Value Using Forwards</div><div class="fg-f">PV = C₁/(1+f₁) + C₂/[(1+f₁)(1+f₂)] + ... where f_t = forward rates</div></div>
+    </div>
+
+    <div class="sec-title">Duration & Convexity</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Macaulay Duration</div><div class="fg-f">MacDur = Σ[t × (PV_t / Full price)]<br>(weighted avg time to cash flows)</div></div>
+      <div class="fg-item"><div class="fg-label">Duration Gap</div><div class="fg-f">Duration gap = MacDur − Investment horizon</div></div>
+      <div class="fg-item"><div class="fg-label">Modified Duration</div><div class="fg-f">ModDur = MacDur / (1 + YTM/periodicity)</div></div>
+      <div class="fg-item"><div class="fg-label">Approximate ModDur</div><div class="fg-f">ApproxModDur = (V− − V+) / (2 × V₀ × ΔYTM)<br>ΔYTM in decimal</div></div>
+      <div class="fg-item"><div class="fg-label">Price Change (Duration only)</div><div class="fg-f">%ΔP ≈ −ModDur × ΔYTM</div></div>
+      <div class="fg-item"><div class="fg-label">Money Duration</div><div class="fg-f">Money Dur = ModDur × Full position value<br>ΔValue = Money Dur × ΔYTM</div></div>
+      <div class="fg-item"><div class="fg-label">PVBP</div><div class="fg-f">PVBP = (V− − V+) / 2  (per $100 par)<br>PVBP = Money Dur × 0.0001</div></div>
+      <div class="fg-item"><div class="fg-label">Perpetuity Duration</div><div class="fg-f">MacDur = (1 + YTM) / YTM</div></div>
+      <div class="fg-item"><div class="fg-label">Convexity (Single CF)</div><div class="fg-f">Conv_t = t(t+1) / (1+r)²</div></div>
+      <div class="fg-item"><div class="fg-label">Approximate Convexity</div><div class="fg-f">ApproxConvex = (V+ + V− − 2V₀) / (V₀ × ΔYTM²)</div></div>
+      <div class="fg-item"><div class="fg-label">Annualize Convexity</div><div class="fg-f">Annual convexity = Periodic convexity / n²<br>where n = periods per year</div></div>
+      <div class="fg-item"><div class="fg-label">Price Change (Duration + Convexity)</div><div class="fg-f">%ΔP ≈ −ModDur×ΔYTM + ½×Convexity×(ΔYTM)²</div></div>
+      <div class="fg-item"><div class="fg-label">Effective Duration</div><div class="fg-f">EffDur = (V− − V+) / (2 × V₀ × ΔCurve)</div></div>
+      <div class="fg-item"><div class="fg-label">Effective Convexity</div><div class="fg-f">EffCon = (V+ + V− − 2V₀) / (V₀ × ΔCurve²)</div></div>
+    </div>
+
+    <div class="sec-title">Credit Risk</div>
+    <div class="fg">
+      <div class="fg-item"><div class="fg-label">Expected Loss</div><div class="fg-f">Expected Loss = POD × LGD%<br>POD = probability of default</div></div>
+      <div class="fg-item"><div class="fg-label">Loss Given Default %</div><div class="fg-f">LGD% = Expected exposure × (1 − Recovery rate)<br>= Expected exposure × Loss severity</div></div>
+      <div class="fg-item"><div class="fg-label">Credit Spread Estimate</div><div class="fg-f">Credit spread ≈ POD × LGD%</div></div>
+      <div class="fg-item"><div class="fg-label">Price Change from Spread Change</div><div class="fg-f">%ΔP ≈ −ModDur×ΔSpread + ½×Convexity×(ΔSpread)²</div></div>
+      <div class="fg-item"><div class="fg-label">DSCR (Commercial MBS)</div><div class="fg-f">DSCR = Net Operating Income / Debt Service Cost</div></div>
+      <div class="fg-item"><div class="fg-label">LTV (Mortgage)</div><div class="fg-f">LTV = Loan amount / Property value<br>Lower LTV = lower credit risk</div></div>
+      <div class="fg-item"><div class="fg-label">DTI (Residential Mortgage)</div><div class="fg-f">DTI = Monthly debt payments / Monthly gross pretax income</div></div>
+      <div class="fg-item"><div class="fg-label">Conversion Ratio</div><div class="fg-f">Conversion ratio = Par value / Conversion price</div></div>
+      <div class="fg-item"><div class="fg-label">Conversion Value</div><div class="fg-f">Conversion value = Conversion ratio × Share market price</div></div>
+      <div class="fg-item"><div class="fg-label">WAC / WAM</div><div class="fg-f">WAC = Σ(coupon_i × balance_i) / Σbalances<br>WAM = Σ(maturity_i × balance_i) / Σbalances</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">CFA Level I Fixed Income — All 19 Readings Covered (R47–R65) | Good luck on your exam! 🎯</div>
+</div>
+
+<script>
+  document.querySelectorAll('#toc a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('toc').classList.remove('open');
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>

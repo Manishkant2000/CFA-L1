@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Derivatives – Exam Master Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d14;
+    --panel: #111620;
+    --panel2: #161c28;
+    --border: #1e2840;
+    --gold: #f0c040;
+    --gold2: #e8a820;
+    --cyan: #38d8f0;
+    --green: #30e8a0;
+    --red: #f05060;
+    --purple: #a878f8;
+    --orange: #f08830;
+    --blue: #4898f8;
+    --text: #d8e0f0;
+    --muted: #6878a0;
+    --formula-bg: #0d1520;
+    --tag-h: #182038;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Lato',sans-serif; font-size:13.5px; line-height:1.55; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d1828 0%, #111e38 50%, #0a1420 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 28px 32px 20px;
+    position: sticky; top:0; z-index:100;
+  }
+  header h1 { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; color:var(--gold); letter-spacing:3px; }
+  header p { color:var(--muted); font-size:11px; letter-spacing:1px; margin-top:2px; }
+
+  /* NAV TABS */
+  .nav-tabs { display:flex; flex-wrap:wrap; gap:6px; padding:14px 32px 0; background:var(--panel); border-bottom:1px solid var(--border); position:sticky; top:72px; z-index:99; }
+  .nav-tab {
+    padding:6px 14px; border-radius:4px 4px 0 0; cursor:pointer; font-size:11px; font-weight:700;
+    letter-spacing:.8px; text-transform:uppercase; border: 1px solid transparent;
+    border-bottom:none; transition:all .2s; color:var(--muted); background:transparent;
+  }
+  .nav-tab:hover { color:var(--text); background:var(--panel2); }
+  .nav-tab.active { color:var(--gold); background:var(--bg); border-color:var(--border); border-bottom-color:var(--bg); }
+
+  /* CONTENT */
+  .content { padding:24px 32px; max-width:1400px; margin:0 auto; }
+  .chapter { display:none; }
+  .chapter.active { display:block; }
+
+  /* CHAPTER HEADER */
+  .ch-header {
+    display:flex; align-items:center; gap:16px; margin-bottom:20px;
+    padding: 16px 20px; background:var(--panel);
+    border-left: 4px solid var(--gold); border-radius:0 6px 6px 0;
+  }
+  .ch-num { font-family:'Bebas Neue',sans-serif; font-size:3rem; color:var(--gold); opacity:.4; line-height:1; }
+  .ch-title { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; color:var(--gold); }
+  .ch-sub { font-size:11px; color:var(--muted); letter-spacing:1px; }
+
+  /* GRID LAYOUT */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:14px; }
+  .grid1 { margin-bottom:14px; }
+
+  /* CARDS */
+  .card {
+    background:var(--panel); border:1px solid var(--border); border-radius:6px;
+    padding:14px 16px; position:relative; overflow:hidden;
+  }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .card.gold::before { background:var(--gold); }
+  .card.cyan::before { background:var(--cyan); }
+  .card.green::before { background:var(--green); }
+  .card.red::before { background:var(--red); }
+  .card.purple::before { background:var(--purple); }
+  .card.orange::before { background:var(--orange); }
+  .card.blue::before { background:var(--blue); }
+
+  .card-title {
+    font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:1.5px;
+    margin-bottom:10px; display:flex; align-items:center; gap:8px;
+  }
+  .card.gold .card-title { color:var(--gold); }
+  .card.cyan .card-title { color:var(--cyan); }
+  .card.green .card-title { color:var(--green); }
+  .card.red .card-title { color:var(--red); }
+  .card.purple .card-title { color:var(--purple); }
+  .card.orange .card-title { color:var(--orange); }
+  .card.blue .card-title { color:var(--blue); }
+
+  /* KW = keyword highlight */
+  .kw { color:var(--gold); font-weight:700; }
+  .kw-c { color:var(--cyan); font-weight:700; }
+  .kw-g { color:var(--green); font-weight:700; }
+  .kw-r { color:var(--red); font-weight:700; }
+  .kw-p { color:var(--purple); font-weight:700; }
+  .kw-o { color:var(--orange); font-weight:700; }
+  .kw-b { color:var(--blue); font-weight:700; }
+
+  /* FORMULA BOX */
+  .formula {
+    background:var(--formula-bg); border:1px solid var(--border);
+    border-left:3px solid var(--cyan); border-radius:4px;
+    padding:10px 14px; margin:8px 0;
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--cyan);
+    overflow-x:auto;
+  }
+  .formula .label { font-family:'Lato',sans-serif; font-size:10px; color:var(--muted); display:block; margin-bottom:4px; letter-spacing:.8px; text-transform:uppercase; }
+
+  /* BULLET LIST */
+  ul.pts { list-style:none; padding:0; }
+  ul.pts li { padding:3px 0 3px 14px; position:relative; font-size:13px; }
+  ul.pts li::before { content:'▸'; position:absolute; left:0; color:var(--muted); font-size:10px; top:5px; }
+
+  /* TWO-COL LIST */
+  .two-col { columns:2; gap:20px; }
+  .two-col li { break-inside:avoid; }
+
+  /* TABLE */
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin:8px 0; }
+  th { background:var(--tag-h); color:var(--gold); font-size:10px; letter-spacing:.8px; text-transform:uppercase; padding:7px 10px; border:1px solid var(--border); text-align:left; }
+  td { padding:6px 10px; border:1px solid var(--border); vertical-align:top; }
+  tr:nth-child(even) td { background:#0e1320; }
+  tr:hover td { background:#131a2a; }
+
+  /* TAG BADGE */
+  .tag { display:inline-block; padding:2px 7px; border-radius:3px; font-size:10px; font-weight:700; letter-spacing:.5px; margin:2px 2px; }
+  .tag-g { background:#0a2018; color:var(--green); border:1px solid #1a5038; }
+  .tag-r { background:#200a10; color:var(--red); border:1px solid #501828; }
+  .tag-c { background:#081820; color:var(--cyan); border:1px solid #184858; }
+  .tag-y { background:#201808; color:var(--gold); border:1px solid #504020; }
+  .tag-p { background:#180a28; color:var(--purple); border:1px solid #482878; }
+
+  /* ALERT BOX */
+  .alert { border-radius:4px; padding:10px 14px; margin:8px 0; font-size:12.5px; }
+  .alert-gold { background:#1a1200; border:1px solid #604800; border-left:3px solid var(--gold); }
+  .alert-red { background:#1a0808; border:1px solid #601818; border-left:3px solid var(--red); }
+  .alert-green { background:#081a10; border:1px solid #185830; border-left:3px solid var(--green); }
+  .alert-cyan { background:#081018; border:1px solid #183848; border-left:3px solid var(--cyan); }
+
+  /* DIVIDER */
+  .div { height:1px; background:var(--border); margin:12px 0; }
+
+  /* SPAN helpers */
+  .up { color:var(--green); } .dn { color:var(--red); }
+  .mono { font-family:'JetBrains Mono',monospace; font-size:12px; }
+
+  /* COMPARE TABLE accent rows */
+  .row-a td:first-child { color:var(--cyan); font-weight:700; }
+  .row-b td:first-child { color:var(--orange); font-weight:700; }
+
+  /* SECTION title */
+  .sec { font-family:'Bebas Neue',sans-serif; font-size:.95rem; letter-spacing:1.5px; color:var(--muted); margin:14px 0 8px; padding-bottom:4px; border-bottom:1px solid var(--border); }
+
+  /* Inline mini formula */
+  .f { font-family:'JetBrains Mono',monospace; color:var(--cyan); font-size:12px; background:#081018; padding:1px 5px; border-radius:3px; }
+
+  @media(max-width:900px) {
+    .grid2, .grid3 { grid-template-columns:1fr; }
+    .nav-tabs { top:60px; }
+    .two-col { columns:1; }
+    header { padding:16px; }
+    .content { padding:14px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ CFA DERIVATIVES — EXAM MASTER GUIDE</h1>
+  <p>READINGS 66–75 · COMPLETE KEYWORDS · ALL FORMULAS · EXAM-READY</p>
+</header>
+
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="show(0)">R66 · Markets</div>
+  <div class="nav-tab" onclick="show(1)">R67 · Instruments</div>
+  <div class="nav-tab" onclick="show(2)">R68 · Benefits/Risks</div>
+  <div class="nav-tab" onclick="show(3)">R69 · Arbitrage</div>
+  <div class="nav-tab" onclick="show(4)">R70 · Fwd Valuation</div>
+  <div class="nav-tab" onclick="show(5)">R71 · Futures</div>
+  <div class="nav-tab" onclick="show(6)">R72 · Swaps</div>
+  <div class="nav-tab" onclick="show(7)">R73 · Options</div>
+  <div class="nav-tab" onclick="show(8)">R74 · Put-Call Parity</div>
+  <div class="nav-tab" onclick="show(9)">R75 · Binomial</div>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════ R66 ═══════════════ -->
+<div class="chapter active" id="ch0">
+  <div class="ch-header">
+    <div class="ch-num">66</div>
+    <div>
+      <div class="ch-title">Derivative Instrument &amp; Derivative Market Features</div>
+      <div class="ch-sub">LOS 66.a – 66.b · OTC vs Exchange · Key Definitions</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">📖 Core Definition</div>
+      <ul class="pts">
+        <li><span class="kw">Derivative</span>: security whose value <em>derives</em> from an <span class="kw">underlying</span> asset or variable at a future date</li>
+        <li><span class="kw">Underlying</span>: the asset/variable determining the derivative's value (stock, bond, index, rate, commodity, currency, crypto, weather, longevity)</li>
+        <li>Value at any point = f(underlying value)</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Basic Features of a Derivative Contract</div>
+      <table>
+        <tr><th>Feature</th><th>Description</th></tr>
+        <tr><td><span class="kw">Underlying</span></td><td>Asset/variable driving the contract</td></tr>
+        <tr><td><span class="kw">Forward price / contract price</span></td><td>Price specified in contract</td></tr>
+        <tr><td><span class="kw">Contract size</span></td><td>Quantity of the underlying</td></tr>
+        <tr><td><span class="kw">Settlement date (maturity date)</span></td><td>Date of future transaction</td></tr>
+        <tr><td><span class="kw">Zero value at initiation</span></td><td>Neither party pays at start</td></tr>
+      </table>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">🔄 Settlement Types</div>
+      <ul class="pts">
+        <li><span class="kw-c">Deliverable contract</span>: physical exchange of underlying + cash at settlement</li>
+        <li><span class="kw-c">Cash-settled contract</span>: only net gains/losses exchanged; economically equivalent to deliverable (ignoring transaction costs)</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Forward Contract — Payoff Summary</div>
+      <table>
+        <tr><th>Position</th><th>Gain when</th><th>Loss when</th></tr>
+        <tr><td><span class="kw-g">Long (buyer)</span></td><td>Spot &gt; Forward price</td><td>Spot &lt; Forward price</td></tr>
+        <tr><td><span class="kw-r">Short (seller)</span></td><td>Spot &lt; Forward price</td><td>Spot &gt; Forward price</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:10px">Gains of one party = Losses of other (zero-sum)</div>
+      <div class="div"></div>
+      <ul class="pts">
+        <li><span class="kw-c">Long exposure</span>: profits when underlying ↑ (forward buyer)</li>
+        <li><span class="kw-c">Short exposure</span>: profits when underlying ↓ (forward seller)</li>
+        <li><span class="kw-c">Hedger</span>: uses derivative to offset existing risk</li>
+        <li><span class="kw-c">Speculator</span>: takes on risk via derivatives with no existing offsetting position</li>
+        <li><span class="kw-c">Full hedge</span>: derivative payoff exactly offsets existing risk</li>
+        <li><span class="kw-c">Partial hedge</span>: derivative reduces but doesn't eliminate risk</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card green">
+      <div class="card-title">🏛️ Exchange-Traded Derivatives (ETD)</div>
+      <ul class="pts">
+        <li><span class="kw-g">Standardized</span> contracts — terms set by exchange</li>
+        <li>Traded at a <span class="kw-g">centralized location</span> (exchange)</li>
+        <li>Backed by <span class="kw-g">Central Clearinghouse (CCH)</span> / <span class="kw-g">Central Counterparty (CCP)</span></li>
+        <li>CCH uses <span class="kw-g">novation</span>: takes opposite side of every trade</li>
+        <li>Requires <span class="kw-g">margin deposits</span> from both parties</li>
+        <li>Low <span class="kw-g">counterparty credit risk</span></li>
+        <li>More <span class="kw-g">liquid</span>, more <span class="kw-g">transparent</span>, lower trading costs</li>
+        <li>Easier to <span class="kw-g">clear and settle</span></li>
+        <li>Exchange members = <span class="kw-g">dealers / market makers</span></li>
+        <li>Largest: National Securities Exchange (India), B3 (Brazil), CME Group (USA)</li>
+        <li>Products: futures, some options</li>
+      </ul>
+    </div>
+
+    <div class="card orange">
+      <div class="card-title">🤝 OTC (Over-the-Counter) Derivatives</div>
+      <ul class="pts">
+        <li><span class="kw-o">Custom instruments</span> — tailored to end-user needs</li>
+        <li>Dealer market with <span class="kw-o">no central location</span></li>
+        <li>Largely <span class="kw-o">unregulated</span>, less transparent</li>
+        <li>Subject to <span class="kw-o">counterparty credit risk</span></li>
+        <li>More <span class="kw-o">difficult to clear and settle</span></li>
+        <li>Higher transaction costs, less liquid</li>
+        <li>No collateral requirement (unless mandated)</li>
+        <li>Products: forwards, most swaps, some options</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Post-2008 Central Clearing Mandate</div>
+      <ul class="pts">
+        <li>Many swap trades now use <span class="kw-o">Swap Execution Facility (SEF)</span></li>
+        <li><span class="kw-o">CCP</span> replaces trade with two trades (itself as counterparty to both)</li>
+        <li>Reduces counterparty risk but <span class="kw-r">concentrates</span> risk at CCP</li>
+        <li>Still customizable and with dealers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card blue grid1">
+    <div class="card-title">🌐 Types of Underlyings</div>
+    <div class="grid3">
+      <ul class="pts">
+        <li><span class="kw-b">Stocks/Bonds</span>: price uncertainty</li>
+        <li><span class="kw-b">Index</span>: S&amp;P 500, bond indices</li>
+        <li><span class="kw-b">Currency</span>: FX rate risk</li>
+      </ul>
+      <ul class="pts">
+        <li><span class="kw-b">Interest Rate</span>: higher rate = gain for rate forward buyer</li>
+        <li><span class="kw-b">Commodities</span>: hard (gold, oil) &amp; soft (cotton, coffee)</li>
+        <li><span class="kw-b">Credit</span>: CDS on default events</li>
+      </ul>
+      <ul class="pts">
+        <li><span class="kw-b">Weather</span>: farming, energy, tourism</li>
+        <li><span class="kw-b">Cryptocurrency</span>: BTC etc.</li>
+        <li><span class="kw-b">Longevity</span>: life insurers/annuity providers</li>
+      </ul>
+    </div>
+    <div class="alert alert-gold">
+      <strong>Advantages over cash market:</strong> Lower cost · Greater leverage · Less market impact · Ease of short selling
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→C (payoff based on asset/rate). Q2→C (ETDs have LOW default risk due to clearinghouse)
+  </div>
+</div>
+
+<!-- ═══════════════ R67 ═══════════════ -->
+<div class="chapter" id="ch1">
+  <div class="ch-header">
+    <div class="ch-num">67</div>
+    <div>
+      <div class="ch-title">Forward Commitment &amp; Contingent Claim Features</div>
+      <div class="ch-sub">LOS 67.a – 67.c · Futures · Swaps · Options · CDS · Payoffs</div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card gold">
+      <div class="card-title">📋 Forward Contracts</div>
+      <ul class="pts">
+        <li>Buyer <span class="kw">commits to buy</span>, seller <span class="kw">commits to sell</span></li>
+        <li>Specific asset, price, date</li>
+        <li>OTC, custom, counterparty risk</li>
+        <li>No daily mark-to-market (typically)</li>
+        <li><span class="kw">Long</span>: gain if spot &gt; forward price at settlement</li>
+        <li><span class="kw">Short</span>: gain if spot &lt; forward price</li>
+      </ul>
+    </div>
+    <div class="card cyan">
+      <div class="card-title">📈 Futures Contracts</div>
+      <ul class="pts">
+        <li>Standardized, exchange-traded forward</li>
+        <li>More liquid, regulated, transparent</li>
+        <li>Backed by <span class="kw-c">CCH</span></li>
+        <li><span class="kw-c">Daily MTM</span> (mark-to-market)</li>
+        <li><span class="kw-c">Margin</span> required (no loan, no interest)</li>
+        <li>Minimal counterparty risk</li>
+      </ul>
+    </div>
+    <div class="card green">
+      <div class="card-title">🔁 Swaps</div>
+      <ul class="pts">
+        <li>Exchange <span class="kw-g">series of payments</span> on multiple settlement dates</li>
+        <li>Net payment at each settlement date</li>
+        <li>OTC, dealer market, counterparty risk</li>
+        <li>Equivalent to <span class="kw-g">series of forward contracts</span></li>
+        <li>Zero value at initiation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card orange">
+      <div class="card-title">⚙️ Futures Margin Details</div>
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><span class="kw-o">Initial margin</span></td><td>Deposit before any trade; ~1 day max price move on full contract value</td></tr>
+        <tr><td><span class="kw-o">Maintenance margin</span></td><td>Minimum balance required</td></tr>
+        <tr><td><span class="kw-o">Margin call</span></td><td>If balance falls below maintenance → must restore to <em>initial</em> margin (not just maintenance — unlike equities)</td></tr>
+        <tr><td><span class="kw-o">Mark-to-market</span></td><td>Daily settlement of gains/losses</td></tr>
+        <tr><td><span class="kw-o">Settlement price</span></td><td>Average price of trades near end of session; resets contract value to zero daily</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">
+        <strong>Price limits &amp; circuit breakers:</strong> Exchange-imposed daily max price change; if hit, trading halted briefly
+      </div>
+    </div>
+    <div class="card purple">
+      <div class="card-title">💱 Interest Rate Swaps</div>
+      <ul class="pts">
+        <li><span class="kw-p">Fixed-for-floating</span> swap on <span class="kw-p">notional principal</span></li>
+        <li><span class="kw-p">Swap rate</span>: fixed rate set at initiation → zero value</li>
+        <li><span class="kw-p">MRR (Market Reference Rate)</span>: floating rate (e.g., SOFR)</li>
+        <li>Fixed payer pays: Notional × Fixed rate / 4 (quarterly)</li>
+        <li>Floating payer pays: Notional × MRR / 4</li>
+        <li>Only <span class="kw-p">net</span> payment exchanged</li>
+        <li>Floating-rate liability → enters swap as <span class="kw-p">fixed-rate payer</span> to hedge</li>
+      </ul>
+      <div class="formula">
+        <span class="label">Fixed quarterly payment</span>
+        Payment = Notional × (Fixed rate / 4)
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card red">
+      <div class="card-title">🛡️ Credit Default Swap (CDS)</div>
+      <ul class="pts">
+        <li><span class="kw-r">Protection buyer</span>: makes fixed periodic payments</li>
+        <li><span class="kw-r">Protection seller</span>: pays only if credit event occurs (default, bankruptcy, involuntary restructuring)</li>
+        <li>Underlying = <span class="kw-r">reference security</span></li>
+        <li>Fixed payments = yield premium on reference bonds</li>
+        <li>Buyer pays credit spread for default insurance</li>
+        <li>CDS is a <span class="kw-r">contingent claim</span> (payment depends on event)</li>
+        <li>Seller has similar risk to holding the reference bond</li>
+      </ul>
+    </div>
+    <div class="card blue">
+      <div class="card-title">🎯 Options — Key Terms</div>
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td><span class="kw-b">Call option</span></td><td>Right (not obligation) to <strong>BUY</strong></td></tr>
+        <tr><td><span class="kw-b">Put option</span></td><td>Right (not obligation) to <strong>SELL</strong></td></tr>
+        <tr><td><span class="kw-b">Exercise/Strike price (X)</span></td><td>Price at which option can be exercised</td></tr>
+        <tr><td><span class="kw-b">Option premium</span></td><td>Price paid by buyer to writer (seller)</td></tr>
+        <tr><td><span class="kw-b">Writer/Seller</span></td><td>Has obligation if buyer exercises</td></tr>
+        <tr><td><span class="kw-b">Long (buyer)</span></td><td>Max loss = premium paid; no further obligation</td></tr>
+        <tr><td><span class="kw-b">Short (writer)</span></td><td>Max gain = premium received</td></tr>
+        <tr><td><span class="kw-b">Expiration</span></td><td>Date option expires</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card cyan">
+      <div class="card-title">📊 Option Payoffs &amp; Profits at Expiration</div>
+      <table>
+        <tr><th>Position</th><th>Payoff at T</th><th>Profit</th></tr>
+        <tr class="row-a"><td>Long call</td><td>Max(0, S−X)</td><td>Max(0, S−X) − premium</td></tr>
+        <tr class="row-b"><td>Short call</td><td>−Max(0, S−X)</td><td>premium − Max(0, S−X)</td></tr>
+        <tr class="row-a"><td>Long put</td><td>Max(0, X−S)</td><td>Max(0, X−S) − premium</td></tr>
+        <tr class="row-b"><td>Short put</td><td>−Max(0, X−S)</td><td>premium − Max(0, X−S)</td></tr>
+      </table>
+      <div class="div"></div>
+      <div class="sec">Breakeven Points</div>
+      <table>
+        <tr><th>Option</th><th>Breakeven</th></tr>
+        <tr><td>Call</td><td class="mono">X + premium</td></tr>
+        <tr><td>Put</td><td class="mono">X − premium</td></tr>
+      </table>
+      <div class="div"></div>
+      <div class="sec">Max Gain / Max Loss</div>
+      <table>
+        <tr><th></th><th>Max Gain</th><th>Max Loss</th></tr>
+        <tr><td>Long call</td><td>Unlimited</td><td>Premium</td></tr>
+        <tr><td>Short call</td><td>Premium</td><td>Unlimited</td></tr>
+        <tr><td>Long put</td><td class="mono">X − Premium</td><td>Premium</td></tr>
+        <tr><td>Short put</td><td>Premium</td><td class="mono">X − Premium</td></tr>
+      </table>
+    </div>
+
+    <div class="card gold">
+      <div class="card-title">⚖️ Forward Commitment vs Contingent Claim</div>
+      <table>
+        <tr><th>Type</th><th>Description</th><th>Examples</th></tr>
+        <tr><td><span class="kw">Forward commitment</span></td><td>Legally binding obligation to act in future</td><td>Forwards, Futures, most Swaps</td></tr>
+        <tr><td><span class="kw">Contingent claim</span></td><td>Payoff depends on whether an event occurs</td><td>Options, CDS</td></tr>
+      </table>
+      <div class="div"></div>
+      <div class="sec">Directional Exposure Summary</div>
+      <table>
+        <tr><th>Position</th><th>Exposure</th><th>Profits when</th></tr>
+        <tr><td>Long call / Short put</td><td>Long</td><td>Underlying ↑</td></tr>
+        <tr><td>Long put / Short call</td><td>Short</td><td>Underlying ↓</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">Trading options is a <strong>zero-sum game</strong>: one party's gain = other's loss</div>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q67.1→1:A (futures only) | 2:C (counterparty risk) · Q67.2→1:B (FRAs series) | 2:B (buy right) | 3:A (positive payoff if in-money) | 4:C (Max[0,S−X]) | 5:A (loss $2) | 6:B (interest rate swap = forward commitment)
+  </div>
+</div>
+
+<!-- ═══════════════ R68 ═══════════════ -->
+<div class="chapter" id="ch2">
+  <div class="ch-header">
+    <div class="ch-num">68</div>
+    <div>
+      <div class="ch-title">Derivative Benefits, Risks &amp; Issuer/Investor Uses</div>
+      <div class="ch-sub">LOS 68.a – 68.b · Advantages · Risks · Hedge Accounting</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card green">
+      <div class="card-title">✅ Advantages of Derivatives</div>
+      <div class="sec">1. Risk Management</div>
+      <ul class="pts">
+        <li>Change, transfer, or manage risk without cash market transactions</li>
+        <li>Create risk exposures not available in cash markets</li>
+        <li>Put option = floor on sale price (downside protection)</li>
+        <li>Call option = upside without downside</li>
+      </ul>
+      <div class="sec">2. Information Discovery</div>
+      <ul class="pts">
+        <li><span class="kw-g">Implied volatility</span>: derived from option prices (unobservable)</li>
+        <li>Futures/forwards reveal expected future asset prices</li>
+        <li>Interest rate futures across maturities → expected future rates &amp; central bank moves</li>
+      </ul>
+      <div class="sec">3. Operational Advantages</div>
+      <ul class="pts">
+        <li><span class="kw-g">Short selling</span>: easier via forwards/futures (no borrowing asset)</li>
+        <li><span class="kw-g">Lower transaction costs</span>: esp. vs physical commodities (no storage/transport)</li>
+        <li><span class="kw-g">Greater leverage</span>: less cash for equivalent exposure</li>
+        <li><span class="kw-g">Greater liquidity</span>: large transactions easier to execute</li>
+      </ul>
+      <div class="sec">4. Market Efficiency</div>
+      <ul class="pts">
+        <li>Low costs + leverage + ease of shorting → easier arbitrage → more efficient prices</li>
+      </ul>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">⚠️ Risks of Derivatives</div>
+      <table>
+        <tr><th>Risk Type</th><th>Description</th></tr>
+        <tr><td><span class="kw-r">Implicit Leverage</span></td><td>Small cash requirement amplifies losses. Futures margins 3–12% → leverage 8:1 to 33:1. 4% margin: 1% futures price drop = 25% margin drop</td></tr>
+        <tr><td><span class="kw-r">Basis Risk</span></td><td>Underlying of derivative ≠ position being hedged. Returns on portfolio vs index may differ. Hedge horizon vs settlement date may differ</td></tr>
+        <tr><td><span class="kw-r">Liquidity Risk</span></td><td>Cash flows from derivative hedge ≠ position cash flows. E.g., farmer gets margin calls before harvest income arrives</td></tr>
+        <tr><td><span class="kw-r">Counterparty Credit Risk</span></td><td>OTC contracts without CCH. Option seller: ZERO counterparty risk (received premium). Option buyer: faces credit risk if option in-the-money</td></tr>
+        <tr><td><span class="kw-r">Systemic Risk</span></td><td>Excessive speculation → widespread market damage. Regulators use central clearing mandates to reduce</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card purple">
+      <div class="card-title">🏢 Derivatives Use by ISSUERS (Corporates)</div>
+      <ul class="pts">
+        <li>Manage asset/liability values and earnings volatility</li>
+        <li>Hedge FX risk on foreign income (FX forwards)</li>
+        <li>Enter swap as floating-rate payer to convert fixed-rate debt to floating → lower duration → less balance sheet sensitivity to rates</li>
+        <li>Sell forwards on inventory commodity → offset inventory fair value changes</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Hedge Accounting Types</div>
+      <table>
+        <tr><th>Type</th><th>Purpose</th><th>Example</th></tr>
+        <tr><td><span class="kw-p">Cash flow hedge</span></td><td>Stabilize future cash flows</td><td>FX forward on foreign receivable; floating→fixed swap</td></tr>
+        <tr><td><span class="kw-p">Fair value hedge</span></td><td>Offset changes in asset/liability values</td><td>Swap to stabilize debt value; forward on inventory</td></tr>
+        <tr><td><span class="kw-p">Net investment hedge</span></td><td>Reduce volatility of foreign subsidiary equity on balance sheet</td><td>FX forward/future on subsidiary equity</td></tr>
+      </table>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">👤 Derivatives Use by INVESTORS</div>
+      <ul class="pts">
+        <li>Hedge, modify, or increase exposure to underlying risk</li>
+        <li>Buy silver forwards → silver exposure with low/no cash upfront</li>
+        <li>Enter swap as floating-payer/fixed-receiver → increase bond portfolio <span class="kw-c">duration</span></li>
+        <li>Buy equity index futures → increase market exposure (cheap, fast)</li>
+        <li>Sell equity index futures → decrease market exposure</li>
+        <li>Buy puts on equity index → decrease downside, preserve upside</li>
+      </ul>
+      <div class="alert alert-green" style="margin-top:10px">
+        <strong>Issuer vs Investor:</strong><br>
+        Hedging inventory price risk = <strong>ISSUER</strong><br>
+        Modifying securities portfolio risk = <strong>INVESTOR</strong><br>
+        Stabilizing foreign subsidiary balance sheet = <strong>ISSUER</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→B (basis risk) | Q2→B (modifying portfolio = investor use)
+  </div>
+</div>
+
+<!-- ═══════════════ R69 ═══════════════ -->
+<div class="chapter" id="ch3">
+  <div class="ch-header">
+    <div class="ch-num">69</div>
+    <div>
+      <div class="ch-title">Arbitrage, Replication &amp; Cost of Carry in Pricing Derivatives</div>
+      <div class="ch-sub">LOS 69.a – 69.b · No-Arbitrage · Replication · Carry Costs · FX Forward</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">⚡ No-Arbitrage &amp; Arbitrage</div>
+      <ul class="pts">
+        <li><span class="kw">Arbitrage</span>: buy asset at one price, simultaneously sell identical-payoff portfolio at higher price → risk-free profit, zero cost</li>
+        <li><span class="kw">No-arbitrage condition</span>: two portfolios with identical future payoffs must have the same current price (<span class="kw">Law of One Price</span>)</li>
+        <li>Arbitrage opportunities exist briefly → quickly exploited until eliminated</li>
+        <li>Small price differences persist if arbitrage gain &lt; transaction costs</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Arbitrage Actions on Forward Price</div>
+      <table>
+        <tr><th>Condition</th><th>Action</th></tr>
+        <tr><td>Forward price <span class="up">too HIGH</span></td><td>SELL forward + BUY underlying (borrow at Rf)</td></tr>
+        <tr><td>Forward price <span class="dn">too LOW</span></td><td>BUY forward + SHORT SELL underlying (invest at Rf)</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">Arbitrage moves forward price toward no-arbitrage level</div>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">🔧 Replication</div>
+      <ul class="pts">
+        <li><span class="kw-c">Replication</span>: creating a cash market portfolio with the same payoffs as a derivative for all possible future values of the underlying</li>
+      </ul>
+      <div class="div"></div>
+      <table>
+        <tr><th>Derivative</th><th>Replicating Portfolio</th></tr>
+        <tr><td>Long forward at F₀</td><td>Borrow S₀ at Rf → buy underlying (repay S₀(1+Rf)^T at T)</td></tr>
+        <tr><td>Short forward at F₀</td><td>Short sell underlying, invest proceeds at Rf</td></tr>
+      </table>
+      <div class="div"></div>
+      <div class="sec">Payoff Verification</div>
+      <ul class="pts">
+        <li>Long forward payoff: <span class="f">S_T − F₀(T)</span></li>
+        <li>Replication payoff: <span class="f">S_T − S₀(1+Rf)^T</span></li>
+        <li>Both equal when <span class="f">F₀(T) = S₀(1+Rf)^T</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card gold grid1">
+    <div class="card-title">📐 No-Arbitrage Forward Price Formulas</div>
+    <div class="grid3">
+      <div>
+        <div class="formula">
+          <span class="label">Basic (no costs/benefits)</span>
+          F₀(T) = S₀ × (1 + Rf)^T
+        </div>
+        <div class="formula">
+          <span class="label">Continuous compounding</span>
+          F₀(T) = S₀ × e^(r×T)
+        </div>
+      </div>
+      <div>
+        <div class="formula">
+          <span class="label">With storage costs (PV)</span>
+          F₀(T) = [S₀ + PV₀(cost)] × (1+Rf)^T
+        </div>
+        <div class="formula">
+          <span class="label">With cash benefits (PV)</span>
+          F₀(T) = [S₀ − PV₀(benefit)] × (1+Rf)^T
+        </div>
+      </div>
+      <div>
+        <div class="formula">
+          <span class="label">General (costs + benefits)</span>
+          F₀(T) = [S₀ + PV₀(cost) − PV₀(benefit)] × (1+Rf)^T
+        </div>
+        <div class="formula">
+          <span class="label">Continuous (r=risk-free, c=storage rate, b=benefit rate)</span>
+          F₀(T) = S₀ × e^((r+c−b)×T)
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-gold" style="margin-top:8px">
+      <strong>Cost of Carry</strong> = benefits of holding − costs of holding. Greater costs → ↑ forward price. Greater benefits → ↓ forward price.
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card orange">
+      <div class="card-title">💰 Cost of Carry Components</div>
+      <table>
+        <tr><th>Item</th><th>Effect on F₀</th><th>Type</th></tr>
+        <tr><td><span class="kw-o">Storage costs</span></td><td><span class="up">↑ increases</span></td><td>Cost (physical commodities)</td></tr>
+        <tr><td><span class="kw-o">Insurance costs</span></td><td><span class="up">↑ increases</span></td><td>Cost</td></tr>
+        <tr><td><span class="kw-o">Risk-free rate (Rf)</span></td><td><span class="up">↑ increases</span></td><td>Opportunity cost</td></tr>
+        <tr><td><span class="kw-o">Dividends</span></td><td><span class="dn">↓ decreases</span></td><td>Monetary benefit</td></tr>
+        <tr><td><span class="kw-o">Coupon interest</span></td><td><span class="dn">↓ decreases</span></td><td>Monetary benefit</td></tr>
+        <tr><td><span class="kw-o">Convenience yield</span></td><td><span class="dn">↓ decreases</span></td><td>Non-monetary benefit; hard-to-short assets</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">
+        <span class="kw">Convenience yield</span>: non-monetary benefit of holding an asset. Arises when asset is difficult to sell short — shortage may drive spot price up temporarily
+      </div>
+    </div>
+
+    <div class="card green">
+      <div class="card-title">🌍 FX Forward Pricing</div>
+      <div class="formula">
+        <span class="label">No-Arbitrage FX Forward (effective annual rates)</span>
+        F₀(p/b) = Spot(p/b) × (1 + rate_price) / (1 + rate_base)
+      </div>
+      <div class="formula">
+        <span class="label">Continuous compounding version</span>
+        F₀ = Spot × e^(r_price − r_base) × T
+      </div>
+      <ul class="pts" style="margin-top:8px">
+        <li>Higher interest rate currency <span class="kw-g">depreciates</span> in the forward</li>
+        <li>Currency with lower rate = <span class="kw-g">forward premium</span></li>
+        <li>Covered interest parity holds → no arbitrage</li>
+      </ul>
+      <div class="formula">
+        <span class="label">Example: USD/EUR, Rf_USD=2%, Rf_EUR=3%, Spot=1.10</span>
+        Forward = 1.10 × (1.02/1.03) = 1.0893
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→A (certain payoffs → discount at Rf) | Q2→C (identical payoffs → same price) | Q3→A (convenience yield = non-monetary, hard to short) | Q4→C (borrow at Rf to buy underlying) | Q5→B (Rf + storage = convenience yield → F = Spot)
+  </div>
+</div>
+
+<!-- ═══════════════ R70 ═══════════════ -->
+<div class="chapter" id="ch4">
+  <div class="ch-header">
+    <div class="ch-num">70</div>
+    <div>
+      <div class="ch-title">Pricing &amp; Valuation of Forward Contracts</div>
+      <div class="ch-sub">LOS 70.a – 70.b · Forward Value · Implied Forward Rates · FRA</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">📊 Forward Contract Value at Different Times</div>
+      <table>
+        <tr><th>Time</th><th>Value to Buyer (Long)</th></tr>
+        <tr><td>At initiation (t=0)</td><td class="mono">V₀(T) = 0</td></tr>
+        <tr><td>During life (t &lt; T)</td><td class="mono">Vt(T) = St − F₀(T)×(1+Rf)^−(T−t)</td></tr>
+        <tr><td>At expiration (t=T)</td><td class="mono">VT(T) = ST − F₀(T)</td></tr>
+      </table>
+      <div class="formula">
+        <span class="label">General mid-life value (with holding costs/benefits)</span>
+        Vt(T) = [St + PVt(costs) − PVt(benefits)] − F₀(T)×(1+Rf)^−(T−t)
+      </div>
+      <div class="alert alert-gold" style="margin-top:8px">
+        <strong>Key:</strong> Price of forward is CONSTANT (= F₀(T)); VALUE fluctuates. Value to seller = negative of value to buyer.
+      </div>
+      <div class="div"></div>
+      <ul class="pts">
+        <li>Long gains when underlying price ↑ (value becomes positive)</li>
+        <li>Short gains when underlying price ↓</li>
+        <li>Exit: sell the asset short at St, invest F₀(T)×(1+Rf)^−(T−t) in discount bond</li>
+      </ul>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">📐 Implied Forward Rates</div>
+      <ul class="pts">
+        <li><span class="kw-c">Forward rate</span>: yield for a future period (not starting today)</li>
+        <li><span class="kw-c">Spot rates (Zn)</span>: zero-coupon bond YTM maturing in n years</li>
+        <li><span class="kw-c">Implied forward rate</span>: rate at which two strategies produce same ending value</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Notation</div>
+      <table>
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td><span class="kw-c">F1,1 (1y1y)</span></td><td>1-year rate, 1 year from now</td></tr>
+        <tr><td><span class="kw-c">F2,1 (2y1y)</span></td><td>1-year rate, 2 years from now</td></tr>
+        <tr><td><span class="kw-c">F3,2 (3y2y)</span></td><td>2-year rate, 3 years from now</td></tr>
+        <tr><td><span class="kw-c">3m6m</span></td><td>6-month rate, 3 months from now</td></tr>
+      </table>
+      <div class="formula">
+        <span class="label">General implied forward rate formula</span>
+        (1+Z_A+B)^(A+B) = (1+Z_A)^A × (1+F_A,B)^B
+        
+        Solve for F_A,B:
+        F_A,B = [(1+Z_{A+B})^(A+B) / (1+Z_A)^A]^(1/B) − 1
+      </div>
+      <div class="formula">
+        <span class="label">Example: F2,1 with Z2=2%, Z3=3%</span>
+        (1.03)³ / (1.02)² − 1 = 109.27/104.04 − 1 = 5.03%
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple grid1">
+    <div class="card-title">📋 Forward Rate Agreements (FRA)</div>
+    <div class="grid2">
+      <div>
+        <ul class="pts">
+          <li><span class="kw-p">FRA</span>: fixed-rate payer (long) pays forward rate; floating-rate payer pays future MRR on notional principal</li>
+          <li>Only net amount exchanged at settlement</li>
+          <li>Settlement at <span class="kw-p">beginning of forward period</span> (PV of end-of-period difference)</li>
+          <li>FRA = <span class="kw-p">single-period swap</span></li>
+          <li>Used primarily by financial institutions to manage interest-sensitive assets/liabilities</li>
+          <li>FRAs are building blocks of multi-period interest rate swaps</li>
+        </ul>
+      </div>
+      <div>
+        <div class="formula">
+          <span class="label">FRA Settlement Payment to Fixed-Rate Payer</span>
+          Payment = Notional × [(MRR_realized − MRR_forward)/m] 
+                    × [1/(1 + MRR_realized/m)]
+          
+          where m = periods per year (e.g., 2 for 6-month)
+        </div>
+        <div class="formula">
+          <span class="label">No-arbitrage FRA rate (e.g., F_3m6m)</span>
+          [1 + Z_9m × (9/12)] = [1 + Z_3m × (3/12)] × [1 + F_3m6m × (6/12)]
+        </div>
+        <div class="alert alert-gold">
+          Fixed-rate payer GAINS when realized MRR &gt; forward rate (floating went up)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→A (underlying ↑ → gain for buyer) | Q2→B (2y3y = begins 2yr from now, lasts 3yr → ends 5yr from now) | Q3→C (F2,2 needs 4yr data, only have 3yr)
+  </div>
+</div>
+
+<!-- ═══════════════ R71 ═══════════════ -->
+<div class="chapter" id="ch5">
+  <div class="ch-header">
+    <div class="ch-num">71</div>
+    <div>
+      <div class="ch-title">Pricing &amp; Valuation of Futures Contracts</div>
+      <div class="ch-sub">LOS 71.a – 71.b · Futures vs Forward Price · Convexity Bias · Interest Rate Futures</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">🔄 Forward vs Futures: Price &amp; Value</div>
+      <table>
+        <tr><th></th><th>Forward</th><th>Futures</th></tr>
+        <tr><td><span class="kw">Price</span></td><td>Constant over life (no MTM payments)</td><td>Changes daily with settlement price</td></tr>
+        <tr><td><span class="kw">Value</span></td><td>Fluctuates with underlying changes</td><td>Reset to zero daily after MTM</td></tr>
+        <tr><td>Settlement</td><td>At expiration (one payment)</td><td>Daily (mark-to-market)</td></tr>
+        <tr><td>Counterparty risk</td><td>Significant (OTC)</td><td>Minimal (CCH)</td></tr>
+        <tr><td>Margin</td><td>Usually none</td><td>Required (initial + maintenance)</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">
+        <strong>MTM:</strong> Each day, futures price resets to new settlement price. Value returns to zero after each settlement.
+      </div>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">📈 When Do Forward ≠ Futures Prices?</div>
+      <ul class="pts">
+        <li>If interest rates are <span class="kw-c">constant</span> or <span class="kw-c">uncorrelated</span> with futures prices: <span class="kw-g">Forward price = Futures price</span></li>
+      </ul>
+      <table style="margin-top:8px">
+        <tr><th>Correlation (rates vs futures)</th><th>Futures vs Forward</th><th>Why</th></tr>
+        <tr><td><span class="up">Positive (+)</span></td><td>Futures <span class="up">MORE</span> attractive</td><td>Daily gains come when rates high → earn more interest on excess margin</td></tr>
+        <tr><td><span class="dn">Negative (−)</span></td><td>Futures <span class="dn">LESS</span> attractive</td><td>Daily gains come when rates low → earn less on excess margin</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">In practice, differences are small due to short maturities and near Rf funding costs</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card orange">
+      <div class="card-title">📉 Interest Rate Futures Pricing</div>
+      <div class="formula">
+        <span class="label">Futures Price Quotation</span>
+        Futures price = 100 − (100 × MRR_A, B−A)
+        
+        Example: Futures = 97 → MRR_6m,6m = 3%
+      </div>
+      <div class="formula">
+        <span class="label">Basis Point Value (BPV)</span>
+        BPV = Notional × Period × 0.0001
+        
+        Example: €1M × (1/2) × 0.0001 = €50 per basis point
+      </div>
+      <ul class="pts" style="margin-top:8px">
+        <li>Interest rate futures = exchange-traded equivalent of FRAs</li>
+        <li>Subject to daily mark-to-market like all futures</li>
+        <li>Quoted on <span class="kw-o">price basis</span> (not rate), so higher price = lower rate</li>
+        <li>BPV: dollar change in contract value per 1bp (0.01%) rate change</li>
+      </ul>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">🌊 Convexity Bias</div>
+      <ul class="pts">
+        <li><span class="kw-r">Convexity bias</span>: forwards and futures may have significantly different prices for longer-term interest rate contracts</li>
+        <li>Forward payoffs exhibit <span class="kw-r">convexity</span> (like bonds)</li>
+        <li>Rate ↑ by 1bp: forward value falls by <span class="dn">less</span> than it rises for a 1bp rate ↓</li>
+        <li>Futures: symmetric $50/bp in both directions (linear)</li>
+        <li>Forward: asymmetric payoffs (larger gain when rates fall vs loss when rates rise)</li>
+        <li>Convexity bias increases with <span class="kw-r">longer maturity</span></li>
+        <li>Futures prices are <span class="kw-r">lower</span> than equivalent forward prices (convexity disadvantage)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→B (future value of current spot price) | Q2→B (positive correlation → futures more attractive)
+  </div>
+</div>
+
+<!-- ═══════════════ R72 ═══════════════ -->
+<div class="chapter" id="ch6">
+  <div class="ch-header">
+    <div class="ch-num">72</div>
+    <div>
+      <div class="ch-title">Pricing &amp; Valuation of Interest Rate &amp; Other Swaps</div>
+      <div class="ch-sub">LOS 72.a – 72.b · Swap as FRA Series · Par Swap Rate · Swap Value</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">🔁 Swap as Series of FRAs</div>
+      <ul class="pts">
+        <li>Interest rate swap = economically equivalent to series of <span class="kw">FRAs</span></li>
+        <li>Each payment in swap ↔ one FRA with contract rate = swap fixed rate</li>
+        <li>First payment is known at initiation (based on current MRR)</li>
+        <li>Remaining payments = unknown floating rates → equivalent to FRAs</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Key Difference from FRAs</div>
+      <ul class="pts">
+        <li>In swap: ALL forward contract rates equal the same fixed rate (swap rate)</li>
+        <li>Individual FRAs in the swap are NOT zero-value at initiation</li>
+        <li>Some FRAs have positive value, some negative value</li>
+        <li>The <span class="kw">sum of all FRA values = 0</span> at initiation</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Replication of Fixed-Rate Payer Swap</div>
+      <ul class="pts">
+        <li>Borrow at fixed rate F + lend proceeds at floating MRR → same cash flows as swap</li>
+        <li>Fixed-rate payer swap ≈ <span class="kw">issue fixed-rate bond + buy floating-rate note</span></li>
+        <li>Fixed-rate receiver ≈ <span class="kw">issue floating-rate note + buy fixed-rate bond</span></li>
+      </ul>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">💲 Par Swap Rate &amp; Swap Value</div>
+      <ul class="pts">
+        <li><span class="kw-c">Price of swap</span> = fixed rate specified in contract (par swap rate) — CONSTANT</li>
+        <li><span class="kw-c">Value of swap</span> = depends on how expected future floating rates change — VARIABLE</li>
+        <li>At initiation: PV(fixed payments) = PV(expected floating payments) → value = 0</li>
+      </ul>
+      <div class="formula">
+        <span class="label">Par Swap Rate Equation (quarterly, 4 periods)</span>
+        MRR₁/(1+S₁) + MRR₂/(1+S₂)² + MRR₃/(1+S₃)³ + MRR₄/(1+S₄)⁴
+          = F/(1+S₁) + F/(1+S₂)² + F/(1+S₃)³ + F/(1+S₄)⁴
+        
+        Solve for F (par swap rate)
+      </div>
+      <div class="div"></div>
+      <div class="sec">Mid-Life Swap Value</div>
+      <ul class="pts">
+        <li>Expected future rates ↑ → <span class="kw-c">value to fixed-rate payer ↑</span></li>
+        <li>Expected future rates ↓ → value to fixed-rate payer ↓</li>
+        <li>Value = PV(expected future floating payments) − PV(future fixed payments)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card orange grid1">
+    <div class="card-title">📋 Swap Position Summary</div>
+    <table>
+      <tr><th>Position</th><th>Cash Market Equivalent</th><th>Similar To</th></tr>
+      <tr><td><span class="kw-o">Fixed-rate payer (floating receiver)</span></td><td>Issue fixed-rate bond + buy floating-rate note</td><td>Long interest rate risk (benefits if rates ↑)</td></tr>
+      <tr><td><span class="kw-o">Floating-rate payer (fixed receiver)</span></td><td>Issue floating-rate note + buy fixed-rate bond</td><td>Short interest rate risk (benefits if rates ↓)</td></tr>
+    </table>
+    <div class="div"></div>
+    <div class="sec">Uses</div>
+    <div class="grid2">
+      <ul class="pts">
+        <li>Company with floating-rate debt → enters swap as <span class="kw-o">fixed-rate payer</span> → convert to fixed liability (hedge)</li>
+        <li>Investor wanting longer duration → enter as floating-payer/fixed-receiver</li>
+      </ul>
+      <ul class="pts">
+        <li>Key: swap fixed rate (par swap rate) derived from spot rate curve</li>
+        <li>Notional principal never exchanged in interest rate swaps</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→B (floating-rate receiver = issue floating + buy fixed) | Q2→A (price = fixed rate specified in contract)
+  </div>
+</div>
+
+<!-- ═══════════════ R73 ═══════════════ -->
+<div class="chapter" id="ch7">
+  <div class="ch-header">
+    <div class="ch-num">73</div>
+    <div>
+      <div class="ch-title">Pricing &amp; Valuation of Options</div>
+      <div class="ch-sub">LOS 73.a – 73.c · Moneyness · Bounds · 6 Factors · Greeks Intro</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">💡 Moneyness, Exercise Value &amp; Time Value</div>
+      <table>
+        <tr><th>Term</th><th>Call (S−X)</th><th>Put (X−S)</th></tr>
+        <tr><td><span class="kw">In the money (ITM)</span></td><td>S &gt; X</td><td>X &gt; S</td></tr>
+        <tr><td><span class="kw">At the money (ATM)</span></td><td>S = X</td><td>S = X</td></tr>
+        <tr><td><span class="kw">Out of the money (OTM)</span></td><td>S &lt; X</td><td>S &gt; X</td></tr>
+      </table>
+      <div class="div"></div>
+      <table>
+        <tr><th>Concept</th><th>Formula</th></tr>
+        <tr><td><span class="kw">Exercise value (intrinsic value)</span></td><td>Call: Max(0, S−X) · Put: Max(0, X−S)</td></tr>
+        <tr><td><span class="kw">Time value (speculative value)</span></td><td>Option price − Exercise value</td></tr>
+        <tr><td><span class="kw">Option premium</span></td><td>Exercise value + Time value</td></tr>
+      </table>
+      <div class="div"></div>
+      <ul class="pts">
+        <li>OTM option: exercise value = 0, so price = time value entirely</li>
+        <li>At expiration: time value = 0</li>
+        <li>Pre-expiration: option price &gt; exercise value (time value &gt; 0) due to remaining probability of gain</li>
+      </ul>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">📏 Option Bounds (European)</div>
+      <table>
+        <tr><th>Option</th><th>Lower Bound (Min)</th><th>Upper Bound (Max)</th></tr>
+        <tr><td><span class="kw-c">European Call</span></td><td class="mono">Max[0, S_t − X(1+Rf)^−(T−t)]</td><td class="mono">S_t</td></tr>
+        <tr><td><span class="kw-c">European Put</span></td><td class="mono">Max[0, X(1+Rf)^−(T−t) − S_t]</td><td class="mono">X(1+Rf)^−(T−t)</td></tr>
+      </table>
+      <div class="div"></div>
+      <div class="sec">Key Points</div>
+      <ul class="pts">
+        <li>Call upper bound = S (no one pays more than asset market value for the right to buy it)</li>
+        <li>Put upper bound = PV(X) not X (European can't be exercised early)</li>
+        <li>Both lower bounds ≥ 0 (options can't have negative value)</li>
+        <li>Lower bound for call = S − PV(X) because you could replicate by buying stock and borrowing PV(X)</li>
+      </ul>
+      <div class="formula">
+        <span class="label">Portfolio proof for call lower bound</span>
+        Long call + Bond[PV(X)] + Short stock ≥ 0
+        → c₀ ≥ S₀ − X(1+Rf)^−T
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple grid1">
+    <div class="card-title">⚙️ 6 Factors Determining Option Value</div>
+    <table>
+      <tr><th>Factor</th><th>↑ Factor</th><th>Effect on Call</th><th>Effect on Put</th><th>Memory Aid</th></tr>
+      <tr><td><span class="kw-p">Price of underlying (S)</span></td><td>S ↑</td><td class="up">↑ Increase</td><td class="dn">↓ Decrease</td><td>Call = right to buy; put = right to sell</td></tr>
+      <tr><td><span class="kw-p">Exercise price (X)</span></td><td>X ↑</td><td class="dn">↓ Decrease</td><td class="up">↑ Increase</td><td>Higher X = less valuable call, more valuable put</td></tr>
+      <tr><td><span class="kw-p">Risk-free rate (Rf)</span></td><td>Rf ↑</td><td class="up">↑ Increase</td><td class="dn">↓ Decrease</td><td>Higher Rf → PV(X) lower → call cheaper to exercise; put payment discounted more</td></tr>
+      <tr><td><span class="kw-p">Volatility (σ)</span></td><td>σ ↑</td><td class="up">↑ Increase</td><td class="up">↑ Increase</td><td>Volatility helps ALL options (asymmetric payoff)</td></tr>
+      <tr><td><span class="kw-p">Time to expiration (T)</span></td><td>T ↑</td><td class="up">↑ Increase</td><td class="up">↑ Usually</td><td>Exception: deep ITM European puts may decrease</td></tr>
+      <tr><td><span class="kw-p">Costs of holding asset</span></td><td>Cost ↑</td><td class="up">↑ Increase</td><td class="dn">↓ Decrease</td><td>Call holder avoids storage costs</td></tr>
+      <tr><td><span class="kw-p">Benefits of holding asset (div/coupon)</span></td><td>Benefit ↑</td><td class="dn">↓ Decrease</td><td class="up">↑ Increase</td><td>Div reduces stock price → call falls, put rises</td></tr>
+    </table>
+    <div class="alert alert-gold" style="margin-top:8px">
+      <strong>Deep ITM Put Exception:</strong> For a deep in-the-money put with high Rf and long time to expiry, extending time to expiration may <em>decrease</em> its value (PV effect dominates)
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→B (OTM option price = time value, exercise value=0) | Q2→B (lower bound for put = Max[0, X(1+Rf)^−(T−t)−S]) | Q3→C (Rf ↓ → calls ↓, puts ↑)
+  </div>
+</div>
+
+<!-- ═══════════════ R74 ═══════════════ -->
+<div class="chapter" id="ch8">
+  <div class="ch-header">
+    <div class="ch-num">74</div>
+    <div>
+      <div class="ch-title">Option Replication Using Put–Call Parity</div>
+      <div class="ch-sub">LOS 74.a – 74.b · PCP · Put-Call-Forward Parity · Synthetic Securities · Corporate Finance</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">⚖️ Put-Call Parity (PCP)</div>
+      <div class="sec">Building Blocks</div>
+      <table>
+        <tr><th>Portfolio</th><th>Components</th><th>Payoff at T</th></tr>
+        <tr><td><span class="kw">Fiduciary Call</span></td><td>Long call (X) + Long bond [pays X at T]</td><td>S when S≥X; X when S&lt;X</td></tr>
+        <tr><td><span class="kw">Protective Put</span></td><td>Long stock + Long put (X)</td><td>S when S≥X; X when S&lt;X</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">Same payoffs → same price (no-arbitrage)</div>
+      <div class="formula">
+        <span class="label">Put-Call Parity Equation</span>
+        c + X(1+Rf)^−T = S + p
+        
+        (Call + PV(X) = Stock + Put)
+      </div>
+      <div class="div"></div>
+      <div class="sec">Requirements</div>
+      <ul class="pts">
+        <li>European options only</li>
+        <li>Same exercise price (X) for put and call</li>
+        <li>Same expiration date (T)</li>
+        <li>Same underlying asset</li>
+      </ul>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">🔧 Synthetic Positions (from PCP)</div>
+      <div class="formula">
+        <span class="label">Rearrangements of: c + X(1+Rf)^−T = S + p</span>
+        S = c − p + X(1+Rf)^−T     [Synthetic stock]
+        p = c − S + X(1+Rf)^−T     [Synthetic put]  
+        c = S + p − X(1+Rf)^−T     [Synthetic call]
+        X(1+Rf)^−T = S + p − c     [Synthetic bond]
+      </div>
+      <div class="sec">Reading the Signs: + = Long, − = Short</div>
+      <table>
+        <tr><th>Synthetic</th><th>Long</th><th>Short</th></tr>
+        <tr><td>Stock</td><td>Call + Bond</td><td>Put</td></tr>
+        <tr><td>Put</td><td>Call + Bond</td><td>Stock</td></tr>
+        <tr><td>Call</td><td>Stock + Put</td><td>Bond</td></tr>
+        <tr><td>Bond</td><td>Stock + Put</td><td>Call</td></tr>
+      </table>
+      <div class="formula">
+        <span class="label">PCP Example: Estimate call price</span>
+        S=$52, p=$1.50, X=$50, Rf=5%, T=0.25yr
+        c = p + S − X(1+Rf)^−T
+        c = 1.50 + 52 − 50/1.05^0.25 = $4.11
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card purple">
+      <div class="card-title">🔮 Put-Call-Forward Parity</div>
+      <ul class="pts">
+        <li>Replace stock S₀ with synthetic asset: <span class="kw-p">long forward + bond paying F₀(T)</span></li>
+        <li>Synthetic asset cost = PV of forward price = F₀(T)(1+Rf)^−T</li>
+      </ul>
+      <div class="formula">
+        <span class="label">Put-Call-Forward Parity</span>
+        F₀(T)(1+Rf)^−T + p₀ = c₀ + X(1+Rf)^−T
+        
+        Rearranged:
+        p₀ − c₀ = [X − F₀(T)] × (1+Rf)^−T
+      </div>
+      <ul class="pts" style="margin-top:8px">
+        <li>Does NOT include the underlying asset directly</li>
+        <li>Uses bond paying F₀(T) + forward + put + call</li>
+        <li>If F₀(T) = X → put price = call price (put-call parity at-the-money forward)</li>
+      </ul>
+    </div>
+
+    <div class="card orange">
+      <div class="card-title">🏢 Options Theory in Corporate Finance</div>
+      <div class="sec">Firm with value V, zero-coupon debt D due at T</div>
+      <table>
+        <tr><th>Claim</th><th>Payoff at T</th><th>Option Equivalent</th></tr>
+        <tr><td><span class="kw-o">Equity holders</span></td><td>Max(0, V_T − D)</td><td>Long call on firm value, exercise price = D</td></tr>
+        <tr><td><span class="kw-o">Debt holders</span></td><td>Min(V_T, D)</td><td>Long risk-free bond (pays D) + Short put on V_T with strike D</td></tr>
+      </table>
+      <div class="alert alert-gold" style="margin-top:8px">
+        V_T &gt; D: Equity gets V_T−D; Debt gets D; Put expires worthless<br>
+        V_T &lt; D: Equity gets 0; Debt gets V_T; Debtholders pay D−V_T on short put
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→B (protective put = fiduciary call) | Q2→C (put-call-forward parity does NOT include underlying asset)
+  </div>
+</div>
+
+<!-- ═══════════════ R75 ═══════════════ -->
+<div class="chapter" id="ch9">
+  <div class="ch-header">
+    <div class="ch-num">75</div>
+    <div>
+      <div class="ch-title">Valuing a Derivative Using a One-Period Binomial Model</div>
+      <div class="ch-sub">LOS 75.a – 75.b · Hedge Ratio · No-Arbitrage Pricing · Risk-Neutral Probabilities</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card gold">
+      <div class="card-title">🌲 One-Period Binomial Model Setup</div>
+      <div class="sec">Required Inputs</div>
+      <ul class="pts">
+        <li>S₀: current underlying value</li>
+        <li>X: exercise price of option</li>
+        <li>Rᵘ: up-move return (= S^u / S₀)</li>
+        <li>Rᵈ: down-move return (= S^d / S₀)</li>
+        <li>Rf: risk-free rate over the period</li>
+        <li><em>NOT required</em>: actual probability of up/down move</li>
+      </ul>
+      <div class="div"></div>
+      <div class="sec">Binomial Tree Structure</div>
+      <div class="formula">
+        S₀ → S^u = S₀ × Rᵘ (up-move)
+        S₀ → S^d = S₀ × Rᵈ (down-move)
+        
+        Call payoffs:
+        c^u = Max(0, S^u − X)
+        c^d = Max(0, S^d − X)
+        
+        Put payoffs:
+        p^u = Max(0, X − S^u)
+        p^d = Max(0, X − S^d)
+      </div>
+    </div>
+
+    <div class="card cyan">
+      <div class="card-title">⚖️ Hedge Ratio Method (No-Arbitrage)</div>
+      <div class="formula">
+        <span class="label">Hedge ratio h (number of shares per option written/bought)</span>
+        h = (c^u − c^d) / (S^u − S^d)  [for call: short call + long h shares]
+        h = (p^u − p^d) / (S^u − S^d)  [for put: long put + long h shares]
+      </div>
+      <div class="sec">Steps for Call (short call, long h shares)</div>
+      <div class="formula">
+        1. V^u = h×S^u − c^u  (portfolio value up-state)
+        2. V^d = h×S^d − c^d  (portfolio value down-state)
+        3. Set V^u = V^d → solve for h
+        4. V₀ = V^u / (1 + Rf)   [discount certain payoff]
+        5. V₀ = h×S₀ − c₀ → solve: c₀ = h×S₀ − V₀
+      </div>
+      <div class="sec">Steps for Put (long put, long h shares)</div>
+      <div class="formula">
+        1. V^u = h×S^u + p^u
+        2. V^d = h×S^d + p^d
+        3. Set V^u = V^d → solve for h
+        4. V₀ = V^u / (1 + Rf)
+        5. V₀ = h×S₀ + p₀ → solve: p₀ = V₀ − h×S₀
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card purple">
+      <div class="card-title">🎲 Risk-Neutral Probability Method</div>
+      <div class="formula">
+        <span class="label">Risk-neutral probability of UP move (π_U)</span>
+        π_U = (1 + Rf − Rᵈ) / (Rᵘ − Rᵈ)
+        
+        π_D = 1 − π_U   [prob of down-move]
+      </div>
+      <div class="div"></div>
+      <div class="sec">Steps</div>
+      <div class="formula">
+        1. Calculate π_U and π_D
+        2. Calculate option payoffs: c^u, c^d (or p^u, p^d)
+        3. E[payoff] = π_U × c^u + π_D × c^d
+        4. Option value = E[payoff] / (1 + Rf)
+      </div>
+      <div class="alert alert-gold" style="margin-top:8px">
+        <strong>IMPORTANT:</strong> π_U and π_D are NOT actual probabilities — they are <span class="kw-p">risk-neutral pseudo-probabilities</span> derived from no-arbitrage conditions. We CAN discount at Rf because based on arbitrage.
+      </div>
+    </div>
+
+    <div class="card orange">
+      <div class="card-title">📝 Worked Example</div>
+      <div class="sec">Setup: S₀=$30, X=$30, Rᵘ=1.15, Rf=7%</div>
+      <div class="formula">
+        Rᵈ = 1/1.15 = 0.87
+        S^u = 30 × 1.15 = $34.50
+        S^d = 30 × 0.87 = $26.10
+        
+        π_U = (1.07 − 0.87)/(1.15 − 0.87) = 0.20/0.28 = 0.715
+        π_D = 1 − 0.715 = 0.285
+      </div>
+      <div class="sec">Call (X=$30)</div>
+      <div class="formula">
+        c^u = Max(0, 34.50−30) = $4.50
+        c^d = Max(0, 26.10−30) = $0
+        E[call] = 0.715×4.50 + 0.285×0 = $3.22
+        c₀ = 3.22 / 1.07 = $3.01
+      </div>
+      <div class="sec">Put (X=$30)</div>
+      <div class="formula">
+        p^u = Max(0, 30−34.50) = $0
+        p^d = Max(0, 30−26.10) = $3.90
+        E[put] = 0.715×0 + 0.285×3.90 = $1.11
+        p₀ = 1.11 / 1.07 = $1.04
+      </div>
+    </div>
+  </div>
+
+  <div class="card green grid1">
+    <div class="card-title">🔑 Key Concepts Summary</div>
+    <div class="grid3">
+      <ul class="pts">
+        <li>Actual probabilities NOT needed for no-arbitrage pricing</li>
+        <li><span class="kw-g">Hedge ratio</span> = number of shares to hold per option written/bought</li>
+        <li>Portfolio with hedge ratio has <span class="kw-g">certain payoff</span> regardless of move</li>
+      </ul>
+      <ul class="pts">
+        <li>Certain payoff → discount at Rf (no risk premium)</li>
+        <li>Both methods (hedge ratio and risk-neutral prob) give same answer</li>
+        <li>Risk-neutral probabilities come from no-arbitrage relationship</li>
+      </ul>
+      <ul class="pts">
+        <li>In practice: many short periods → many outcomes (binomial tree)</li>
+        <li>One-period model illustrates core concept</li>
+        <li>Discount always at Rf because model is arbitrage-based (riskless portfolio)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-cyan">
+    <strong>EXAM ANSWERS:</strong> Q1→A (probabilities NOT required for no-arbitrage model) | Q2→A (PV of probability-weighted average of TWO outcomes) | Q3→A (based on no-arbitrage relationship → discount at Rf)
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<!-- MASTER FORMULA SHEET (always visible at bottom) -->
+<div style="background:var(--panel); border-top:2px solid var(--gold); padding:20px 32px; margin-top:0;">
+  <div style="max-width:1400px; margin:0 auto;">
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; color:var(--gold); letter-spacing:2px; margin-bottom:16px;">⚡ MASTER FORMULA SHEET</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:10px;">
+      <div class="formula"><span class="label">No-arbitrage forward price</span>F₀(T) = S₀(1+Rf)^T</div>
+      <div class="formula"><span class="label">Forward with costs/benefits</span>F₀(T) = [S₀+PV(cost)−PV(benefit)](1+Rf)^T</div>
+      <div class="formula"><span class="label">Continuous compounding forward</span>F₀(T) = S₀ × e^(r+c−b)T</div>
+      <div class="formula"><span class="label">Forward value during life</span>Vt = St − F₀(T)(1+Rf)^−(T−t)</div>
+      <div class="formula"><span class="label">Forward value at expiration</span>VT = ST − F₀(T)</div>
+      <div class="formula"><span class="label">Implied forward rate</span>(1+Z_{m+n})^(m+n) = (1+Zm)^m × (1+F_{m,n})^n</div>
+      <div class="formula"><span class="label">FX Forward (effective annual)</span>F(p/b) = Spot × (1+r_price)/(1+r_base)</div>
+      <div class="formula"><span class="label">Interest rate futures price</span>Price = 100 − (100 × MRR)</div>
+      <div class="formula"><span class="label">BPV (futures)</span>BPV = Notional × Period × 0.0001</div>
+      <div class="formula"><span class="label">Call payoff / profit</span>Payoff = Max(0,S−X) · Profit = Payoff − Premium</div>
+      <div class="formula"><span class="label">Put payoff / profit</span>Payoff = Max(0,X−S) · Profit = Payoff − Premium</div>
+      <div class="formula"><span class="label">Put-call parity</span>c + X(1+Rf)^−T = S + p</div>
+      <div class="formula"><span class="label">Put-call-forward parity</span>F₀(T)(1+Rf)^−T + p = c + X(1+Rf)^−T</div>
+      <div class="formula"><span class="label">Call lower bound (European)</span>c ≥ Max[0, S − X(1+Rf)^−T]</div>
+      <div class="formula"><span class="label">Put lower bound (European)</span>p ≥ Max[0, X(1+Rf)^−T − S]</div>
+      <div class="formula"><span class="label">Option price decomposition</span>Price = Exercise value + Time value</div>
+      <div class="formula"><span class="label">Binomial hedge ratio (call)</span>h = (c^u − c^d) / (S^u − S^d)</div>
+      <div class="formula"><span class="label">Risk-neutral prob (up)</span>π_U = (1 + Rf − Rᵈ) / (Rᵘ − Rᵈ)</div>
+      <div class="formula"><span class="label">Binomial option value</span>Option = [π_U×payoff^u + π_D×payoff^d] / (1+Rf)</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(idx) {
+  document.querySelectorAll('.chapter').forEach((c,i) => c.classList.toggle('active', i===idx));
+  document.querySelectorAll('.nav-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>

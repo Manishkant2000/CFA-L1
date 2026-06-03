@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alternative Investments — Exam Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --ink: #1a1a2e;
+    --muted: #555577;
+    --r1: #fff0f0; --r1b: #e53e3e;
+    --r2: #fff8e1; --r2b: #f59e0b;
+    --r3: #f0fff4; --r3b: #22c55e;
+    --r4: #f0f4ff; --r4b: #3b82f6;
+    --r5: #fdf0ff; --r5b: #a855f7;
+    --r6: #fff5f0; --r6b: #f97316;
+    --r7: #f0faff; --r7b: #06b6d4;
+    --formula: #1e293b;
+    --formula-bg: #f1f5f9;
+    --border: #e2e8f0;
+    --tag-bg: #e8f4fd;
+    --tag: #1d4ed8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  header {
+    background: var(--ink);
+    color: white;
+    padding: 18px 28px 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--r1b);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+  }
+  header span {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  nav {
+    background: #16213e;
+    padding: 8px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    position: sticky;
+    top: 57px;
+    z-index: 99;
+  }
+  nav a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #2d3748;
+    transition: all 0.15s;
+  }
+  nav a:hover { color: white; border-color: #4a90d9; background: #1e3a5f; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
+  .chapter {
+    margin-bottom: 24px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .ch-header {
+    padding: 10px 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ch-header .ch-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; font-family: 'Source Sans 3', sans-serif; }
+  .ch-body { padding: 14px 18px; background: white; }
+  /* Chapter colors */
+  .ch1 .ch-header { background: var(--r1); color: #9b2c2c; }
+  .ch2 .ch-header { background: var(--r2); color: #92400e; }
+  .ch3 .ch-header { background: var(--r3); color: #166534; }
+  .ch4 .ch-header { background: var(--r4); color: #1e40af; }
+  .ch5 .ch-header { background: var(--r5); color: #6b21a8; }
+  .ch6 .ch-header { background: var(--r6); color: #9a3412; }
+  .ch7 .ch-header { background: var(--r7); color: #0e7490; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  @media(max-width: 700px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+  .card {
+    border-radius: 7px;
+    padding: 10px 12px;
+    border-left: 4px solid;
+  }
+  .card-red { background: #fff5f5; border-color: var(--r1b); }
+  .card-amber { background: #fffbeb; border-color: var(--r2b); }
+  .card-green { background: #f0fdf4; border-color: var(--r3b); }
+  .card-blue { background: #eff6ff; border-color: var(--r4b); }
+  .card-purple { background: #faf5ff; border-color: var(--r5b); }
+  .card-orange { background: #fff7ed; border-color: var(--r6b); }
+  .card-cyan { background: #ecfeff; border-color: var(--r7b); }
+  .card-gray { background: #f8fafc; border-color: #64748b; }
+
+  .card h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    color: var(--muted);
+  }
+  .card ul { padding-left: 14px; }
+  .card ul li { margin-bottom: 2px; }
+  .card p { margin-bottom: 4px; }
+
+  .formula-box {
+    background: var(--formula-bg);
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--formula);
+  }
+  .formula-box .label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--r4b);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .formula-box .eq { font-size: 13px; font-weight: 700; color: #0f172a; }
+  .formula-box .where { font-size: 11px; color: #475569; margin-top: 4px; }
+
+  kw {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    border-radius: 4px;
+    padding: 0 5px;
+    font-weight: 700;
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag);
+    border-radius: 20px;
+    padding: 1px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 1px 2px;
+  }
+  .warn {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #9a3412;
+    margin: 6px 0;
+  }
+  .warn::before { content: "⚠ "; font-weight: 700; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 8px 0;
+  }
+  th {
+    background: var(--ink);
+    color: white;
+    padding: 6px 10px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f8fafc; }
+  tr:hover td { background: #f0f4ff; }
+
+  h3 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin: 12px 0 6px;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 3px;
+  }
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 0;
+  }
+
+  .toggle-icon { font-size: 14px; transition: transform 0.2s; }
+  .collapsed .toggle-icon { transform: rotate(-90deg); }
+  .collapsed .ch-body { display: none; }
+
+  .tip {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 1px solid #86efac;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: #14532d;
+    margin: 6px 0;
+  }
+  .tip::before { content: "💡 "; }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Alternative Investments</h1>
+  <span>CFA Level I — Complete Exam Study Guide</span>
+</header>
+
+<nav>
+  <a href="#r76">R76: Structures</a>
+  <a href="#r77">R77: Performance</a>
+  <a href="#r78">R78: Private Capital</a>
+  <a href="#r79">R79: Real Estate &amp; Infra</a>
+  <a href="#r80">R80: Natural Resources</a>
+  <a href="#r81">R81: Hedge Funds</a>
+  <a href="#r82">R82: Digital Assets</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== READING 76 ===== -->
+<div class="chapter ch1" id="r76">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 76</div>
+      Alternative Investment Features, Methods &amp; Structures
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="grid2">
+      <div class="card card-red">
+        <h4>What are Alternative Investments?</h4>
+        <ul>
+          <li>NOT traditional (long-only cash/public stocks/bonds)</li>
+          <li>Types: <kw>Hedge funds</kw>, <kw>Private equity</kw>, <kw>Real estate</kw>, commodities, infrastructure, illiquid securities</li>
+          <li>Actively managed</li>
+        </ul>
+      </div>
+      <div class="card card-amber">
+        <h4>3 Broad Categories</h4>
+        <ul>
+          <li><kw>Private Capital</kw>: Private equity + Private debt</li>
+          <li><kw>Real Assets</kw>: Real estate, infrastructure, natural resources, digital assets</li>
+          <li><kw>Hedge Funds</kw>: Pooled, qualified investors, diverse strategies</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Key Features vs. Traditional Investments</h3>
+    <table>
+      <tr><th>Feature</th><th>Alt Investments</th><th>Traditional</th></tr>
+      <tr><td>Knowledge required</td><td>More specialized</td><td>Less</td></tr>
+      <tr><td>Correlation with trad.</td><td>Low (on avg.)</td><td>N/A</td></tr>
+      <tr><td>Liquidity</td><td>Less liquid</td><td>More liquid</td></tr>
+      <tr><td>Time horizon</td><td>Longer</td><td>Shorter</td></tr>
+      <tr><td>Min. investment</td><td>Larger</td><td>Smaller</td></tr>
+      <tr><td>Fees</td><td>Higher</td><td>Lower</td></tr>
+      <tr><td>Regulation</td><td>Less regulated</td><td>More regulated</td></tr>
+    </table>
+    <div class="warn">Correlations with traditional investments may increase significantly during periods of economic stress — diversification benefit erodes when most needed!</div>
+
+    <h3>Investment Methods (LOS 76.b)</h3>
+    <div class="grid3">
+      <div class="card card-blue">
+        <h4>Fund Investing</h4>
+        <ul>
+          <li>Pool with other investors</li>
+          <li>Manager selects/manages assets</li>
+          <li>Investor has no control</li>
+          <li>Earns: <kw>Management fee</kw> + <kw>Incentive fee</kw></li>
+          <li>Higher min. capital, longer lockups, less transparency</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h4>Co-Investing</h4>
+        <ul>
+          <li>Fund investing + right to invest directly alongside manager in specific assets</li>
+          <li>Lower fees than pure fund</li>
+          <li>Benefits from manager expertise</li>
+          <li>Helps investor build skills for direct investing</li>
+          <li>Benefits GP: more capital, more diversification</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h4>Direct Investing</h4>
+        <ul>
+          <li>Purchases assets itself</li>
+          <li>No outside manager fees</li>
+          <li>More control</li>
+          <li>Disadvantages: less diversification, higher min. investment, need expertise &amp; due diligence</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">Investor without in-house due diligence expertise → Fund investing. Due diligence is the fund manager's responsibility.</div>
+
+    <h3>Ownership Structure — Limited Partnerships (LOS 76.c)</h3>
+    <div class="grid2">
+      <div class="card card-gray">
+        <h4>General Partner (GP)</h4>
+        <ul>
+          <li>= Fund manager</li>
+          <li>Makes ALL investment decisions</li>
+          <li>Takes on partnership liabilities (incl. debt repayment)</li>
+          <li>Receives management + performance fees</li>
+        </ul>
+      </div>
+      <div class="card card-gray">
+        <h4>Limited Partners (LPs)</h4>
+        <ul>
+          <li>= Investors</li>
+          <li>Own proportional share based on investment</li>
+          <li>No say in management</li>
+          <li>Liability limited to investment only</li>
+          <li>Must be <kw>accredited investors</kw></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card card-amber">
+        <h4>Key LP Terms</h4>
+        <ul>
+          <li><kw>Limited Partnership Agreement</kw>: governing rules</li>
+          <li><kw>Side letters</kw>: special terms for one LP</li>
+          <li><kw>Excusal right</kw>: LP can withhold capital call</li>
+          <li><kw>Most-favored-nation clause</kw>: special terms offered to others also apply to you</li>
+          <li><kw>Term sheet</kw>: investment policy, fees, participation requirements</li>
+        </ul>
+      </div>
+      <div class="card card-cyan">
+        <h4>Capital Mechanics</h4>
+        <ul>
+          <li>LPs commit capital; may contribute partially, rest drawn over time</li>
+          <li><kw>Dry powder</kw>: committed but not yet invested capital</li>
+          <li>Drawdown period: typically 3–5 years</li>
+          <li><kw>MLP (Master Limited Partnership)</kw>: publicly traded; common in natural resources/real estate</li>
+        </ul>
+      </div>
+      <div class="card card-red">
+        <h4>Fee Structure Overview</h4>
+        <ul>
+          <li><kw>Management fee</kw>: 1–2% of assets (paid regardless of performance)</li>
+          <li><kw>Performance/Incentive fee</kw>: % of profits (also: <kw>carried interest</kw>)</li>
+          <li>Hedge funds: mgmt fee on <kw>AUM</kw></li>
+          <li>Private equity: mgmt fee on <kw>committed capital</kw></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Hurdle Rates, Catch-up, Waterfall &amp; Clawback</h3>
+    <table>
+      <tr><th>Term</th><th>Definition</th><th>Effect</th></tr>
+      <tr><td><kw>Hurdle rate</kw> (preferred return)</td><td>Min. return before perf. fees paid</td><td>Protects LP</td></tr>
+      <tr><td><kw>Soft hurdle rate</kw></td><td>If met → perf. fee = % of TOTAL gain</td><td>More for GP</td></tr>
+      <tr><td><kw>Hard hurdle rate</kw></td><td>Perf. fee = % of gains ABOVE hurdle only</td><td>Less for GP</td></tr>
+      <tr><td><kw>Catch-up clause</kw></td><td>GP gets all gains above hurdle to "catch up" to agreed % share; similar effect to soft hurdle</td><td>Reaches 80/20 split</td></tr>
+      <tr><td><kw>High-water mark</kw></td><td>No perf. fee on gains that only offset prior losses; fee paid only when value exceeds highest prior NAV</td><td>Protects LP from double fees</td></tr>
+      <tr><td><kw>American waterfall</kw> (deal-by-deal)</td><td>Profits distributed as each investment sold</td><td>Favors GP</td></tr>
+      <tr><td><kw>European waterfall</kw> (whole-of-fund)</td><td>LP gets 100% of capital + hurdle first, then GP gets carried interest</td><td>Favors LP</td></tr>
+      <tr><td><kw>Clawback provision</kw></td><td>LPs can recover excess perf. fees if subsequent deals create losses; net effect = European waterfall</td><td>Protects LP</td></tr>
+    </table>
+
+    <div class="formula-box">
+      <span class="label">Soft Hurdle Example (hurdle=8%, return=12%, perf. fee=20%)</span>
+      <div class="eq">Perf. fee = 20% × 12% = 2.4% of total</div>
+    </div>
+    <div class="formula-box">
+      <span class="label">Hard Hurdle Example (hurdle=8%, return=12%, perf. fee=20%)</span>
+      <div class="eq">Perf. fee = 20% × (12% − 8%) = 0.8% of total</div>
+    </div>
+    <div class="formula-box">
+      <span class="label">Catch-Up Example (hurdle=8%, return=14%, perf. fee=20%)</span>
+      <div class="eq">First 8% → LPs | Next 2% → GP (catch-up to 20% of 10%) | Remaining 4% → 80% LP / 20% GP</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== READING 77 ===== -->
+<div class="chapter ch2" id="r77">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 77</div>
+      Alternative Investment Performance &amp; Returns
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="grid2">
+      <div class="card card-amber">
+        <h4>4 Additional Risk Sources in Alt. Investments</h4>
+        <ul>
+          <li><kw>Timing of cash flows</kw> over life cycle</li>
+          <li><kw>Use of leverage</kw> by managers</li>
+          <li><kw>Valuation</kw> of illiquid assets (no market prices)</li>
+          <li><kw>Complexity of fees, taxes, accounting</kw></li>
+        </ul>
+      </div>
+      <div class="card card-red">
+        <h4>J-Curve Effect — 3 Life Cycle Phases</h4>
+        <ul>
+          <li><kw>Capital Commitment phase</kw>: capital calls begin; returns NEGATIVE (cash outflows)</li>
+          <li><kw>Capital Deployment phase</kw>: invest in firms; returns still NEGATIVE (esp. start-ups)</li>
+          <li><kw>Capital Distribution phase</kw>: investments pay off; returns turn POSITIVE, accelerate</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Return Measurement</h3>
+    <div class="grid2">
+      <div class="card card-blue">
+        <h4>IRR (Money-Weighted Rate of Return)</h4>
+        <ul>
+          <li><kw>Most appropriate</kw> measure for alt. investments</li>
+          <li>Appropriate when manager controls timing of cash flows</li>
+          <li>Drawback: assumes reinvestment at IRR; depends on cost of capital assumption</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h4>Multiple of Invested Capital (Money Multiple / MOIC)</h4>
+        <ul>
+          <li>Simpler; ignores timing</li>
+          <li>Can be considered "naïve"</li>
+        </ul>
+        <div class="formula-box">
+          <span class="label">MOIC Formula</span>
+          <div class="eq">MOIC = (Total capital returned + Remaining asset value) ÷ Total capital invested</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Leveraged Return Formula</h3>
+    <div class="formula-box">
+      <span class="label">Leveraged Portfolio Return</span>
+      <div class="eq">Leveraged Return = [r(V₀ + V_B) − r_B × V_B] ÷ V₀</div>
+      <div class="where">V₀ = initial equity | V_B = borrowed funds | r = portfolio return rate | r_B = borrowing interest rate</div>
+    </div>
+    <div class="tip">Leverage amplifies BOTH gains and losses. If r &gt; r_B → leverage helps; if r &lt; r_B → leverage hurts.</div>
+    <div class="warn">Leverage risks: margin calls → forced liquidation at bad prices; lenders may restrict further borrowing.</div>
+
+    <h3>Fair Value Hierarchy (Valuation of Investments)</h3>
+    <table>
+      <tr><th>Level</th><th>Description</th><th>Examples</th></tr>
+      <tr><td><kw>Level 1</kw></td><td>Quoted prices in active markets</td><td>Exchange-traded securities</td></tr>
+      <tr><td><kw>Level 2</kw></td><td>Observable inputs (direct or indirect)</td><td>Many derivatives (model-priced)</td></tr>
+      <tr><td><kw>Level 3</kw></td><td>Unobservable inputs — fair value est.</td><td>Real estate, private equity</td></tr>
+    </table>
+    <div class="warn">Level 3 valuations stay near cost for long periods → reported returns appear HIGHER, risk appears LOWER, correlations appear LOWER than reality. This is a bias.</div>
+
+    <h3>Redemption Controls</h3>
+    <div class="grid3">
+      <div class="card card-cyan">
+        <h4><kw>Lockup period</kw></h4>
+        <p>Time after investment when LPs CANNOT redeem (or incur big fees). Especially common in hedge funds.</p>
+      </div>
+      <div class="card card-cyan">
+        <h4><kw>Notice period</kw></h4>
+        <p>30–90 days fund has to fulfill redemption request. Allows orderly position unwinding.</p>
+      </div>
+      <div class="card card-cyan">
+        <h4><kw>Gate / Redemption fee</kw></h4>
+        <p><kw>Gate</kw>: temporary partial restriction on redemptions. <kw>Redemption fee</kw>: offsets transaction costs of redemptions.</p>
+      </div>
+    </div>
+    <div class="card card-purple" style="margin:8px 0">
+      <h4>Other Fee Concepts</h4>
+      <ul>
+        <li><kw>Founders class shares</kw>: early investors get lower fees or better liquidity</li>
+        <li><kw>Either-or fees</kw>: annual fee = max(management fee, incentive fee)</li>
+        <li><kw>Vintage year comparison</kw>: comparing funds that started investing in same year (addresses life-cycle bias)</li>
+        <li><kw>"2 and 20"</kw>: 2% mgmt + 20% performance (traditional); now under competitive pressure</li>
+        <li><kw>"1 and 10"</kw>: fund-of-funds standard fee</li>
+      </ul>
+    </div>
+
+    <h3>Biases in Alt. Investment Returns</h3>
+    <table>
+      <tr><th>Bias</th><th>Description</th><th>Effect on Reported Returns</th></tr>
+      <tr><td><kw>Survivorship bias</kw></td><td>Failed funds excluded from index; &gt;25% hedge funds fail in 3 yrs</td><td>Overstates returns, understates risk</td></tr>
+      <tr><td><kw>Backfill bias</kw></td><td>Managers add historical returns when joining index (only winners self-report)</td><td>Overstates returns</td></tr>
+      <tr><td><kw>Selection bias</kw></td><td>Index providers assign funds inconsistently or have different inclusion requirements</td><td>Distorts representation</td></tr>
+    </table>
+
+    <h3>Return Calculation Formulas</h3>
+    <div class="formula-box">
+      <span class="label">GP Total Fees (simple case)</span>
+      <div class="eq">Total fees = m × V₁ + max[0, p(V₁ − V₀)]</div>
+      <div class="where">m = mgmt fee rate | p = performance fee rate | V₀ = beginning assets | V₁ = end assets</div>
+    </div>
+    <div class="formula-box">
+      <span class="label">Investor After-Fee Return</span>
+      <div class="eq">r = (V₁ − V₀ − Total fees) ÷ V₀</div>
+    </div>
+
+    <h3>Fee Calculation Example Workflow</h3>
+    <div class="card card-gray">
+      <h4>Step-by-Step (Hedge Fund with HWM + Soft Hurdle)</h4>
+      <ol style="padding-left:16px;font-size:12px;line-height:1.8">
+        <li>Calculate <strong>management fee</strong> = fee rate × AUM (beginning or end, per agreement)</li>
+        <li>Find <strong>return net of mgmt fee</strong></li>
+        <li>Check if return exceeds <strong>hurdle rate</strong></li>
+        <li>Check <strong>high-water mark</strong> — perf fee applies only on gains above HWM</li>
+        <li>If soft hurdle met → perf fee = % × total gain above HWM</li>
+        <li>If hard hurdle → perf fee = % × (gain above HWM − hurdle amount)</li>
+        <li>After-fee return = (End value − fees) ÷ Beginning value − 1</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== READING 78 ===== -->
+<div class="chapter ch3" id="r78">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 78</div>
+      Investments in Private Capital: Equity &amp; Debt
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="grid2">
+      <div class="card card-green">
+        <h4>Private Capital = Private Equity + Private Debt</h4>
+        <ul>
+          <li>Funding NOT from public markets</li>
+          <li><kw>Portfolio companies</kw>: companies in which PE fund invests</li>
+          <li>PE funds: invest in private companies or take public companies private</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h4>Risk-Return Spectrum (lowest → highest)</h4>
+        <p>Infrastructure debt → Senior real estate debt → Senior direct lending → Unitranche debt → Mezzanine debt → <kw>Private equity (highest)</kw></p>
+      </div>
+    </div>
+
+    <h3>Private Equity Types</h3>
+    <table>
+      <tr><th>Type</th><th>Description</th><th>Key Notes</th></tr>
+      <tr><td><kw>LBO (Leveraged Buyout)</kw></td><td>Acquire public co. with large % debt; take it private</td><td>Most common PE fund type; adds value via operational improvement</td></tr>
+      <tr><td><kw>MBO (Mgmt Buyout)</kw></td><td>LBO where existing management participates</td><td>Variant of LBO</td></tr>
+      <tr><td><kw>MBI (Mgmt Buy-in)</kw></td><td>LBO where PE replaces existing management</td><td>Variant of LBO</td></tr>
+      <tr><td><kw>Venture Capital (VC)</kw></td><td>Early-stage companies; high risk, high return</td><td>Gets common equity, convertible debt, or preferred stock</td></tr>
+      <tr><td><kw>Minority equity investing</kw></td><td>Less-than-controlling interest in public cos.</td><td>Via <kw>PIPE (Private Investment in Public Equity)</kw></td></tr>
+    </table>
+
+    <h3>VC Investment Stages</h3>
+    <table>
+      <tr><th>Stage</th><th>Sub-stage</th><th>Details</th></tr>
+      <tr><td rowspan="3"><kw>Formative Stage</kw></td><td><kw>Pre-seed / Angel investing</kw></td><td>Idea stage; business plan; funding from individuals ("angels"), NOT VC funds</td></tr>
+      <tr><td><kw>Seed-stage / Seed capital</kw></td><td>Product dev, marketing, market research; FIRST stage VC funds invest</td></tr>
+      <tr><td><kw>Early-stage / Start-up</kw></td><td>Fund operations before production &amp; sales</td></tr>
+      <tr><td><kw>Later-stage / Expansion VC</kw></td><td>—</td><td>After production &amp; sales begun; growth, expansion; founders often sell control to VC</td></tr>
+      <tr><td><kw>Mezzanine-stage</kw></td><td>—</td><td>Preparing for IPO; timing term, not method term (≠ mezzanine financing)</td></tr>
+    </table>
+    <div class="tip">VC funds' FIRST typical investment: Seed stage (not angel/pre-seed which is individuals)</div>
+
+    <h3>Private Equity Exit Strategies</h3>
+    <table>
+      <tr><th>Method</th><th>Description</th><th>Pros/Cons</th></tr>
+      <tr><td><kw>Trade sale</kw></td><td>Sell to strategic buyer (direct/auction)</td><td>+ Premium for synergies, fast, low cost | − Management resistance, limited buyers</td></tr>
+      <tr><td><kw>IPO</kw></td><td>Most common; investment bank underwrites</td><td>+ Highest price, visibility | − High cost, compliance burden; needs large firm, stable financials</td></tr>
+      <tr><td><kw>Direct listing</kw></td><td>Stock listed without underwriters</td><td>+ Lower cost | − No new capital raised</td></tr>
+      <tr><td><kw>SPAC</kw> (blank check company)</td><td>Raises capital to acquire private co. within time limit</td><td>+ Flexible, less valuation uncertainty | − Dilution, deal risk, shareholder overhang, rising regulatory scrutiny</td></tr>
+      <tr><td><kw>Recapitalization</kw></td><td>Co. issues debt to pay dividend to equity holders</td><td>NOT an exit — fund still controls co.; extracts cash</td></tr>
+      <tr><td><kw>Secondary sale</kw></td><td>Sell to another PE firm or investor group</td><td>Clean exit, no public market needed</td></tr>
+      <tr><td><kw>Write-off / Liquidation</kw></td><td>Failed investment — take losses</td><td>Last resort</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:4px">Average holding period: ~5 years</p>
+
+    <h3>Private Debt Categories</h3>
+    <table>
+      <tr><th>Type</th><th>Description</th><th>Risk Level</th></tr>
+      <tr><td><kw>Direct lending</kw></td><td>Loans directly to private co., no intermediary; typically senior &amp; secured with covenants</td><td>Low-med</td></tr>
+      <tr><td><kw>Leveraged loan</kw></td><td>Fund's loan portfolio is itself leveraged to magnify returns</td><td>Med</td></tr>
+      <tr><td><kw>Venture debt</kw></td><td>VC-backed start-ups not yet profitable; often convertible/with warrants; maintains founder control</td><td>High</td></tr>
+      <tr><td><kw>Mezzanine debt</kw></td><td>Subordinated to senior secured debt; may have conversion rights/warrants for extra risk compensation</td><td>Med-High</td></tr>
+      <tr><td><kw>Distressed debt</kw></td><td>Debt of financially troubled (bankrupt/defaulting) mature companies; active restructuring</td><td>High</td></tr>
+      <tr><td><kw>Unitranche debt</kw></td><td>Combines secured + unsecured into ONE loan at blended rate; ranks between senior and subordinated</td><td>Med</td></tr>
+    </table>
+    <div class="card card-amber" style="margin-top:8px">
+      <h4>Private Debt Key Points</h4>
+      <ul>
+        <li>Higher returns than traditional bonds (illiquidity + default risk premium)</li>
+        <li>Rate usually set vs. reference rate (<kw>SOFR</kw>) → floating rate</li>
+        <li>Low correlation with traditional investments → diversification benefit</li>
+        <li>Senior private debt: less risk, steadier yields vs. mezzanine; mezzanine has more upside</li>
+      </ul>
+    </div>
+
+    <h3>Diversification &amp; Vintage Year</h3>
+    <div class="grid2">
+      <div class="card card-green">
+        <h4>Diversification</h4>
+        <ul>
+          <li>Empirical correlations of private capital with public markets: <kw>0.63–0.83</kw> (some benefit but not zero)</li>
+          <li>Should diversify across <kw>vintage years</kw></li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h4>Vintage Year Timing Strategy</h4>
+        <ul>
+          <li>Expansion vintage → better for <kw>early-stage/VC</kw> funds</li>
+          <li>Contraction vintage → better for <kw>distressed debt</kw> funds</li>
+          <li>PE returns higher than stocks on avg., but standard deviation also higher</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn">PE indexes: self-reporting → survivorship + backfill biases → overstated returns. Infrequent revaluation → volatility and correlation underestimated.</div>
+
+  </div>
+</div>
+
+<!-- ===== READING 79 ===== -->
+<div class="chapter ch4" id="r79">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 79</div>
+      Real Estate &amp; Infrastructure
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <h3>Real Estate — The 2×2 Quadrant</h3>
+    <table>
+      <tr><th></th><th>Debt</th><th>Equity</th></tr>
+      <tr><td><strong>Private</strong></td><td>Mortgage debt, Construction loans, Mezzanine debt</td><td>Direct: Sole ownership, Joint ventures, Limited partnerships; Indirect: RE funds, Private REITs</td></tr>
+      <tr><td><strong>Public</strong></td><td>MBS/CMBS/CMOs, Covered bonds, Mortgage REITs, Mortgage ETFs</td><td>Construction/Operating/Dev. shares, Public REITs, UCITS/Mutual funds/ETFs</td></tr>
+    </table>
+
+    <div class="grid2">
+      <div class="card card-blue">
+        <h4>Equity Investor</h4>
+        <ul>
+          <li>Ownership interest in RE or securities of RE entity</li>
+          <li>Controls borrowing, property mgmt, exit strategy</li>
+          <li><kw>Equity value = Property value − Outstanding debt</kw></li>
+        </ul>
+      </div>
+      <div class="card card-amber">
+        <h4>Debt Investor</h4>
+        <ul>
+          <li>Lender owning mortgage or MBS</li>
+          <li>Collateralized (secured) by RE</li>
+          <li>Higher priority claim than equity in default</li>
+          <li>Must be repaid first</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Commercial RE Subcategories (4 Largest)</h3>
+    <p><kw>Office buildings</kw> | <kw>Shopping</kw> | <kw>Industrial/Warehouse/Distribution</kw> | <kw>Rental residential</kw></p>
+
+    <h3>Direct vs. Indirect Investment</h3>
+    <table>
+      <tr><th>Aspect</th><th>Direct Investment</th><th>Indirect (REITs, LPs, etc.)</th></tr>
+      <tr><td>Control</td><td>✅ Full control (buy/sell/manage)</td><td>❌ Professionally managed</td></tr>
+      <tr><td>Diversification</td><td>❌ Concentration risk</td><td>✅ Pool of properties</td></tr>
+      <tr><td>Liquidity</td><td>❌ Illiquid</td><td>✅ (REITs: exchange traded)</td></tr>
+      <tr><td>Tax</td><td>✅ Depreciation deductions + interest</td><td>✅ REITs exempt from double tax</td></tr>
+      <tr><td>Expertise needed</td><td>✅ Required by owner</td><td>✅ Professional mgmt</td></tr>
+      <tr><td>Min. investment</td><td>❌ Very high</td><td>✅ Lower (shares)</td></tr>
+      <tr><td>Price transparency</td><td>❌ Opaque</td><td>✅ Market prices</td></tr>
+    </table>
+
+    <h3>REIT Features</h3>
+    <div class="grid2">
+      <div class="card card-green">
+        <h4>REIT Advantages</h4>
+        <ul>
+          <li>Exchange traded → liquid; NO redemption/liquidation risk (unlike mutual funds)</li>
+          <li>Exempt from double taxation</li>
+          <li>Professional management; diversified pool</li>
+          <li>Report GAAP metrics (EPS) + non-GAAP (<kw>Net Asset Value</kw>)</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h4>REIT Types</h4>
+        <ul>
+          <li><kw>Equity REIT</kw>: invest directly in RE/partnerships</li>
+          <li><kw>Mortgage REIT</kw>: lend money or invest in MBS/CMBS</li>
+          <li><kw>Hybrid REIT</kw>: both RE + mortgages</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>REIT Strategy Risk Spectrum (lowest → highest)</h3>
+    <table>
+      <tr><th>Strategy</th><th>Structure</th><th>Risk Profile</th></tr>
+      <tr><td><kw>Core</kw></td><td>Open-end, indefinite life (invest/redeem anytime)</td><td>Lowest; stable rental income (bond-like); high-quality commercial/residential</td></tr>
+      <tr><td><kw>Core-plus</kw></td><td>Closed-end, finite life</td><td>Some development/redevelopment</td></tr>
+      <tr><td><kw>Value-add</kw></td><td>Closed-end, finite life</td><td>Larger scale redevelopment</td></tr>
+      <tr><td><kw>Opportunistic</kw></td><td>Closed-end, finite life</td><td>Highest; distressed properties, large-scale repurposing, speculation</td></tr>
+    </table>
+
+    <h3>Overall Real Estate Risk Spectrum (lowest → highest)</h3>
+    <p style="font-size:12px;padding:8px;background:#f8fafc;border-radius:6px;border:1px solid var(--border)">
+      <kw>First mortgage / Investment-grade CMBS</kw> (most bond-like) → <kw>Core</kw> → <kw>Core-plus</kw> → <kw>Value-add</kw> → <kw>Opportunistic</kw> (most equity-like)
+    </p>
+    <div class="warn">REIT correlation with equities is HIGHER than direct investment. Correlations increase during steep market downturns. Still improves portfolio risk-return vs. traditional-only.</div>
+
+    <h3>Infrastructure (LOS 79.c)</h3>
+    <div class="grid2">
+      <div class="card card-cyan">
+        <h4>Infrastructure Types</h4>
+        <ul>
+          <li><kw>Transportation</kw>: roads, airports, ports, railways</li>
+          <li><kw>Utility</kw>: gas distribution, electric grids, waste treatment</li>
+          <li><kw>ICT</kw>: telecom towers, cable systems</li>
+          <li><kw>Social</kw>: prisons, schools, hospitals</li>
+        </ul>
+      </div>
+      <div class="card card-orange">
+        <h4>Cash Flow Types</h4>
+        <ul>
+          <li><kw>Availability payments</kw>: for making infra available</li>
+          <li><kw>Usage-based payments</kw>: e.g., highway tolls</li>
+          <li><kw>Take-or-pay arrangements</kw>: buyer pays min. price for agreed volume</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Infrastructure Investment Categories</h3>
+    <table>
+      <tr><th>Type</th><th>Description</th><th>Risk/Return</th></tr>
+      <tr><td><kw>Greenfield</kw></td><td>New construction; <kw>BOT (Build-Operate-Transfer)</kw> life cycle</td><td>Highest risk; greater growth potential; lower near-term yield; developing economies → high LT returns</td></tr>
+      <tr><td><kw>Brownfield</kw></td><td>Expand or privatize existing infra; e.g., <kw>sale-leaseback</kw></td><td>Stable cash flows, high current yield, little growth</td></tr>
+      <tr><td><kw>Secondary-stage brownfield</kw></td><td>Fully operational facilities (existing toll roads, hospitals)</td><td>LOWEST risk and return; most predictable cash flows</td></tr>
+    </table>
+    <div class="card card-blue" style="margin-top:8px">
+      <h4>Infrastructure Investment Characteristics</h4>
+      <ul>
+        <li>Long-lived assets; large scale → <kw>low direct liquidity</kw></li>
+        <li>More liquid indirect: ETFs, mutual funds, PE funds, MLPs</li>
+        <li>Equity infra: stable cash flows, <kw>low correlation with public equities</kw></li>
+        <li>Infra debt: safer, less affected by economic cycles</li>
+        <li>Risks: <kw>regulatory risk</kw>, <kw>financial leverage risk</kw>, <kw>construction risk</kw>, <kw>operational risk</kw></li>
+        <li>Most suitable for: pension plans, life insurance cos., sovereign wealth funds (long-horizon)</li>
+        <li>Riskiest infra: demand-based (uncertain future demand)</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== READING 80 ===== -->
+<div class="chapter ch5" id="r80">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 80</div>
+      Natural Resources
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="grid2">
+      <div class="card card-purple">
+        <h4>Natural Resources = 3 Categories</h4>
+        <ul>
+          <li><kw>Raw land</kw></li>
+          <li><kw>Farmland</kw> &amp; <kw>Timberland</kw></li>
+          <li><kw>Commodities</kw></li>
+        </ul>
+        <p style="margin-top:6px">Investment via: direct, ETFs, REITs, LPs, LLCs, commodity futures/swaps</p>
+      </div>
+      <div class="card card-amber">
+        <h4>Farmland vs. Timberland</h4>
+        <table style="font-size:11px;margin-top:4px">
+          <tr><th></th><th>Farmland</th><th>Timberland</th></tr>
+          <tr><td>Typical investor</td><td>Individuals</td><td>Institutions</td></tr>
+          <tr><td>Lot size</td><td>Smaller</td><td>Much larger</td></tr>
+          <tr><td>Flexibility</td><td>None (harvest when ready)</td><td>Flex option (cut when prices high)</td></tr>
+          <tr><td>Expertise vehicle</td><td>Newer REITs for retail</td><td><kw>TIMOs</kw> (Timberland Inv. Mgmt Orgs)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card card-gray" style="margin-bottom:10px">
+      <h4>Key Land Characteristics (All 3 types)</h4>
+      <ul>
+        <li>All illiquid; value driven by location</li>
+        <li>Farmland &amp; timberland: proximity to transport, water access, soil quality matter</li>
+        <li>All generate: lease income + price appreciation</li>
+        <li>Farmland &amp; timberland: ALSO generate income from output</li>
+        <li>Fewer financing alternatives than RE; mainly bank loans/direct private debt</li>
+        <li>Agricultural crops consume carbon → attractive for ESG/climate investors</li>
+      </ul>
+    </div>
+
+    <h3>Commodities (LOS 80.b)</h3>
+    <div class="grid2">
+      <div class="card card-green">
+        <h4>3 Major Commodity Sectors</h4>
+        <ul>
+          <li><kw>Metals</kw>: base/industrial (copper, aluminum) + precious (gold, silver)</li>
+          <li><kw>Agricultural</kw>: grains, livestock</li>
+          <li><kw>Energy</kw>: oil, gas, coal</li>
+        </ul>
+        <p style="margin-top:4px">Classified by: grade (quality) + delivery location</p>
+      </div>
+      <div class="card card-blue">
+        <h4>Commodity Investment Methods</h4>
+        <ul>
+          <li>Direct ownership (grain, gold)</li>
+          <li><kw>Futures</kw> (most common): exchange-traded, NO counterparty risk</li>
+          <li><kw>ETPs/ETFs/ETNs</kw>: track commodity prices/indices</li>
+          <li><kw>Managed futures funds / CTAs</kw> (commodity trading advisers): actively managed LP or mutual fund structure</li>
+          <li><kw>SMAs</kw> (separately managed accounts): large/institutional investors, custom portfolios</li>
+          <li>Specialized sector funds</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Commodity Pricing &amp; Futures (CRITICAL)</h3>
+    <div class="formula-box">
+      <span class="label">Futures Pricing Formula</span>
+      <div class="eq">Futures price ≈ Spot price × (1 + Risk-free rate) + Storage costs − Convenience yield</div>
+      <div class="where">OR: Futures price = Spot price + Net cost of carry</div>
+      <div class="where">Net cost of carry = Financing cost + Storage costs − Convenience yield</div>
+    </div>
+
+    <table>
+      <tr><th>Term</th><th>Condition</th><th>Effect on Long-only Return</th></tr>
+      <tr><td><kw>Contango</kw></td><td>Futures price &gt; Spot price (low/no convenience yield; positive net cost of carry)</td><td>📉 Decreases return (rolling losses)</td></tr>
+      <tr><td><kw>Backwardation</kw></td><td>Futures price &lt; Spot price (high convenience yield; negative net cost of carry)</td><td>📈 Increases return (rolling gains)</td></tr>
+    </table>
+    <div class="tip"><kw>Convenience yield</kw>: non-monetary value of physically having the commodity (e.g., production certainty). High when inventories are low.</div>
+    <div class="warn">Commodity supply is inelastic in the short run (long lead times to change production). Result: high price volatility when demand shifts or supply shocks occur.</div>
+
+    <h3>Commodity Returns &amp; Diversification (LOS 80.c)</h3>
+    <div class="grid2">
+      <div class="card card-orange">
+        <h4>Risk-Return Stats</h4>
+        <ul>
+          <li>Commodity returns &amp; volatility: <kw>HIGHER than stocks or bonds</kw></li>
+          <li>Timberland/farmland: higher avg. returns; lower volatility than global stocks; similar volatility to global bonds</li>
+          <li>Low historical correlation with global equities &amp; bonds → <kw>diversification benefit</kw></li>
+        </ul>
+      </div>
+      <div class="card card-red">
+        <h4>Inflation Hedge</h4>
+        <ul>
+          <li>Commodity prices move <kw>WITH</kw> inflation (positive correlation)</li>
+          <li>High inflation → commodities outperform stocks &amp; bonds</li>
+          <li>Low inflation → commodities underperform</li>
+          <li>More sensitive to <kw>geopolitical</kw> and <kw>weather-related</kw> risks</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card-gray" style="margin-top:4px">
+      <h4>Supply/Demand Analysis Tools</h4>
+      <ul style="font-size:12px">
+        <li>Producers analyze: economic events, govt policy, future supply forecasts</li>
+        <li>Investors analyze: inventory levels, production forecasts, govt policy changes, economic growth expectations</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== READING 81 ===== -->
+<div class="chapter ch6" id="r81">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 81</div>
+      Hedge Funds
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="grid2">
+      <div class="card card-orange">
+        <h4>Hedge Fund Definition &amp; Features</h4>
+        <ul>
+          <li>Private pooled investment vehicles</li>
+          <li>Only for <kw>qualified/accredited investors</kw></li>
+          <li>Lightly regulated; very flexible mandates</li>
+          <li>Primary return drivers: <kw>market inefficiency</kw> + <kw>price volatility</kw></li>
+          <li>Managers often invest OWN money → alignment</li>
+          <li>Evaluated on total or risk-adjusted return (NOT benchmark)</li>
+        </ul>
+      </div>
+      <div class="card card-red">
+        <h4>Hedge Funds vs. Others</h4>
+        <table style="font-size:11px;margin-top:4px">
+          <tr><th></th><th>Hedge Funds</th><th>Private Equity</th><th>Mutual Funds</th></tr>
+          <tr><td>Listing</td><td>Private</td><td>Private</td><td>Public</td></tr>
+          <tr><td>Liquidity</td><td>Periodic redemptions</td><td>Long lockup</td><td>Daily</td></tr>
+          <tr><td>Asset focus</td><td>Mostly liquid</td><td>Illiquid</td><td>Liquid</td></tr>
+          <tr><td>Fees</td><td>High (2&amp;20)</td><td>High</td><td>Low</td></tr>
+          <tr><td>Regulation</td><td>Low</td><td>Low</td><td>High</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <h3>Hedge Fund Strategy Categories</h3>
+    <table>
+      <tr><th>Category</th><th>Sub-strategy</th><th>Key Description</th></tr>
+      <tr><td rowspan="5"><kw>Equity Hedge</kw></td><td><kw>Fundamental long/short</kw></td><td>Long undervalued + short index/stocks; alpha on correction; mostly net long</td></tr>
+      <tr><td><kw>Fundamental growth</kw></td><td>Long high-growth cos., short low/no-revenue-growth cos.; net long bias</td></tr>
+      <tr><td><kw>Fundamental value</kw></td><td>Long undervalued, short overvalued (value vs. growth performance drives returns)</td></tr>
+      <tr><td><kw>Market neutral</kw></td><td>Equal long/short to eliminate market risk; profits from relative price movements; may use leverage</td></tr>
+      <tr><td><kw>Short bias</kw></td><td>Predominantly short overvalued equities; contrarian; negative market exposure</td></tr>
+      <tr><td rowspan="4"><kw>Event-Driven</kw> (long biased)</td><td><kw>Merger arbitrage</kw></td><td>Long target co., short acquirer; NOT risk-free (deals may fail)</td></tr>
+      <tr><td><kw>Distressed/Restructuring</kw></td><td>Long securities of financially distressed firms expecting recovery</td></tr>
+      <tr><td><kw>Activist shareholder</kw></td><td>Buy enough equity to influence policy (restructuring, mgmt change, return of capital)</td></tr>
+      <tr><td><kw>Special situations</kw></td><td>Issuances, repurchases, spinoffs, asset sales, capital distributions</td></tr>
+      <tr><td rowspan="4"><kw>Relative Value</kw></td><td><kw>Convertible arbitrage</kw></td><td>Exploit pricing discrepancies between convertible bonds &amp; common stock/options</td></tr>
+      <tr><td><kw>Fixed income (ABS/MBS/HY)</kw></td><td>Exploit pricing &amp; quality discrepancies in specific fixed income</td></tr>
+      <tr><td><kw>General fixed income</kw></td><td>Pricing discrepancies across various FI issuers/types</td></tr>
+      <tr><td><kw>Multistrategy</kw></td><td>Pricing discrepancies within and across asset classes/markets</td></tr>
+      <tr><td rowspan="2"><kw>Opportunistic</kw></td><td><kw>Macro strategies</kw></td><td>Global econ. trends; long/short equities, FI, currencies, commodities; benefits from volatility; central bank smoothing reduces attractiveness</td></tr>
+      <tr><td><kw>Managed futures (CTAs)</kw></td><td>Trade commodity/financial futures; commodity prices behave differently from financial assets</td></tr>
+    </table>
+
+    <h3>Hedge Fund Structures</h3>
+    <div class="grid2">
+      <div class="card card-blue">
+        <h4>Commingled Fund (Master-Feeder)</h4>
+        <ul>
+          <li>Capital from many investors pooled</li>
+          <li><kw>Master-feeder structure</kw>: offshore feeder + onshore feeder → master fund</li>
+          <li>Tax efficient; economies of scale; global investors</li>
+          <li>Bypasses regional regulatory requirements</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h4>SMA (Separately Managed Account)</h4>
+        <ul>
+          <li>Single large investor; customized portfolio</li>
+          <li>Manager has no stake → less alignment</li>
+          <li>More operational oversight needed</li>
+          <li>Lower negotiated fees; but only gets most liquid trades</li>
+          <li>Suitable for large/institutional investors</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-gray" style="margin:8px 0">
+      <h4>Fund-of-Funds (FoF)</h4>
+      <ul>
+        <li>Invests in other hedge funds</li>
+        <li>Advantages: diversification across strategies, manager expertise, access to otherwise unavailable funds, reduced lockup periods</li>
+        <li>Disadvantage: <kw>additional layer of fees</kw> (typically 1% + 10% on top of underlying fund fees)</li>
+        <li>Traditional FoF: "1 and 10" on top of underlying "2 and 20"</li>
+      </ul>
+    </div>
+
+    <h3>Sources of Hedge Fund Returns</h3>
+    <div class="formula-box">
+      <span class="label">Return Components</span>
+      <div class="eq">HF Return = Market Beta + Strategy Beta + Alpha</div>
+      <div class="where">Market beta: broad index return (get via index funds) | Strategy beta: sector exposure return | Alpha: manager skill (security selection) | Leverage amplifies strategy beta + alpha | Fees drag on performance</div>
+    </div>
+
+    <h3>Performance Biases</h3>
+    <table>
+      <tr><th>Bias</th><th>Cause</th><th>Effect</th></tr>
+      <tr><td><kw>Survivorship bias</kw></td><td>Funds not included until min. size/time; failed funds excluded</td><td>Overstates returns, understates risk</td></tr>
+      <tr><td><kw>Backfill bias</kw></td><td>Adding historical returns when a fund joins index; only winners self-report</td><td>Overstates performance</td></tr>
+      <tr><td><kw>Selection bias</kw></td><td>Inconsistent fund categorization; varying inclusion requirements</td><td>Distorts representation</td></tr>
+    </table>
+    <div class="tip">Hedge fund performance is highly time-period dependent. With proper due diligence, HFs provide diversification benefits. HFs more correlated with equities than fixed income.</div>
+    <div class="warn">HF fees under competitive pressure. Newer structures: 1% mgmt + 30% perf. fee vs. benchmark (not total return). Voluntary reporting → reporting biases inflate index returns.</div>
+
+  </div>
+</div>
+
+<!-- ===== READING 82 ===== -->
+<div class="chapter ch7" id="r82">
+  <div class="ch-header" onclick="toggle(this)">
+    <div>
+      <div class="ch-tag">Reading 82</div>
+      Introduction to Digital Assets
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+
+    <div class="grid2">
+      <div class="card card-cyan">
+        <h4>Digital Asset Basics</h4>
+        <ul>
+          <li><kw>Digital assets</kw>: electronically created, stored, transferred</li>
+          <li>Includes: cryptocurrencies, tokens, digital collectibles</li>
+          <li>Secured via <kw>DLT (Distributed Ledger Technology)</kw> = blockchain technology</li>
+          <li>Cryptocurrencies: own blockchains</li>
+          <li>Crypto tokens: built on existing blockchains</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h4>Distributed Ledger (DLT)</h4>
+        <ul>
+          <li>Shared database among market participants</li>
+          <li>All participants have identical copy</li>
+          <li>Benefits: accuracy, transparency, security; rapid ownership transfer; P2P interactions</li>
+          <li>Disadvantages: data protection concerns, privacy violations, large computational power needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>DLT Network Components</h3>
+    <div class="grid3">
+      <div class="card card-gray">
+        <h4>Digital Ledger</h4>
+        <p>Records all transactions; immutable once added; cryptographically encrypted</p>
+      </div>
+      <div class="card card-gray">
+        <h4>Consensus Mechanism</h4>
+        <p>Validates transactions, updates ledger; creates immutable &amp; transparent records</p>
+      </div>
+      <div class="card card-gray">
+        <h4>Smart Contracts</h4>
+        <p>Self-executing computer programs based on predetermined terms; e.g., automated collateral transfers during default</p>
+      </div>
+    </div>
+
+    <h3>Blockchain Basics</h3>
+    <div class="card card-blue" style="margin-bottom:8px">
+      <ul>
+        <li>Records info sequentially in <kw>blocks</kw>, linked (chained) together</li>
+        <li>Each block: group of transactions + <kw>hash</kw> (secure link to previous block)</li>
+        <li>New transaction added only after validated by authorized participants</li>
+        <li>Records are <kw>immutable</kw> (unchangeable)</li>
+      </ul>
+    </div>
+
+    <h3>Consensus Protocols</h3>
+    <table>
+      <tr><th>Protocol</th><th>Mechanism</th><th>Notes</th></tr>
+      <tr><td><kw>Proof of Work (PoW)</kw></td><td>Miners solve cryptographic problems using powerful computers; rewards miners with cryptocurrency</td><td>Most widely used; requires 51% network control to manipulate; large energy use; more participants = more secure</td></tr>
+      <tr><td><kw>Proof of Stake (PoS)</kw></td><td><kw>Validators</kw> pledge <kw>collateral (staking)</kw> to guarantee block validity; additional validators verify</td><td>Emerging; validators rewarded with return on staked collateral; lower energy</td></tr>
+    </table>
+
+    <h3>Network Types</h3>
+    <div class="grid2">
+      <div class="card card-green">
+        <h4>Permissionless (Open)</h4>
+        <ul>
+          <li>All transactions visible to all users</li>
+          <li>Any user can execute transactions; perform any function</li>
+          <li>Example: Bitcoin</li>
+          <li>No trust required between parties (consensus-based)</li>
+          <li>Immutable record; decentralized</li>
+        </ul>
+      </div>
+      <div class="card card-orange">
+        <h4>Permissioned</h4>
+        <ul>
+          <li>Some network activities restricted</li>
+          <li>Controls: from adding transactions → viewing-only (for regulators)</li>
+          <li>More cost-effective than permissionless</li>
+          <li>Stronger restrictions; more centralized</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Digital Asset Categories</h3>
+    <table>
+      <tr><th>Category</th><th>Type</th><th>Key Features</th></tr>
+      <tr><td rowspan="5"><kw>Cryptocurrencies</kw></td><td>Bitcoin</td><td>Most widely traded; limited to 21M units; "digital gold"; limited supply = store of value</td></tr>
+      <tr><td><kw>Altcoins</kw></td><td>Based on Bitcoin technology; e.g., Ether (Ethereum); Ethereum allows smart contracts → value beyond store of value</td></tr>
+      <tr><td><kw>Stablecoins</kw></td><td>Linked to another asset (e.g., USD); secured by reserve basket; algorithmic/smart stablecoins use algorithms; cannot be exchanged for fiat; no legal/regulatory backing; e.g., Tether</td></tr>
+      <tr><td><kw>Meme coins</kw></td><td>Launched for entertainment; e.g., Dogecoin; rapid price rises/falls based on social media</td></tr>
+      <tr><td><kw>CBDC</kw> (Central Bank Digital Currency)</td><td>Digital version of bank note/coin issued by central bank; currently being explored by govts</td></tr>
+      <tr><td rowspan="4"><kw>Tokens</kw></td><td><kw>NFT</kw> (Nonfungible token)</td><td>Tokenization example; linked to certificate of authenticity; each NFT = distinct unique object (e.g., digital art); unique = nonfungible</td></tr>
+      <tr><td><kw>Security token</kw></td><td>Digitally tracks ownership rights in publicly traded securities; facilitates custody, settlement, recordkeeping; example: <kw>ICO (Initial Coin Offering)</kw></td></tr>
+      <tr><td><kw>Utility tokens</kw></td><td>Provide network services (service payments, network fees); compensate for network activities only (no dividends)</td></tr>
+      <tr><td><kw>Governance tokens</kw></td><td>On permissionless networks; act as voting rights on network operations</td></tr>
+    </table>
+
+    <div class="warn">ICOs: unregulated; fraud risk increasing; many jurisdictions considering regulation; alternative to IPO (cheaper, faster, but no voting rights usually); ICO = security token</div>
+
+    <h3>Digital vs. Traditional Asset Differences (LOS 82.b)</h3>
+    <table>
+      <tr><th>Dimension</th><th>Traditional</th><th>Digital</th></tr>
+      <tr><td>Value basis</td><td>Backed by assets/cash flows (interest, dividends); fundamental value</td><td>No backing; no fundamental value; price = scarcity + future transfer ability</td></tr>
+      <tr><td>Transaction validation</td><td>Private ledgers; central intermediaries</td><td>Decentralized digital ledgers</td></tr>
+      <tr><td>Medium of exchange</td><td>Fiat currencies; globally accepted</td><td>Alt. to fiat; mainly online; high txn costs; not legal tender in many places; banned in some countries (e.g., China 2021)</td></tr>
+      <tr><td>Regulation</td><td>Clear, established rules in most jurisdictions</td><td>Poorly developed; some classified as commodities (US); exchanges typically unregulated; market manipulation possible</td></tr>
+    </table>
+
+    <h3>Investment Vehicles (LOS 82.c)</h3>
+    <div class="grid2">
+      <div class="card card-green">
+        <h4>Direct Investment</h4>
+        <ul>
+          <li>Transaction recorded directly on blockchain</li>
+          <li>Requires <kw>cryptocurrency wallet</kw> (digital encryption keys)</li>
+          <li>Examples: buy tokens on exchange, trade NFT, invest in ICO</li>
+          <li>Continuous trading on most exchanges</li>
+          <li>Risks: fraud, scam ICOs, pump-and-dump, market manipulation, theft, passkey loss; "whales" can manipulate prices</li>
+          <li>~20% of Bitcoin estimated in lost/abandoned wallets</li>
+        </ul>
+      </div>
+      <div class="card card-purple">
+        <h4>Indirect Investment</h4>
+        <ul>
+          <li><kw>Coin trusts</kw>: OTC, like closed-end fund; eliminates wallet need; high fees</li>
+          <li><kw>Futures contracts</kw>: e.g., CME Bitcoin futures; cash settled; leveraged; more volatile &amp; less liquid than traditional futures</li>
+          <li><kw>Crypto ETPs/ETFs</kw>: mimic digital asset returns via cash or derivatives</li>
+          <li><kw>Crypto stocks</kw>: public exchanges, payment providers, miners, blockchain cos.</li>
+          <li><kw>Crypto hedge funds</kw>: discretionary long, L/S, quant, multistrategy + mining</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Exchanges</h3>
+    <table>
+      <tr><th></th><th>Centralized Exchange</th><th>Decentralized Exchange</th></tr>
+      <tr><td>Ownership</td><td>Privately held</td><td>No centralized authority</td></tr>
+      <tr><td>Prevalence</td><td>Most popular type</td><td>Less common</td></tr>
+      <tr><td>Security</td><td>Single server risk; security vulnerabilities; trading can halt if compromised</td><td>Multi-computer → if one attacked, exchange continues; more attack-resistant</td></tr>
+      <tr><td>Regulation</td><td>Some regulated as financial exchanges</td><td>Very difficult to regulate</td></tr>
+      <tr><td>Shared issue</td><td colspan="2">Both lack regulatory oversight → fraud, pump-and-dump risk</td></tr>
+    </table>
+
+    <h3>Nondigital Asset Tokenization</h3>
+    <div class="card card-cyan" style="margin-bottom:8px">
+      <h4>Asset-backed tokens &amp; DeFi</h4>
+      <ul>
+        <li><kw>Asset-backed tokens</kw>: digital ownership of physical/financial assets (oil, gold, equities); collateralized by underlying; classified as securities by regulators</li>
+        <li>Increase liquidity via <kw>fractional ownership</kw> (e.g., real estate)</li>
+        <li>Immutable ownership record → transparency, lower transaction costs</li>
+        <li>Issued on Ethereum via smart contracts (P2P via <kw>dApps</kw>)</li>
+        <li><kw>DeFi (Decentralized Finance)</kw>: marketplace of dApps for sophisticated financial products using open-source apps; medium of exchange, store of value, tokenization, immutable records; most current dApps focus on digital asset speculation</li>
+      </ul>
+    </div>
+
+    <h3>Risk, Return &amp; Diversification (LOS 82.d)</h3>
+    <div class="grid2">
+      <div class="card card-orange">
+        <h4>Risk-Return Profile</h4>
+        <ul>
+          <li>Bitcoin limited to <kw>21 million units</kw> → scarcity → "digital gold"</li>
+          <li>High returns &amp; <kw>high volatility</kw> vs. traditional assets</li>
+          <li>Price rise: $0.05 (2010) → $65,000+ (Nov 2021) → below $20,000 (June 2022)</li>
+          <li>Volatility driven by overall uncertainty</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h4>Diversification &amp; Price Drivers</h4>
+        <ul>
+          <li><kw>Low historical correlations</kw> with traditional assets → potential diversification benefit</li>
+          <li>Correlations may INCREASE during extreme market stress</li>
+          <li>Price drivers: market adoption, risk appetite, tech innovation, network impacts, speculation, regulation</li>
+          <li>Bitcoin correlation with S&amp;P 500: ~0.21; with bonds: ~0.14</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MASTER KEYWORD INDEX ===== -->
+<div class="chapter ch1" id="keywords">
+  <div class="ch-header" onclick="toggle(this)" style="background:#1a1a2e;color:white">
+    <div>
+      <div class="ch-tag" style="color:#94a3b8">Quick Reference</div>
+      Master Keyword &amp; Formula Index
+    </div>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="ch-body">
+    <h3>All Key Terms at a Glance</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">
+      <span class="tag">Alternative investments</span><span class="tag">Traditional investments</span><span class="tag">Private capital</span><span class="tag">Real assets</span><span class="tag">Hedge funds</span><span class="tag">Fund investing</span><span class="tag">Co-investing</span><span class="tag">Direct investing</span><span class="tag">General Partner (GP)</span><span class="tag">Limited Partners (LP)</span><span class="tag">Accredited investors</span><span class="tag">Limited partnership agreement</span><span class="tag">Side letters</span><span class="tag">Excusal right</span><span class="tag">Most-favored-nation clause</span><span class="tag">Term sheet</span><span class="tag">Dry powder</span><span class="tag">MLP</span><span class="tag">Management fee</span><span class="tag">Incentive/performance fee</span><span class="tag">Carried interest</span><span class="tag">AUM</span><span class="tag">Committed capital</span><span class="tag">Hurdle rate</span><span class="tag">Preferred return</span><span class="tag">Soft hurdle rate</span><span class="tag">Hard hurdle rate</span><span class="tag">Catch-up clause</span><span class="tag">High-water mark</span><span class="tag">American waterfall</span><span class="tag">European waterfall</span><span class="tag">Clawback provision</span><span class="tag">J-curve effect</span><span class="tag">Capital commitment phase</span><span class="tag">Capital deployment phase</span><span class="tag">Capital distribution phase</span><span class="tag">IRR</span><span class="tag">MOIC / Money multiple</span><span class="tag">Leveraged return</span><span class="tag">Level 1/2/3 assets</span><span class="tag">Fair value hierarchy</span><span class="tag">Lockup period</span><span class="tag">Notice period</span><span class="tag">Gate</span><span class="tag">Redemption fee</span><span class="tag">Founders class shares</span><span class="tag">Either-or fees</span><span class="tag">Vintage year</span><span class="tag">Survivorship bias</span><span class="tag">Backfill bias</span><span class="tag">Selection bias</span><span class="tag">LBO</span><span class="tag">MBO</span><span class="tag">MBI</span><span class="tag">Venture capital</span><span class="tag">PIPE</span><span class="tag">Minority equity investing</span><span class="tag">Portfolio companies</span><span class="tag">Formative stage</span><span class="tag">Pre-seed / Angel investing</span><span class="tag">Seed capital</span><span class="tag">Early-stage</span><span class="tag">Later-stage / Expansion VC</span><span class="tag">Mezzanine-stage</span><span class="tag">Trade sale</span><span class="tag">IPO</span><span class="tag">Direct listing</span><span class="tag">SPAC</span><span class="tag">Recapitalization</span><span class="tag">Secondary sale</span><span class="tag">Write-off/liquidation</span><span class="tag">Direct lending</span><span class="tag">Leveraged loan</span><span class="tag">Venture debt</span><span class="tag">Mezzanine debt</span><span class="tag">Distressed debt</span><span class="tag">Unitranche debt</span><span class="tag">SOFR</span><span class="tag">TIMOs</span><span class="tag">Equity REIT</span><span class="tag">Mortgage REIT</span><span class="tag">Hybrid REIT</span><span class="tag">Core strategy</span><span class="tag">Core-plus</span><span class="tag">Value-add</span><span class="tag">Opportunistic</span><span class="tag">Net Asset Value</span><span class="tag">MBS / CMBS</span><span class="tag">Greenfield investment</span><span class="tag">Brownfield investment</span><span class="tag">Secondary-stage brownfield</span><span class="tag">BOT (Build-Operate-Transfer)</span><span class="tag">Sale-leaseback</span><span class="tag">Availability payments</span><span class="tag">Usage-based payments</span><span class="tag">Take-or-pay</span><span class="tag">Contango</span><span class="tag">Backwardation</span><span class="tag">Convenience yield</span><span class="tag">Net cost of carry</span><span class="tag">CTAs</span><span class="tag">SMAs</span><span class="tag">ETPs / ETFs / ETNs</span><span class="tag">Commodity sectors (metals, agri, energy)</span><span class="tag">Managed futures funds</span><span class="tag">Equity hedge</span><span class="tag">Market neutral</span><span class="tag">Short bias</span><span class="tag">Fundamental long/short</span><span class="tag">Event-driven</span><span class="tag">Merger arbitrage</span><span class="tag">Activist shareholder</span><span class="tag">Special situations</span><span class="tag">Relative value</span><span class="tag">Convertible arbitrage</span><span class="tag">Macro strategies</span><span class="tag">Master-feeder structure</span><span class="tag">Fund-of-funds</span><span class="tag">Market beta</span><span class="tag">Strategy beta</span><span class="tag">Alpha</span><span class="tag">DLT</span><span class="tag">Blockchain</span><span class="tag">Hash</span><span class="tag">Consensus mechanism</span><span class="tag">Smart contracts</span><span class="tag">Proof of Work (PoW)</span><span class="tag">Proof of Stake (PoS)</span><span class="tag">Validators / Staking</span><span class="tag">Miners</span><span class="tag">51% attack</span><span class="tag">Permissionless network</span><span class="tag">Permissioned network</span><span class="tag">Cryptocurrency</span><span class="tag">Bitcoin</span><span class="tag">Altcoins</span><span class="tag">Ether / Ethereum</span><span class="tag">Stablecoins</span><span class="tag">Algorithmic stablecoins</span><span class="tag">Meme coins</span><span class="tag">CBDC</span><span class="tag">Tokenization</span><span class="tag">NFT</span><span class="tag">Security token</span><span class="tag">ICO</span><span class="tag">Utility tokens</span><span class="tag">Governance tokens</span><span class="tag">Asset-backed tokens</span><span class="tag">dApps</span><span class="tag">DeFi</span><span class="tag">Centralized exchange</span><span class="tag">Decentralized exchange</span><span class="tag">Cryptocurrency wallet</span><span class="tag">Coin trusts</span><span class="tag">Whales</span><span class="tag">Pump-and-dump</span>
+    </div>
+
+    <h3>All Formulas</h3>
+    <div class="grid2">
+      <div class="formula-box">
+        <span class="label">GP Total Fees (simple)</span>
+        <div class="eq">Fees = m×V₁ + max[0, p(V₁−V₀)]</div>
+        <div class="where">m=mgmt fee rate | p=perf fee rate | V₀=beginning | V₁=ending</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Investor After-Fee Return</span>
+        <div class="eq">r = (V₁ − V₀ − Total fees) ÷ V₀</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Leveraged Return</span>
+        <div class="eq">= [r(V₀+V_B) − r_B×V_B] ÷ V₀</div>
+        <div class="where">V₀=equity | V_B=borrowed | r=portfolio return | r_B=borrowing rate</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">MOIC (Money Multiple)</span>
+        <div class="eq">= (Capital returned + Remaining value) ÷ Capital invested</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Futures Pricing</span>
+        <div class="eq">F ≈ S×(1+r_f) + Storage costs − Convenience yield</div>
+        <div class="where">F=futures price | S=spot price | r_f=risk-free rate</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Net Cost of Carry</span>
+        <div class="eq">= Financing cost + Storage costs − Convenience yield</div>
+        <div class="where">Positive → Contango (F&gt;S) | Negative → Backwardation (F&lt;S)</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Soft Hurdle Perf. Fee</span>
+        <div class="eq">= perf_fee_rate × Total gain (entire return)</div>
+        <div class="where">Applied if return &gt; hurdle rate</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Hard Hurdle Perf. Fee</span>
+        <div class="eq">= perf_fee_rate × (Return − Hurdle rate)</div>
+        <div class="where">Only gains ABOVE hurdle are subject to fee</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Hedge Fund Return Components</span>
+        <div class="eq">Return = Market β + Strategy β + Alpha</div>
+        <div class="where">Leverage amplifies strategy β and alpha (NOT market beta)</div>
+      </div>
+      <div class="formula-box">
+        <span class="label">Real Estate Equity Value</span>
+        <div class="eq">Equity value = Property value − Outstanding debt</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+function toggle(header) {
+  const chapter = header.parentElement;
+  chapter.classList.toggle('collapsed');
+}
+</script>
+
+</body>
+</html>

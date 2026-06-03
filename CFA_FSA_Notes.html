@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Level I — Financial Statement Analysis (R27–R38)</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f172a;--blue:#1e40af;--light-blue:#3b82f6;--red:#dc2626;--green:#15803d;--amber:#b45309;--teal:#0f766e;--purple:#7c3aed;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;--text:#0f172a;--muted:#64748b;--f-bg:#fffbeb;--f-brd:#f59e0b;--kw-bg:#f0fdf4;--kw-brd:#16a34a;--warn-bg:#fef2f2;--warn-brd:#ef4444}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:12.5px;line-height:1.55}
+  .hdr{background:var(--navy);color:#fff;padding:14px 20px;border-bottom:3px solid var(--light-blue);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .hdr h1{font-size:15px;font-weight:700}.hdr p{font-size:11px;color:#93c5fd;margin-top:2px}
+  .toc-btn{background:var(--red);border:none;color:#fff;padding:5px 12px;border-radius:4px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600}
+  #toc{background:var(--navy);color:#fff;padding:12px 20px;display:none;border-bottom:2px solid var(--light-blue)}
+  #toc.open{display:block}
+  #toc .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 20px}
+  #toc a{color:#93c5fd;text-decoration:none;font-size:11px;display:block;padding:2px 0}
+  #toc a:hover{color:#fbbf24}
+  .container{max-width:1300px;margin:0 auto;padding:16px 14px}
+  .reading{background:var(--card);border-radius:7px;margin-bottom:20px;border:1px solid var(--border);overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .rh{background:var(--blue);color:#fff;padding:9px 16px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .rnum{background:var(--red);padding:2px 8px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px}
+  .rb{padding:14px 16px}
+  .mt{font-size:12px;font-weight:700;color:var(--blue);border-left:3px solid var(--blue);padding-left:8px;margin:12px 0 7px}
+  .st{font-size:11px;font-weight:700;color:var(--red);margin:9px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+  .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+  @media(max-width:750px){.two-col,.three-col,.four-col{grid-template-columns:1fr}}
+  .card{background:#f8fafc;border:1px solid var(--border);border-radius:5px;padding:9px 11px}
+  .ct{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px}
+  .formula{background:var(--f-bg);border-left:3px solid var(--f-brd);padding:6px 11px;margin:5px 0;border-radius:0 4px 4px 0;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#78350f}
+  .kw{background:var(--kw-bg);border-left:3px solid var(--kw-brd);padding:5px 11px;margin:4px 0;border-radius:0 4px 4px 0;font-size:12px}
+  .warn{background:var(--warn-bg);border-left:3px solid var(--warn-brd);padding:5px 11px;margin:4px 0;border-radius:0 4px 4px 0;font-size:12px}
+  ul.n{list-style:none;padding:0;margin:3px 0}
+  ul.n li{padding:2px 0 2px 14px;position:relative;font-size:12px;border-bottom:1px dotted #f1f5f9}
+  ul.n li:last-child{border-bottom:none}
+  ul.n li::before{content:"▸";position:absolute;left:0;color:var(--red);font-size:9px;top:4px}
+  .tw{overflow-x:auto;margin:7px 0 11px}
+  table{width:100%;border-collapse:collapse;font-size:11.5px}
+  th{background:var(--blue);color:#fff;padding:6px 8px;text-align:left;font-weight:700;font-size:11px}
+  td{padding:5px 8px;border:1px solid var(--border);vertical-align:top}
+  tr:nth-child(even) td{background:#f8fafc}
+  .fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:7px;margin:8px 0}
+  .fgi{background:var(--f-bg);border:1px solid var(--f-brd);border-radius:5px;padding:7px 10px}
+  .fgl{font-size:10px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px}
+  .fgf{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#78350f}
+  .tick{color:var(--green);font-weight:700}
+  .cross{color:var(--red);font-weight:700}
+  .footer-bar{background:var(--navy);color:#93c5fd;text-align:center;padding:12px;font-size:12px;border-radius:0 0 7px 7px;margin-top:20px}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div><h1>CFA Level I — Financial Statement Analysis (FSA): Complete Study Notes</h1>
+  <p>Readings 27–38 &nbsp;|&nbsp; All Keywords, Concepts & Formulas &nbsp;|&nbsp; Exam-Ready Reference</p></div>
+  <button class="toc-btn" onclick="document.getElementById('toc').classList.toggle('open')">☰ Contents</button>
+</header>
+<nav id="toc">
+  <div class="tgrid">
+    <a href="#r27">R27: Intro to FSA</a><a href="#r28">R28: Income Statements</a>
+    <a href="#r29">R29: Balance Sheets</a><a href="#r30">R30: Cash Flow I</a>
+    <a href="#r31">R31: Cash Flow II</a><a href="#r32">R32: Inventories</a>
+    <a href="#r33">R33: Long-Term Assets</a><a href="#r34">R34: Liabilities & Equity</a>
+    <a href="#r35">R35: Income Taxes</a><a href="#r36">R36: Reporting Quality</a>
+    <a href="#r37">R37: Analysis Techniques</a><a href="#r38">R38: Statement Modeling</a>
+    <a href="#formulas">⚡ Formula Sheet</a>
+  </div>
+</nav>
+<div class="container">
+
+<!-- ══════════════ R27 ══════════════ -->
+<div class="reading" id="r27">
+  <div class="rh"><span class="rnum">R27</span> INTRODUCTION TO FINANCIAL STATEMENT ANALYSIS</div>
+  <div class="rb">
+    <div class="mt">LOS 27.a: 6-Step FSA Framework</div>
+    <div class="card"><div class="ct">Steps (memorize in order)</div>
+    <ul class="n">
+      <li><b>Step 1</b>: State objective and context</li><li><b>Step 2</b>: Gather data (FS + industry + economy)</li>
+      <li><b>Step 3</b>: Process data (adjust FS, calculate ratios, common-size)</li>
+      <li><b>Step 4</b>: Analyze and interpret data</li>
+      <li><b>Step 5</b>: Report conclusions/recommendations (comply with Code &amp; Standards)</li>
+      <li><b>Step 6</b>: Update analysis periodically</li>
+    </ul></div>
+    <div class="mt">LOS 27.b/c: Roles &amp; Regulatory Framework</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Key Entities</div>
+      <ul class="n">
+        <li><b>FASB</b>: US GAAP standard-setter | <b>IASB</b>: IFRS standard-setter</li>
+        <li><b>SEC</b> (US), <b>FCA</b> (UK): Regulatory authorities (government, legal enforcement)</li>
+        <li><b>IOSCO</b>: International coordination body (200+ members, 95% of markets); NOT a regulator itself; 3 objectives: protect investors, fair/efficient/transparent markets, reduce systemic risk</li>
+        <li><b>ESMA</b>: European Securities and Markets Authority</li>
+        <li><b>Sarbanes-Oxley 2002</b>: External auditor restrictions; CEO/CFO certification; management internal controls assessment</li>
+        <li><b>SEC Filings</b>: 10-K (annual), 10-Q (quarterly), 8-K (material events), Proxy Statement (shareholder votes—board elections, compensation)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Audit Opinions &amp; Documents</div>
+      <ul class="n">
+        <li><b>Unqualified (clean) opinion</b>: Statements free from material omissions/errors — best</li>
+        <li><b>Qualified opinion</b>: Exceptions to accounting principles noted</li>
+        <li><b>Adverse opinion</b>: Statements not presented fairly</li>
+        <li><b>Disclaimer of opinion</b>: Auditor unable to express opinion (scope limitation)</li>
+        <li><b>Key/Critical audit matters</b>: Disclosed in audit report; most significant accounting choices</li>
+        <li><b>Management commentary (MD&amp;A)</b>: Liquidity, capital resources, results of operations; may be UNAUDITED</li>
+        <li><b>Footnotes (notes)</b>: Accounting methods, estimates, segment data, contingencies; ARE audited</li>
+        <li><b>Segment disclosure</b>: Required if segment &gt;10% of revenue/assets/income; must cover ≥75% of external sales. Disclose: revenue, profit/loss, assets/liabilities, interest, D&amp;A, PP&E acquisitions, tax expense</li>
+      </ul></div>
+    </div>
+    <div class="two-col">
+      <div class="card"><div class="ct">LOS 27.d: IFRS vs US GAAP Key Differences</div>
+      <ul class="n">
+        <li>IFRS: Principles-based | US GAAP: Rules-based</li>
+        <li>IFRS: Allows inventory write-up reversals | US GAAP: No reversals</li>
+        <li>IFRS: Development costs may be capitalized | US GAAP: Expense both R&amp;D</li>
+        <li>IFRS: Revaluation model for PP&amp;E | US GAAP: Cost model only</li>
+        <li>IFRS: LIFO prohibited | US GAAP: LIFO allowed</li>
+        <li>Monitor: IASB (www.ifrs.org), FASB (www.fasb.org)</li>
+      </ul></div>
+      <div class="card"><div class="ct">LOS 27.e: Information Sources</div>
+      <ul class="n">
+        <li><b>Issuer sources</b>: Earnings calls, press releases, ad hoc events, management communications (usually UNAUDITED)</li>
+        <li><b>Public 3rd-party</b>: Trade journals, govt stats, social media (free)</li>
+        <li><b>Proprietary 3rd-party</b>: Analyst reports, Bloomberg/FactSet, industry consultancies (paid)</li>
+        <li><b>Proprietary primary research</b>: Commissioned studies, product testing, technical specialists</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R28 ══════════════ -->
+<div class="reading" id="r28">
+  <div class="rh"><span class="rnum">R28</span> ANALYZING INCOME STATEMENTS</div>
+  <div class="rb">
+    <div class="mt">LOS 28.a: Revenue Recognition — 5-Step Process (IFRS 15 / ASC 606)</div>
+    <div class="kw"><b>5 Steps:</b> (1) Identify contract → (2) Identify performance obligations → (3) Determine transaction price → (4) Allocate price to obligations → (5) Recognize revenue when obligation satisfied</div>
+    <div class="three-col">
+      <div class="card"><div class="ct">Key Concepts</div>
+      <ul class="n">
+        <li><b>Performance obligation</b>: Promise to deliver a distinct good/service</li>
+        <li><b>Transaction price</b>: Amount expected from customer (fixed or variable)</li>
+        <li><b>Over time recognition</b>: If customer benefits continuously, seller enhances customer-controlled asset, or asset has no alternative use + right to payment for work done</li>
+        <li><b>Long-term contracts</b>: % completion = costs incurred ÷ estimated total costs (input method); or milestones (output method)</li>
+        <li><b>Costs to secure contract</b> (e.g., sales commissions): CAPITALIZED and expensed over life</li>
+        <li><b>Unearned revenue</b>: Cash received before revenue recognized = liability</li>
+      </ul></div>
+      <div class="card"><div class="ct">Special Revenue Scenarios</div>
+      <ul class="n">
+        <li><b>Principal vs. Agent</b>: Principal reports GROSS revenue; Agent reports NET (commission only). Agent: bears no inventory/credit risk, acts on behalf of another</li>
+        <li><b>Bill-and-hold</b>: Customer pays before shipping; revenue recognized if performance complete, goods identified as customer's, ready for transfer, cannot be redirected</li>
+        <li><b>Franchise/License fees</b>: Initially deferred; amortized over contract life. Royalties: recognized when contractually payable</li>
+        <li><b>Software licensing</b>: Over life if supplier updates; at outset if "sold as is" + separate support contract</li>
+        <li><b>Cloud-based</b>: Service → recognize over contract life</li>
+      </ul></div>
+      <div class="card"><div class="ct">Required Disclosures</div>
+      <ul class="n">
+        <li>Contracts by category</li>
+        <li>Assets/liabilities from contracts</li>
+        <li>Outstanding performance obligations + allocated prices</li>
+        <li>Management judgments on timing/amount of recognition</li>
+      </ul>
+      <div class="ct" style="margin-top:8px">Analyst Implications</div>
+      <ul class="n">
+        <li>Revenue recognized when EARNED, not when cash received</li>
+        <li>Review estimates, collectability assumptions</li>
+        <li>Check FOB shipping point vs. destination (affects timing)</li>
+        <li>Watch for channel stuffing, barter transactions</li>
+      </ul></div>
+    </div>
+
+    <div class="mt">LOS 28.b: Expense Recognition</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Expense Recognition Methods</div>
+      <ul class="n">
+        <li><b>Matching principle</b>: Expenses recognized same period as related revenue (e.g., COGS, warranty expense)</li>
+        <li><b>Period costs</b>: Expensed as incurred (admin, advertising, training, reorganization, startup costs)</li>
+        <li><b>Capitalization</b>: Cost initially on balance sheet → expensed via depreciation/amortization over asset life</li>
+        <li><b>Aggressive</b>: Delayed expense recognition ↑ current income | <b>Conservative</b>: Earlier recognition ↓ current income</li>
+        <li><b>Bad debt &amp; warranty expense</b>: Estimated and recognized at time of sale (matching)</li>
+        <li><b>R&amp;D</b>: IFRS — research expensed; development MAY be capitalized | US GAAP — both expensed (except software)</li>
+        <li><b>Software (US GAAP)</b>: Expense until "technological feasibility" established, then capitalize costs of salable product</li>
+        <li><b>Capitalized interest</b>: During self-construction of assets; appears in CFI, not CFO. For coverage ratios, add back capitalized interest + remove related depreciation</li>
+      </ul></div>
+      <div class="card"><div class="ct">Capitalize vs. Expense — Financial Statement Effects</div>
+      <div class="tw"><table>
+        <tr><th>Item</th><th>Capitalize (Year 1)</th><th>Expense (Year 1)</th></tr>
+        <tr><td>Net income</td><td>HIGHER</td><td>LOWER</td></tr>
+        <tr><td>Net income (Yr 2+)</td><td>LOWER</td><td>HIGHER</td></tr>
+        <tr><td>Total assets</td><td>HIGHER</td><td>LOWER</td></tr>
+        <tr><td>Equity (Yr 1)</td><td>HIGHER</td><td>LOWER</td></tr>
+        <tr><td>CFO</td><td>HIGHER (invest outflow)</td><td>LOWER (ops outflow)</td></tr>
+        <tr><td>CFI</td><td>LOWER (asset outflow)</td><td>HIGHER</td></tr>
+        <tr><td>ROE/ROA (Yr 1)</td><td>HIGHER</td><td>LOWER</td></tr>
+        <tr><td>ROE/ROA (Yr 2+)</td><td>LOWER</td><td>HIGHER</td></tr>
+        <tr><td>Asset turnover</td><td>LOWER (higher assets)</td><td>HIGHER</td></tr>
+        <tr><td>Debt/Assets</td><td>LOWER (higher assets)</td><td>HIGHER</td></tr>
+        <tr><td>Earnings volatility</td><td>Lower (smoother)</td><td>Higher</td></tr>
+      </table></div></div>
+    </div>
+
+    <div class="mt">LOS 28.c: Non-Recurring Items</div>
+    <div class="three-col">
+      <div class="card"><div class="ct">Unusual/Infrequent Items</div>
+      <ul class="n">
+        <li>Reported <b>BEFORE TAX</b>, ABOVE income from continuing operations</li>
+        <li>Examples: gains/losses on asset sales, impairments, restructuring costs, write-offs</li>
+        <li>Analyst: Evaluate whether truly non-recurring; some "unusual" losses recur</li>
+      </ul></div>
+      <div class="card"><div class="ct">Discontinued Operations</div>
+      <ul class="n">
+        <li>Reported <b>NET OF TAX</b>, BELOW income from continuing operations</li>
+        <li>Must be physically/operationally distinct (assets, operations, investing &amp; financing)</li>
+        <li><b>Measurement date</b>: When formal disposal plan developed</li>
+        <li><b>Phaseout period</b>: Between measurement date and disposal date</li>
+        <li>Prior income statements restated to separate discontinued operations</li>
+        <li>Analyst: Exclude from earnings forecasts</li>
+      </ul></div>
+      <div class="card"><div class="ct">Accounting Changes</div>
+      <ul class="n">
+        <li><b>Change in policy</b>: Retrospective application (restate prior periods) — e.g., change in inventory method</li>
+        <li><b>Modified retrospective</b>: Adjust beginning balances; no prior period restatement (used for revenue recognition changes)</li>
+        <li><b>Change in estimate</b>: Prospective application only (no restatement); e.g., change in useful life of asset. No cash flow effect</li>
+        <li><b>Prior-period error correction</b>: Retrospective (restate prior periods)</li>
+        <li>Changes in scope (M&amp;A) and exchange rates: Not required to disclose separately; analyst must be alert</li>
+      </ul></div>
+    </div>
+
+    <div class="mt">LOS 28.d: Earnings Per Share (EPS)</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Basic &amp; Diluted EPS Formulas</div>
+      <div class="formula">Basic EPS = (Net income − Preferred dividends) / Weighted avg common shares outstanding
+
+Diluted EPS = (Net income − Preferred divs + Convertible preferred divs + After-tax interest on conv. debt) / (Wtd avg shares + All dilutive potential shares)</div>
+      <ul class="n">
+        <li><b>Simple capital structure</b>: No dilutive securities → report Basic EPS only</li>
+        <li><b>Complex capital structure</b>: Has dilutive securities → report both Basic &amp; Diluted EPS</li>
+        <li><b>Dilutive security</b>: If converted, DECREASES EPS → include in diluted EPS</li>
+        <li><b>Antidilutive security</b>: If converted, INCREASES EPS → EXCLUDE from diluted EPS</li>
+        <li><b>Stock dividend/stock split</b>: Applied RETROACTIVELY to beginning of year to ALL shares before the event</li>
+        <li>Shares issued: enter from date of issuance | Reacquired: excluded from date of reacquisition</li>
+      </ul></div>
+      <div class="card"><div class="ct">Convertible Securities &amp; Options</div>
+      <div class="formula">Convertible preferred — check if dilutive:
+Per-share impact = Preferred dividend / New shares created
+If &lt; Basic EPS → dilutive
+
+Convertible debt — check if dilutive:
+Per-share impact = After-tax interest / New shares created
+If &lt; Basic EPS → dilutive
+
+Stock options/warrants — Treasury Stock Method:
+Net new shares = Options outstanding − (Exercise price × Options / Avg market price)
+= Options × (1 − Exercise price / Avg market price)
+Dilutive only if exercise price &lt; average market price
+
+Numerator adjustments:
++ Convertible preferred dividends (if dilutive)
++ After-tax interest on convertible bonds (if dilutive)
+  = Bond interest × (1 − tax rate)</div></div>
+    </div>
+
+    <div class="mt">LOS 28.e: Common-Size Income Statements &amp; Ratios</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Common-Size Format</div>
+      <ul class="n">
+        <li><b>Vertical common-size income statement</b>: Each line ÷ Revenue</li>
+        <li>Exception: Tax expense → expressed as % of pretax income = <b>effective tax rate</b></li>
+        <li>Allows time-series and cross-sectional comparison; eliminates size effects</li>
+      </ul></div>
+      <div class="card"><div class="ct">Key Income Statement Ratios</div>
+      <div class="formula">Gross profit margin = Gross profit / Revenue
+Net profit margin = Net income / Revenue
+Operating profit margin = EBIT (or operating income) / Revenue
+Pretax margin = EBT / Revenue</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R29 ══════════════ -->
+<div class="reading" id="r29">
+  <div class="rh"><span class="rnum">R29</span> ANALYZING BALANCE SHEETS</div>
+  <div class="rb">
+    <div class="mt">LOS 29.a: Intangible Assets</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Identifiable vs. Unidentifiable Intangibles</div>
+      <ul class="n">
+        <li><b>Identifiable</b>: Patents, trademarks, copyrights, franchises — can be acquired separately or arise from contractual/legal rights</li>
+        <li><b>Unidentifiable</b>: Goodwill (cannot be purchased separately; indefinite life)</li>
+        <li><b>Finite-lived</b>: Amortized over useful life; tested for impairment</li>
+        <li><b>Indefinite-lived</b>: NOT amortized; tested for impairment at least annually</li>
+        <li><b>Purchased intangibles</b>: Recorded at cost; amortized if finite life</li>
+        <li><b>Internally generated</b>: EXPENSED as incurred (with exceptions)</li>
+        <li>IFRS: Research → expense; Development → MAY capitalize if criteria met (technically feasible, intention, resources, market exists)</li>
+        <li>US GAAP: BOTH R&amp;D expensed; software for sale → capitalize after tech feasibility; software for internal use → capitalize when probable to complete</li>
+        <li><b>Always expense</b> (both IFRS &amp; GAAP): Startup, training, admin overhead, advertising, relocation, termination costs</li>
+        <li>IFRS: Cost model OR revaluation model (if active market exists) | US GAAP: Cost model only</li>
+      </ul></div>
+      <div class="card"><div class="ct">LOS 29.b: Goodwill</div>
+      <ul class="n">
+        <li><b>Goodwill</b> = Purchase price − Fair value of identifiable net assets acquired</li>
+        <li>Only created in a <b>business combination</b> (purchase acquisition)</li>
+        <li>Internally generated goodwill is EXPENSED as incurred</li>
+        <li>NOT amortized; tested for impairment at LEAST annually</li>
+        <li>Impairment = loss on income statement; no cash flow impact</li>
+        <li><b>Bargain purchase</b>: If purchase price &lt; FV of net assets → gain recognized immediately in income statement</li>
+        <li><b>Accounting goodwill ≠ Economic goodwill</b> (economic = expected future excess returns)</li>
+        <li>Analysts: Remove goodwill from balance sheet; remove impairment charges from IS for comparability</li>
+        <li>Management may allocate more to goodwill (not amortized) vs. identifiable assets (amortized) → higher future earnings</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 29.c: Financial Instruments</div>
+    <div class="tw"><table>
+      <tr><th>Classification</th><th>US GAAP</th><th>IFRS</th><th>Balance Sheet</th><th>Unrealized G/L</th></tr>
+      <tr><td><b>Held-to-maturity</b></td><td>HTM (debt only, intent to hold)</td><td>Amortized cost (debt, solely P&I, hold to collect)</td><td>Amortized cost</td><td>Not recognized</td></tr>
+      <tr><td><b>Available-for-sale</b></td><td>AFS (debt securities)</td><td>FVOCI (debt — hold to collect &amp; sell; equity — irrevocable election)</td><td>Fair value</td><td>Other Comprehensive Income (OCI)</td></tr>
+      <tr><td><b>Trading</b></td><td>All equity; HFT debt; derivatives</td><td>FVPL (default for other; irrevocable election for any)</td><td>Fair value</td><td>Income Statement</td></tr>
+    </table></div>
+    <div class="kw">Dividend &amp; interest income and <b>realized</b> gains/losses → always on income statement regardless of classification</div>
+
+    <div class="mt">LOS 29.d: Non-Current Liabilities</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Long-Term Financial Liabilities</div>
+      <ul class="n">
+        <li>Bonds payable, bank loans, notes payable: reported at <b>amortized cost</b> (unless hedged by derivatives)</li>
+        <li>Amortized cost moves toward par value at maturity as premium/discount amortizes</li>
+        <li>Discount bond: carrying value INCREASES over time | Premium bond: carrying value DECREASES over time</li>
+        <li>Held-for-trading liabilities, derivatives: reported at <b>fair value</b></li>
+      </ul></div>
+      <div class="card"><div class="ct">Deferred Tax Liabilities</div>
+      <ul class="n">
+        <li>Income taxes payable in future periods due to temporary timing differences</li>
+        <li>Created when financial accounting income &gt; taxable income (e.g., straight-line vs. accelerated depreciation)</li>
+        <li>Created when revenue recognized in FS before taxable</li>
+        <li>Will reverse in future periods when taxes are paid</li>
+      </ul></div>
+    </div>
+
+    <div class="mt">LOS 29.e: Common-Size Balance Sheet &amp; Ratios</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Common-Size Format &amp; Ratios</div>
+      <ul class="n">
+        <li><b>Vertical common-size balance sheet</b>: Each item ÷ Total assets</li>
+        <li>Enables size-neutral comparison across firms and over time</li>
+      </ul>
+      <div class="formula">Current ratio = Current assets / Current liabilities
+Quick ratio (Acid-test) = (Cash + Marketable securities + Receivables) / Current liabilities
+Cash ratio = (Cash + Marketable securities) / Current liabilities
+
+Long-term debt-to-equity = LT debt / Total equity
+Total debt-to-equity = Total debt / Total equity
+Debt ratio (Debt-to-assets) = Total debt / Total assets
+Financial leverage ratio = Average total assets / Average total equity</div></div>
+      <div class="card"><div class="ct">Ratio Limitations</div>
+      <ul class="n">
+        <li>Different accounting standards limit cross-company comparisons</li>
+        <li>Ratios not comparable across different industries</li>
+        <li>Interpretation requires judgment</li>
+        <li>Balance sheet data = single point in time only</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R30 ══════════════ -->
+<div class="reading" id="r30">
+  <div class="rh"><span class="rnum">R30</span> ANALYZING STATEMENTS OF CASH FLOWS I</div>
+  <div class="rb">
+    <div class="mt">LOS 30.a: Cash Flow Statement Linkages</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Cash Flow Activities</div>
+      <ul class="n">
+        <li><b>CFO (Operating)</b>: Current assets &amp; liabilities; day-to-day business</li>
+        <li><b>CFI (Investing)</b>: Non-current assets; acquisitions/disposals</li>
+        <li><b>CFF (Financing)</b>: Non-current liabilities &amp; equity; borrowings, equity issuances, dividends paid</li>
+        <li><b>Quality of earnings</b>: CFO close to or &gt; net income = high quality</li>
+        <li>CFO &lt; net income persistently → aggressive accounting</li>
+      </ul></div>
+      <div class="card"><div class="ct">Balance Sheet — Cash Flow Links</div>
+      <div class="formula">Cash collections = Revenue − ΔAccounts receivable + ΔUnearned revenue
+Cash paid to suppliers = COGS + ΔInventory − ΔAccounts payable
+Cash paid for taxes = Tax expense − ΔDTL + ΔDTA − ΔTaxes payable
+Key rules:
+↑ Asset = USE of cash (subtract)
+↓ Asset = SOURCE of cash (add)
+↑ Liability = SOURCE of cash (add)
+↓ Liability = USE of cash (subtract)</div></div>
+    </div>
+    <div class="mt">LOS 30.b: Direct vs. Indirect CFO Methods</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Direct Method</div>
+      <ul class="n">
+        <li>Shows actual cash receipts and payments by category</li>
+        <li>Start with each IS line → adjust for related B/S changes → ignore non-cash charges</li>
+        <li>BOTH IFRS and US GAAP encourage; US GAAP requires indirect method footnote if direct used</li>
+        <li>More informative but rarely used in practice</li>
+      </ul>
+      <div class="formula">Cash from customers = Revenue − ΔAR + ΔUnearned revenue
+Cash to suppliers = −COGS − ΔInventory + ΔAP
+Cash operating expenses = −Exp − ΔPrepaid + ΔAccrued liabilities
+Cash taxes = −Tax expense + ΔDTL − ΔDTA + ΔTaxes payable</div></div>
+      <div class="card"><div class="ct">Indirect Method</div>
+      <ul class="n">
+        <li>Start with Net Income → adjust for: (1) non-cash charges, (2) non-operating items, (3) working capital changes</li>
+        <li>Shows reconciliation of NI to CFO → indicates earnings quality</li>
+        <li>Most commonly used in practice</li>
+      </ul>
+      <div class="formula">CFO = Net income
++ Depreciation &amp; amortization (add back — non-cash)
++ Amortization of discount / − Amortization of premium on bonds
+− Gains / + Losses on asset sales (non-operating; remove from CFO)
+− ↑ Operating assets / + ↓ Operating assets
++ ↑ Operating liabilities / − ↓ Operating liabilities</div></div>
+    </div>
+    <div class="mt">LOS 30.b: Computing CFI &amp; CFF</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">CFI Calculations</div>
+      <div class="formula">Asset disposal proceeds = Carrying value ± Gain/Loss on sale
+Carrying value of disposed asset = Beginning CV − Depreciation + Additions − Ending CV
+
+PP&E roll-forward:
+Beginning gross PP&E + Additions − Disposals (cost) = Ending gross PP&E
+Beginning AccumDepr + Depr expense − AccumDepr on disposals = Ending AccumDepr
+→ Solve for cost and AccumDepr of disposed assets
+→ Carrying value = Cost − AccumDepr of disposed asset
+→ Proceeds = Carrying value + Gain (or − Loss)</div></div>
+      <div class="card"><div class="ct">CFF Calculations</div>
+      <div class="formula">CFF = Net new borrowings (bonds issued − repaid)
+     + Net equity issuance (shares issued − repurchased)
+     − Cash dividends paid
+
+Dividends declared = ΔRetained earnings + Net income (rearranged)
+Cash dividends paid = Dividends declared − ΔDividends payable
+
+Note: Level I assumes bonds issued at par (no premium/discount complications)
+Note: Stock buybacks assumed at original issuance price</div></div>
+    </div>
+    <div class="mt">LOS 30.c &amp; 30.d: Conversions &amp; IFRS vs. US GAAP</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Indirect → Direct Conversion</div>
+      <ul class="n">
+        <li>Step 1: Aggregate all revenues/gains and all expenses/losses</li>
+        <li>Step 2: Remove non-cash charges; disaggregate remaining items</li>
+        <li>Step 3: Convert from accruals to cash by adjusting for working capital changes</li>
+      </ul></div>
+      <div class="card"><div class="ct">IFRS vs. US GAAP Cash Flow Differences</div>
+      <div class="tw"><table>
+        <tr><th>Item</th><th>US GAAP</th><th>IFRS</th></tr>
+        <tr><td>Interest received</td><td>CFO</td><td>CFO or CFI</td></tr>
+        <tr><td>Dividends received</td><td>CFO</td><td>CFO or CFI</td></tr>
+        <tr><td>Interest paid</td><td>CFO</td><td>CFO or CFF</td></tr>
+        <tr><td>Dividends paid</td><td>CFF</td><td>CFO or CFF</td></tr>
+        <tr><td>Income taxes paid</td><td>Always CFO</td><td>CFO (or CFI/CFF if directly linked)</td></tr>
+      </table></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R31 ══════════════ -->
+<div class="reading" id="r31">
+  <div class="rh"><span class="rnum">R31</span> ANALYZING STATEMENTS OF CASH FLOWS II</div>
+  <div class="rb">
+    <div class="mt">LOS 31.a: Cash Flow Analysis &amp; Common-Size</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Cash Flow Analysis</div>
+      <ul class="n">
+        <li>Positive CFO &gt; capital expenditures over long-term = sustainable</li>
+        <li>Early-stage firms: negative CFO funded by debt/equity (not sustainable long-term)</li>
+        <li>CFO manipulation: reducing noncash WC (liquidate inventory/receivables, ↑ payables) — not sustainable</li>
+        <li>CFO to NI ratio declining = potential earnings quality problem</li>
+        <li>CFI analysis: ↑ capex = growth; ↓ capex or asset sales = cash conservation (may signal future higher capex needs)</li>
+        <li>CFF analysis: Issuing debt to buy back shares/pay dividends = analyst concern</li>
+      </ul></div>
+      <div class="card"><div class="ct">Common-Size Cash Flow Statement</div>
+      <ul class="n">
+        <li>Method 1: Each item as % of <b>revenue</b> (best for forecasting)</li>
+        <li>Method 2: Each inflow as % of total inflows; each outflow as % of total outflows</li>
+        <li>Revenue-based: Good for trend analysis and forecasting</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 31.b: Free Cash Flow &amp; Cash Flow Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">FCFF from Net Income</div><div class="fgf">FCFF = Net income + NCC + [Interest paid × (1−t)] − Fixed capital inv. − Working capital inv.</div></div>
+      <div class="fgi"><div class="fgl">FCFF from CFO</div><div class="fgf">FCFF = CFO + [Interest paid × (1−t)] − Fixed capital investment (capex)</div></div>
+      <div class="fgi"><div class="fgl">FCFE</div><div class="fgf">FCFE = CFO − Fixed capital investment + Net borrowing (new debt − repaid)</div></div>
+      <div class="fgi"><div class="fgl">Cash Flow to Revenue</div><div class="fgf">CFO / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Cash Return on Assets</div><div class="fgf">CFO / Average total assets</div></div>
+      <div class="fgi"><div class="fgl">Cash Return on Equity</div><div class="fgf">CFO / Average total equity</div></div>
+      <div class="fgi"><div class="fgl">Cash-to-Income</div><div class="fgf">CFO / Operating income (EBIT)</div></div>
+      <div class="fgi"><div class="fgl">Cash Flow per Share</div><div class="fgf">(CFO − Preferred dividends) / Wtd avg shares</div></div>
+      <div class="fgi"><div class="fgl">Debt Coverage</div><div class="fgf">CFO / Total debt</div></div>
+      <div class="fgi"><div class="fgl">Interest Coverage (Cash)</div><div class="fgf">(CFO + Interest paid + Taxes paid) / Interest paid</div></div>
+      <div class="fgi"><div class="fgl">Reinvestment Ratio</div><div class="fgf">CFO / Cash paid for LT assets (capex)</div></div>
+      <div class="fgi"><div class="fgl">Debt Payment Ratio</div><div class="fgf">CFO / Cash long-term debt repayment</div></div>
+      <div class="fgi"><div class="fgl">Dividend Payment Ratio</div><div class="fgf">CFO / Dividends paid</div></div>
+      <div class="fgi"><div class="fgl">Investing &amp; Financing Ratio</div><div class="fgf">CFO / (Capex + Debt repaid + Dividends)</div></div>
+    </div>
+    <div class="kw">IFRS adjustment: If interest or dividends paid in CFO → add back for FCFF/FCFE calculations to get cash available to all investors</div>
+  </div>
+</div>
+
+<!-- ══════════════ R32 ══════════════ -->
+<div class="reading" id="r32">
+  <div class="rh"><span class="rnum">R32</span> ANALYSIS OF INVENTORIES</div>
+  <div class="rb">
+    <div class="mt">LOS 32.a: Lower of Cost or NRV / Market</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Inventory Valuation Rules</div>
+      <ul class="n">
+        <li><b>IFRS</b>: Lower of cost or <b>NRV</b> (= selling price − selling costs − completion costs); write-ups ALLOWED (limited to original write-down)</li>
+        <li><b>US GAAP (non-LIFO/retail)</b>: Lower of cost or <b>NRV</b>; write-ups NOT allowed</li>
+        <li><b>US GAAP (LIFO/retail method)</b>: Lower of cost or <b>market</b>; market = replacement cost constrained: NRV (upper) ≥ market ≥ NRV − normal profit margin (lower); write-ups NOT allowed</li>
+        <li><b>Commodity exception</b> (both IFRS/GAAP): Agricultural, forest, mineral, precious metals → can carry at NRV above cost; unrealized G/L on IS</li>
+        <li><b>Write-down</b>: Recognize loss on IS (as COGS or separate line); reduce inventory on BS</li>
+        <li>LIFO firms: Less likely to need write-down (older lower cost basis)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Effects of Inventory Write-Down</div>
+      <ul class="n">
+        <li>↓ Inventory (current asset) → ↓ Current assets → ↓ Total assets</li>
+        <li>↓ Current ratio (QR unaffected — no inventory in QR)</li>
+        <li>↑ Inventory turnover (COGS ↑, inventory ↓) → ↓ Days inventory on hand</li>
+        <li>↑ Asset turnover, ↑ Debt-to-assets (assets ↓)</li>
+        <li>↓ Equity → ↑ Debt-to-equity</li>
+        <li>↓ Gross margin, operating margin, net margin</li>
+        <li>↓ ROA and ROE in write-down period</li>
+        <li>Post write-down periods: ↑ ROA, ROE (lower asset/equity base; possibly lower COGS)</li>
+        <li>No cash flow effect (not tax deductible until sold)</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 32.b: FIFO vs. LIFO — Inflation Effects</div>
+    <div class="tw"><table>
+      <tr><th>Item</th><th>FIFO (inflation)</th><th>LIFO (inflation)</th><th>FIFO → LIFO adjustment</th></tr>
+      <tr><td>COGS</td><td>Lower (older costs)</td><td>Higher (recent costs)</td><td>↓ COGS</td></tr>
+      <tr><td>Gross profit</td><td>Higher</td><td>Lower</td><td>↑ profit</td></tr>
+      <tr><td>Net income</td><td>Higher</td><td>Lower (more tax)</td><td>↑ income</td></tr>
+      <tr><td>Ending inventory (BS)</td><td>Higher (recent costs)</td><td>Lower (older costs)</td><td>↑ inventory</td></tr>
+      <tr><td>Current ratio</td><td>Higher</td><td>Lower</td><td>↑ liquidity</td></tr>
+      <tr><td>Inventory turnover</td><td>Lower</td><td>Higher</td><td>↓ turnover</td></tr>
+      <tr><td>Cash flow</td><td>Lower (higher taxes)</td><td>Higher (tax savings)</td><td>↓ CFO</td></tr>
+      <tr><td>Debt ratios</td><td>Lower (higher equity/assets)</td><td>Higher</td><td>↓ leverage</td></tr>
+    </table></div>
+    <div class="kw"><b>LIFO reserve</b> = FIFO inventory − LIFO inventory. To convert LIFO → FIFO: add LIFO reserve to inventory (BS); add LIFO reserve × (1−t) to equity; reduce COGS by ΔLIFO reserve</div>
+    <div class="kw"><b>LIFO liquidation</b>: Inventory quantities decline → older, lower costs flow into COGS → HIGHER margins (inflation), NOT sustainable. Detect: LIFO reserve decreased in footnotes</div>
+    <div class="kw"><b>FIFO</b>: Better approximation of current cost on BS (ending inventory) | <b>LIFO/Wtd avg</b>: Better approximation of current cost on IS (COGS) during inflation</div>
+
+    <div class="mt">LOS 32.c: Inventory Disclosures &amp; Ratios</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Required Disclosures (IFRS &amp; US GAAP)</div>
+      <ul class="n">
+        <li>Cost flow method (FIFO, LIFO, weighted avg)</li>
+        <li>Total carrying value; by classification (raw materials, WIP, finished goods)</li>
+        <li>Carrying value at fair value less selling costs</li>
+        <li>Cost recognized as expense (COGS)</li>
+        <li>Write-downs during period</li>
+        <li>Write-up reversals (IFRS only — US GAAP prohibits reversals)</li>
+        <li>Inventory pledged as collateral</li>
+        <li><b>LIFO not permitted under IFRS</b></li>
+      </ul></div>
+      <div class="card"><div class="ct">Analyst Red Flags</div>
+      <ul class="n">
+        <li>Finished goods ↑ while raw materials &amp; WIP ↓ → declining demand, future write-downs</li>
+        <li>Raw materials/WIP ↑ → rising future demand</li>
+        <li>Finished goods growing faster than sales → declining demand / obsolescence</li>
+        <li>High turnover + slow sales growth → inadequate inventory / lost sales</li>
+        <li>High turnover + high sales growth → efficiency improvement</li>
+        <li>Low turnover → slow-moving/obsolete inventory</li>
+      </ul>
+      <div class="formula">Inventory turnover = COGS / Average inventory
+Days of inventory on hand = 365 / Inventory turnover</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R33 ══════════════ -->
+<div class="reading" id="r33">
+  <div class="rh"><span class="rnum">R33</span> ANALYSIS OF LONG-TERM ASSETS</div>
+  <div class="rb">
+    <div class="mt">LOS 33.a: Intangible Long-Lived Assets — Purchased vs. Internally Generated vs. Acquired in Business Combination</div>
+    <div class="three-col">
+      <div class="card"><div class="ct">Internally Created Intangibles</div>
+      <ul class="n">
+        <li>Generally EXPENSED as incurred</li>
+        <li><b>IFRS</b>: Research → expense; Development → capitalize if criteria met (technically feasible, intention &amp; resources to complete, market exists)</li>
+        <li><b>US GAAP</b>: Both R&amp;D expensed; Software for sale → expense until tech feasibility, then capitalize; Internal use software → capitalize when probable to complete</li>
+        <li>Capitalizing dev costs: ↑ assets &amp; equity; ↑ CFO (outflow in CFI); smoother earnings</li>
+        <li>Internally generated goodwill: ALWAYS expensed</li>
+      </ul></div>
+      <div class="card"><div class="ct">Purchased Intangibles</div>
+      <ul class="n">
+        <li>Recorded at cost (fair value at acquisition)</li>
+        <li>Group purchase: allocate by fair value of each asset</li>
+        <li>Financial statement effects same as capitalizing vs. expensing (see R28)</li>
+        <li>Company with internally generated intangibles has LOWER balance sheet assets than one that buys them (impacts ratios)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Business Combination (Acquisition Method)</div>
+      <ul class="n">
+        <li>All identifiable assets/liabilities recorded at <b>fair value</b> at acquisition date</li>
+        <li>Previously expensed identifiable intangibles NOW capitalized (on acquiring firm's BS)</li>
+        <li><b>Goodwill = Purchase price − FV of identifiable net assets</b></li>
+        <li>Goodwill = UNIDENTIFIABLE intangible (cannot be separated from business)</li>
+        <li>Capitalizing more identifiable intangibles → less goodwill → less future impairment risk but more future D&amp;A expense</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 33.b: Impairment &amp; Derecognition</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Asset Impairment</div>
+      <div class="tw"><table>
+        <tr><th>Step</th><th>IFRS</th><th>US GAAP</th></tr>
+        <tr><td>Test</td><td>Annual assessment; impaired if CV &gt; Recoverable amount</td><td>Event-driven; impaired if CV &gt; Undiscounted future CFs (recoverability test)</td></tr>
+        <tr><td>Recoverable amount</td><td>Greater of: FV − selling costs OR Value in use (PV of future CFs)</td><td>Fair value (or PV of future CFs if FV unknown)</td></tr>
+        <tr><td>Write-down to</td><td>Recoverable amount</td><td>Fair value</td></tr>
+        <tr><td>Reversal</td><td>Allowed (up to original CV)</td><td>NOT allowed (assets held for use)</td></tr>
+        <tr><td>Held for sale</td><td>Reversal allowed (limited)</td><td>Reversal allowed (limited)</td></tr>
+      </table></div>
+      <ul class="n">
+        <li>Impairment: ↓ asset CV, ↓ NI (loss), ↓ equity, NO cash flow effect (non-cash; not tax deductible until disposal)</li>
+        <li>Year of impairment: ↓ ROA, ↓ ROE</li>
+        <li>Post-impairment: ↑ ROA, ↑ ROE (lower asset/equity base; less D&amp;A expense)</li>
+        <li>↑ Asset turnover (in impairment year and after)</li>
+        <li>Management discretion in timing → earnings smoothing opportunity</li>
+        <li>Indefinite-lived intangibles: NOT amortized; impairment test annually; write down if CV &gt; FV</li>
+        <li>Held for sale: No longer depreciated; impaired if CV &gt; FV less selling costs</li>
+      </ul></div>
+      <div class="card"><div class="ct">Derecognition</div>
+      <ul class="n">
+        <li><b>Sale</b>: Remove from BS; Gain/Loss = Proceeds − Carrying value. Gain/loss on IS; proceeds in CFI</li>
+        <li><b>Abandonment</b>: Remove CV from BS; loss = CV recognized on IS; no proceeds</li>
+        <li><b>Exchange</b>: Record new asset at FV of asset given up (or received if more evident); Gain/Loss = FV old asset − CV old asset</li>
+        <li><b>Spinoff</b>: Distribute subsidiary shares to shareholders; assets/liabilities transferred to "held for distribution"; no profit/loss recorded on disposal in IS</li>
+        <li>Indirect CFO: Gain subtracted, Loss added back (to remove from NI; proceeds in CFI)</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 33.c: Long-Term Asset Disclosures &amp; Analysis</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Asset Age Formulas (assuming straight-line, zero salvage)</div>
+      <div class="formula">Average age = Accumulated depreciation / Annual depreciation expense
+Total useful life = Gross PP&E / Annual depreciation expense
+Remaining useful life = Net PP&E / Annual depreciation expense
+  (also = Total useful life − Average age)
+Fixed asset turnover = Revenue / Average net PP&E
+Capex-to-depreciation = Capital expenditures / Depreciation expense</div></div>
+      <div class="card"><div class="ct">Required PP&E Disclosures</div>
+      <ul class="n">
+        <li><b>Both IFRS &amp; US GAAP</b>: Depreciation method, expense, useful life/rate, gross CV &amp; accum. depr, title restrictions &amp; pledged assets, impairment details</li>
+        <li><b>IFRS only</b>: Revaluation date, FV determination, CV using historical cost, revaluation surplus in OCI</li>
+        <li><b>US GAAP only</b>: Estimate of amortization for next 5 years (intangibles)</li>
+        <li>Average age NOT a required disclosure (calculated by analyst)</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R34 ══════════════ -->
+<div class="reading" id="r34">
+  <div class="rh"><span class="rnum">R34</span> TOPICS IN LONG-TERM LIABILITIES AND EQUITY</div>
+  <div class="rb">
+    <div class="mt">LOS 34.a: Leases</div>
+    <div class="kw"><b>Finance lease criteria</b> (≥1 must be met): (1) Ownership transfers to lessee | (2) Lessee has purchase option expected to be exercised | (3) Lease = most of asset's useful life | (4) PV of lease payments ≥ asset's fair value | (5) Asset specialized/no other use for lessor</div>
+    <div class="three-col">
+      <div class="card"><div class="ct">Lessee — Finance Lease (IFRS &amp; US GAAP)</div>
+      <ul class="n">
+        <li>Record <b>ROU asset</b> + <b>Lease liability</b> = PV of lease payments</li>
+        <li>IS: Amortization expense (ROU) + Interest expense (liability)</li>
+        <li>CFF: Principal repayment | CFO (GAAP) or CFO/CFF (IFRS): Interest paid</li>
+        <li>ROU amortized straight-line (IFRS) → ROU &lt; lease liability during life</li>
+        <li>Early years: Total IS expense &gt; Operating lease; Later years: &lt;</li>
+        <li>Exceptions: Short-term (&lt;12 months) or low-value (&lt;USD 5,000 — IFRS only) → rent expense only; no BS entries</li>
+      </ul></div>
+      <div class="card"><div class="ct">Lessee — Operating Lease (US GAAP)</div>
+      <ul class="n">
+        <li>Also records ROU asset + Lease liability = PV of payments</li>
+        <li>But: IS shows single <b>lease expense</b> = payment amount (not split into interest + amortization)</li>
+        <li>ROU amortized = principal repayment each period → ROU = Lease liability at all times</li>
+        <li>CFO: Entire payment classified as operating outflow</li>
+        <li>Result: Finance &gt; Operating lease assets in early years (IFRS ROU amortized more aggressively)</li>
+        <li>IFRS: No distinction — all non-exempt leases treated like finance leases for income statement (interest + amortization)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Lessor Accounting</div>
+      <ul class="n">
+        <li><b>Finance lease</b>: Remove asset; add lease receivable; record interest income (EIR method); profit/loss at inception if manufacturer/dealer</li>
+        <li><b>Sales-type lease</b> (manufacturer/dealer): Revenue = PV of lease receipts; COGS = asset CV − PV of residual value; profit/loss at initiation</li>
+        <li><b>Direct financing lease</b> (financing co.): No profit/loss at inception; gain/loss deferred and recognized as interest over life</li>
+        <li><b>Operating lease</b>: Keep asset on BS; depreciate it; recognize lease payments as income straight-line</li>
+        <li>Lessor cash flows: ALWAYS classified as CFO regardless of lease type</li>
+      </ul></div>
+    </div>
+    <div class="tw"><table>
+      <tr><th>Item</th><th>Finance Lease (Lessee)</th><th>Operating Lease (US GAAP Lessee)</th></tr>
+      <tr><td>Balance sheet</td><td>ROU asset + Lease liability</td><td>ROU asset + Lease liability (equal each period)</td></tr>
+      <tr><td>Income statement</td><td>Interest expense + Amortization</td><td>Single lease expense = payment</td></tr>
+      <tr><td>CFO</td><td>Only interest (GAAP); interest or none (IFRS)</td><td>Entire payment</td></tr>
+      <tr><td>CFF</td><td>Principal repayment</td><td>Nothing</td></tr>
+      <tr><td>Early year IS expense</td><td>Higher (front-loaded)</td><td>Equal each year</td></tr>
+    </table></div>
+
+    <div class="mt">LOS 34.b: Deferred Compensation</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Pension Plans</div>
+      <ul class="n">
+        <li><b>Defined contribution (DC)</b>: Firm contributes fixed amount; no future obligation; pension expense = contribution; employee bears investment risk</li>
+        <li><b>Defined benefit (DB)</b>: Firm promises future benefits; employee bears no investment risk; firm records net pension asset/liability</li>
+        <li><b>Funded status</b> = Fair value of plan assets − Present value of benefit obligation (PVDBO/PBO)</li>
+        <li>Overfunded → net pension ASSET | Underfunded → net pension LIABILITY</li>
+        <li>Treat DB pension liability as DEBT instrument in leverage analysis (carries interest element)</li>
+      </ul>
+      <div class="ct" style="margin-top:6px">DB Pension — IS vs. OCI Components</div>
+      <div class="tw"><table>
+        <tr><th>Component</th><th>IFRS</th><th>US GAAP</th></tr>
+        <tr><td>Service cost</td><td>IS</td><td>IS</td></tr>
+        <tr><td>Net interest (income/expense)</td><td>IS (netted)</td><td>IS (separate: interest cost &amp; expected return)</td></tr>
+        <tr><td>Past service costs</td><td>IS (immediately)</td><td>OCI → amortized to IS</td></tr>
+        <tr><td>Actuarial gains/losses (remeasurements)</td><td>OCI (permanent)</td><td>OCI → may amortize to IS</td></tr>
+        <tr><td>Total cost</td><td>Same</td><td>Same</td></tr>
+      </table></div></div>
+      <div class="card"><div class="ct">Stock-Based Compensation</div>
+      <ul class="n">
+        <li><b>Advantages</b>: Aligns managers/shareholders; reduces agency costs; no cash outflow initially</li>
+        <li><b>Disadvantages</b>: Individual may not control stock price; options → asymmetric payoffs → excessive risk-taking; dilutes existing shareholders</li>
+        <li>Both IFRS &amp; US GAAP: Estimate <b>fair value at grant date</b>; expense over <b>vesting period</b> (service period = grant date to first exercise date)</li>
+        <li><b>Stock grants</b>: FV = market price at grant date; if immediate vesting → expense immediately; if deferred → straight-line over service period; increase common stock + APIC</li>
+        <li><b>Stock options</b>: FV via Black-Scholes-Merton or binomial model; highly subjective inputs (especially volatility); expense over vesting period; on exercise → cash in (exercise price), new shares issued</li>
+        <li><b>SARs (Stock Appreciation Rights)</b>: Cash payment linked to stock performance; no new shares; like options but cash settled; no dilution but cash outflow when stock performs well</li>
+        <li><b>Phantom stock</b>: SAR variant for non-public firms; cash based on hypothetical stock performance</li>
+        <li><b>Restricted stock units (RSUs)</b>: Stock grants that vest on length of service or performance goals</li>
+        <li><b>Performance shares</b>: Grant dependent on performance targets (e.g., ROE); risk of financial statement manipulation</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R35 ══════════════ -->
+<div class="reading" id="r35">
+  <div class="rh"><span class="rnum">R35</span> ANALYSIS OF INCOME TAXES</div>
+  <div class="rb">
+    <div class="mt">LOS 35.a: Key Tax Terminology</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Tax Return Terms</div>
+      <ul class="n">
+        <li><b>Taxable income</b>: Income per tax return (tax rules)</li>
+        <li><b>Taxes payable</b>: Tax liability = taxable income × statutory rate (= current tax expense)</li>
+        <li><b>Income tax paid</b>: Actual cash for taxes (may differ due to payments/refunds from other years)</li>
+        <li><b>Tax loss carryforward</b>: Past losses to reduce future taxable income → creates DTA</li>
+        <li><b>Tax base</b>: Net amount of asset/liability for tax purposes</li>
+      </ul></div>
+      <div class="card"><div class="ct">Financial Reporting Terms</div>
+      <ul class="n">
+        <li><b>Accounting profit</b>: Pretax income per GAAP (= income before tax = EBT)</li>
+        <li><b>Income tax expense</b>: Per income statement = taxes payable + ΔDTL − ΔDTA</li>
+        <li><b>DTA (Deferred Tax Asset)</b>: Taxes payable &gt; tax expense; future tax savings expected; created by deductible temporary differences</li>
+        <li><b>DTL (Deferred Tax Liability)</b>: Tax expense &gt; taxes payable; future tax outflow expected; created by taxable temporary differences</li>
+        <li><b>Carrying value</b>: Net book value of asset/liability per GAAP</li>
+        <li><b>Valuation allowance</b>: Reduces DTA when future realization uncertain (US GAAP uses contra account; IFRS reduces DTA directly)</li>
+        <li><b>Permanent difference</b>: Never reverses; NO DTA or DTL created (e.g., tax-exempt muni bond interest, non-deductible expenses)</li>
+        <li><b>Temporary difference</b>: Will reverse; creates DTA or DTL</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 35.a/b: DTA &amp; DTL Creation</div>
+    <div class="tw"><table>
+      <tr><th>Situation</th><th>Effect</th><th>Creates</th></tr>
+      <tr><td>Taxable income &lt; Accounting profit (temporary)</td><td>Pay less tax now; more later</td><td>DTL</td></tr>
+      <tr><td>Taxable income &gt; Accounting profit (temporary)</td><td>Pay more tax now; less later</td><td>DTA</td></tr>
+      <tr><td>Asset CV &gt; Tax base</td><td>Will have higher taxable income when asset used/sold</td><td>DTL</td></tr>
+      <tr><td>Asset CV &lt; Tax base</td><td>Will have lower taxable income when asset used/sold</td><td>DTA</td></tr>
+      <tr><td>Liability CV &gt; Tax base (e.g., warranties)</td><td>Tax deduction comes later → DTA</td><td>DTA</td></tr>
+      <tr><td>Liability CV &lt; Tax base (unearned revenue)</td><td>Taxed before recognized → DTL</td><td>DTL</td></tr>
+      <tr><td>Tax loss carryforward</td><td>Future tax savings expected</td><td>DTA</td></tr>
+    </table></div>
+    <div class="kw"><b>Common DTL examples</b>: Accelerated depreciation for taxes, revenue recognized before taxable | <b>Common DTA examples</b>: Warranty/benefit expense before deductible, unearned revenue taxed first, restructuring charges, impairments, tax loss carryforwards</div>
+    <div class="formula">Income tax expense = Taxes payable + ΔDTL − ΔDTA
+DTA or DTL balance = (CV − Tax base) × Statutory tax rate
+↑ Statutory tax rate → both DTA and DTL increase (must adjust at new rate)</div>
+    <div class="kw"><b>Valuation allowance</b> (US GAAP): If "more likely than not" DTA won't be realized → create valuation allowance; ↑ allowance = ↑ tax expense, ↓ NI. Management judgment → potential earnings manipulation</div>
+    <div class="kw"><b>Analyst treatment of DTLs</b>: If expected to REVERSE → treat as liability | If NOT expected to reverse (continued capital expenditure growth) → treat as equity</div>
+
+    <div class="mt">LOS 35.c: Tax Rates</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Statutory Tax Rate</div><div class="fgf">Corporate income tax rate of firm's domicile country</div></div>
+      <div class="fgi"><div class="fgl">Effective Tax Rate</div><div class="fgf">Income tax expense / Pretax accounting income (EBT)<br>Useful for forecasting future earnings</div></div>
+      <div class="fgi"><div class="fgl">Cash Tax Rate</div><div class="fgf">Taxes paid / Pretax income<br>Useful for forecasting future tax cash flows</div></div>
+    </div>
+    <div class="kw"><b>Permanent differences</b> cause effective rate ≠ statutory rate (e.g., tax-exempt income, non-deductible expenses, credits, different jurisdiction rates, tax holidays). Temporary differences do NOT cause this gap</div>
+    <div class="kw"><b>Reconciliation analysis</b>: Focus on continuous (not sporadic) components when forecasting; watch for tax holiday termination dates; operations in different tax jurisdictions</div>
+  </div>
+</div>
+
+<!-- ══════════════ R36 ══════════════ -->
+<div class="reading" id="r36">
+  <div class="rh"><span class="rnum">R36</span> FINANCIAL REPORTING QUALITY</div>
+  <div class="rb">
+    <div class="mt">LOS 36.a/b: Reporting Quality Spectrum</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Quality Definitions</div>
+      <ul class="n">
+        <li><b>Financial reporting quality</b>: Characteristics of financial statements — adherence to GAAP, decision-usefulness, relevance, faithful representation (completeness, neutrality, free from error), materiality</li>
+        <li><b>Quality of reported results</b>: Level and sustainability of earnings, cash flows, balance sheet values</li>
+        <li>High-quality earnings: Adequate return to investors AND sustainable in future periods</li>
+        <li>A firm can have HIGH reporting quality but LOW earnings quality (GAAP-compliant but unsustainable earnings)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Quality Spectrum (Best → Worst)</div>
+      <ol style="padding-left:14px;font-size:12px">
+        <li>GAAP-compliant, decision-useful; sustainable &amp; adequate earnings ← BEST</li>
+        <li>GAAP-compliant, decision-useful; low earnings quality (unsustainable/inadequate)</li>
+        <li>GAAP-compliant; low earnings quality; biased choices/estimates</li>
+        <li>GAAP-compliant; actively managed (smoothed) earnings</li>
+        <li>Non-GAAP; based on actual economic activities</li>
+        <li>Non-GAAP; fictitious/fraudulent numbers ← WORST</li>
+      </ol></div>
+    </div>
+    <div class="mt">LOS 36.c: Conservative vs. Aggressive Accounting</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Aggressive vs. Conservative (Key Examples)</div>
+      <div class="tw"><table>
+        <tr><th>Area</th><th>Aggressive (↑ current NI)</th><th>Conservative (↓ current NI)</th></tr>
+        <tr><td>Revenue</td><td>Recognize early (FOB shipping point, channel stuffing)</td><td>Recognize late (FOB destination)</td></tr>
+        <tr><td>Expenses</td><td>Capitalize / delay recognition</td><td>Expense immediately</td></tr>
+        <tr><td>Bad debt/warranty</td><td>Lower reserves</td><td>Higher reserves</td></tr>
+        <tr><td>Depreciation</td><td>Longer life, higher salvage, straight-line</td><td>Shorter life, lower salvage, accelerated</td></tr>
+        <tr><td>Inventory</td><td>FIFO (inflation) — lower COGS</td><td>LIFO (inflation) — higher COGS</td></tr>
+        <tr><td>Impairment</td><td>Delay recognition</td><td>Recognize early</td></tr>
+      </table></div></div>
+      <div class="card"><div class="ct">Earnings Smoothing &amp; Cookie Jar</div>
+      <ul class="n">
+        <li>During HIGH earnings periods: Conservative bias → store earnings ("cookie jar")</li>
+        <li>During LOW earnings periods: Aggressive bias → release stored earnings</li>
+        <li>Goal: Reduce earnings volatility (↑ share value)</li>
+        <li>GAAP itself can impose conservatism: write-downs allowed but write-ups restricted; research expensed under uncertainty</li>
+        <li>Conservative bias also: ↓ litigation risk, ↓ current period tax (if tax follows accounting), ↓ information asymmetry risk</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 36.d/e: Motivations &amp; Mechanisms</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Motivations for Low-Quality Reporting</div>
+      <ul class="n">
+        <li>Meet/exceed earnings guidance (prior management guidance, analyst consensus, prior year EPS)</li>
+        <li>Career advancement / incentive compensation linked to earnings/stock</li>
+        <li>Avoid violating debt covenants</li>
+        <li>Improve perception by customers/suppliers</li>
+        <li><b>3 elements</b>: Motivation + Opportunity + Rationalization</li>
+        <li><b>Opportunity factors</b>: Weak internal controls, inadequate board oversight, wide range of acceptable accounting treatments</li>
+      </ul></div>
+      <div class="card"><div class="ct">Disciplinary Mechanisms &amp; Limitations</div>
+      <ul class="n">
+        <li><b>Regulators</b>: SEC (US), FCA (UK), IOSCO (international), ESMA (EU)</li>
+        <li>Require: Periodic FS + notes, independent audit, management commentary, signed certification</li>
+        <li><b>Auditors</b>: Clean opinion ≠ guarantee of no fraud; only "reasonable assurance" of no material errors; audit NOT designed primarily to detect fraud; firm selects &amp; pays auditor</li>
+        <li><b>Private contracts</b>: Loan covenants specify calculation methods; creditors have incentive for quality reporting</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 36.f/g/h: Non-GAAP Measures, Accounting Choices &amp; Warning Signs</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Non-GAAP Measures</div>
+      <ul class="n">
+        <li>Often exclude items to look better; claim items are "non-recurring" or "non-cash"</li>
+        <li><b>US GAAP required</b>: Show GAAP measure equally prominently; explain why useful; reconcile; include recurring items even if labeled non-recurring</li>
+        <li><b>IFRS required</b>: Define and explain relevance; reconcile to comparable IFRS measure</li>
+      </ul>
+      <div class="ct" style="margin-top:8px">Earnings Management Methods</div>
+      <ul class="n">
+        <li>Revenue timing: FOB shipping point, channel stuffing, bill-and-hold, barter, accelerating/delaying shipments</li>
+        <li>Estimates: Bad debt reserve, warranty reserve, valuation allowance for DTA</li>
+        <li>Depreciation: Methods, useful life estimates, salvage values, impairment timing</li>
+        <li>Inventory: Cost flow method choice</li>
+        <li>Capitalization: Inappropriate capitalization of expenses → ↑ current NI, ↑ CFO</li>
+        <li>Related-party transactions: Shift profits between entities</li>
+        <li><b>Stretching payables</b>: Pay later → ↑ CFO (no effect on earnings)</li>
+        <li>IFRS classification flexibility: Interest/dividends received/paid → manage CFO</li>
+        <li>Capitalizing interest → ↑ CFO (moves from operating to investing)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Warning Signs for Analysts</div>
+      <ul class="n">
+        <li>Revenue growth inconsistent with peers</li>
+        <li>↓ Receivables turnover (collecting slower — channel stuffing?)</li>
+        <li>↓ Total asset turnover (especially if growing via acquisition)</li>
+        <li>Non-operating items included in revenue</li>
+        <li>↓ Inventory turnover</li>
+        <li>LIFO liquidations</li>
+        <li>Capitalization policies differ from industry peers</li>
+        <li>CFO/NI ratio &lt; 1 persistently or declining</li>
+        <li>Depreciation methods/lives/salvage differ from peers</li>
+        <li>Unusual Q4 earnings pattern (not explained by seasonality)</li>
+        <li>Frequent related-party transactions</li>
+        <li>Frequent "non-recurring" items</li>
+        <li>Abnormally high gross/operating margins vs. peers</li>
+        <li>Minimal disclosure; aggressive use of non-GAAP measures</li>
+        <li>Frequent acquisitions (obscures comparability)</li>
+        <li>Large restructuring/impairment charges (corrections of prior overstatements)</li>
+        <li>Changes in revenue recognition methods; lack of transparency</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R37 ══════════════ -->
+<div class="reading" id="r37">
+  <div class="rh"><span class="rnum">R37</span> FINANCIAL ANALYSIS TECHNIQUES</div>
+  <div class="rb">
+    <div class="mt">LOS 37.a: Tools &amp; Limitations</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Analytical Tools</div>
+      <ul class="n">
+        <li><b>Ratio analysis</b>: Relationships among data; forecast earnings/cash flow; assess management; compare firms over time</li>
+        <li><b>Common-size analysis</b>: Vertical (% of total) and horizontal (indexed to base year)</li>
+        <li><b>Graphical analysis</b>: Stacked column/bar graphs; line graphs for trends</li>
+        <li><b>Regression analysis</b>: Identify relationships for forecasting (e.g., GDP → sales)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Ratio Limitations</div>
+      <ul class="n">
+        <li>Ratios meaningless in isolation — need comparison benchmark</li>
+        <li>Cross-company comparisons limited by different accounting treatments (IFRS vs. GAAP)</li>
+        <li>Difficult for multi-industry companies (which peer group?)</li>
+        <li>Single ratio insufficient; must be viewed in context of others</li>
+        <li>Defining "target" or "normal" ratio value requires judgment</li>
+        <li>Must consider business cycle, strategy, and analyst expectations</li>
+        <li>Ratio definitions vary across analysts (be consistent)</li>
+      </ul></div>
+    </div>
+    <div class="mt">LOS 37.b: All Financial Ratios</div>
+    <div class="st">Activity Ratios (Asset Utilization)</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Receivables Turnover</div><div class="fgf">Revenue / Average receivables</div></div>
+      <div class="fgi"><div class="fgl">Days Sales Outstanding (DSO)</div><div class="fgf">365 / Receivables turnover<br>(= Avg collection period)</div></div>
+      <div class="fgi"><div class="fgl">Inventory Turnover</div><div class="fgf">COGS / Average inventory<br>(NOT sales — use COGS)</div></div>
+      <div class="fgi"><div class="fgl">Days of Inventory on Hand</div><div class="fgf">365 / Inventory turnover</div></div>
+      <div class="fgi"><div class="fgl">Payables Turnover</div><div class="fgf">Purchases / Average payables<br>(Purchases = COGS + ΔInventory)</div></div>
+      <div class="fgi"><div class="fgl">Days of Payables</div><div class="fgf">365 / Payables turnover</div></div>
+      <div class="fgi"><div class="fgl">Total Asset Turnover</div><div class="fgf">Revenue / Average total assets</div></div>
+      <div class="fgi"><div class="fgl">Fixed Asset Turnover</div><div class="fgf">Revenue / Average net PP&E</div></div>
+      <div class="fgi"><div class="fgl">Working Capital Turnover</div><div class="fgf">Revenue / Average working capital<br>(WC = Current assets − Current liabilities)</div></div>
+    </div>
+    <div class="st">Liquidity Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Current Ratio</div><div class="fgf">Current assets / Current liabilities</div></div>
+      <div class="fgi"><div class="fgl">Quick Ratio (Acid-test)</div><div class="fgf">(Cash + Mkt securities + Receivables) / Current liabilities</div></div>
+      <div class="fgi"><div class="fgl">Cash Ratio</div><div class="fgf">(Cash + Marketable securities) / Current liabilities</div></div>
+      <div class="fgi"><div class="fgl">Defensive Interval</div><div class="fgf">(Cash + Mkt securities + Receivables) / Daily cash expenditures</div></div>
+      <div class="fgi"><div class="fgl">Cash Conversion Cycle</div><div class="fgf">DSO + Days inventory − Days payables<br>(Days to turn cash investment in inventory back to cash)</div></div>
+    </div>
+    <div class="st">Solvency Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Debt-to-Equity</div><div class="fgf">Total debt / Total equity<br>(Total debt = interest-bearing only, EXCL leases per Level I)</div></div>
+      <div class="fgi"><div class="fgl">Debt-to-Capital</div><div class="fgf">Total debt / (Total debt + Equity)</div></div>
+      <div class="fgi"><div class="fgl">Debt-to-Assets</div><div class="fgf">Total debt / Total assets</div></div>
+      <div class="fgi"><div class="fgl">Financial Leverage Ratio</div><div class="fgf">Average total assets / Average total equity</div></div>
+      <div class="fgi"><div class="fgl">Interest Coverage</div><div class="fgf">EBIT / Interest expense<br>(Higher = better; ability to service debt)</div></div>
+      <div class="fgi"><div class="fgl">Fixed Charge Coverage</div><div class="fgf">(EBIT + Lease payments) / (Interest + Lease payments)</div></div>
+      <div class="fgi"><div class="fgl">Debt-to-EBITDA</div><div class="fgf">Total debt / EBITDA<br>(Years to repay debt from EBITDA)</div></div>
+    </div>
+    <div class="st">Profitability Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Gross Profit Margin</div><div class="fgf">Gross profit / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Operating Profit Margin</div><div class="fgf">EBIT (or operating income) / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Pretax Margin</div><div class="fgf">EBT / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Net Profit Margin</div><div class="fgf">Net income / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Return on Assets (ROA)</div><div class="fgf">Net income / Average total assets
+OR
+(Net income + Interest expense × (1−t)) / Average total assets</div></div>
+      <div class="fgi"><div class="fgl">Operating ROA</div><div class="fgf">EBIT / Average total assets</div></div>
+      <div class="fgi"><div class="fgl">Return on Total Capital (ROIC)</div><div class="fgf">EBIT × (1−t) / Average long-term capital<br>(LT capital = LT debt + preferred + common equity)</div></div>
+      <div class="fgi"><div class="fgl">Return on Equity (ROE)</div><div class="fgf">Net income / Average total equity<br>(includes preferred stock)</div></div>
+      <div class="fgi"><div class="fgl">Return on Common Equity (ROCE)</div><div class="fgf">(Net income − Preferred dividends) / Average common equity</div></div>
+    </div>
+
+    <div class="mt">LOS 37.d: DuPont Analysis</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">3-Part DuPont (Original)</div>
+      <div class="formula">ROE = Net profit margin × Total asset turnover × Financial leverage
+    = (NI/Revenue) × (Revenue/Avg assets) × (Avg assets/Avg equity)
+ROE = ROA × Financial leverage multiplier</div></div>
+      <div class="card"><div class="ct">5-Part DuPont (Extended)</div>
+      <div class="formula">ROE = Tax burden × Interest burden × EBIT margin × Asset turnover × Financial leverage
+    = (NI/EBT) × (EBT/EBIT) × (EBIT/Revenue) × (Revenue/Avg assets) × (Avg assets/Avg equity)
+
+Tax burden = NI/EBT (higher = lower taxes)
+Interest burden = EBT/EBIT (lower = higher interest burden; leverage doesn't always improve ROE)</div></div>
+    </div>
+    <div class="mt">LOS 37.e: Industry-Specific Ratios &amp; LOS 37.f: Forecasting</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Industry-Specific Ratios</div>
+      <ul class="n">
+        <li><b>Service/consulting</b>: Net income/employee, sales/employee</li>
+        <li><b>Retail/restaurant</b>: Same-store sales growth, sales per square foot</li>
+        <li><b>Hotel</b>: Average daily rate, occupancy rate</li>
+        <li><b>Streaming/subscription</b>: Average revenue per user (ARPU)</li>
+        <li><b>Banks</b>: Capital adequacy ratio, liquid asset requirement, net interest margin (interest income / interest-earning assets), value at risk (VaR)</li>
+        <li><b>Business risk</b>: Coefficient of variation = Standard deviation / Mean (size-adjusted risk measure)</li>
+      </ul></div>
+      <div class="card"><div class="ct">Pro Forma Modeling &amp; Variability Analysis</div>
+      <ul class="n">
+        <li>Common-size ratios → forecast expenses as % of sales</li>
+        <li>Pro forma income statement → balance sheet → cash flow statement</li>
+        <li><b>Sensitivity analysis</b>: "What if" questions; single variable changes</li>
+        <li><b>Scenario analysis</b>: Specific sets of outcomes for multiple variables</li>
+        <li><b>Simulation</b>: Computer-generated distribution using probability distributions for key variables</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ R38 ══════════════ -->
+<div class="reading" id="r38">
+  <div class="rh"><span class="rnum">R38</span> INTRODUCTION TO FINANCIAL STATEMENT MODELING</div>
+  <div class="rb">
+    <div class="mt">LOS 38.a: Sales-Based Pro Forma Model — 8 Steps</div>
+    <div class="four-col">
+      <div class="card"><b>Step 1</b>: Estimate revenue growth &amp; future revenue (market growth, market share, trend, GDP-relative)</div>
+      <div class="card"><b>Step 2</b>: Estimate COGS (% of sales or detailed analysis of strategy/competition)</div>
+      <div class="card"><b>Step 3</b>: Estimate SG&amp;A (fixed, revenue-linked, or other method)</div>
+      <div class="card"><b>Step 4</b>: Estimate financing costs (interest rates, debt levels, capex changes)</div>
+      <div class="card"><b>Step 5</b>: Estimate income tax expense and cash taxes (effective rates, segment rates, deferred tax changes)</div>
+      <div class="card"><b>Step 6</b>: Model balance sheet (working capital accounts flow from IS)</div>
+      <div class="card"><b>Step 7</b>: Estimate capex and net PP&amp;E (from depreciation + capex for maintenance and growth)</div>
+      <div class="card"><b>Step 8</b>: Construct pro forma cash flow statement from IS and BS</div>
+    </div>
+
+    <div class="mt">LOS 38.b: Behavioral Biases in Analyst Forecasts</div>
+    <div class="tw"><table>
+      <tr><th>Bias</th><th>Description</th><th>Mitigation</th></tr>
+      <tr><td><b>Overconfidence</b></td><td>Too much faith in own work; confidence intervals too narrow; "going against the grain" analysts most susceptible</td><td>Share/seek critique; evaluate past errors; use scenario analysis; widen confidence intervals</td></tr>
+      <tr><td><b>Illusion of Control</b></td><td>Overestimate control; seek "expert" opinions to justify; over-complex models (more variables); overfitted models perform poorly out-of-sample</td><td>Focus on variables with known explanatory power; seek only relevant outside opinions; simpler models</td></tr>
+      <tr><td><b>Conservatism (Anchoring)</b></td><td>Small adjustments to prior forecasts when new info appears; slow to incorporate new negative (or positive) news</td><td>Periodic evaluation of forecasting errors; simpler models easier to adjust</td></tr>
+      <tr><td><b>Representativeness</b></td><td>Classify new situations into known categories; <b>base-rate neglect</b>: ignore industry base rates in favor of company-specific info (<b>inside view</b> vs. <b>outside view</b>)</td><td>Consider both inside (company-specific) and outside (industry) views</td></tr>
+      <tr><td><b>Confirmation</b></td><td>Seek data confirming prior views; disregard contradicting information; take management's positive comments at face value</td><td>Follow analysts with opposite view; seek unbiased colleagues; challenge management claims</td></tr>
+    </table></div>
+
+    <div class="mt">LOS 38.c: Porter's Five Forces</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">5 Forces &amp; Impact on Pricing/Costs</div>
+      <ul class="n">
+        <li><b>Threat of substitutes</b>: High threat &amp; low switching costs → LESS pricing power</li>
+        <li><b>Industry rivalry intensity</b>: High rivalry (many competitors, high fixed costs/exit barriers, slow growth, undifferentiated products) → LESS pricing power</li>
+        <li><b>Bargaining power of suppliers</b>: High supplier power → HIGHER input costs → lower earnings prospects</li>
+        <li><b>Bargaining power of customers</b>: High buyer power (few customers, large purchases, low switching costs) → LESS pricing power</li>
+        <li><b>Threat of new entrants</b>: High barriers to entry → MORE pricing power; able to sustain economic profits</li>
+      </ul></div>
+      <div class="card"><div class="ct">LOS 38.d: Input Cost Inflation/Deflation</div>
+      <ul class="n">
+        <li>Input cost risk mitigated by: derivatives hedging, fixed-price forward contracts, vertical integration</li>
+        <li>Temporary cost increases: Cut other costs (advertising) to preserve margins</li>
+        <li><b>Demand elasticity</b>: Most demand is elastic; % ↓ in unit sales &gt; % ↑ in price → total revenue ↓</li>
+        <li>First mover to raise prices → greater market share loss; laggard → declining margins</li>
+        <li>If full cost pass-through &amp; units unchanged: operating profit $ unchanged but operating/gross margins ↓</li>
+        <li>Availability of substitutes = primary driver of elasticity</li>
+      </ul></div>
+    </div>
+
+    <div class="mt">LOS 38.e: Forecast Horizon &amp; Terminal Value</div>
+    <div class="two-col">
+      <div class="card"><div class="ct">Choosing Forecast Horizon</div>
+      <ul class="n">
+        <li>Buy-side: Often = expected holding period (e.g., 25% annual turnover → 4-year avg holding)</li>
+        <li>Cyclical companies: Horizon must include <b>midpoint of business cycle</b> to capture <b>normalized earnings</b></li>
+        <li>M&amp;A, restructurings: Temporary effects; horizon long enough to see benefits realized</li>
+        <li>Manager-dictated horizon also common</li>
+        <li>Long-term forecast: Use historical average revenue growth rate over previous cycle</li>
+      </ul></div>
+      <div class="card"><div class="ct">Terminal Value Methods</div>
+      <ul class="n">
+        <li><b>Price multiple approach</b>: Use historical P/E; assumes future growth/required return same as past</li>
+        <li><b>DCF approach</b>: Terminal value = PV of perpetuity of future earnings/CFs; use normalized (midcycle) earnings; small changes in perpetual growth rate → large TV changes</li>
+        <li><b>Inflection points</b>: When future ≠ past (economic cycle change, regulation, technology disruption)</li>
+        <li><b>Normalized earnings</b>: Expected midcycle earnings excluding temporary effects of current events/cyclicality</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FORMULA SHEET ══════════════ -->
+<div class="reading" id="formulas">
+  <div class="rh" style="background:var(--red)"><span class="rnum" style="background:var(--navy)">⚡</span> COMPLETE FSA FORMULA QUICK REFERENCE</div>
+  <div class="rb">
+    <div class="st">EPS Formulas</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Basic EPS</div><div class="fgf">(Net income − Preferred dividends) / Weighted avg common shares</div></div>
+      <div class="fgi"><div class="fgl">Diluted EPS</div><div class="fgf">(NI − PFD + Conv.PFD divs + After-tax interest on conv.debt) / (Wtd avg + All dilutive shares)</div></div>
+      <div class="fgi"><div class="fgl">Treasury Stock Method</div><div class="fgf">Net new shares = Options × (1 − Exercise price / Avg market price)</div></div>
+      <div class="fgi"><div class="fgl">Dilutive check — conv. preferred</div><div class="fgf">PFD dividend / Shares created &lt; Basic EPS → dilutive</div></div>
+      <div class="fgi"><div class="fgl">Dilutive check — conv. debt</div><div class="fgf">After-tax interest / Shares created &lt; Basic EPS → dilutive</div></div>
+    </div>
+    <div class="st">Cash Flow Formulas</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Cash from customers</div><div class="fgf">Revenue − ΔAR + ΔUnearned revenue</div></div>
+      <div class="fgi"><div class="fgl">Cash to suppliers</div><div class="fgf">−COGS − ΔInventory + ΔAP</div></div>
+      <div class="fgi"><div class="fgl">Cash taxes paid</div><div class="fgf">−Tax exp + ΔDTL − ΔDTA + ΔTax payable</div></div>
+      <div class="fgi"><div class="fgl">FCFF from NI</div><div class="fgf">NI + NCC + Interest×(1−t) − FCINV − WCINV</div></div>
+      <div class="fgi"><div class="fgl">FCFF from CFO</div><div class="fgf">CFO + Interest paid×(1−t) − Capex (FCINV)</div></div>
+      <div class="fgi"><div class="fgl">FCFE</div><div class="fgf">CFO − Capex + Net borrowing</div></div>
+    </div>
+    <div class="st">Activity Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Receivables Turnover</div><div class="fgf">Revenue / Avg receivables</div></div>
+      <div class="fgi"><div class="fgl">DSO / Avg Collection Period</div><div class="fgf">365 / Receivables turnover</div></div>
+      <div class="fgi"><div class="fgl">Inventory Turnover</div><div class="fgf">COGS / Avg inventory</div></div>
+      <div class="fgi"><div class="fgl">Days Inventory on Hand</div><div class="fgf">365 / Inventory turnover</div></div>
+      <div class="fgi"><div class="fgl">Payables Turnover</div><div class="fgf">Purchases / Avg payables (Purchases = COGS + ΔInventory)</div></div>
+      <div class="fgi"><div class="fgl">Days of Payables</div><div class="fgf">365 / Payables turnover</div></div>
+      <div class="fgi"><div class="fgl">Total Asset Turnover</div><div class="fgf">Revenue / Avg total assets</div></div>
+      <div class="fgi"><div class="fgl">Fixed Asset Turnover</div><div class="fgf">Revenue / Avg net PP&E</div></div>
+      <div class="fgi"><div class="fgl">Cash Conversion Cycle</div><div class="fgf">DSO + Days inventory − Days payables</div></div>
+    </div>
+    <div class="st">Liquidity Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Current Ratio</div><div class="fgf">Current assets / Current liabilities</div></div>
+      <div class="fgi"><div class="fgl">Quick Ratio</div><div class="fgf">(Cash + Mkt sec + Receivables) / Current liabilities</div></div>
+      <div class="fgi"><div class="fgl">Cash Ratio</div><div class="fgf">(Cash + Mkt sec) / Current liabilities</div></div>
+      <div class="fgi"><div class="fgl">Defensive Interval</div><div class="fgf">(Cash + Mkt sec + Rec) / Daily cash expenditures</div></div>
+    </div>
+    <div class="st">Solvency Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Debt-to-Equity</div><div class="fgf">Total debt / Total equity</div></div>
+      <div class="fgi"><div class="fgl">Debt-to-Capital</div><div class="fgf">Total debt / (Total debt + Equity)</div></div>
+      <div class="fgi"><div class="fgl">Debt-to-Assets</div><div class="fgf">Total debt / Total assets</div></div>
+      <div class="fgi"><div class="fgl">Financial Leverage</div><div class="fgf">Avg total assets / Avg total equity</div></div>
+      <div class="fgi"><div class="fgl">Interest Coverage</div><div class="fgf">EBIT / Interest expense</div></div>
+      <div class="fgi"><div class="fgl">Fixed Charge Coverage</div><div class="fgf">(EBIT + Lease pmts) / (Interest + Lease pmts)</div></div>
+      <div class="fgi"><div class="fgl">Debt-to-EBITDA</div><div class="fgf">Total debt / EBITDA</div></div>
+    </div>
+    <div class="st">Profitability Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Gross Profit Margin</div><div class="fgf">Gross profit / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Operating Profit Margin</div><div class="fgf">EBIT / Revenue</div></div>
+      <div class="fgi"><div class="fgl">Net Profit Margin</div><div class="fgf">Net income / Revenue</div></div>
+      <div class="fgi"><div class="fgl">ROA</div><div class="fgf">NI / Avg total assets OR (NI + Int×(1−t)) / Avg total assets</div></div>
+      <div class="fgi"><div class="fgl">ROE</div><div class="fgf">Net income / Avg total equity</div></div>
+      <div class="fgi"><div class="fgl">ROCE (Common Equity)</div><div class="fgf">(NI − Preferred divs) / Avg common equity</div></div>
+      <div class="fgi"><div class="fgl">ROIC</div><div class="fgf">EBIT×(1−t) / Avg long-term capital</div></div>
+    </div>
+    <div class="st">DuPont Analysis</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">3-Part DuPont</div><div class="fgf">ROE = Net profit margin × Asset turnover × Financial leverage<br>= (NI/Rev) × (Rev/Assets) × (Assets/Equity)</div></div>
+      <div class="fgi"><div class="fgl">5-Part DuPont</div><div class="fgf">ROE = Tax burden × Interest burden × EBIT margin × Asset turnover × Leverage<br>= (NI/EBT) × (EBT/EBIT) × (EBIT/Rev) × (Rev/Assets) × (Assets/Equity)</div></div>
+    </div>
+    <div class="st">Tax Formulas</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Income Tax Expense</div><div class="fgf">Taxes payable + ΔDTL − ΔDTA</div></div>
+      <div class="fgi"><div class="fgl">DTA / DTL Balance</div><div class="fgf">(CV − Tax base) × Statutory tax rate</div></div>
+      <div class="fgi"><div class="fgl">Effective Tax Rate</div><div class="fgf">Income tax expense / Pretax income (EBT)</div></div>
+      <div class="fgi"><div class="fgl">Cash Tax Rate</div><div class="fgf">Taxes paid / Pretax income</div></div>
+    </div>
+    <div class="st">Long-Term Asset Formulas</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Average Age of Assets</div><div class="fgf">Accumulated depreciation / Annual depreciation expense</div></div>
+      <div class="fgi"><div class="fgl">Total Useful Life</div><div class="fgf">Gross PP&E / Annual depreciation expense</div></div>
+      <div class="fgi"><div class="fgl">Remaining Useful Life</div><div class="fgf">Net PP&E / Annual depreciation expense</div></div>
+      <div class="fgi"><div class="fgl">Capex-to-Depreciation</div><div class="fgf">Capital expenditures / Depreciation expense</div></div>
+    </div>
+    <div class="st">Lease Formulas</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Initial ROU Asset = Lease Liability</div><div class="fgf">PV of lease payments (at implicit interest rate)</div></div>
+      <div class="fgi"><div class="fgl">Lease liability roll-forward</div><div class="fgf">Beg balance + Interest − Payment = End balance<br>Interest = Beg balance × Implicit rate</div></div>
+    </div>
+    <div class="st">Cash Flow Ratios</div>
+    <div class="fg">
+      <div class="fgi"><div class="fgl">Debt Coverage</div><div class="fgf">CFO / Total debt</div></div>
+      <div class="fgi"><div class="fgl">Cash Interest Coverage</div><div class="fgf">(CFO + Interest paid + Taxes paid) / Interest paid</div></div>
+      <div class="fgi"><div class="fgl">Reinvestment Ratio</div><div class="fgf">CFO / Cash paid for LT assets</div></div>
+      <div class="fgi"><div class="fgl">Cash Return on Assets</div><div class="fgf">CFO / Avg total assets</div></div>
+      <div class="fgi"><div class="fgl">Cash Return on Equity</div><div class="fgf">CFO / Avg total equity</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">CFA Level I FSA — All 12 Readings Covered (R27–R38) | Good luck on your exam! 🎯</div>
+</div>
+<script>
+  document.querySelectorAll('#toc a').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.getElementById('toc').classList.remove('open');
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+</script>
+</body>
+</html>

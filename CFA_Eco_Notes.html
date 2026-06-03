@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Level I — Economics Study Notes (R12–R19)</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1a3a6b;
+    --accent: #e63946;
+    --gold: #f4a261;
+    --green: #2d6a4f;
+    --teal: #2a9d8f;
+    --bg: #f7f3ee;
+    --card: #ffffff;
+    --border: #ddd5c8;
+    --text: #1a1a2e;
+    --muted: #6c6c80;
+    --formula-bg: #fff8e1;
+    --formula-border: #f4a261;
+    --kw-bg: #e8f5e9;
+    --kw-border: #2d6a4f;
+    --reading-bar: #1a3a6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  /* HEADER */
+  .site-header {
+    background: var(--navy);
+    color: white;
+    padding: 18px 24px 14px;
+    border-bottom: 4px solid var(--accent);
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .site-header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.3px; }
+  .site-header p  { font-size: 11px; color: #aac4e8; margin-top: 2px; }
+  .toc-toggle {
+    background: var(--accent); border: none; color: white;
+    padding: 6px 14px; border-radius: 4px; cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+  }
+  /* TOC */
+  #toc {
+    background: var(--navy); color: white;
+    padding: 16px 24px; display: none;
+    border-bottom: 2px solid var(--accent);
+  }
+  #toc.open { display: block; }
+  #toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  #toc a { color: #aac4e8; text-decoration: none; font-size: 11.5px; }
+  #toc a:hover { color: var(--gold); }
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
+  /* READING SECTION */
+  .reading {
+    background: var(--card);
+    border-radius: 6px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .reading-header {
+    background: var(--blue);
+    color: white;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .reading-header .rnum {
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+  .reading-body { padding: 16px 18px; }
+  /* MODULES */
+  .module { margin-bottom: 16px; }
+  .module-title {
+    font-size: 12.5px; font-weight: 700;
+    color: var(--blue);
+    border-left: 3px solid var(--blue);
+    padding-left: 8px;
+    margin-bottom: 8px;
+    margin-top: 14px;
+  }
+  .section-title {
+    font-size: 11.5px; font-weight: 700;
+    color: var(--accent);
+    margin: 10px 0 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  /* CARDS */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  @media(max-width:700px) { .two-col, .three-col { grid-template-columns: 1fr; } }
+  .card {
+    background: #f9f7f4;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 12px;
+  }
+  .card-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px;
+  }
+  /* FORMULA BOX */
+  .formula {
+    background: var(--formula-bg);
+    border-left: 3px solid var(--formula-border);
+    padding: 7px 12px;
+    margin: 6px 0;
+    border-radius: 0 4px 4px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #5c3d00;
+  }
+  .formula strong { color: var(--accent); }
+  /* KEYWORD BOX */
+  .kw {
+    background: var(--kw-bg);
+    border-left: 3px solid var(--kw-border);
+    padding: 6px 12px;
+    margin: 5px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 12.5px;
+  }
+  /* BULLET LIST */
+  ul.notes { list-style: none; padding: 0; margin: 4px 0; }
+  ul.notes li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+    font-size: 12.5px;
+    border-bottom: 1px dotted #eee;
+  }
+  ul.notes li:last-child { border-bottom: none; }
+  ul.notes li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-size: 10px; top: 5px; }
+  /* TABLES */
+  .tbl-wrap { overflow-x: auto; margin: 8px 0 12px; }
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  th {
+    background: var(--blue); color: white;
+    padding: 7px 9px; text-align: left;
+    font-weight: 700; font-size: 11px;
+  }
+  td { padding: 6px 9px; border: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f0eb; }
+  tr:nth-child(odd) td { background: white; }
+  .tick { color: var(--green); font-weight: 700; }
+  .cross { color: var(--accent); font-weight: 700; }
+  /* FORMULA GRID */
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .fg-item {
+    background: var(--formula-bg);
+    border: 1px solid var(--formula-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+  }
+  .fg-label { font-size: 10.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 3px; }
+  .fg-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5c3d00; }
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-right: 4px;
+  }
+  .badge-exp { background: #d4edda; color: #155724; }
+  .badge-con { background: #f8d7da; color: #721c24; }
+  .badge-note { background: #fff3cd; color: #856404; }
+  /* HIGHLIGHT */
+  em.hi { font-style: normal; background: #fef9c3; padding: 0 2px; border-radius: 2px; }
+  /* DECISION TABLE */
+  .decision-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 10px;
+    margin: 3px 0;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .dr-condition { font-family: 'IBM Plex Mono', monospace; font-size: 11px; flex: 1.2; color: var(--blue); font-weight: 600; }
+  .dr-sr, .dr-lr { flex: 1; font-size: 12px; }
+  .dr-operate { color: var(--green); font-weight: 700; }
+  .dr-exit { color: var(--accent); font-weight: 700; }
+  .dr-h { background: var(--blue); color: white; font-weight: 700; font-size: 11px; border-radius: 4px; }
+  /* PHASE TABLE */
+  .phase-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0;
+  }
+  .phase-card {
+    border-radius: 5px; padding: 10px;
+    border: 1px solid var(--border);
+  }
+  .phase-trough { background: #e3f2fd; border-color: #90caf9; }
+  .phase-exp { background: #e8f5e9; border-color: #a5d6a7; }
+  .phase-peak { background: #fff8e1; border-color: #ffe082; }
+  .phase-con { background: #fce4ec; border-color: #f48fb1; }
+  .phase-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .phase-card ul { list-style: none; }
+  .phase-card ul li { font-size: 11px; padding: 1px 0 1px 10px; position: relative; }
+  .phase-card ul li::before { content: "·"; position: absolute; left: 0; font-weight: 700; }
+  @media(max-width:700px) { .phase-grid { grid-template-columns: 1fr 1fr; } }
+  /* MARKET STRUCTURE MINI */
+  .ms-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin: 8px 0; }
+  .ms-card { border-radius: 5px; padding: 10px; border-top: 3px solid; }
+  .ms-pc { border-color: #2d6a4f; background: #f0fff4; }
+  .ms-mc { border-color: #1a3a6b; background: #f0f4ff; }
+  .ms-ol { border-color: #e63946; background: #fff0f0; }
+  .ms-mo { border-color: #5c3d00; background: #fffbf0; }
+  .ms-card h4 { font-size: 11.5px; font-weight: 700; margin-bottom: 5px; }
+  .ms-card ul { list-style: none; }
+  .ms-card ul li { font-size: 11px; padding: 1px 0; }
+  @media(max-width:700px) { .ms-grid { grid-template-columns: 1fr 1fr; } }
+  /* FORMULA SECTION HEADER */
+  .formula-section-header {
+    background: var(--accent);
+    color: white;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 6px 6px 0 0;
+    margin-top: 24px;
+  }
+  /* PRINT */
+  @media print {
+    .site-header { position: static; }
+    #toc { display: block !important; }
+    .toc-toggle { display: none; }
+    .reading { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <h1>CFA Level I — Economics: Complete Study Notes</h1>
+    <p>Readings 12–19 &nbsp;|&nbsp; All Keywords, Concepts & Formulas &nbsp;|&nbsp; Exam-Ready</p>
+  </div>
+  <button class="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰ Contents</button>
+</header>
+
+<nav id="toc">
+  <ul>
+    <li><a href="#r12">R12: Firms & Market Structures</a></li>
+    <li><a href="#r13">R13: Business Cycles</a></li>
+    <li><a href="#r14">R14: Fiscal Policy</a></li>
+    <li><a href="#r15">R15: Monetary Policy</a></li>
+    <li><a href="#r16">R16: Geopolitics</a></li>
+    <li><a href="#r17">R17: International Trade</a></li>
+    <li><a href="#r18">R18: Capital Flows & FX</a></li>
+    <li><a href="#r19">R19: Exchange Rate Calculations</a></li>
+    <li><a href="#formulas">Formula Sheet</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 12 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r12">
+  <div class="reading-header"><span class="rnum">R12</span> FIRMS AND MARKET STRUCTURES</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">12.1 Breakeven, Shutdown & Scale (LOS 12.a)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Core Definitions</div>
+          <div class="kw"><strong>Short run:</strong> Some factors (capital) are FIXED — firm can't change scale</div>
+          <div class="kw"><strong>Long run:</strong> ALL costs variable — can exit/enter</div>
+          <div class="kw"><strong>Breakeven point:</strong> P = ATC → TR = TC → Economic profit = 0</div>
+          <div class="kw"><strong>Quasi-fixed cost:</strong> e.g., an employee — avoidable in LR, not easily in SR</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Shutdown Decision (Total Approach)</div>
+          <ul class="notes">
+            <li><strong>TR = TC</strong> → Break even</li>
+            <li><strong>TC > TR > TVC</strong> → Operate SR, exit LR</li>
+            <li><strong>TR &lt; TVC</strong> → Shut down SR AND LR</li>
+            <li>Applies to both price-takers AND price-searchers</li>
+            <li>If no breakeven exists: minimize loss by operating at smallest negative (TR − TC)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Decision Rules — Operate vs. Shut Down</div>
+      <div class="decision-row dr-h">
+        <span class="dr-condition">Condition</span>
+        <span class="dr-sr">Short Run</span>
+        <span class="dr-lr">Long Run</span>
+      </div>
+      <div class="decision-row" style="background:#f0fff4">
+        <span class="dr-condition">AR ≥ ATC</span>
+        <span class="dr-sr dr-operate">✓ Operate</span>
+        <span class="dr-lr dr-operate">✓ Stay</span>
+      </div>
+      <div class="decision-row" style="background:#fff8f8">
+        <span class="dr-condition">AR ≥ AVC &amp; AR &lt; ATC</span>
+        <span class="dr-sr dr-operate">✓ Operate (cover some FC)</span>
+        <span class="dr-lr dr-exit">✗ Exit</span>
+      </div>
+      <div class="decision-row" style="background:#fce4ec">
+        <span class="dr-condition">AR &lt; AVC</span>
+        <span class="dr-sr dr-exit">✗ Shut Down</span>
+        <span class="dr-lr dr-exit">✗ Exit</span>
+      </div>
+
+      <div class="section-title" style="margin-top:12px">Economies & Diseconomies of Scale</div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Economies of Scale</div>
+          <ul class="notes">
+            <li>Downward LRATC segment</li>
+            <li>Labor specialization</li>
+            <li>Mass production</li>
+            <li>More efficient equipment</li>
+            <li>Lower input prices (bulk)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Minimum Efficient Scale</div>
+          <ul class="notes">
+            <li>Lowest point of LRATC curve</li>
+            <li>Under perfect competition, all firms operate here in LR equilibrium</li>
+            <li>LRATC = Market price in LR</li>
+            <li>Zero economic profit in LR</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Diseconomies of Scale</div>
+          <ul class="notes">
+            <li>Upward LRATC segment</li>
+            <li>Bureaucratic inefficiency</li>
+            <li>Workforce motivation issues</li>
+            <li>Barriers to innovation</li>
+            <li>Example: US auto industry</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kw">LRATC is U-shaped. Flat portion = <strong>Constant returns to scale</strong> (relatively constant costs across plant sizes)</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">12.2 Characteristics of Market Structures (LOS 12.b)</div>
+      <div class="kw"><strong>5 Factors:</strong> (1) Number/size of firms &nbsp;(2) Product differentiation &nbsp;(3) Pricing power &nbsp;(4) Barriers to entry/exit &nbsp;(5) Non-price competition</div>
+      <div class="ms-grid">
+        <div class="ms-card ms-pc">
+          <h4>Perfect Competition</h4>
+          <ul>
+            <li>Many firms</li>
+            <li>Very low barriers</li>
+            <li>Identical products (no branding)</li>
+            <li>Compete on price only</li>
+            <li><strong>No pricing power</strong></li>
+            <li>Horizontal demand (P = MR)</li>
+            <li>Example: Wheat market</li>
+          </ul>
+        </div>
+        <div class="ms-card ms-mc">
+          <h4>Monopolistic Competition</h4>
+          <ul>
+            <li>Many firms</li>
+            <li>Low barriers</li>
+            <li>Differentiated products</li>
+            <li>Price + marketing + features</li>
+            <li><strong>Some pricing power</strong></li>
+            <li>Downward-sloping demand (elastic)</li>
+            <li>Example: Toothpaste market</li>
+          </ul>
+        </div>
+        <div class="ms-card ms-ol">
+          <h4>Oligopoly</h4>
+          <ul>
+            <li>Few firms</li>
+            <li>High barriers</li>
+            <li>Good subs or differentiated</li>
+            <li>Price + marketing + features</li>
+            <li><strong>Some to significant power</strong></li>
+            <li><strong>Interdependent</strong> decisions</li>
+            <li>Example: Auto, oil industries</li>
+          </ul>
+        </div>
+        <div class="ms-card ms-mo">
+          <h4>Pure Monopoly</h4>
+          <ul>
+            <li>Single firm</li>
+            <li>Very high barriers</li>
+            <li>No good substitutes</li>
+            <li>Advertising (vs substitutes)</li>
+            <li><strong>Significant pricing power</strong></li>
+            <li>Steepest downward demand</li>
+            <li>Example: Local electric utility</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kw"><strong>Profit maximization (ALL structures):</strong> Produce where <strong>MR = MC</strong></div>
+      <div class="kw"><strong>Perfect competition:</strong> P = MR = MC &nbsp;|&nbsp; <strong>All others (price-searchers):</strong> P &gt; MR = MC</div>
+      <div class="kw"><strong>Monopoly sources of power:</strong> Copyrights/patents | Control of essential resource | Government regulation/legal protection</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">12.3 Monopolistic Competition — Supply/Demand (LOS 12.c)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Short Run</div>
+          <ul class="notes">
+            <li>Maximize profit where MR = MC</li>
+            <li>Price from demand curve at that quantity</li>
+            <li>P* > ATC* → Positive economic profits</li>
+            <li>Low barriers → new firms enter in pursuit of profits</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Long Run</div>
+          <ul class="notes">
+            <li>New entry shifts demand curve DOWN for each firm</li>
+            <li>P* = ATC* → Zero economic profit</li>
+            <li>Still produce at MR = MC</li>
+            <li>Alternatively: increased marketing ↑ ATC until ATC = price</li>
+            <li><strong>Advertising expenses tend to be high</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="kw"><strong>LR Characteristics (vs Perfect Competition):</strong> Price > MC | ATC not at minimum (excess capacity) | Price slightly higher | LR equilibrium: MR = MC, P = ATC</div>
+      <div class="kw"><strong>Excess capacity:</strong> Firms produce below minimum ATC — inefficient scale, but product differentiation has consumer benefits</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">12.4 Oligopoly — Pricing Models (LOS 12.d)</div>
+      <div class="section-title">Key Feature: INTERDEPENDENCE — each firm considers rivals' reactions</div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">1. Kinked Demand Curve Model</div>
+          <ul class="notes">
+            <li>Rivals match price <strong>DECREASES</strong> but NOT increases</li>
+            <li>Creates KINK at current price PK</li>
+            <li>Above PK: demand MORE elastic (flatter)</li>
+            <li>Below PK: demand LESS elastic</li>
+            <li>GAP in MR curve at kink price</li>
+            <li>MC through gap → PK is profit-maximizing price → <strong>price stability</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Cournot Duopoly Model</div>
+          <ul class="notes">
+            <li>Two firms, identical MC curves</li>
+            <li>Each sets price based on rival's PREVIOUS period price</li>
+            <li>Assumes competitor's price won't change</li>
+            <li>LR: Both sell equal quantities (market split equally)</li>
+            <li>Price: between monopoly and competitive</li>
+            <li>More producers → price → competitive equilibrium</li>
+          </ul>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">3. Nash Equilibrium</div>
+          <ul class="notes">
+            <li><strong>Nash Equilibrium:</strong> No firm can UNILATERALLY change price to increase profit</li>
+            <li>Cournot model results in Nash equilibrium</li>
+            <li>Strategic games: best choice depends on other firms' expected actions</li>
+            <li>Developed by Nobel laureate John Nash</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">4. Stackelberg / Dominant Firm Model</div>
+          <ul class="notes">
+            <li>Sequential pricing: Leader sets price FIRST</li>
+            <li>Follower responds to leader's price</li>
+            <li>LR: Leader charges higher price, earns larger profit share</li>
+            <li>Dominant firm (DF): large market share, lower costs</li>
+            <li>DF sets market price; competitive firms (CFs) take price as given</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Collusion</div>
+      <div class="kw"><strong>Collusion:</strong> Joint agreement to charge a given price or restrict output. Maximizes total industry profit (= monopoly outcome). Illegal in many countries.</div>
+      <div class="kw"><strong>Cartel:</strong> OPEC is classic example. Members may "cheat" by producing more than agreed.</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Collusion MORE Stable When:</div>
+          <ul class="notes">
+            <li>Fewer firms</li>
+            <li>More similar products (less differentiated)</li>
+            <li>More similar cost structures</li>
+            <li>Purchases small and frequent</li>
+            <li>Retaliation for cheating is certain &amp; severe</li>
+            <li>Less outside competition</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">LR Oligopoly Price Range</div>
+          <ul class="notes">
+            <li>Upper bound: P<sub>collusion</sub> = monopoly price (max total profit)</li>
+            <li>Lower bound: P<sub>competition</sub> = competitive price (zero econ profit)</li>
+            <li>Outcome depends on firm interdependence &amp; market specifics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">12.5 Identifying Market Structures — Concentration Measures (LOS 12.e)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">N-firm Concentration Ratio</div>
+          <div class="formula"><strong>N-firm CR = Σ (market shares of largest N firms) %</strong></div>
+          <ul class="notes">
+            <li>Simple to calculate and understand</li>
+            <li>Does NOT directly measure pricing power or demand elasticity</li>
+            <li><strong>Limitation:</strong> Insensitive to mergers within the top N group</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Herfindahl-Hirschman Index (HHI)</div>
+          <div class="formula"><strong>HHI = Σ (market share<sub>i</sub>)<sup>2</sup></strong></div>
+          <ul class="notes">
+            <li>More sensitive to mergers — better reflects concentration changes</li>
+            <li>Used by regulators to assess merger approval</li>
+            <li><strong>Limitation (both measures):</strong> Ignore barriers to entry</li>
+            <li>High share ≠ high pricing power if entry barriers are LOW</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 13 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r13">
+  <div class="reading-header"><span class="rnum">R13</span> UNDERSTANDING BUSINESS CYCLES</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">13.1 Business Cycle Phases (LOS 13.a)</div>
+      <div class="phase-grid">
+        <div class="phase-card phase-trough">
+          <div class="phase-title" style="color:#1565c0">📉 Trough</div>
+          <ul>
+            <li>GDP growth: negative → positive</li>
+            <li>High unemployment; overtime &amp; temp workers rising</li>
+            <li>Durables &amp; housing spending may increase</li>
+            <li>Moderate/decreasing inflation</li>
+          </ul>
+        </div>
+        <div class="phase-card phase-exp">
+          <div class="phase-title" style="color:#1b5e20">📈 Expansion</div>
+          <ul>
+            <li>GDP growth increasing</li>
+            <li>Unemployment falls; hiring accelerates</li>
+            <li>Investment in equipment &amp; housing rises</li>
+            <li>Inflation may increase</li>
+            <li>Imports increase</li>
+          </ul>
+        </div>
+        <div class="phase-card phase-peak">
+          <div class="phase-title" style="color:#e65100">🏔 Peak</div>
+          <ul>
+            <li>GDP growth slows to zero</li>
+            <li>Unemployment low but hiring slows</li>
+            <li>Consumer/business investment grow slower</li>
+            <li>Inflation rate increases</li>
+          </ul>
+        </div>
+        <div class="phase-card phase-con">
+          <div class="phase-title" style="color:#880e4f">📉 Contraction</div>
+          <ul>
+            <li>GDP growth negative</li>
+            <li>Hours fall; unemployment rises</li>
+            <li>Consumer spending, housing, investment fall</li>
+            <li>Inflation decreases (with lag)</li>
+            <li>Imports decrease</li>
+          </ul>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Business Cycle Measurement Methods</div>
+          <ul class="notes">
+            <li><strong>Classical cycle:</strong> Real GDP relative to starting value</li>
+            <li><strong>Growth cycle:</strong> Real GDP vs. long-term trend/potential (% difference)</li>
+            <li><strong>Growth rate cycle:</strong> Annualized % change period-to-period — <em class="hi">preferred by economists; shows peaks/troughs earliest</em></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Key Facts</div>
+          <ul class="notes">
+            <li>Expansion defined: 2+ consecutive quarters of GDP growth</li>
+            <li>Recession: 2+ consecutive quarters of declining GDP</li>
+            <li>Cycles recur but NOT at regular intervals (1 year to &gt;1 decade)</li>
+            <li>NBER (US) uses broader data: unemployment, industrial production, inflation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">13.2 Credit Cycles (LOS 13.b)</div>
+      <div class="kw"><strong>Credit cycles:</strong> Cyclical fluctuations in interest rates and availability of loans</div>
+      <ul class="notes">
+        <li>Expansion → loose credit, lower rates &nbsp;|&nbsp; Contraction → tight credit, higher rates</li>
+        <li>Credit cycles MAY AMPLIFY business cycles</li>
+        <li>Can create asset bubbles (e.g., subprime mortgages pre-2007)</li>
+        <li>Expansions stronger AND contractions deeper when they coincide with credit cycles</li>
+        <li>Credit cycles tend to be <strong>LONGER</strong> in duration than business cycles</li>
+        <li><strong>Most correlated sector: Construction / real estate</strong> (depends heavily on credit availability)</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <div class="module-title">13.3 Resource Use, Sectors & Indicators (LOS 13.c)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Inventory-Sales Ratio (Key Indicator)</div>
+          <ul class="notes">
+            <li><strong>Late expansion:</strong> Sales slow → unsold inventory builds → ratio rises above normal → firms cut production → triggers contraction</li>
+            <li><strong>Early expansion (post-trough):</strong> Sales accelerate → inventories depleted → ratio falls below normal → firms increase output</li>
+            <li>Inventory counted in GDP even if unplanned — can mislead on GDP strength</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Labor & Capital Adjustment</div>
+          <ul class="notes">
+            <li>Firms adjust <strong>hours first</strong> (overtime/undertime), then hire/lay off</li>
+            <li>Hiring/firing is costly → unemployment is a <strong>lagging</strong> indicator</li>
+            <li><strong>Recession:</strong> Reduce capacity by <em class="hi">deferring maintenance</em> &amp; not replacing equipment (NOT selling assets)</li>
+            <li><strong>Expansion:</strong> Invest in new plant/equipment only if expansion expected to persist</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Consumer Spending Cyclicality</div>
+      <div class="three-col">
+        <div class="card" style="border-top: 3px solid var(--accent)">
+          <div class="card-title">Durable Goods — MOST Cyclical</div>
+          <ul class="notes">
+            <li>Appliances, furniture, automobiles</li>
+            <li>High value — easily postponed</li>
+            <li>Consumers delay during contractions</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--gold)">
+          <div class="card-title">Services — Moderately Cyclical</div>
+          <ul class="notes">
+            <li>Travel, lodging, restaurants (discretionary)</li>
+            <li>Telecom, healthcare, insurance (non-discretionary)</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--green)">
+          <div class="card-title">Non-Durable Goods — LEAST Cyclical</div>
+          <ul class="notes">
+            <li>Food at home, household products</li>
+            <li>Relatively stable across cycle</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Housing Sector Determinants</div>
+      <ul class="notes">
+        <li><strong>(1) Mortgage rates:</strong> Lower rates → ↑ buying &amp; construction</li>
+        <li><strong>(2) Income vs. home costs:</strong> High income relative to costs → ↑ activity (can fall even as incomes rise if home prices rise faster)</li>
+        <li><strong>(3) Speculative activity:</strong> Rising prices → more buying → excess building → eventual collapse</li>
+        <li><strong>(4) Demographics:</strong> Ages 25–40 = peak household formation; urbanization in emerging economies → ↑ construction</li>
+      </ul>
+
+      <div class="section-title">External Trade</div>
+      <ul class="notes">
+        <li>Imports ↑ when: domestic GDP grows | domestic currency appreciates</li>
+        <li>Exports ↑ when: foreign GDP grows | domestic currency depreciates</li>
+        <li>GDP effects are more <strong>DIRECT and IMMEDIATE</strong> than currency effects (currency effects respond to persistent trends, not short-term volatility)</li>
+      </ul>
+
+      <div class="section-title">Economic Indicators</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+          <tr><td><strong>Leading</strong></td><td>Change direction <em>BEFORE</em> business cycle peaks/troughs</td><td>Stock prices, building permits, new orders for durable goods, money supply (M2), consumer expectations, yield curve spread</td></tr>
+          <tr><td><strong>Coincident</strong></td><td>Change direction at <em>SAME TIME</em> as peaks/troughs</td><td>Industrial production, employment level, personal income, manufacturing &amp; trade sales</td></tr>
+          <tr><td><strong>Lagging</strong></td><td>Change direction <em>AFTER</em> peaks/troughs</td><td>Unemployment rate, CPI, outstanding commercial loans, inventory-sales ratio, average prime lending rate</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 14 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r14">
+  <div class="reading-header"><span class="rnum">R14</span> FISCAL POLICY</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">14.1 Fiscal vs. Monetary Policy (LOS 14.a)</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th></th><th>Fiscal Policy</th><th>Monetary Policy</th></tr>
+          <tr><td><strong>Definition</strong></td><td>Govt use of spending &amp; taxation to influence economy</td><td>Central bank control of money supply &amp; credit</td></tr>
+          <tr><td><strong>Primary Goal</strong></td><td>Economic growth, price stability, redistribution</td><td>Price stability (inflation control)</td></tr>
+          <tr><td><strong>Tools</strong></td><td>Transfer payments, govt spending, taxes</td><td>Policy rate, reserve requirements, open market ops</td></tr>
+          <tr><td><strong>Budget Surplus</strong></td><td>Tax revenue &gt; Expenditure → <span class="badge badge-con">Contractionary</span></td><td>—</td></tr>
+          <tr><td><strong>Budget Deficit</strong></td><td>Expenditure &gt; Tax revenue → <span class="badge badge-exp">Expansionary</span></td><td>—</td></tr>
+        </table>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Keynesian View</div>
+          <ul class="notes">
+            <li>Fiscal policy strongly affects aggregate demand</li>
+            <li>Especially effective below full employment</li>
+            <li>Fiscal stimulus can boost real output</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Monetarist View</div>
+          <ul class="notes">
+            <li>Fiscal stimulus only temporary</li>
+            <li>Monetary policy = tool for inflation over time</li>
+            <li>Monetary policy NOT to counter business cycles</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kw"><strong>Discretionary fiscal policy:</strong> Deliberate govt spending/tax changes &nbsp;|&nbsp; <strong>Automatic stabilizers:</strong> Built-in mechanisms triggered by economic state (e.g., ↓ tax revenue + ↑ unemployment benefits during recession)</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">14.2 Fiscal Policy Objectives (LOS 14.b)</div>
+      <div class="three-col">
+        <div class="card"><div class="card-title">Objective 1</div>Influence level of economic activity and aggregate demand</div>
+        <div class="card"><div class="card-title">Objective 2</div>Redistribute wealth and income among population segments</div>
+        <div class="card"><div class="card-title">Objective 3</div>Allocate resources among economic agents and sectors</div>
+      </div>
+
+      <div class="section-title">National Debt — Arguments</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title" style="color: var(--accent)">CONCERNED About Large Deficit</div>
+          <ul class="notes">
+            <li>Higher future taxes → disincentives → lower LR growth</li>
+            <li>Loss of market confidence → default risk or money printing → inflation</li>
+            <li><strong>Crowding-out effect:</strong> Govt borrowing ↑ interest rates → ↓ private investment</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color: var(--green)">NOT CONCERNED About Large Deficit</div>
+          <ul class="notes">
+            <li>Debt held domestically → problem overstated</li>
+            <li>Debt funds productive capital → future gains repay it</li>
+            <li>Deficits may prompt needed tax reform</li>
+            <li><strong>Ricardian equivalence:</strong> Private savings offset govt deficit → no net effect</li>
+            <li>Below full employment → no crowding out</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kw"><strong>Debt ratio = Aggregate Debt / GDP.</strong> Rises when real interest rate &gt; real GDP growth rate (keeping tax rates constant)</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">14.3 Fiscal Policy Tools (LOS 14.c)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Spending Tools</div>
+          <ul class="notes">
+            <li><strong>Transfer payments (entitlements):</strong> Social Security, unemployment insurance — redistribute wealth; <em class="hi">NOT counted in GDP</em></li>
+            <li><strong>Current spending:</strong> Routine govt purchases of goods &amp; services</li>
+            <li><strong>Capital spending:</strong> Infrastructure (roads, schools, hospitals) — boosts future productivity; <em class="hi">LONG implementation lag</em></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Revenue Tools</div>
+          <ul class="notes">
+            <li><strong>Direct taxes:</strong> Income, corporate, wealth, estate, capital gains, Social Security — progressive taxes redistribute income</li>
+            <li><strong>Indirect taxes:</strong> Sales tax, VAT, excise taxes — <em class="hi">quickly implemented</em>, can reduce consumption of specific goods (tobacco, alcohol)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kw"><strong>Desirable Tax Attributes:</strong> Simplicity | Efficiency (minimal market distortion) | Fairness (horizontal equality: similar situations, similar taxes; vertical equality: richer pay more) | Sufficiency (adequate revenue)</div>
+      <div class="kw"><strong>Advantage of indirect taxes:</strong> Quick to implement social policies &amp; raise revenue at low cost &nbsp;|&nbsp; <strong>Disadvantage of direct taxes &amp; capital spending:</strong> Long time lags before impact</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">Fiscal Multiplier — CRITICAL FORMULAS</div>
+      <div class="formula"><strong>Fiscal Multiplier = 1 / [1 − MPC × (1 − t)]</strong></div>
+      <div class="formula"><strong>Change in AD (spending) = ΔGovernment Spending × Fiscal Multiplier</strong></div>
+      <div class="formula"><strong>Change in AD (from tax) = −ΔTax × MPC × Fiscal Multiplier</strong></div>
+      <div class="formula"><strong>Balanced Budget: equal ↑ spending and ↑ taxes → NET POSITIVE AD effect</strong> (spending multiplier &gt; tax multiplier)</div>
+      <div class="formula"><strong>To perfectly offset $X spending: tax increase = X / MPC</strong> (not $X)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Multiplier Relationships</div>
+          <ul class="notes">
+            <li>Higher MPC → Higher multiplier</li>
+            <li>Higher tax rate → Lower multiplier</li>
+            <li>Spending directly enters economy (stronger effect)</li>
+            <li>Tax cut: reduced by savings portion (weaker effect)</li>
+            <li>Low-income tax cuts most effective (high MPC)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Ricardian Equivalence</div>
+          <ul class="notes">
+            <li>If taxpayers save exactly enough to repay future debt from deficit → NO net effect on AD</li>
+            <li>Argument AGAINST worrying about deficit size</li>
+            <li>In practice: rarely holds perfectly</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">14.4 Implementation — Lags & Limitations (LOS 14.d)</div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">1. Recognition Lag</div>
+          State of economy is complex; policymakers take time to identify problem and its extent
+        </div>
+        <div class="card">
+          <div class="card-title">2. Action Lag</div>
+          Governments must debate, vote, and legislate — takes time to enact changes
+        </div>
+        <div class="card">
+          <div class="card-title">3. Impact Lag</div>
+          Time between enactment and actual economic effect; multiplier effects occur gradually
+        </div>
+      </div>
+      <div class="kw"><strong>Risk:</strong> Lags can make fiscal policy <em>counterproductive</em> — stimulus may arrive after economy has self-recovered</div>
+
+      <div class="section-title">Additional Limitations</div>
+      <ul class="notes">
+        <li><strong>Misreading statistics:</strong> Full employment not precisely measurable; stimulus at full capacity → inflation</li>
+        <li><strong>Crowding-out effect:</strong> Govt borrowing → ↑ interest rates → ↓ private investment; reduces fiscal effectiveness</li>
+        <li><strong>Supply shortages:</strong> If slowdown from supply constraints (not low demand) → stimulus → inflation, not growth</li>
+        <li><strong>Limits to deficits:</strong> If debt/GDP too high → markets may refuse to fund → ↑ interest rates, worsening situation</li>
+        <li><strong>Multiple targets:</strong> High unemployment + high inflation simultaneously → fiscal policy cannot address both</li>
+      </ul>
+      <div class="kw"><strong>Expansionary fiscal policy:</strong> ↑ spending, ↓ taxes, ↑ deficit &nbsp;|&nbsp; <strong>Contractionary:</strong> ↓ spending, ↑ taxes, ↓ deficit</div>
+      <div class="kw"><strong>Structural (cyclically-adjusted) budget deficit:</strong> Deficit that would exist at full employment — better gauge of true fiscal stance; actual deficit includes automatic stabilizer effects</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 15 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r15">
+  <div class="reading-header"><span class="rnum">R15</span> MONETARY POLICY</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">15.1 Central Bank Roles & Objectives (LOS 15.a)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">6 Key Roles of Central Banks</div>
+          <ul class="notes">
+            <li><strong>Sole currency supplier:</strong> Issues <em class="hi">fiat money</em> (legal tender, not gold-backed)</li>
+            <li><strong>Banker to govt &amp; banks:</strong> Provides banking services</li>
+            <li><strong>Regulator/supervisor:</strong> Sets reserve requirements, oversees payments system</li>
+            <li><strong>Lender of last resort:</strong> Supplies money to banks in shortfall — prevents bank runs</li>
+            <li><strong>Holds gold &amp; FX reserves:</strong> Repository of national reserves</li>
+            <li><strong>Conducts monetary policy:</strong> Controls money supply and credit</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Objectives</div>
+          <ul class="notes">
+            <li><strong>Primary:</strong> Control inflation / price stability</li>
+            <li>Target: ~2–3% in developed economies (NOT 0% — risk of deflation)</li>
+            <li>US Fed: price stability + max employment + moderate LT rates (no explicit target)</li>
+            <li>Japan: Deflation is persistent problem — no explicit target</li>
+            <li>Additional goals: Exchange rate stability | Full employment | Sustainable growth | Moderate LT interest rates</li>
+            <li><strong>Menu costs:</strong> Cost of frequently changing prices (from high inflation)</li>
+            <li><strong>Shoe leather costs:</strong> Cost of frequent bank trips to avoid holding depreciating cash</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">15.2 Tools & Transmission Mechanism (LOS 15.b)</div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Tool 1: Policy Rate</div>
+          <ul class="notes">
+            <li><strong>US:</strong> Discount rate (rate Fed charges banks)</li>
+            <li><strong>ECB:</strong> Refinancing rate</li>
+            <li><strong>UK:</strong> Two-week repo rate</li>
+            <li><strong>Federal funds rate (US):</strong> Rate banks charge each other on overnight loans; Fed targets via OMO</li>
+            <li>↓ Policy rate → encourages lending → ↓ overall rates</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Tool 2: Reserve Requirements</div>
+          <ul class="notes">
+            <li>↑ Reserve req → ↓ loanable funds → ↓ money supply → ↑ rates (contractionary)</li>
+            <li>↓ Reserve req → ↑ loanable funds → ↑ money supply → ↓ rates (expansionary)</li>
+            <li>Only effective if banks willing to lend &amp; customers willing to borrow</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Tool 3: Open Market Operations</div>
+          <ul class="notes">
+            <li>CB buys securities → ↑ bank reserves → ↑ money supply → ↓ rates (expansionary)</li>
+            <li>CB sells securities → ↓ bank reserves → ↓ money supply → ↑ rates (contractionary)</li>
+            <li><strong>US Fed's PRIMARY tool;</strong> used to hit federal funds rate target</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Monetary Transmission Mechanism — 4 Channels</div>
+      <div class="kw">Policy Rate Change → (1) Other Short-Term Rates &nbsp;→&nbsp; (2) Asset Values &nbsp;→&nbsp; (3) Currency Exchange Rates &nbsp;→&nbsp; (4) Expectations &nbsp;→&nbsp; Price Level / Inflation</div>
+
+      <div class="section-title">Contractionary Policy (↑ Policy Rate) Effects</div>
+      <div class="formula">↑ Policy Rate → ↑ ST lending rates → ↓ consumer credit &amp; business investment
+→ ↓ bond/equity/asset prices (wealth effect: ↑ savings, ↓ consumption)
+→ ↓ growth expectations → ↓ expenditure
+→ attract foreign capital → domestic currency APPRECIATES → ↓ exports
+→ NET: ↓ Aggregate Demand → ↓ Inflation, ↓ Growth</div>
+
+      <div class="section-title">Expansionary Policy Chain</div>
+      <div class="formula">CB buys securities → ↑ bank reserves → ↓ interbank rate → ↓ ST &amp; LT rates
+→ currency DEPRECIATES → ↑ business investment + consumer spending + exports
+→ ↑ Aggregate Demand → ↑ Inflation, ↑ Employment, ↑ Real GDP</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">15.3 Effective Central Banks & Targeting (LOS 15.c)</div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Quality 1: Independence</div>
+          <ul class="notes">
+            <li><strong>Operational independence:</strong> CB independently determines policy rate (most CBs)</li>
+            <li><strong>Target independence:</strong> CB defines inflation measure, sets target, determines horizon (ECB only — has BOTH)</li>
+            <li>Politicians have incentive to boost economy pre-election</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Quality 2: Credibility</div>
+          <ul class="notes">
+            <li>Follow through on stated intentions</li>
+            <li>Credible targets → self-fulfilling (wages/contracts set at target inflation)</li>
+            <li>Govt-set targets lack credibility (incentive to allow higher inflation)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Quality 3: Transparency</div>
+          <ul class="notes">
+            <li>Publish inflation reports</li>
+            <li>Disclose economic indicators used in decisions</li>
+            <li>Clear communication → credibility + anticipability of policy changes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Targeting Approaches</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Method</th><th>How It Works</th><th>Key Points</th></tr>
+          <tr><td><strong>Inflation Targeting</strong></td><td>Set explicit inflation target (~2% ±1%); adjust money supply to hit 2-year forward inflation</td><td>Most common currently. Not 0% (deflation risk). UK, Brazil, Canada, Australia, Mexico, ECB</td></tr>
+          <tr><td><strong>Interest Rate Targeting</strong></td><td>↑ money supply when rate rises above band; ↓ when below</td><td>Historical; less common now</td></tr>
+          <tr><td><strong>Exchange Rate Targeting</strong></td><td>Peg currency to another (usually USD); buy/sell domestic currency to maintain</td><td>Common in developing economies; imports other country's inflation rate; reduces monetary policy independence</td></tr>
+        </table>
+      </div>
+      <div class="formula"><strong>Neutral Interest Rate = Real trend rate of economic growth + Inflation target</strong></div>
+      <div class="kw">Policy rate ABOVE neutral → Contractionary &nbsp;|&nbsp; Policy rate BELOW neutral → Expansionary</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">Limitations of Monetary Policy</div>
+      <ul class="notes">
+        <li><strong>Long-term rates ≠ short-term rates:</strong> Inflation expectations can cause LT rates to move opposite to ST rates</li>
+        <li><strong>Bond market vigilantes:</strong> If money growth seen as inflationary → investors sell bonds → ↑ LT yields despite easing policy</li>
+        <li><strong>Liquidity trap:</strong> Demand for money is highly elastic — people hold cash instead of bonds → ↑ money supply doesn't ↓ ST rates; Japan experienced this</li>
+        <li><strong>Zero lower bound:</strong> Nominal policy rates cannot go below 0% — limits ability to fight deflation</li>
+        <li><strong>Banks may not lend:</strong> Even with excess reserves, banks can be unwilling to lend (post-2008 credit bubble)</li>
+        <li><strong>Deflation harder to reverse</strong> than inflation</li>
+        <li><strong>Quantitative Easing (QE):</strong> CB purchases LT bonds / mortgage securities to reduce LT rates and generate excess reserves when conventional tools exhausted; US (QE, QE2), UK used this post-2008</li>
+        <li><strong>Developing economies:</strong> Lack liquid govt debt market | Rapid financial innovation changes money demand | May lack CB credibility | May lack independence from politics</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <div class="module-title">15.4 Monetary + Fiscal Policy Interaction (LOS 15.d)</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Monetary</th><th>Fiscal</th><th>Interest Rates</th><th>Output</th><th>Private Sector</th><th>Public Sector</th></tr>
+          <tr><td>Tight</td><td>Tight</td><td>Higher</td><td>Lower</td><td>Lower</td><td>Lower</td></tr>
+          <tr><td>Easy</td><td>Easy</td><td>Lower</td><td>Higher</td><td>Higher</td><td>Higher</td></tr>
+          <tr><td>Tight</td><td>Easy</td><td>Higher</td><td>Higher</td><td>Lower</td><td>Higher</td></tr>
+          <tr><td>Easy</td><td>Tight</td><td>Lower</td><td>Varies</td><td>Higher</td><td>Lower</td></tr>
+        </table>
+      </div>
+      <div class="kw"><strong>Fiscal multiplier ranking:</strong> Direct govt spending &gt; Transfer payments to poor &gt; Tax cuts for workers &gt; Broad transfers &nbsp;|&nbsp; All types amplified when combined with expansionary monetary policy</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 16 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r16">
+  <div class="reading-header"><span class="rnum">R16</span> INTRODUCTION TO GEOPOLITICS</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">16.1 Cooperation vs. Competition (LOS 16.a)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Core Terms</div>
+          <ul class="notes">
+            <li><strong>Geopolitics:</strong> Interactions among nations; how geography affects national/international relations</li>
+            <li><strong>State actors:</strong> National governments</li>
+            <li><strong>Nonstate actors:</strong> Corporations, NGOs, individuals</li>
+            <li><strong>Soft power:</strong> Influence without force (culture, media, norms, standards)</li>
+            <li><strong>Geophysical resource endowment:</strong> Natural resources influencing national interests and trade needs</li>
+            <li><strong>Institutions:</strong> Laws, organizations, customs — stable institutions facilitate cooperation</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Cooperation Areas</div>
+          <ul class="notes">
+            <li>Diplomatic and military matters</li>
+            <li>Economic interactions (trade, capital flows, tariff harmonization)</li>
+            <li>Cultural interactions</li>
+            <li>Standardization of regulations (e.g., IFRS)</li>
+            <li>Countries cooperate when it advances their <strong>national interests</strong></li>
+            <li>Degree of cooperation varies along a spectrum and can change over time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">16.2 Geopolitics & Globalization (LOS 16.b)</div>
+      <div class="kw"><strong>Globalization:</strong> Long-term trend toward worldwide integration of economic activity and cultures | Trade as % of world output: ~25% (early 1970s) → ~60% (pre-2008) → ~60% (post-2008)</div>
+      <div class="kw"><strong>Nationalism:</strong> Nation pursuing its own interests independently/in competition with others (as used in CFA curriculum)</div>
+
+      <div class="section-title">4 Geopolitical Archetypes (2×2 Matrix)</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th></th><th>Non-Cooperation</th><th>Cooperation</th></tr>
+          <tr><td><strong>Globalization</strong></td><td><strong>HEGEMONY:</strong> Open to globalization; large enough to influence others without cooperating (e.g., dominant economies)</td><td><strong>MULTILATERALISM:</strong> Extensive international trade &amp; cooperation with many countries; may exhibit regionalism (cooperation with nearby countries)</td></tr>
+          <tr><td><strong>Nationalism</strong></td><td><strong>AUTARKY:</strong> National self-reliance; produce most goods domestically; state-controlled economy, industry, media</td><td><strong>BILATERALISM:</strong> Cooperation with individual countries; many bilateral relationships but avoids multilateral arrangements</td></tr>
+        </table>
+      </div>
+      <div class="kw"><strong>Regionalism:</strong> Multilateral cooperation limited to nearby countries &nbsp;|&nbsp; <strong>Portfolio investment flows:</strong> Buy/sell foreign securities &nbsp;|&nbsp; <strong>FDI (Foreign Direct Investment):</strong> Own physical capacity abroad</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">16.3 International Organizations (LOS 16.c)</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Organization</th><th>Primary Role</th><th>Key Details</th></tr>
+          <tr><td><strong>IMF</strong><br>(Int'l Monetary Fund)</td><td>Promote international monetary cooperation and trade</td><td>• Promote exchange stability<br>• Establish multilateral payments system<br>• Provide resources to members with balance-of-payments difficulties</td></tr>
+          <tr><td><strong>World Bank</strong><br>(IBRD + IDA)</td><td>Fight poverty; provide financial &amp; technical assistance to developing countries</td><td>• IBRD: middle-income &amp; creditworthy poor countries<br>• IDA: world's poorest countries<br>• Provides low-interest loans, interest-free credits, grants<br>• Focus: education, health, infrastructure, agriculture, private sector</td></tr>
+          <tr><td><strong>WTO</strong><br>(World Trade Organization)</td><td>Ensure trade flows freely, smoothly, and predictably</td><td>• Only international body dealing with global trade rules<br>• Dispute settlement between countries (focus: interpret &amp; enforce agreements)<br>• Negotiates &amp; enforces multilateral trade agreements</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">16.4 Geopolitical Risk (LOS 16.d)</div>
+      <div class="kw"><strong>Geopolitical risk:</strong> Possibility of events that interrupt peaceful international relations</div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Event Risk</div>
+          Timing KNOWN but outcome uncertain (e.g., elections, scheduled referendums)
+        </div>
+        <div class="card">
+          <div class="card-title">Exogenous Risk</div>
+          Unanticipated events (e.g., war outbreak, rebellion, pandemic) — <em class="hi">high velocity</em>
+        </div>
+        <div class="card">
+          <div class="card-title">Thematic Risk</div>
+          Known long-term factors (e.g., migration, cyber risks, climate) — <em class="hi">low velocity</em>
+        </div>
+      </div>
+      <div class="kw"><strong>3 Dimensions to Assess Impact:</strong> Likelihood (probability) | Impact (magnitude on investment values) | Velocity (speed of effect on investments)</div>
+      <ul class="notes">
+        <li><strong>Black swan risk:</strong> Low-likelihood, high-impact exogenous events with substantial short-term effects</li>
+        <li><strong>High velocity:</strong> Exogenous risks — immediate market impact</li>
+        <li><strong>Medium velocity:</strong> Can damage specific companies/industries (cost/production disruptions)</li>
+        <li><strong>Low velocity:</strong> ESG-type risks — important for LONG time horizon investors</li>
+        <li>Geopolitical risks have GREATER impact on investment values during recessions vs. expansions</li>
+        <li><strong>Signposts:</strong> Data signals that probability of an event is changing (e.g., VIX, volatility indicators)</li>
+        <li><strong>Scenario analysis:</strong> Qualitative or quantitative — used to assess portfolio impact</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <div class="module-title">16.5 Tools of Geopolitics & Investment Impact (LOS 16.e, 16.f)</div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">National Security Tools</div>
+          <ul class="notes">
+            <li>Armed conflict</li>
+            <li>Espionage</li>
+            <li>Bilateral/multilateral security agreements</li>
+            <li>Armed conflict: destroys productive capital, causes migration</li>
+            <li>Can be active (currently used) or threatened</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Economic Tools</div>
+          <ul class="notes">
+            <li><strong>Cooperative:</strong> Free trade areas, common markets, economic/monetary unions</li>
+            <li><strong>Noncooperative:</strong> Domestic content requirements, voluntary export restraints, nationalization</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Financial Tools</div>
+          <ul class="notes">
+            <li><strong>Cooperative:</strong> Allow foreign investment, free currency exchange</li>
+            <li><strong>Noncooperative:</strong> Restrict FI, currency controls</li>
+            <li><strong>Sanctions:</strong> Restrictions on specific actor's financial interests — used alongside security tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 17 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r17">
+  <div class="reading-header"><span class="rnum">R17</span> INTERNATIONAL TRADE</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">17.1 Benefits & Costs of Trade (LOS 17.a)</div>
+      <div class="kw"><strong>Comparative advantage:</strong> Lower RELATIVE (opportunity) cost of production → arises from technology differences and resource endowments</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Benefits of Free Trade</div>
+          <ul class="notes">
+            <li>Specialization per comparative advantage → ↑ total output &amp; wealth</li>
+            <li>Economies of scale → ↓ export costs</li>
+            <li>Greater product variety for consumers</li>
+            <li>Increased competition → ↓ costs, ↑ quality</li>
+            <li>Reduces pricing power of domestic monopolies</li>
+            <li>More efficient resource allocation</li>
+            <li>Newer models also cite: monopolistic competition with differentiated products (autos: countries export one type, import another)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Costs of Free Trade</div>
+          <ul class="notes">
+            <li>Job losses in import-competing domestic industries</li>
+            <li>Increased income inequality</li>
+            <li>Short-run disruption; workers need retraining</li>
+            <li>Exporting country: ↑ export demand may ↑ prices for domestic consumers (in short run)</li>
+            <li>Overall: <em class="hi">gains exceed losses in LR</em> (winners could compensate losers)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">17.2 Trade Restrictions (LOS 17.b)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Rationale WITH Economic Support</div>
+          <ul class="notes">
+            <li><strong>Infant industry:</strong> Protect new industries until they reach competitive scale (learning curve)</li>
+            <li><strong>National security:</strong> Protect defense-essential industries</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Rationale WITHOUT Strong Economic Support</div>
+          <ul class="notes">
+            <li>Protecting domestic jobs (other jobs created in export industries)</li>
+            <li>Protecting domestic industries (usually favors producers at consumers' expense)</li>
+            <li>Retaliation, tariff revenue, anti-dumping, countering foreign subsidies</li>
+            <li><strong>Dumping:</strong> Exporting at below production cost</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Types of Trade Restrictions</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Type</th><th>Description</th><th>Who Gains</th><th>Who Loses</th><th>Govt Revenue</th></tr>
+          <tr><td><strong>Tariff</strong></td><td>Tax on imported goods</td><td>Domestic producers</td><td>Domestic consumers, Foreign exporters</td><td>✓ Yes (tariff revenue)</td></tr>
+          <tr><td><strong>Quota</strong></td><td>Limit on quantity of imports</td><td>Domestic producers; Foreign exporters (if licenses free)</td><td>Domestic consumers</td><td>Only if licenses sold</td></tr>
+          <tr><td><strong>Voluntary Export Restraint (VER)</strong></td><td>Exporting country self-limits exports</td><td>Foreign exporters (get quota rents)</td><td>Importing country consumers; importing govt (no revenue)</td><td>✗ None (worst outcome for importing country)</td></tr>
+          <tr><td><strong>Export Subsidy</strong></td><td>Govt payment to domestic exporters</td><td>Exporters; Foreign consumers</td><td>Domestic consumers (↑ prices); Govt; Foreign producers</td><td>✗ Cost (subsidy payment)</td></tr>
+          <tr><td><strong>Minimum Domestic Content</strong></td><td>% of product must be from domestic country</td><td>Domestic input producers</td><td>Domestic consumers</td><td>Minimal</td></tr>
+        </table>
+      </div>
+
+      <div class="kw"><strong>All restrictions (tariffs, quotas, VERs) on importing country:</strong> ↓ imports | ↑ domestic price | ↓ consumer surplus | ↑ domestic supply | ↑ producer surplus | DEADWEIGHT LOSS to society</div>
+      <div class="kw"><strong>Quota rents:</strong> If import licenses are NOT charged for → foreign exporters keep the price difference (quota rent). VER = equivalent to quota with ALL quota rents going to foreign exporters (worst for domestic welfare)</div>
+      <div class="kw"><strong>Exception:</strong> Large country quota/tariff CAN theoretically improve welfare if it reduces world price (country is large enough buyer to influence market price)</div>
+
+      <div class="section-title">Capital Flow Restrictions</div>
+      <ul class="notes">
+        <li>Outright prohibition of foreign investment in domestic country</li>
+        <li>Prohibition of / taxes on income earned on foreign investments by citizens</li>
+        <li>Prohibition of foreign investment in certain domestic industries</li>
+        <li>Restrictions on repatriation of earnings by foreign entities</li>
+        <li>Overall: ↓ economic welfare; short-run benefit for small economies during volatile capital flows may not offset LR costs</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <div class="module-title">17.3 Trading Blocs / Regional Trading Agreements (LOS 17.c)</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Type</th><th>Free Trade Among Members</th><th>Common External Tariffs</th><th>Free Labor &amp; Capital</th><th>Common Institutions</th><th>Single Currency</th><th>Example</th></tr>
+          <tr><td><strong>Free Trade Area</strong></td><td class="tick">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>NAFTA/USMCA</td></tr>
+          <tr><td><strong>Customs Union</strong></td><td class="tick">✓</td><td class="tick">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td>—</td></tr>
+          <tr><td><strong>Common Market</strong></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="cross">✗</td><td class="cross">✗</td><td>—</td></tr>
+          <tr><td><strong>Economic Union</strong></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="cross">✗</td><td>EU</td></tr>
+          <tr><td><strong>Monetary Union</strong></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td>Eurozone</td></tr>
+        </table>
+      </div>
+      <div class="kw"><strong>Motivation:</strong> Increase economic welfare by facilitating trade | Positive: specialization, competition | Negative: some industries/workers lose | Risk: if bloc shifts trade from efficient nonmember to inefficient member → welfare loss possible</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 18 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r18">
+  <div class="reading-header"><span class="rnum">R18</span> CAPITAL FLOWS AND THE FX MARKET</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">18.1 The Foreign Exchange Market (LOS 18.a)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Exchange Rate Notation</div>
+          <ul class="notes">
+            <li><strong>1.25 USD/EUR</strong> = "$1.25 per euro" = $1.25 is price of 1 euro</li>
+            <li><strong>Price currency</strong> = numerator (USD) &nbsp;|&nbsp; <strong>Base currency</strong> = denominator (EUR)</li>
+            <li><strong>Direct quote</strong>: From price currency investor's perspective</li>
+            <li><strong>Indirect quote</strong>: From base currency investor's perspective</li>
+            <li>↑ P/B rate → base currency APPRECIATES, price currency DEPRECIATES</li>
+            <li><strong>Spot rate:</strong> Immediate delivery (settled T+2)</li>
+            <li><strong>Forward rate:</strong> Exchange at future date (30/60/90/180 days)</li>
+            <li><strong>Nominal exchange rate:</strong> Rate at point in time</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">FX Market Participants</div>
+          <ul class="notes">
+            <li><strong>Sell side:</strong> Large multinational banks (primary dealers, forward contract originators)</li>
+            <li><strong>Buy side:</strong> All others — corporations, investment accounts, govts, retail</li>
+            <li><strong>Real money accounts:</strong> Mutual funds, pension funds, insurance — NO derivatives</li>
+            <li><strong>Leveraged accounts:</strong> Hedge funds, prop trading — USE derivatives</li>
+            <li><strong>Hedging:</strong> FX transaction that REDUCES existing risk</li>
+            <li><strong>Speculating:</strong> FX transaction that INCREASES risk</li>
+            <li>Central banks: sometimes engage to affect short-term exchange rates per govt policy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Real Exchange Rate</div>
+      <div class="formula"><strong>Real P/B Exchange Rate = Nominal P/B Rate × (CPI_base / CPI_price)</strong></div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Change</th><th>Effect on Real P/B Rate</th><th>Purchasing Power of Price Currency</th></tr>
+          <tr><td>↑ Nominal P/B rate</td><td>↑ Real P/B rate</td><td>↓ Decreases in base country</td></tr>
+          <tr><td>↓ Nominal P/B rate</td><td>↓ Real P/B rate</td><td>↑ Increases in base country</td></tr>
+          <tr><td>↑ Price level in BASE country (relative)</td><td>↑ Real P/B rate</td><td>↓ Decreases in base country</td></tr>
+          <tr><td>↑ Price level in PRICE country (relative)</td><td>↓ Real P/B rate</td><td>↑ Increases in base country</td></tr>
+        </table>
+      </div>
+
+      <div class="section-title">% Change in Currency</div>
+      <div class="formula"><strong>% Change in base currency = (New Rate / Old Rate) − 1</strong></div>
+      <div class="formula"><strong>% Appreciation of price currency = 1/(1 + % depreciation of base) − 1</strong></div>
+      <div class="kw">Note: % appreciation of price currency ≠ −(% depreciation of base currency). They are inverses, not negatives. Always convert to find the other.</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">18.2 Exchange Rate Regimes (LOS 18.b)</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Regime</th><th>Description</th><th>Monetary Policy Flexibility</th></tr>
+          <tr><td><strong>Formal Dollarization</strong></td><td>Uses another country's currency entirely (no domestic currency)</td><td>None</td></tr>
+          <tr><td><strong>Monetary Union</strong></td><td>Several countries share one currency (e.g., Eurozone → euro)</td><td>Joint (shared CB)</td></tr>
+          <tr><td><strong>Currency Board</strong></td><td>Explicit commitment to exchange at fixed rate; domestic currency only issued if backed by equivalent foreign currency (e.g., Hong Kong)</td><td>Very limited</td></tr>
+          <tr><td><strong>Conventional Fixed Peg</strong></td><td>Pegged within ±1% of another currency or basket</td><td>Constrained</td></tr>
+          <tr><td><strong>Horizontal Bands / Target Zone</strong></td><td>Wider bands (e.g., ±2%) — more flexibility than fixed peg</td><td>More flexibility</td></tr>
+          <tr><td><strong>Crawling Peg</strong></td><td>Periodic adjustments: passive (adjust for inflation) OR active (pre-announced schedule)</td><td>Constrained</td></tr>
+          <tr><td><strong>Crawling Bands</strong></td><td>Band width increases over time — transition mechanism from peg to float</td><td>Increasing</td></tr>
+          <tr><td><strong>Managed Float</strong></td><td>CB influences rate based on indicators (BOP, inflation, employment) with no explicit target</td><td>Significant</td></tr>
+          <tr><td><strong>Independent Float</strong></td><td>Market-determined; intervention only to slow volatility (not hit target)</td><td>Full independence</td></tr>
+        </table>
+      </div>
+
+      <div class="section-title">Exchange Rate Effects on Trade</div>
+      <ul class="notes">
+        <li><strong>↑ USD/EUR (USD depreciates):</strong> US goods cheaper for Eurozone → ↑ US exports; Eurozone goods pricier → ↓ US imports</li>
+        <li>Capital flows adjust <strong>FASTER</strong> than goods flows → capital is primary ST/MT exchange rate determinant</li>
+        <li>Trade flows more important for exchange rates in the <strong>LONG TERM</strong></li>
+      </ul>
+
+      <div class="section-title">Balance of Payments Identity</div>
+      <div class="formula"><strong>(X − M) ≡ (S − I) + (T − G)</strong><br>Trade surplus ↔ Net domestic savings &gt; domestic investment<br>Trade deficit ↔ Must attract foreign capital (capital account surplus)</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">18.3 Capital Flow Restrictions (LOS 18.c)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Objectives of Capital Restrictions</div>
+          <ul class="notes">
+            <li><strong>Reduce domestic asset price volatility:</strong> Prevent sudden capital flight during crises</li>
+            <li><strong>Maintain fixed exchange rates:</strong> Controls make FX target easier to maintain</li>
+            <li><strong>Keep domestic interest rates low:</strong> Prevent capital outflow seeking higher foreign rates</li>
+            <li><strong>Protect strategic industries:</strong> Prevent foreign ownership of defense/telecom</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Example: China</div>
+          <ul class="notes">
+            <li>Fixed exchange rate regime</li>
+            <li>Capital flow restrictions allow maintaining target FX rate</li>
+            <li>Also allows monetary policy independent of FX rate concerns</li>
+            <li>Can keep domestic interest rates lower than market would otherwise allow</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- READING 19 -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="r19">
+  <div class="reading-header"><span class="rnum">R19</span> EXCHANGE RATE CALCULATIONS</div>
+  <div class="reading-body">
+
+    <div class="module">
+      <div class="module-title">19.1 Currency Cross Rates (LOS 19.a)</div>
+      <div class="kw"><strong>Cross rate:</strong> Exchange rate between two currencies implied by their rates with a common third currency (usually USD or EUR)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Method 1: Multiply (USD cancels)</div>
+          <div class="formula">MXN/AUD = USD/AUD × MXN/USD<br>= 0.60 × 10.70 = 6.42 MXN/AUD</div>
+          Use when you can arrange quotes so the middle currency cancels by multiplication
+        </div>
+        <div class="card">
+          <div class="card-title">Method 2: Divide (USD in denominator of both)</div>
+          <div class="formula">CHF/NZD = (CHF/USD) ÷ (NZD/USD)<br>= 1.7799 ÷ 2.2529 = 0.7900</div>
+          Use when both quotes have same currency in denominator — divide
+        </div>
+      </div>
+      <div class="kw"><strong>Rule:</strong> Arrange quotes algebraically so target currencies end up correctly. If needed, take the inverse of a quote to get it in the right form.</div>
+    </div>
+
+    <div class="module">
+      <div class="module-title">19.2 Forward Rates & Interest Rate Parity (LOS 19.b)</div>
+      <div class="section-title">Covered Interest Rate Parity (No-Arbitrage Condition)</div>
+      <div class="formula"><strong>Forward<sub>d/f</sub> / Spot<sub>d/f</sub> = (1 + r<sub>domestic</sub>) / (1 + r<sub>foreign</sub>)</strong></div>
+      <div class="formula"><strong>Forward<sub>d/f</sub> = Spot<sub>d/f</sub> × [(1 + r<sub>domestic</sub>) / (1 + r<sub>foreign</sub>)]</strong></div>
+      <div class="formula"><strong>Spot<sub>d/f</sub> = Forward<sub>d/f</sub> × [(1 + r<sub>foreign</sub>) / (1 + r<sub>domestic</sub>)]</strong></div>
+      <div class="formula"><strong>Sub-annual: Forward = Spot × [(1 + r<sub>d</sub> × days/360) / (1 + r<sub>f</sub> × days/360)]</strong></div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Key Principle</div>
+          <ul class="notes">
+            <li>Currency with <strong>HIGHER interest rate</strong> must <strong>DEPRECIATE</strong> in forward market</li>
+            <li>Forward premium ≈ interest rate differential</li>
+            <li>Prevents riskless arbitrage (borrow cheap currency, invest in high-rate currency, lock forward)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Arbitrage Mechanism</div>
+          <ul class="notes">
+            <li>If forward ≠ no-arbitrage rate: borrow low-rate currency → convert to high-rate → invest → lock forward → riskless profit</li>
+            <li>Arbitrageurs: buy spot (↑ spot price) + sell forward (↓ forward price) → restore equilibrium</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Forward Quotes</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Points</div>
+          <ul class="notes">
+            <li>Last decimal place of spot rate quote</li>
+            <li>e.g., Spot = 1.4158, +25.3 points → Forward = 1.4158 + 0.00253 = 1.41833</li>
+            <li>e.g., Spot = 1.3050, −42.5 points → Forward = 1.3050 − 0.00425 = 1.30075</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Percentage</div>
+          <ul class="notes">
+            <li>Forward = Spot × (1 + %)</li>
+            <li>e.g., Spot = 0.7313, −0.062% → Forward = 0.7313 × (1 − 0.00062) = 0.7308</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title">Forward Premium & Discount</div>
+      <div class="formula"><strong>Forward Premium/Discount (base currency) = (Forward / Spot) − 1</strong></div>
+      <ul class="notes">
+        <li>Positive → forward PREMIUM on base currency (base expected to appreciate)</li>
+        <li>Negative → forward DISCOUNT on base currency (base expected to depreciate)</li>
+        <li>Annualize by multiplying by (12/months) or (360/days)</li>
+        <li><strong>Forward rates are POOR predictors of future spot rates</strong> (unbiased but noisy; may get direction right)</li>
+        <li>Best interpretation: <em class="hi">No-arbitrage rate at a specific point in time</em> — NOT a forecast of future spot rate</li>
+      </ul>
+
+      <div class="section-title">IRP vs. Capital Market Analysis (Apparent Contradiction)</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Interest Rate Parity (Forward)</div>
+          Higher domestic rates → domestic currency DEPRECIATES in forward market (to prevent arbitrage)
+        </div>
+        <div class="card">
+          <div class="card-title">Capital Market Analysis (Spot)</div>
+          Higher domestic rates → attract foreign capital → domestic currency APPRECIATES spot
+        </div>
+      </div>
+      <div class="kw">These are not contradictory — they apply to different mechanisms and time horizons. IRP is a no-arbitrage condition at a point in time; capital flows affect spot rates over time. Interest rate differences are historically poor predictors of future spot rates.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- FORMULA QUICK REFERENCE -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="reading" id="formulas">
+  <div class="reading-header" style="background: var(--accent)"><span class="rnum" style="background: var(--navy)">⚡</span> FORMULA QUICK REFERENCE SHEET</div>
+  <div class="reading-body">
+    <div class="formula-grid">
+      <div class="fg-item">
+        <div class="fg-label">Fiscal Multiplier</div>
+        <div class="fg-formula">1 / [1 − MPC × (1 − t)]</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Change in AD (Govt Spending)</div>
+        <div class="fg-formula">ΔG × Fiscal Multiplier</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Change in AD (Tax Change)</div>
+        <div class="fg-formula">−ΔT × MPC × Fiscal Multiplier</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Balanced Budget Multiplier</div>
+        <div class="fg-formula">Net positive (spending multiplier > tax multiplier)</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Neutral Interest Rate</div>
+        <div class="fg-formula">Real trend GDP growth + Inflation target</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Real Exchange Rate</div>
+        <div class="fg-formula">Nominal P/B × (CPI_base / CPI_price)</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">% Change in Base Currency</div>
+        <div class="fg-formula">(New Rate / Old Rate) − 1</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">% Appreciation of Price Currency</div>
+        <div class="fg-formula">1 / (1 + % depreciation of base) − 1</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">No-Arbitrage Forward Rate</div>
+        <div class="fg-formula">Spot × [(1 + r_domestic) / (1 + r_foreign)]</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Forward Rate (Sub-Annual)</div>
+        <div class="fg-formula">Spot × [(1 + r_d × d/360) / (1 + r_f × d/360)]</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Forward Premium/Discount</div>
+        <div class="fg-formula">(Forward / Spot) − 1</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Cross Rate (Multiply)</div>
+        <div class="fg-formula">P/X = P/USD × USD/X  (USD cancels)</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Cross Rate (Divide)</div>
+        <div class="fg-formula">P/X = (P/USD) / (X/USD)</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">HHI</div>
+        <div class="fg-formula">Σ (market share_i)²   [squared market shares]</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">N-firm Concentration Ratio</div>
+        <div class="fg-formula">Σ % market shares of largest N firms</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Balance of Payments Identity</div>
+        <div class="fg-formula">(X − M) ≡ (S − I) + (T − G)</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">Debt Ratio Rises When</div>
+        <div class="fg-formula">Real interest rate > Real GDP growth rate</div>
+      </div>
+      <div class="fg-item">
+        <div class="fg-label">MPC Relationship</div>
+        <div class="fg-formula">MPC + MPS = 1  |  MPS = 1 − MPC</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; padding: 12px; background: var(--navy); border-radius: 6px; color: white; text-align: center; font-size: 13px;">
+      <strong>Good luck on your CFA exam! 🎯</strong> — All concepts from Readings 12–19 covered above.
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+  // Smooth scroll for TOC links
+  document.querySelectorAll('#toc a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('toc').classList.remove('open');
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
