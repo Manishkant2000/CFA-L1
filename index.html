@@ -1,228 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CFA Formula & Concepts Portal</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+<link rel="stylesheet" href="assets/styles.css">
 
-body{
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:#f4f7fb;
-    color:#1f2937;
-}
-
-.hero{
-    background:linear-gradient(135deg,#0f172a,#1e3a8a);
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-}
-
-.hero h1{
-    font-size:3rem;
-    margin-bottom:15px;
-}
-
-.hero p{
-    font-size:1.2rem;
-    max-width:800px;
-    margin:auto;
-    opacity:0.9;
-}
-
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:40px 20px;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:30px;
-    color:#1e3a8a;
-    font-size:2rem;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:white;
-    border-radius:16px;
-    padding:24px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-6px);
-}
-
-.card h3{
-    color:#1e40af;
-    margin-bottom:10px;
-}
-
-.card p{
-    color:#6b7280;
-    margin-bottom:18px;
-    line-height:1.5;
-}
-
-.card a{
-    text-decoration:none;
-    background:#1e3a8a;
-    color:white;
-    padding:10px 16px;
-    border-radius:8px;
-    display:inline-block;
-}
-
-.card a:hover{
-    background:#172554;
-}
-
-.footer{
-    text-align:center;
-    padding:40px;
-    color:#6b7280;
-}
-
-.stats{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-
-.stat-box{
-    background:rgba(255,255,255,0.15);
-    padding:15px 25px;
-    border-radius:12px;
-}
-
-.stat-box h2{
-    margin-bottom:5px;
-}
-
-</style>
 </head>
 
 <body>
 
+<nav class="navbar">
+
+<div class="logo">
+📘 CFA Portal
+</div>
+
+<button class="hamburger" id="hamburger">
+☰
+</button>
+
+<ul class="nav-links" id="navLinks">
+
+<li><a href="#">Home</a></li>
+<li><a href="CFA_Ethics_Study_Guide.html">Ethics</a></li>
+<li><a href="cfa_quant.html">Quant</a></li>
+<li><a href="CFA_Eco_Notes.html">Economics</a></li>
+<li><a href="CFA_FSA_Notes.html">FSA</a></li>
+<li><a href="CFA_Corporate_Issuers_StudyGuide.html">Corporate</a></li>
+<li><a href="Equity_cfa_portal.html">Equity</a></li>
+<li><a href="CFA_Fixed_Income_Notes.html">Fixed Income</a></li>
+<li><a href="CFA_Derivatives_Study_Guide.html">Derivatives</a></li>
+<li><a href="alt_investments_study_guide.html">Alt Investments</a></li>
+<li><a href="portfolio_management_study_guide.html">Portfolio</a></li>
+
+</ul>
+
+</nav>
+
 <section class="hero">
-    <h1>📘 CFA Formula & Concepts Portal</h1>
 
-    <p>
-        A consolidated repository of formulas, revision notes,
-        key concepts, and exam-focused study guides across the CFA curriculum.
-    </p>
+<div class="hero-content">
 
-    <div class="stats">
-        <div class="stat-box">
-            <h2>9</h2>
-            <div>Core Topics</div>
-        </div>
+<div class="badge">
+🚀 Complete CFA Learning Hub
+</div>
 
-        <div class="stat-box">
-            <h2>100+</h2>
-            <div>Key Formulas</div>
-        </div>
+<h1>
+Master CFA.<br>
+One Formula At A Time.
+</h1>
 
-        <div class="stat-box">
-            <h2>Exam Ready</h2>
-            <div>Quick Revision</div>
-        </div>
-    </div>
+<p>
+A beautifully organized repository of formulas,
+concepts, revision notes and exam insights across
+the entire CFA curriculum.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#topics" class="primary-btn">
+Explore Topics
+</a>
+
+<a href="#topics" class="secondary-btn">
+Quick Revision
+</a>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2>10+</h2>
+<span>Study Guides</span>
+</div>
+
+<div class="stat">
+<h2>500+</h2>
+<span>Formulas</span>
+</div>
+
+<div class="stat">
+<h2>100%</h2>
+<span>Exam Focused</span>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+<section id="topics" class="topics">
 
-<div class="container">
+<h2>Explore CFA Curriculum</h2>
 
-<h2 class="section-title">Study Resources</h2>
+<div class="topic-grid">
 
-<div class="grid">
-
-<div class="card">
+<a href="CFA_Ethics_Study_Guide.html" class="card">
 <h3>⚖ Ethics</h3>
-<p>Professional standards, code of ethics, and exam-focused applications.</p>
-<a href="CFA_Ethics_Study_Guide.html">Open Guide</a>
-</div>
+<p>Standards, Code & Applications</p>
+</a>
 
-<div class="card">
-<h3>📊 Quantitative Methods</h3>
-<p>TVM, probability, hypothesis testing, statistics, and regression.</p>
-<a href="cfa_quant.html">Open Guide</a>
-</div>
+<a href="cfa_quant.html" class="card">
+<h3>📊 Quant</h3>
+<p>Probability, TVM & Regression</p>
+</a>
 
-<div class="card">
+<a href="CFA_Eco_Notes.html" class="card">
 <h3>🌍 Economics</h3>
-<p>Macroeconomics, microeconomics, currency markets, and growth.</p>
-<a href="CFA_Eco_Notes.html">Open Guide</a>
-</div>
+<p>Macro, Micro & FX</p>
+</a>
 
-<div class="card">
-<h3>📑 Financial Statement Analysis</h3>
-<p>Income statements, balance sheets, cash flows, and ratios.</p>
-<a href="CFA_FSA_Notes.html">Open Guide</a>
-</div>
+<a href="CFA_FSA_Notes.html" class="card">
+<h3>📑 FSA</h3>
+<p>Financial Statements & Ratios</p>
+</a>
 
-<div class="card">
-<h3>🏢 Corporate Issuers</h3>
-<p>Capital budgeting, governance, leverage, and business decisions.</p>
-<a href="CFA_Corporate_Issuers_StudyGuide.html">Open Guide</a>
-</div>
+<a href="CFA_Corporate_Issuers_StudyGuide.html" class="card">
+<h3>🏢 Corporate</h3>
+<p>Governance & Capital Budgeting</p>
+</a>
 
-<div class="card">
-<h3>📈 Equity Investments</h3>
-<p>Valuation methods, market structures, and equity analysis.</p>
-<a href="Equity_cfa_portal.html">Open Guide</a>
-</div>
+<a href="Equity_cfa_portal.html" class="card">
+<h3>📈 Equity</h3>
+<p>Valuation & Markets</p>
+</a>
 
-<div class="card">
+<a href="CFA_Fixed_Income_Notes.html" class="card">
 <h3>📉 Fixed Income</h3>
-<p>Bond pricing, duration, yield measures, and term structure.</p>
-<a href="CFA_Fixed_Income_Notes.html">Open Guide</a>
-</div>
+<p>Bonds, Duration & Yield</p>
+</a>
 
-<div class="card">
+<a href="CFA_Derivatives_Study_Guide.html" class="card">
 <h3>🔄 Derivatives</h3>
-<p>Forwards, futures, swaps, options, and derivative valuation.</p>
-<a href="CFA_Derivatives_Study_Guide.html">Open Guide</a>
-</div>
+<p>Options, Futures & Swaps</p>
+</a>
 
-<div class="card">
-<h3>🏗 Alternative Investments</h3>
-<p>Private equity, hedge funds, real estate, and commodities.</p>
-<a href="alt_investments_study_guide.html">Open Guide</a>
-</div>
+<a href="alt_investments_study_guide.html" class="card">
+<h3>💎 Alternatives</h3>
+<p>PE, RE & Commodities</p>
+</a>
 
-<div class="card">
-<h3>🎯 Portfolio Management</h3>
-<p>CAPM, portfolio theory, risk management, and asset allocation.</p>
-<a href="portfolio_management_study_guide.html">Open Guide</a>
-</div>
+<a href="portfolio_management_study_guide.html" class="card">
+<h3>🎯 Portfolio</h3>
+<p>CAPM & Portfolio Theory</p>
+</a>
 
 </div>
 
-</div>
+</section>
 
-<div class="footer">
-    CFA Formula & Concepts Portal • Built for Efficient Revision
-</div>
+<footer>
+
+<h3>CFA Formula & Concepts Portal</h3>
+
+<p>
+Built for focused revision and concept mastery.
+</p>
+
+</footer>
+
+<script src="assets/script.js"></script>
 
 </body>
 </html>
